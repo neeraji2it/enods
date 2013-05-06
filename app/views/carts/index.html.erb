@@ -1,0 +1,32 @@
+<h1>Your cart</h1>
+<div id="formDiv">
+
+  <% if !@user_products.to_a.empty? %>
+    <table id="line_items" width="95%" cellspacing="10px;">
+      <tr style="text-decoration: underline;">
+        <th>Product</th>
+        <th>Qty</th>
+        <th class="price">Unit Price</th>
+        <th class="price">Full Price</th>
+      </tr>
+      <% for line_item in @user_products %>
+        <tr class="<%= cycle :odd, :even %>" style="text-align: center;">
+          <td><%=h line_item.product.title %></td>
+          <td class="qty"><%= line_item.quantity %></td>
+          <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+          <td class="price"><%= number_to_currency(line_item.full_price) %></td>
+          <td class="price"><%= link_to image_tag("/assets/closeX.gif"), cart_path(line_item), :method => :delete, :confirm => "Are You Sure" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p>
+      <span id="total_cart">Total: <%= number_to_currency @cart.total_price %></span>
+      <%= link_to image_tag("/assets/paypal.gif"), express_order_path(@cart), :style => 'float: right;' %>
+    </p>
+  <% else %>
+    <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
+      Your cart is empty
+    </div>
+  <% end %>
+</div>

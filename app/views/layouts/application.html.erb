@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enods.com</title>
+    <%= stylesheet_link_tag 'application','enods' %>
+    <%= javascript_include_tag 'application', "countdown_timer" %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
+    <div id="header">
+      <%= link_to "ENODS.COM", "/", :class => "logo" %>
+      <div id="header_search" style="float:left;margin-left:20px;margin-top:42px;">
+        <%= form_tag search_products_path, :method => 'get' do %>
+          <%= text_field_tag(:query, "#{params[:query] || 'Search'}",:onFocus => "if(this.value=='Search') this.value='';",:onBlur => "if(this.value=='') this.value='Search';") %>
+        <% end %>
+      </div>
+      <div id="header_login">
+        <% if !current_user %>
+          <%= link_to "Buyer", buyer_users_path, :class => "button" %>
+          <%= link_to "Seller", seller_users_path, :class => "button" %>
+          <%= link_to "Sign In", new_user_session_path, :class => "button" %>
+        <% else %>
+          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : (link_to "Products", admins_path, :class => "button") %>
+          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : (link_to "Categories", new_category_path, :class => "button") %>
+          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : "" %>
+          <%= link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button" %>
+        <% end %>
+      </div>
+      <div id="cart_expire_time"></div>
+    </div>
+
+    <div id="maincontent" style=<%= !current_user ? "width:1390px;" : 'width:955px;' %>>
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+      <% if !user_signed_in? %>
+        <div id="category">
+          <table cellspacing="30">
+            <% Category.all.each do |category| %>
+              <tr>
+                <td><%= link_to category.name, category_path(:categories => category.id) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
+
+

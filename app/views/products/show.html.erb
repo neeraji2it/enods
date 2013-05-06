@@ -1,0 +1,49 @@
+<h1><%= @product.title if @product %></h1>
+<div class="deals" id="content">
+  <div class="deal">
+    <div class="leftSec" style="max-height: 400px;overflow: auto;">
+      <% if !@product.images.empty? %>
+        <% for image in @product.images %>
+          <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70"), "#" %>
+        <% end %>
+      <% else %>
+        <%= image_tag("no_image.gif", :width => "70") %>
+      <% end %>
+    </div>
+    <div class="midSec">
+      <%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '400px', :height => '400px') %>
+    </div>
+    <div class="rightSec">
+      <div class="dealsDetails">
+        <table cellspacing="10" cellpadding="0">
+          <tbody><tr>
+              <td><p class="title">PRICE:</p></td>
+              <td><p>
+                  <strong><span id="dealPrice">$<%= @product.price %></span></strong>
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+        <% if (user_signed_in? and current_user.role != 'admin') %>
+          <div class="cartButton">
+            <%= link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="sellerMsg">
+        <br /><%= @product.description %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(function(){
+    $('.leftSec a img').click(function(e){
+      e.preventDefault();
+      $('.midSec img').attr('src',$(this).attr('src'));
+    });
+  });
+
+</script>

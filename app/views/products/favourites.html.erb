@@ -1,0 +1,19 @@
+<div class="deals" id="content">
+  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
+    <div class="prodImgs">
+      <% if !@favourites.empty? %>
+        <% for product in @favourites %>
+          <div class="prodImgWrap">
+            <div class="prodImg">
+              <%= link_to image_tag(product.product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product.product) %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div style="padding: 10px;color: red;">
+          No products in favorites.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<h1>Category</h1>
+
+<div id="formDiv">
+  <%= form_for @category do |f| %>
+    <table>
+      <tr>
+        <td>Category</td>
+        <td><%= f.text_field :name %></td>
+        <td><%= validation_error(@category.errors['name'])%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit">Category</button> </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
