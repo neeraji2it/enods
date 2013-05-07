@@ -44,6 +44,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :secret
       t.text :details
       t.string :role
+      t.string :avatar_file_name
+      t.string :avatar_content_type
+      t.integer :avatar_file_size
       t.timestamps
     end
 

@@ -1,32 +1,17 @@
 class UsersController < ApplicationController
 
-  def buyer
+  def new
     @user = User.new
   end
 
-  def create_buyer
+  def create
     @user = User.new(params[:user])
-    @user.role = 'buyer'
+    @user.role = params[:user][:role]
     if @user.save
       flash[:notice] = 'OK!  Please check your email to complete your registration.'
       redirect_to '/'
     else
       render :action => 'buyer'
-    end
-  end
-
-  def seller
-    @user = User.new
-  end
-
-  def create_seller
-    @user = User.new(params[:user])
-    @user.role = 'seller'
-    if @user.save
-      flash[:notice] = 'OK!  Please check your email to complete your registration.'
-      redirect_to '/'
-    else
-      render :action => 'seller'
     end
   end
 end

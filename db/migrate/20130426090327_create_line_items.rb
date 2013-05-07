@@ -5,6 +5,7 @@ class CreateLineItems < ActiveRecord::Migration
       t.integer :product_id
       t.integer :cart_id
       t.integer :quantity
+      t.string :status
       t.timestamps
     end
   end

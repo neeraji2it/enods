@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token
+  attr_accessible :email, :password,:avatar, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
+
+  has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])

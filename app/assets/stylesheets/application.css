@@ -69,3 +69,18 @@
     background-color: #F5F5F1;
 }
 
+#reg{
+    background: none repeat scroll 0 0 greenyellow;
+    border-top: 1px solid #DBDBDB;
+    box-shadow: 0 1px 8px #888888;
+    border-radius: 7px;
+    height: 64px;
+    left: 0px;
+    padding-left: 9px;
+    position: absolute;
+    top: 22px;
+    width: 201px;
+    z-index: 1001;
+    line-height: 22px;
+}
+

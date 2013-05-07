@@ -8,8 +8,8 @@
     <div class="prodImgs">
       <% if !@products.empty? %>
         <% for product in @products %>
-          <div class="prodImgWrap">
-            <div class="prodImg"  id="hide_<%= product.id %>">
+          <div class="prodImgWrap"  id="hide_<%= product.id %>">
+            <div class="prodImg">
               <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product), :id => "show_#{product.id}" %>
             </div>
             <div id="favourite">
@@ -24,7 +24,7 @@
               <% end %>
             </div>
             <div id="bigImg_<%= product.id %>" class="bigImg" style="display:none;">
-              <%= image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px') %>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
             </div>
           </div>
           <script>

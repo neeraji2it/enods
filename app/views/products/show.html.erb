@@ -24,11 +24,7 @@
               </td>
             </tr>
           </tbody></table>
-        <% if (user_signed_in? and current_user.role != 'admin') %>
-          <div class="cartButton">
-            <%= link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white' %>
-          </div>
-        <% end %>
+        <%= (user_signed_in? and current_user.role != 'admin' and current_user.role != 'seller') ? (link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white', :class => 'cartButton') : "" %>
       </div>
       <div class="sellerMsg">
         <br /><%= @product.description %>

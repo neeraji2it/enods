@@ -1,0 +1,30 @@
+<%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
+  <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </p>
+
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    <%= f.radio_button :gender, "Male" %>Male
+    <%= f.radio_button :gender , "Female"%>Female
+    <%= f.radio_button :gender ,"Rather not say"%>Rather not say
+  </p>
+  <p>
+    <button type="submit">Sign up</button>
+  </p>
+<% end %>

@@ -9,15 +9,7 @@ Enods::Application.routes.draw do
 
   resources :categories
 
-  resources :users do
-    collection do
-      get :buyer
-      get :seller
-      post :create_buyer
-      post :create_seller
-    end
-  end
-
+  resources :users 
 
   resources :line_items 
   resources :carts do
@@ -51,6 +43,13 @@ Enods::Application.routes.draw do
       put :update_mark_favourite
     end
     resources :images
+  end
+
+  resources :profiles do
+    member do
+      get :profile
+      put :profile_update
+    end
   end
 
   match '/auth/:provider/callback' => 'omniauths#create'

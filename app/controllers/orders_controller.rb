@@ -30,6 +30,9 @@ class OrdersController < ApplicationController
     @cart = current_cart
     @order = @cart.build_order(params[:order].merge({:ip_address => request.remote_ip, :cart_id => @cart.id, :user_id => current_user.id, :express_token => @cart.paypal_express_token}))
     if @order.save
+      for product in @cart.line_items
+        product.update_attribute(:status, 'sold')
+      end
       if @order.purchase
         session.delete(:cart_id)
         flash[:notice] = "Payment has been successfully done"

@@ -15,17 +15,26 @@
         <% end %>
       </div>
       <div id="header_login">
-        <% if !current_user %>
-          <%= link_to "Buyer", buyer_users_path, :class => "button" %>
-          <%= link_to "Seller", seller_users_path, :class => "button" %>
-          <%= link_to "Sign In", new_user_session_path, :class => "button" %>
-        <% else %>
-          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : (link_to "Products", admins_path, :class => "button") %>
-          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : (link_to "Categories", new_category_path, :class => "button") %>
-          <%= (user_signed_in? and current_user.role != 'admin') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : "" %>
-          <%= link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button" %>
-        <% end %>
+        <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
+        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : (link_to "Products", admins_path, :class => "button") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
+        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : (link_to "Categories", new_category_path, :class => "button") : "") %>
+        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to "Sign In", new_user_session_path, :class => "button")) %>
+        <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button") : " ") %>
+        <div id="reg" style="display: none;">
+          <%= link_to "Register as a <b>Buyer</b>".html_safe, new_user_path(:role => 'buyer'), :style => 'color: purple;' %>
+          <%= link_to "Register as a <b>Seller</b>".html_safe, new_user_path(:role => 'seller'), :style => 'color: purple;' %>
+          <%= link_to "Register as a <b>Non Profit</b>".html_safe, new_user_path(:role => 'non_profit'), :style => 'color: purple;' %>
+        </div>
       </div>
+      <script>
+        $("#register").click(function(){
+          $("#reg").show();
+        })
+
+        $("#header_login").mouseleave(function(){
+          $("#reg").hide();
+        })
+      </script>
       <div id="cart_expire_time"></div>
     </div>
 

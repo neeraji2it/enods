@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_filter :is_signin?, :only => ['new','create','add_to_cart']
 
   def index
-    @products = Product.where("status = 'confirmed'").order('product_count DESC')
+    @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
+    @products = Product.where("user_id = #{current_user.id}").order('product_count DESC') if (user_signed_in? and current_user.role == 'seller')
   end
 
   def new
