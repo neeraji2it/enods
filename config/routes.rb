@@ -14,7 +14,6 @@ Enods::Application.routes.draw do
   resources :line_items 
   resources :carts do
     collection do
-      get :current_cart
       get :expire_cart
     end
   end
