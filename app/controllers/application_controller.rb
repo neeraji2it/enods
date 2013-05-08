@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
-      if current_user.role == 'admin'
-        admins_path
+      if current_user.role == 'non_profit'
+        profile_path(current_user)
       else
-        products_path
+        (current_user.role == 'admin' ? (admins_path) : (products_path))
       end
     end
   end

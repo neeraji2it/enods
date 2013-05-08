@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :is_signin?, :only => ['new','create','add_to_cart']
+  before_filter :is_signin?, :only => ['index','new','create','add_to_cart']
 
   def index
     @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
