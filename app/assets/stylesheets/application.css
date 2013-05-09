@@ -4,18 +4,6 @@
     position:relative;
 }
 
-.alert, .error{
-    color: red;
-}
-
-.notice{
-    color: green;
-}
-
-.success{
-    color: green;
-}
-
 .content {
     border:2px solid #BEB3B4;
     float:left;
@@ -82,5 +70,22 @@
     width: 201px;
     z-index: 1001;
     line-height: 22px;
+}
+
+ul li{
+    list-style-type: none;
+    margin: 15px -30px;
+}
+
+.scrollup{
+    width:40px;
+    height:40px;
+    opacity:0.3;
+    position:fixed;
+    bottom:50px;
+    right:100px;
+    display:none;
+    text-indent:-9999px;
+    background: url('/assets/icon_top.png') no-repeat;
 }
 

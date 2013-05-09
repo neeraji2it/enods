@@ -14,13 +14,36 @@
 //= require jquery_ujs
 //= require_tree .
 
+//remove fields
 function remove_fields(link) {
     $(link).prev("input[type=hidden]").val("1");
     $(link).closest(".fields").hide();
 }
 
+//add more fields
 function add_fields(link, association, content){
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
     $(link).parent().before(content.replace(regexp, new_id));
 }
+
+
+//scroll top
+$(document).ready(function(){
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    });
+
+    $('.scrollup').click(function(){
+        $("html, body").animate({
+            scrollTop: 0
+        }, 600);
+        return false;
+    });
+
+});

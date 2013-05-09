@@ -264,10 +264,6 @@ a.thumbMore:hover{ text-decoration:underline; }
 
 
 
-/*****Error messages ****/
-.alert{ color:#ff0000; font-size:15px; font-style: italic; margin:20px 0px 0px 0px;}
-.notice{ font-size:14px; margin-top:20px;}
-
 .heartFav{ position: absolute; right: 5px; top:5px;}
 
 

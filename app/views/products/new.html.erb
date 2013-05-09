@@ -1,6 +1,7 @@
+<h1>New Product</h1>
 <div id="formDiv">
   <%= form_for @product do |f| %>
-    <table>
+    <table cellspacing="20px">
       <tr>
         <td>Category</td>
         <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.all.collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
@@ -23,7 +24,7 @@
             <%= builder.file_field :image  %>
           <%end%>
           <div>
-            <%= link_to_add_fields "Add More Images+", f, :images %>
+            <br /><%= link_to_add_fields "Add More Images+", f, :images %>
           </div>
           <br />
         </td>

@@ -2,6 +2,9 @@ Enods::Application.routes.draw do
   devise_for :users
 
   resources :admins do
+    collection do
+      get :products
+    end
     member do
       put :confirm_product
     end

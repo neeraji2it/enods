@@ -14,4 +14,26 @@ class UsersController < ApplicationController
       render :action => 'buyer'
     end
   end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = "Successfully deleted the user."
+      redirect_to products_admins_path
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Successfully updated the user."
+      redirect_to products_admins_path
+    else
+      render :action => 'edit'
+    end
+  end
 end

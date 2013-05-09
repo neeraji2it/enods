@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password,:avatar, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token
+  attr_accessible :email, :password,:avatar,:image, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
 
-  has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}
+  has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png"
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])
@@ -23,11 +23,12 @@ class User < ActiveRecord::Base
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       uid = auth_hash["uid"]
+      image = auth_hash["info"]["image"]
       details = auth_hash
       secret = auth_hash["secret"]
       provider = auth_hash["provider"]
       token = auth_hash["credentials"].try(:"[]", "token")
-      user = User.new :username => username,:first_name => first_name,:role => 'buyer',:last_name => last_name, :email => email,:details => details, :secret => secret, :uid => uid, :provider => provider, :token => token
+      user = User.new :username => username,:first_name => first_name,:image => image,:role => 'buyer',:last_name => last_name, :email => email,:details => details, :secret => secret, :uid => uid, :provider => provider, :token => token
       user.save(:validate => false)
     end
     return user
@@ -38,8 +39,8 @@ class User < ActiveRecord::Base
     self.favourites.find_by_product_id(tweet)
   end
 
-  protected
-  def confirmation_required?
-    self.provider.nil?
-  end
+#  protected
+#  def confirmation_required?
+#    self.provider.nil?
+#  end
 end

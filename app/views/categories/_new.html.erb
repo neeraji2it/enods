@@ -1,0 +1,7 @@
+<h1>New Category</h1>
+
+<div id="formDiv">
+  <%= form_for @category do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+</div>

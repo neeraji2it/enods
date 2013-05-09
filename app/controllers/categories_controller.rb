@@ -1,4 +1,10 @@
 class CategoriesController < ApplicationController
+  before_filter :is_signin?, :is_admin?
+
+  def index
+    @categories = Category.all
+  end
+  
   def new
     @category = Category.new
   end
@@ -7,9 +13,32 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     if @category.save
       flash[:notice] = "Success"
-      redirect_to products_path
+      redirect_to categories_path
     else
       render :action => 'new'
     end
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(params[:category])
+      flash[:notice] = "Success"
+      redirect_to categories_path
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to categories_path
   end
 end

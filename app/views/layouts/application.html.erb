@@ -2,9 +2,23 @@
 <html>
   <head>
     <title>Enods.com</title>
-    <%= stylesheet_link_tag 'application','enods' %>
-    <%= javascript_include_tag 'application', "countdown_timer" %>
+    <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar" %>
+    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar" %>
     <%= csrf_meta_tag %>
+    <% ['notice', 'error', 'warning'].each do |f|%>
+      <% if flash[f.to_sym]%>
+        <script type="text/javascript" >
+          jQuery(function () {
+            jQuery.notifyBar({
+              cls: "<%= f %>",
+              html: "<%=  flash[f.to_sym] %>",
+              delay: 3000,
+              animationSpeed: "normal"
+            });
+          });
+        </script>
+      <%end%>
+    <%end%>
   </head>
   <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
     <div id="header">
@@ -16,14 +30,14 @@
       </div>
       <div id="header_login">
         <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non_profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : (link_to "Products", admins_path, :class => "button") : "") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non_profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : (link_to "Categories", new_category_path, :class => "button") : "") : "") %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non_profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non_profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : ("") : "") : "") %>
         <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non_profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to "Sign In", new_user_session_path, :class => "button")) %>
         <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button") : " ") %>
         <div id="reg" style="display: none;">
           <%= link_to "Register as a <b>Buyer</b>".html_safe, new_user_path(:role => 'buyer'), :style => 'color: purple;' %>
           <%= link_to "Register as a <b>Seller</b>".html_safe, new_user_path(:role => 'seller'), :style => 'color: purple;' %>
-          <%= link_to "Register as a <b>Non Profit</b>".html_safe, new_user_path(:role => 'non_profit'), :style => 'color: purple;' %>
+          <%= link_to "Register as a <b>Non Profit</b>".html_safe, new_user_path(:role => 'non-profit'), :style => 'color: purple;' %>
         </div>
       </div>
       <script>
@@ -39,9 +53,6 @@
     </div>
 
     <div id="maincontent" style=<%= !current_user ? "width:1390px;" : 'width:955px;' %>>
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
       <% if !user_signed_in? %>
         <div id="category">
           <table cellspacing="30">
@@ -52,8 +63,19 @@
             <% end %>
           </table>
         </div>
+      <% elsif user_signed_in? and current_user.role == 'admin' %>
+        <div id="category" style="margin-left: -132px;margin-top: 20px;width: 110px;">
+          <ul>
+            <li><%= link_to "Seller", admins_path(:role => 'seller')%></li>
+            <li><%= link_to "Buyer", admins_path(:role => 'buyer')%></li>
+            <li><%= link_to "Non Profit", admins_path(:role => 'non-profit')%></li>
+            <li><%= link_to "Categories", categories_path%></li>
+            <li><%= link_to "Products", products_admins_path %></li>
+          </ul>
+        </div>
       <% end %>
       <%= yield %>
+      <a href="#" class="scrollup">Scroll</a>
     </div>
   </body>
 </html>

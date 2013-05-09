@@ -1,6 +1,7 @@
-<h1>Update Profile</h1>
+<h1>Edit <%= @user.role %></h1>
+<p class="required">*All fields are required</p>
 <div id="formDiv">
-  <%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
+  <%= form_for @user, :url => user_path(@user), :method => 'PUT' do |f| %>
     <p>
       <%= f.label :first_name %>
       <%= f.text_field :first_name %>
@@ -9,12 +10,6 @@
     <p>
       <%= f.label :last_name %>
       <%= f.text_field :last_name %>
-    </p>
-
-    <p>
-      <%= f.label :avatar, "Image" %>
-      <%= image_tag(@user.avatar.url(:original), :width => '50px', :height => '50px') %>
-      <%= f.file_field :avatar %>
     </p>
 
     <p>
@@ -27,6 +22,13 @@
       <%= f.radio_button :gender , "Female"%>Female
       <%= f.radio_button :gender ,"Rather not say"%>Rather not say
     </p>
+
+
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email, :readonly => true %>
+    </p>
+
     <p>
       <button type="submit">Update</button>
     </p>

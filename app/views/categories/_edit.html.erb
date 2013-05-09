@@ -1,0 +1,7 @@
+<h1>Edit Category</h1>
+
+<div id="formDiv">
+  <%= form_for(@category, :url => {:controller => 'categories', :action => 'update', :id => @category.id}, :method => 'PUT') do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+</div>

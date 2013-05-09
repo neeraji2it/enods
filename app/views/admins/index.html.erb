@@ -1,37 +1,28 @@
-<div class="deals" id="content">
-  <div class="bar">Pending Products</div>
-  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
-    <div class="prodImgs">
-      <% if !@pending_products.empty? %>
-        <% for product in @pending_products %>
-          <div class="prodImgWrap" style="height: 160px;">
-            <div class="prodImg">
-              <%= image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px') %>
-            </div>
-            <%= link_to "Confirm Product", confirm_product_admin_path(product), :method => 'put', :class => 'button' %>
-          </div>
-        <% end %>
-      <% else %>
-        <div style="text-align: center;padding: 10px;">
-          No pending products
-        </div>
+<h1><%= params[:role] %>s</h1>
+<div id="formDiv">
+
+  <% if !@users.to_a.empty? %>
+    <table id="line_items" width="95%" cellspacing="10px;">
+      <tr style="text-decoration: underline;">
+        <th class="price">User Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th class="price">Created At</th>
+        <th class="price"></th>
+      </tr>
+      <% for user in @users %>
+        <tr style="text-align: center;">
+          <td><%= user.username %></td>
+          <td class="qty"><%= user.email %></td>
+          <td class="price"><%= user.role %></td>
+          <td class="price"><%= user.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= link_to "Edit", edit_user_path(user) %> | <%= link_to 'Delete', user_path(user), :method => :delete, :confirm => "Are you Sure" %></td>
+        </tr>
       <% end %>
+    </table>
+  <% else %>
+    <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
+      No <%= params[:role] %>s
     </div>
-  </div>
-
-  <div id="leftContent">
-    <div class="bar">Confirmed Products</div>
-    <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
-      <div class="prodImgs">
-        <% for product in @confirmed_products %>
-          <div class="prodImgWrap">
-            <div class="prodImg"  id="hide_<%= product.id %>">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product) %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </div>
-

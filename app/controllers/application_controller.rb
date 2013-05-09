@@ -6,16 +6,23 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
-      if current_user.role == 'non_profit'
+      if current_user.role == 'non-profit'
         profile_path(current_user)
       else
-        (current_user.role == 'admin' ? (admins_path) : (products_path))
+        (current_user.role == 'admin' ? (products_admins_path) : (products_path))
       end
     end
   end
 
   def is_signin?
     unless current_user
+      flash[:error] = "Please Login"
+      redirect_to '/'
+    end
+  end
+
+  def is_admin?
+    unless current_user.role == 'admin'
       flash[:error] = "Please Login"
       redirect_to '/'
     end

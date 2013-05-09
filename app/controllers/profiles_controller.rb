@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :is_signin?
 
   def profile
     @user = User.find(params[:id])

@@ -1,0 +1,27 @@
+<h1>Categories</h1>
+<div style="float: right;margin-top: -20px;">
+  <%= (user_signed_in? and current_user.role == 'admin') ? (link_to "New Category", new_category_path) : "" %>
+</div>
+<div id="formDiv">
+  <% if !@categories.to_a.empty? %>
+    <table id="line_items" width="95%" cellspacing="10px;">
+      <tr style="text-decoration: underline;">
+        <th class="price">Category Name</th>
+        <th>Created At</th>
+        <th class="price"></th>
+      </tr>
+      <% for category in @categories %>
+        <tr style="text-align: center;">
+          <td><%= category.name %></td>
+          <td class="price"><%= category.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= link_to "Edit", edit_category_path(category), :remote => true %> | <%= link_to 'Delete', {:controller => 'categories', :action => 'destroy', :id => category.id}, :method => :delete, :confirm => "Are you Sure" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
+      No <%= params[:role] %>s
+    </div>
+  <% end %>
+</div>
+<div id="edit_category"></div>
