@@ -1,7 +1,0 @@
-<h1>Sign up Seller </h1>
-<p class="required">*All fields are required</p>
-<div id="formDiv">
-  <%= form_for @user, :url => create_seller_users_path(@user) do |f| %>
-    <%= render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
-</div>
