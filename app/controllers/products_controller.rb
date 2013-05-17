@@ -20,6 +20,10 @@ class ProductsController < ApplicationController
     if @product.save
       #@product.post
       flash[:notice] = "Successfully create the project."
+      @email_alerts = EmailAlert.all
+      for email in @email_alerts
+        UserMailer.alert(email,@product).deliver
+      end
       redirect_to products_path
     else
       flash[:error] = "Failed to create the project."

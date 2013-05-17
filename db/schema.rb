@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429090241) do
+ActiveRecord::Schema.define(:version => 20130517083410) do
 
   create_table "carts", :force => true do |t|
     t.datetime "purchased_at"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(:version => 20130429090241) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "email_alerts", :force => true do |t|
+    t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -126,6 +132,14 @@ ActiveRecord::Schema.define(:version => 20130429090241) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.string   "image"
+    t.string   "business_name"
+    t.string   "website_url"
+    t.text     "business_address"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "state"
+    t.string   "phone"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

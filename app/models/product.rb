@@ -8,6 +8,10 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
 
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
 #  def post
 #    if current_user.provider == 'facebook'
 #      me = FbGraph::User.me(self.user.oauth_token)

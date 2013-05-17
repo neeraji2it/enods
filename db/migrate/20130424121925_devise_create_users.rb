@@ -48,6 +48,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :avatar_content_type
       t.integer :avatar_file_size
       t.string :image
+      t.string :business_name
+      t.string :website_url
+      t.text :business_address
+      t.string :city
+      t.string :zip
+      t.string :country
+      t.string :state
+      t.string :phone
       t.timestamps
     end
 

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'OK!  Please check your email to complete your registration.'
       redirect_to '/'
     else
-      render :action => 'buyer'
+      render :action => 'new'
     end
   end
 
