@@ -57,6 +57,7 @@ Enods::Application.routes.draw do
   match '/auth/:provider/callback' => 'omniauths#create'
   get '/favourites' => 'products#favourites', :as => :favourites
   get '/category' => 'home#category', :as => :category
+  post '/create_alert' => 'home#create_alert', :as => :create_alert
 
   root :to => 'home#index'
 
