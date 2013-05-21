@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated your profile."
-      redirect_to products_path
+      redirect_to profile_profile_path(@user)
     else
       flash[:error] = "Fail to update your profile"
       render :action => 'profile'

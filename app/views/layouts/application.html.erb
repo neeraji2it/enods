@@ -22,17 +22,17 @@
   </head>
   <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
     <div id="header">
-      <%= link_to "ENODS.COM", "/", :class => "logo" %>
+      <%= link_to "ENODS.COM", "/", :class => "logo", :rel => 'tab' %>
       <div id="header_search" style="float:left;margin-left:20px;margin-top:42px;">
         <%= form_tag search_products_path, :method => 'get' do %>
           <%= text_field_tag(:query, "#{params[:query] || 'Search'}",:onFocus => "if(this.value=='Search') this.value='';",:onBlur => "if(this.value=='') this.value='Search';") %>
         <% end %>
       </div>
       <div id="header_login">
-        <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : ("") : "") : "") %>
-        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to "Sign In", new_user_session_path, :class => "button")) %>
+        <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button", :rel => "tab") : " ") %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button", :rel => "tab") : ("") : "") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button", :rel => "tab") : ("") : "") : "") %>
+        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart", :rel => "tab") : ("") : (link_to "Sign In", new_user_session_path, :class => "button", :rel => "tab")) %>
         <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button") : " ") %>
         <div id="reg" style="display: none;">
           <%= link_to "Register as a <b>Buyer</b>".html_safe, new_user_path(:role => 'buyer'), :style => 'color: purple;' %>
@@ -66,11 +66,11 @@
       <% elsif user_signed_in? and current_user.role == 'admin' %>
         <div id="category" style="margin-left: -132px;margin-top: 20px;width: 110px;">
           <ul>
-            <li><%= link_to "Seller", admins_path(:role => 'seller')%></li>
-            <li><%= link_to "Buyer", admins_path(:role => 'buyer')%></li>
-            <li><%= link_to "Non Profit", admins_path(:role => 'non-profit')%></li>
-            <li><%= link_to "Categories", categories_path%></li>
-            <li><%= link_to "Products", products_admins_path %></li>
+            <li><%= link_to "Seller", admins_path(:role => 'seller') %></li>
+            <li><%= link_to "Buyer", admins_path(:role => 'buyer') %></li>
+            <li><%= link_to "Non Profit", admins_path(:role => 'non-profit') %></li>
+            <li><%= link_to "Categories", categories_path, :rel => 'tab' %></li>
+            <li><%= link_to "Products", products_admins_path, :rel => 'tab' %></li>
           </ul>
         </div>
       <% end %>
@@ -79,5 +79,3 @@
     </div>
   </body>
 </html>
-
-
