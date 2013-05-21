@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(:email => 'admin@gmail.com', :password => '12345678', :password_confirmation => '12345678', :role => 'admin',:confirmation_token => '',:confirmed_at => Time.now)
+User.create(:email => 'rails@gmail.com', :password => '12345678', :password_confirmation => '12345678', :role => 'seller',:confirmation_token => '',:confirmed_at => Time.now)
+User.create(:email => 'neeraj@gmail.com', :password => '12345678', :password_confirmation => '12345678', :role => 'buyer',:confirmation_token => '',:confirmed_at => Time.now)
+User.create(:email => 'railsdev@gmail.com', :password => '12345678', :password_confirmation => '12345678', :role => 'non-profit',:confirmation_token => '',:confirmed_at => Time.now)
 
 if Category.count == 0
   Category.create(:name => 'Art')
