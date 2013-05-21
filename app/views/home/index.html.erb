@@ -45,18 +45,4 @@
     </div>
   </div>
 </div>
-<div id="category" style="min-height: 60px;padding: 15px;width: 370px;left: -190px;float: right;top: 320px;position: relative;">
-  <b>Daily Finds Email</b><br />
-
-  Get gift ideas, editors' picks & fresh trends in your inbox.
-  <%= form_for @email_alert, :url => create_alert_path(), :mehtod => 'POST' do |f| %>
-    <br /><%= f.text_field :email, :placeholder => "Email" %>
-    <%= f.submit "Email Alert", :class => 'button' %>
-  <% end %>
-</div>
-<style>
-  #email_alert_email{
-    width: 180px;
-  }
-</style>
 
