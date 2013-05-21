@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
     "#{id} #{username}".parameterize
   end
 
-  #  protected
-  #  def confirmation_required?
-  #    self.provider.nil?
-  #  end
+  protected
+  def confirmation_required?
+    self.provider.nil?
+  end
 end
