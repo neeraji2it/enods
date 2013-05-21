@@ -61,6 +61,29 @@ Enods::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      :login => "k.ashok502-facilitator_api1.gmail.com",
+      :password => "1366968794",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AwVzeB7ThvogKHzICFAE2dVcZPjR"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
+
+  config.action_mailer.default_url_options = {:host => 'enods.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    #:domain               => 'baci.lindsaar.net',
+    :user_name            => 'enods.com@gmail.com',
+    :password             => 'enods.com1234',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true
+  }
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
