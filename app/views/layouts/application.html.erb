@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar" %>
+    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar", 'jquery.imagetick' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>

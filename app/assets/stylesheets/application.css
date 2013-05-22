@@ -41,12 +41,13 @@
 }
 
 #favourite{
-    float: right;
+    float: left;
     height: 18px;
-    left: -13px;
+    left: 9px;
     position: relative;
     top: -148px;
     width: 24px;
+    display: none;
 }
 
 #category{

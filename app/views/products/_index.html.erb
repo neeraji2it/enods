@@ -8,9 +8,9 @@
     <div class="prodImgs">
       <% if !@products.empty? %>
         <% for product in @products %>
-          <div class="prodImgWrap"  id="hide_<%= product.id %>">
+          <div class="prodImgWrap">
             <div class="prodImg">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product), :id => "show_#{product.id}" %>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product)%>
             </div>
             <div id="favourite">
               <% if current_user %>
@@ -23,18 +23,18 @@
                 <% end %>
               <% end %>
             </div>
-            <div id="bigImg_<%= product.id %>" class="bigImg" style="display:none;">
+            <div class="bigImg" style="display:none;">
               <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
             </div>
           </div>
           <script>
-            $("#show_<%= product.id %>").hover(function(){
-              $("#bigImg_<%= product.id %>").show();
-            })
-
-            $("#hide_<%= product.id %>").mouseleave(function(){
-              $("#bigImg_<%= product.id %>").hide();
-            })
+            $(".prodImgWrap").hover(function() {
+              $(this).find('#favourite').show();
+              $(this).find('.bigImg').show();
+            }, function() {
+              $(this).find('#favourite').hide();
+              $(this).find('.bigImg').hide();
+            });
           </script>
         <% end %>
       <% else %>

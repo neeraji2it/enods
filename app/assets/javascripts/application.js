@@ -48,8 +48,18 @@ $(document).ready(function(){
 
 });
 
+//styles for the radio button
+$(function(){
+    $.imageTick.logging = true;
+    $('input[type="radio"]').imageTick({
+        tick_image_path: "/assets/radio_button1.png",
+        no_tick_image_path: "/assets/radio-button.png",
+        image_tick_class: "radios"
+    });
+});
 
-//with page reload change browser url
+
+//without page reload change browser url
 
 //$(function(){
 //    $("a[rel='tab']").click(function(e){
