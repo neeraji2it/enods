@@ -4,11 +4,13 @@
     <p>
       <%= f.label :first_name %>
       <%= f.text_field :first_name %>
+      <%= validation_error(@user.errors['first_name']) %>
     </p>
 
     <p>
       <%= f.label :last_name %>
       <%= f.text_field :last_name %>
+      <%= validation_error(@user.errors['last_name']) %>
     </p>
 
     <p>
@@ -20,12 +22,14 @@
     <p>
       <%= f.label :username %>
       <%= f.text_field :username %>
+      <%= validation_error(@user.errors['username']) %>
     </p>
 
     <p>
       <%= f.radio_button :gender, "Male" %>Male
       <%= f.radio_button :gender , "Female"%>Female
       <%= f.radio_button :gender ,"Rather not say"%>Rather not say
+      <%= validation_error(@user.errors['gender']) %>
     </p>
     <p>
       <button type="submit">Update</button>

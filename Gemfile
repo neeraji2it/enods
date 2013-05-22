@@ -16,6 +16,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'fb_graph'
 gem 'activemerchant'
+gem 'aws-sdk'
 
 group :production do
   gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

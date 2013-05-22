@@ -10,7 +10,10 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
 
-  has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png"
+  has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png" if Rails.env == 'development'
+  has_attached_file :avatar, :whiny => false, :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :bucket => 'enods', :path => 'uploaded_files/profile/:id/:style/:basename.extension', :styles => {:original => '900*900>', :default => '280*190>', :other => '96*96>'} if Rails.env == 'prodction'
+  validates :first_name,:last_name,:gender, :presence => true
+  validates :username,  :uniqueness => true, :presence => true
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])
