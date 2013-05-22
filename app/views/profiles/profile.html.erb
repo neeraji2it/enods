@@ -15,7 +15,7 @@
 
     <p>
       <%= f.label :avatar, "Image" %>
-      <%= !@user.avatar_file_name.nil? ? image_tag(@user.avatar.url(:original), :width => '50px', :height => '50px') : image_tag("/assets/bigavatar.png", :width => '50px', :height => '50px') %>
+      <%= image_tag(@user.avatar.url(:original), :width => '50px', :height => '50px') %>
       <%= f.file_field :avatar %>
     </p>
 
