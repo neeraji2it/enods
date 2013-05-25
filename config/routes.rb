@@ -28,7 +28,6 @@ Enods::Application.routes.draw do
     collection do
       get :cancel
       get :notify_action
-
       get :paypal_return
     end
   end
@@ -44,7 +43,6 @@ Enods::Application.routes.draw do
       put :update_favourite
       put :update_mark_favourite
     end
-    resources :images
   end
 
   resources :profiles do

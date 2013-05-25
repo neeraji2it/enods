@@ -131,7 +131,7 @@ a.small{ background:url(/assets/button.jpg) no-repeat; font-weight: normal !impo
 .profileDetails p a:hover{ text-decoration:underline; }
 #maincontent h1.subHead{ font-size: 14px; margin-bottom:10px; }
 .content .prodImgs h3.sub_title{ display:inline; font-size:14px; color:#333; font-weight:normal; float:left;   }
-.content .prodImgWrap{ float:left; width:200px; text-align: center;  }
+.content .prodImgWrap{ float:left; width:185px; text-align: center;  }
 .content{ border:2px solid #BEB3B4; width:905px; float:left; padding:0px 15px 15px 15px; margin-bottom:23px; }
 .content ul{ float: left; width:220px; padding-left:5px;  }
 .content ul li{ list-style:none; font-size:13px; margin-bottom:5px; }

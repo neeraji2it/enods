@@ -1,4 +1,4 @@
-<%= f.hidden_field :role, :value => params[:role] %>
+<%= params[:role] ? (f.hidden_field :role, :value => params[:role]) : (f.hidden_field :role, :value => params[:user][:role]) %>
 <p>
   <%= f.label :first_name %>
   <%= f.text_field :first_name %>

@@ -13,9 +13,9 @@ User.create(:email => 'railsdev@gmail.com', :password => '12345678', :password_c
 
 if Category.count == 0
   Category.create(:name => 'Art')
-  Category.create(:name => 'Home & Living ')
-  Category.create(:name => 'Jewelry ')
-  Category.create(:name => 'Women ')
+  Category.create(:name => 'Home & Living')
+  Category.create(:name => 'Jewelry')
+  Category.create(:name => 'Women')
   Category.create(:name => 'Men')
   Category.create(:name => 'Kids')
   Category.create(:name => 'Vintage')
