@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  before_filter :is_signin?
 
   def index
     @users = User.where("role = 'seller'")  if params[:role] == 'seller'
