@@ -13,18 +13,18 @@
 */
 
 .jquery-notify-bar {
-  width:100%;
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:32768;
-  background-color:#E2E3E4;
-  font-size:18px;
-  text-align:center;
-  font-family: Arial, Verdana, sans-serif;
-  padding:20px 0px;
-  border-bottom:1px solid #bbb;
-  cursor: pointer;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:32768;
+    background-color:#E2E3E4;
+    font-size:18px;
+    text-align:center;
+    font-family: Arial, Verdana, sans-serif;
+    padding:20px 0px;
+    border-bottom:1px solid #bbb;
+    cursor: pointer;
 }
 /*  default css classes
 .jquery-notify-bar.error {
@@ -43,19 +43,22 @@
 */
 
 .jquery-notify-bar.error,.jquery-notify-bar.alert {
-  color: #FC0000;
-  background-color:#E2E3E4;
+    color: #FC0000;
+    background-color:#E2E3E4;
+    font-weight: bold;
 }
 .jquery-notify-bar.success, .jquery-notify-bar.notice {
-  color:#076606;
-  background-color:#E2E3E4;
+    color:#076606;
+    background-color:#E2E3E4;
+    font-weight: bold;
 }
 .jquery-notify-bar.warning {
-  color: #BF6347;
-  background-color:#E2E3E4;
+    color: #BF6347;
+    background-color:#E2E3E4;
+    font-weight: bold;
 }
 .notify-bar-close {
-  position:absolute;
-  left:95%;
-  font-size:11px;
+    position:absolute;
+    left:95%;
+    font-size:11px;
 }

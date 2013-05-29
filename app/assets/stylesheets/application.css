@@ -3,43 +3,6 @@
     margin-top:45px;
     position:relative;
 }
-
-.content {
-    border:2px solid #BEB3B4;
-    float:left;
-    margin-bottom:23px;
-    padding:0 15px 15px;
-    width:905px;
-}
-.prodImgs {
-    float:left;
-    margin-top:18px;
-}
-.content .prodImgWrap {
-    float:left;
-    text-align:center;
-    width:226px;
-}
-.content .prodImg {
-    margin:0 13px 8px;
-}
-.prodImg {
-    border:1px solid #666666;
-    float:left;
-    height:140px;
-    margin-bottom:20px;
-    margin-right:26px;
-    padding:14px;
-    position:relative;
-    text-align:center;
-    width:170px;
-}
-.content .itemNameVis {
-    display:inline-block;
-    font-size:13px;
-    margin-bottom:20px;
-}
-
 #favourite{
     float: left;
     height: 18px;
