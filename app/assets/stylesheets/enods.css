@@ -11,7 +11,7 @@ img{ border:none;}
 #searchForm{ float:left; margin-top:35px; margin-left:20px;}
 form input{ width:300px; height:20px; border:1px solid #c8c7c7; margin-right:10px;}
 #searchForm input{ padding-left:10px; width:290px;}
-.button{ background:url(/assets/button.jpg) no-repeat; vertical-align:middle; width:89px; height:19px; font-size:11px;color:#333; border:none; padding:0px 0px 3px 0px; margin:0px 3px; display:inline-block; padding-top:3px; text-align:center; }
+.button{ background:url(/assets/button.jpg) no-repeat; vertical-align:middle; width:89px; height:19px; font-size:11px;color:#333; border:none; padding:4px 0px 3px 0px; margin:0px -6px; display:inline-block;text-align:center; }
 button.small{ background:url(/assets/button.jpg) no-repeat; width:89px; height:22px; font-size:11px;color:#333; border:none; padding:0px 0px 3px 0px; margin:0px 3px 0px 20px; text-transform: capitalize; }
 a.small{ background:url(/assets/button.jpg) no-repeat; font-weight: normal !important;  display:inline-block; width:89px; text-align: center; height:18px; font-size:12px !important;color:#333 !important; border:none; padding:4px 0px 3px 0px; margin:0px 3px 0px 20px; text-transform: capitalize; }
 #maincontent h1{ color:#FC0000; font-size:18px; margin:26px 0px 0px 0px;padding:0px; text-transform:capitalize; font-weight:normal;}
