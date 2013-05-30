@@ -116,6 +116,9 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-google-oauth2 (0.1.17)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -213,6 +216,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-facebook
+  omniauth-google-oauth2
   omniauth-twitter
   paperclip (~> 2.3)
   pg
