@@ -13,14 +13,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png" if Rails.env == 'development'
   has_attached_file :avatar,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/assets/bigavatar.png" if Rails.env == 'production'
   #validates :first_name,:last_name,:gender, :presence => true
-  validates :username,  :uniqueness => true, :presence =>{:if => :username_required?}
+  validates :username,  :uniqueness => true
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])
-  end
-
-  def username_required?
-    !self.role.nil? and !['buyer'].include?(self.role)
   end
 
   def self.find_or_create(auth_hash)
