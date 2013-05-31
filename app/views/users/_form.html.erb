@@ -11,7 +11,9 @@
 
 <p>
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username,:onBlur => "get_username(this)" %>
+  <span id="username" style="display: none;color: green;">Available</span>
+  <span id="user" style="display: none;color: red;">Not Available</span>
 </p>
 
 <%# if (params[:role] == 'seller') %>
@@ -65,7 +67,7 @@
 
 <p>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password %><span id="result"></span>
 </p>
 
 <p>
@@ -76,3 +78,34 @@
 <p>
   <button type="submit">Sign up</button>
 </p>
+<script>
+  function get_username(ht){
+    $.ajax({
+      url:"/users/username",
+      data: {
+        username: $(ht).val()
+      },
+      type: "PUT",
+      success: function(data){
+        if(data == "Error"){
+          alert("Error. Please try again");
+        }else{
+        }
+      }
+    });
+  }
+</script>
+<style>
+  #result{
+    margin-left:5px;
+  }
+
+  #formDiv .short{
+    color:#FF0000;
+  }
+  #formDiv .strong, #new_user .strong{
+    background-image: url(/assets/green_check_mark.png);
+    height: 15px;
+    width: 18px;
+  }
+</style>

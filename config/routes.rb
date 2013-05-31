@@ -1,5 +1,5 @@
 Enods::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => 'sessions'}
 
   resources :admins do
     collection do
@@ -12,7 +12,13 @@ Enods::Application.routes.draw do
 
   resources :categories
 
-  resources :users 
+  resources :users do
+    collection do
+      get :buyer
+      post :buyer_create
+      put :username
+    end
+  end
 
   resources :line_items 
   resources :carts do

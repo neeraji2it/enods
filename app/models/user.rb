@@ -12,17 +12,21 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png" if Rails.env == 'development'
   has_attached_file :avatar,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/assets/bigavatar.png" if Rails.env == 'production'
-  validates :first_name,:last_name,:gender, :presence => true
-  validates :username,  :uniqueness => true, :presence => true
+  #validates :first_name,:last_name,:gender, :presence => true
+  validates :username,  :uniqueness => true, :presence =>{:if => :username_required?}
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])
   end
 
+  def username_required?
+    !self.role.nil? and !['buyer'].include?(self.role)
+  end
+
   def self.find_or_create(auth_hash)
     unless user = User.find_by_email(auth_hash["info"]["email"])
       username = auth_hash["info"]["name"]
-      email = auth_hash["provider"] == 'twitter' ? auth_hash["info"]["nickname"] : auth_hash["info"]["email"]
+      email = (auth_hash["provider"] == 'twitter' or auth_hash["provider"] == 'yahoo') ? auth_hash["info"]["nickname"] : auth_hash["info"]["email"]
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       uid = auth_hash["uid"]

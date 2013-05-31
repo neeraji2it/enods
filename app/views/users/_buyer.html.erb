@@ -1,0 +1,19 @@
+<h1>Sign up Buyer </h1>
+<p class="required">*All fields are required</p>
+<div id="formDiv" style="float: left; position: relative;left: 5px;width: 100%;top: 10px;">
+  <%= form_for(@user, :url => buyer_create_users_path(), :html => {:method => 'post'}, :remote => true) do |f| %>
+
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <%= validation_error(@user.errors['email']) %>
+    </p>
+    <p>
+      <button type="submit">Sign up</button>
+    </p>
+    <p>
+      <%= link_to image_tag("/assets/facebook-connect.gif"), '/auth/facebook', :id => 'sign_in' %> | <%= link_to_function "Sign In", "login()" %>
+    </p>
+  <% end %>
+</div>
+<div id="text" style="color: green;"></div>

@@ -1,0 +1,31 @@
+<h1>Sign in</h1>
+<div id="formDiv">
+  <div class="error" style="color: red;font-size: 16px;font-weight: bold;left: 115px;position: absolute;top: 100px;"></div>
+  <%= form_for(:user, :as => :user, :url => session_path(:user), :remote => true, :html => { :id => "user_sign_in" }) do |f| %>
+    <p><%= f.label :email %>
+      <%= f.email_field :email, :placeholder => 'Email' %></p>
+
+    <p><%= f.label :password %>
+      <%= f.password_field :password, :placeholder => 'Password' %></p>
+
+    <% if devise_mapping.rememberable? -%>
+      <p>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </p>
+    <% end -%>
+    <p>
+      <button type="submit">Sign in</button> <%= link_to "Forgot Password?", new_user_password_path, :style => "color: #FC0000;" %>
+    </p>
+  <% end %>
+</div>
+<script>
+  jQuery("#user_sign_in").bind("ajax:complete", function(a,b){
+    jQuery(".error").html();
+    if(b.status == "401") {
+      jQuery(".error").html(b.responseText);
+    } else {
+      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
+    }
+  });
+</script>

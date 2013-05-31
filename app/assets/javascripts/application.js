@@ -27,6 +27,15 @@ function add_fields(link, association, content){
     $(link).parent().before(content.replace(regexp, new_id));
 }
 
+//ajax loader
+
+jQuery(document).ajaxStart(function(settings){
+    jQuery('#ajax-loader').show();
+});
+jQuery(document).ajaxStop(function(){
+    jQuery('#ajax-loader').hide();
+});
+
 
 //scroll top
 $(document).ready(function(){
@@ -89,3 +98,45 @@ $(function(){
 //        }
 //    });
 //});
+
+//login popup
+
+function login(){
+    $.ajax({
+        url: '/users/sign_in',
+        success: function(data){
+            $("#popup_body").html(data);
+            $("#overlay").show();
+            $("#popup_box").show();
+        }
+    })
+}
+
+function buyer_users_path(){
+    $.ajax({
+        url: '/users/buyer',
+        success: function(data){
+            $('#popup_body').html(data);
+            $('#overlay').show();
+            $('#popup_box').show();
+        }
+    })
+}
+
+function hide_popup(){
+
+    if(jQuery('#popup_box')){
+        jQuery('#popup_body').html("");
+        jQuery('#popup_box').hide();
+    }
+    if(jQuery('#overlay')){
+        jQuery('#overlay').hide();
+    }
+}
+
+$(function(){
+    $('.leftSec a img').click(function(e){
+        e.preventDefault();
+        $('.midSec img').attr('src',$(this).attr('src'));
+    });
+});

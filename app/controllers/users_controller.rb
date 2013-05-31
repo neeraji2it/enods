@@ -15,6 +15,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def buyer
+    @user = User.new
+    render :layout => false
+  end
+
+  def buyer_create
+    @user = User.new(params[:user])
+    @user.role = 'buyer'
+    @user.username = @user.email.split("@").first + ' ' +'buyer'
+    @user.password = '12345678'
+    @user.password_confirmation = '12345678'
+    if @user.save
+      @error = "OK!  Please check your email to complete your registration."
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
@@ -34,6 +57,20 @@ class UsersController < ApplicationController
       redirect_to products_admins_path
     else
       render :action => 'edit'
+    end
+  end
+
+  def username
+    @user = params[:username]
+    @username = User.find_by_username(@user)
+    if !@username.present?
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js
+      end
     end
   end
 end

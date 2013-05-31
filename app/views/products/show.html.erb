@@ -24,7 +24,7 @@
               </td>
             </tr>
           </tbody></table>
-        <%= (user_signed_in? and current_user.role != 'admin' and current_user.role != 'seller') ? (link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white', :class => 'cartButton') : "" %>
+        <%= !user_signed_in? ? (link_to_function "Add to cart", "buyer_users_path()", :style => 'color : white', :class => 'cartButton'): (user_signed_in? and current_user.role != 'admin' and current_user.role != 'seller') ? (link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white', :class => 'cartButton') : "" %>
       </div>
       <div class="sellerMsg">
         <br /><%= @product.description %>
@@ -32,12 +32,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function(){
-    $('.leftSec a img').click(function(e){
-      e.preventDefault();
-      $('.midSec img').attr('src',$(this).attr('src'));
-    });
-  });
-</script>

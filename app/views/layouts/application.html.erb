@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar", 'jquery.imagetick' %>
+    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar",'script', 'jquery.imagetick' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -30,15 +30,10 @@
       </div>
       <div id="header_login">
         <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to_function "Signup", "",:id => "register", :class => "button") ) %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to "Sell", new_user_path(:role => 'seller'), :class => "button") ) %>
         <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : ("") : "") : "") %>
-        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to "Sign In", new_user_session_path, :class => "button", :rel => "tab")) %>
+        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to_function "Sign In", "login()", :class => "button", :rel => "tab")) %>
         <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button", :id => 'sign_out') : " ") %>
-        <div id="reg" style="display: none;">
-          <%= link_to "Register as a <b>Buyer</b>".html_safe, new_user_path(:role => 'buyer'), :style => 'color: purple;' %>
-          <%= link_to "Register as a <b>Seller</b>".html_safe, new_user_path(:role => 'seller'), :style => 'color: purple;' %>
-          <%= link_to "Register as a <b>Non Profit</b>".html_safe, new_user_path(:role => 'non-profit'), :style => 'color: purple;' %>
-        </div>
       </div>
       <script>
         $("#register").click(function(){
@@ -74,8 +69,18 @@
           </ul>
         </div>
       <% end %>
+      <div id='ajax-loader'>
+        <img alt=""  src="/assets/bigger_spinner.gif" style="width:32px;height:32px;z-index:1000000;"/>
+      </div>
       <%= yield %>
       <a href="#" class="scrollup">Scroll</a>
+    </div>
+    <div id='overlay' style='filter:alpha(opacity=50);'></div>
+    <div align='center' id='popup_box'>
+      <div style='float: right; margin-top: -13px;margin-right:-13px'>
+        <%= image_tag('/assets/closeX.gif', :onclick => "hide_popup();", :style => "cursor: pointer;")%>
+      </div>
+      <div id='popup_body' style='float:right'></div>
     </div>
   </body>
 </html>

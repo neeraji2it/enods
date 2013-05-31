@@ -62,3 +62,42 @@
     left:95%;
     font-size:11px;
 }
+
+#overlay{
+    display: none;
+    background-color: #000000;
+    height:500px;
+    left:0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index: 1000;
+    width: 100000px;
+    height: 941px;
+    opacity: 0.5;
+}
+
+#popup_box {
+    height:auto;
+    width:auto;
+    left:35%;
+    margin: -220px 0 0 -250px;
+    padding:15px;
+    position:fixed;
+    background-color:#FFFFFF;
+    top:50%;
+    z-index:1001;
+    font-size: 12px;
+    display: none
+}
+
+#ajax-loader{
+    display: none;
+    float: left;
+    height: 32px;
+    left: 360px;
+    position: relative;
+    top: 20px;
+    width: 32px;
+    z-index: 1000000;
+}
