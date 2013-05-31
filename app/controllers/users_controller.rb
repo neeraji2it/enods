@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def buyer_create
     @user = User.new(params[:user])
     @user.role = 'buyer'
-    @user.username = @user.email.split("@").first + ' ' +'buyer'
+    @user.username = @user.email.split("@").first
     @user.password = '12345678'
     @user.password_confirmation = '12345678'
     if @user.save
