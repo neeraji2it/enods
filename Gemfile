@@ -22,10 +22,10 @@ gem 'omniauth-yahoo'
 gem 'omniauth-linkedin'
 gem 'capistrano'
 
-group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
-  gem 'pg'
-end
+#group :production do
+#  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
+#  gem 'pg'
+#end
 
 
 # Gems used only for assets and not required
