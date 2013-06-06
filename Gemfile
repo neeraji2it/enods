@@ -23,6 +23,7 @@ gem 'omniauth-linkedin'
 gem 'capistrano'
 gem 'execjs'
 gem 'therubyracer'
+gem 'nokogiri'
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

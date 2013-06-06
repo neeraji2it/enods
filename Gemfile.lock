@@ -116,6 +116,7 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -234,6 +235,7 @@ DEPENDENCIES
   fb_graph
   jquery-rails
   mysql2
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
