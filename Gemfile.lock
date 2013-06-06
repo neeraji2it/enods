@@ -48,6 +48,12 @@ GEM
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    capistrano (2.15.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -77,6 +83,7 @@ GEM
       rack-oauth2 (>= 0.14.4)
       tzinfo
     hashie (1.2.0)
+    highline (1.6.19)
     hike (1.2.2)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -103,6 +110,13 @@ GEM
     multi_xml (0.5.3)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
+    net-scp (1.1.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.7)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.0)
@@ -119,6 +133,8 @@ GEM
     omniauth-google-oauth2 (0.1.17)
       omniauth (~> 1.0)
       omniauth-oauth2
+    omniauth-linkedin (0.0.8)
+      omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -211,6 +227,7 @@ PLATFORMS
 DEPENDENCIES
   activemerchant
   aws-sdk
+  capistrano
   coffee-rails (~> 3.2.1)
   devise
   fb_graph
@@ -219,6 +236,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
+  omniauth-linkedin
   omniauth-twitter
   omniauth-yahoo
   paperclip (~> 2.3)

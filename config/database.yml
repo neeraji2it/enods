@@ -5,9 +5,17 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql2
-  database: endos_development
+  database: enods_development
   username: root
   password: 
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: mysql2
+  database: enods_production
+  username: root
+  password: root
   pool: 5
   timeout: 5000
 
