@@ -21,6 +21,8 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-yahoo'
 gem 'omniauth-linkedin'
 gem 'capistrano'
+gem 'execjs'
+gem 'therubyracer'
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
