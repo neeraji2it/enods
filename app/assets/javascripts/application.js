@@ -70,34 +70,34 @@ $(function(){
 
 //without page reload change browser url
 
-//$(function(){
-//    $("a[rel='tab']").click(function(e){
-//        pageurl = $(this).attr('href');
-//        $.ajax({
-//            url:pageurl+'?rel=tab',
-//            success: function(data){
-//                $('#header').css('display', 'none');
-//                $('#maincontent').html(data);
-//            }
-//        });
-//
-//    if(pageurl!=window.location){
-//        window.history.pushState({
-//            path:pageurl
-//        },'',pageurl);
-//    }
-//    return false;
-//    });
-//});
-//
-//$(window).bind('popstate', function() {
-//    $.ajax({
-//        url:location.pathname+'?rel=tab',
-//        success: function(data){
-//            $('#maincontent').html(data);
-//        }
-//    });
-//});
+$(function(){
+    $("a[rel='tab']").click(function(e){
+        pageurl = $(this).attr('href');
+        $.ajax({
+            url:pageurl+'?rel=tab',
+            success: function(data){
+                $('#header').css('display', 'none');
+                $('#maincontent').html(data);
+            }
+        });
+
+        if(pageurl!=window.location){
+            window.history.pushState({
+                path:pageurl
+            },'',pageurl);
+        }
+        return false;
+    });
+});
+
+$(window).bind('popstate', function() {
+    $.ajax({
+        url:location.pathname+'?rel=tab',
+        success: function(data){
+            $('#maincontent').html(data);
+        }
+    });
+});
 
 //login popup
 
