@@ -1,48 +1,12 @@
-<div class="deals" id="content">
-  <div>
-    <div style="float: right;margin-right: 35px;">
-      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %>
-    </div>
-  </div>
-  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
-    <div class="prodImgs">
-      <% if !@products.empty? %>
-        <% for product in @products %>
-          <div class="prodImgWrap">
-            <div class="prodImg">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product) %>
-            </div>
-            <div id="favourite">
-              <% if current_user %>
-                <% if !product.favourite.present? || !current_user.favorite_for(product).present? %>
-                  <%= link_to image_tag("/assets/favourite.png"),favourite_product_path(product),:method => 'post' %>
-                <% elsif product.favourite.status == true %>
-                  <%= link_to image_tag("/assets/favourite.png"),update_favourite_product_path(product),:method => 'put' %>
-                <%elsif product.favourite.status == false%>
-                  <%= link_to image_tag("/assets/favourite.png"),update_mark_favourite_product_path(product),:method => 'put' %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="bigImg" style="display:none;">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
-            </div>
-          </div>
-          <script>
-            $(".prodImgWrap").hover(function() {
-              $(this).find('#favourite').show();
-              $(this).find('.bigImg').show();
-            }, function() {
-              $(this).find('#favourite').hide();
-              $(this).find('.bigImg').hide();
-            });
-          </script>
-        <% end %>
-      <% else %>
-        <div style="text-align: center;padding: 10px;">
-          No products.
-        </div>
-      <% end %>
-    </div>
-  </div>
+<div style="padding: 15px;position: relative;text-align: center;top: 65px;">
+  <b>Subscribe your Email</b><br />
+  <%= form_for @email_alert, :url => create_alert_path(), :mehtod => 'POST' do |f| %>
+    <br /><%= f.text_field :email, :placeholder => "Email" %><%= validation_error(@email_alert.errors['email']) %>
+    <%= f.submit "Subscribe", :class => 'button' %>
+  <% end %>
 </div>
-
+<style>
+  #email_alert_email{
+    width: 200px;
+  }
+</style>

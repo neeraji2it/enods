@@ -4,7 +4,8 @@ body{ margin:0px; padding:0px; font-family:Arial, Helvetica, sans-serif;}
 a{ text-decoration:none;}
 img{ border:none;}
 #header{ width:954px; margin:0px auto; height:80px; border-bottom:6px solid #BEB3B4;  }
-.logo{ margin-top:45px; float:left;}
+.logo{position: relative;top: 75px;}
+.content-logo{position: relative;top: 75px;}
 #upNav{ float:right; margin-top:35px; position:relative;}
 #maincontent{margin:0px auto;  }
 #upNav form{ float:left; vertical-align:text-top; position:relative;}

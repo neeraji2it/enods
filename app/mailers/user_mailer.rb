@@ -1,9 +1,8 @@
 class UserMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def alert(user,product)
+  def alert(user)
     @user = user
-    @product = product
-    mail(:to => user.email, :body => product.description, :subject => product.title)
+    mail(:to => user.email, :body => "Subscribed")
   end
 end
