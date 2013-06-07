@@ -1,7 +1,7 @@
 <div class="deals" id="content">
   <div>
     <div style="float: right;margin-right: 35px;">
-      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path, :rel => "tab") : "" %>
+      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %>
     </div>
   </div>
   <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
