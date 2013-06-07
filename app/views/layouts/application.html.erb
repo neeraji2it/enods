@@ -46,7 +46,9 @@
       </script>
       <div id="cart_expire_time"></div>
     </div>
-
+    <div id='ajax-loader'>
+      <img alt=""  src="/assets/bigger_spinner.gif" style="width:32px;height:32px;z-index:1000000;"/>
+    </div>
     <div id="maincontent" style=<%= !current_user ? "width:1390px;" : 'width:955px;' %>>
       <% if !user_signed_in? %>
         <div id="category">
@@ -69,9 +71,6 @@
           </ul>
         </div>
       <% end %>
-      <div id='ajax-loader'>
-        <img alt=""  src="/assets/bigger_spinner.gif" style="width:32px;height:32px;z-index:1000000;"/>
-      </div>
       <%= yield %>
       <a href="#" class="scrollup">Scroll</a>
     </div>
