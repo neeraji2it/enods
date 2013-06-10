@@ -8,7 +8,7 @@
     <script type="text/javascript">
       jQuery(document).ready(function(){
         var time = new Date();
-        time = new Date(2013,06-1,22,12,00);
+        time = new Date(2013,07-1,11,12,00);
         jQuery('.jcounter').countdown({
           until: time,
           timeSeparator: " ",
@@ -37,7 +37,7 @@
         </div><!--/form-content-text-->
         <div class="form-right right">
           <div class="form-input left">
-            <%= f.text_field :email, :id => 'email', :onfocus => "if(value==defaultValue)value=''", :onblur => "if(value=='')value=defaultValue", :placeholder => 'Email'%>
+            <%= f.text_field :email, :id => 'email', :onfocus => "if(value==defaultValue)value=''", :onblur => "if(value=='')value=defaultValue", :placeholder => 'Email'%><br />
             <%= validation_error(@email_alert.errors['email']) %>
           </div>
           <div class="form-input-button left"><input type="submit" src="" name="submit" value="" class="btn" alt="Submit" /></div>
@@ -55,7 +55,7 @@
   .form_error{
     position: relative;
     left: 10px;
-    top: 10px;
+    margin-top: 45px;
   }
 </style>
 
