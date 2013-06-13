@@ -17,7 +17,12 @@ class HomeController < ApplicationController
       UserMailer.alert(@email_alert).deliver
       redirect_to root_path
     else
-      render :action => 'index'
+      render :action => 'launch', :layout => false
     end
+  end
+
+  def launch
+    @email_alert = EmailAlert.new
+    render :layout => false
   end
 end

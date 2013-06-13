@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://gmpg.org/xfn/11">
+
+    <title>enods | commerce with a cause</title>
+    <%= stylesheet_link_tag 'style.css','jquery.countdown.css' %>
+    <%= javascript_include_tag 'application', "/assets/jquery.countdown.js" %>
+    <%= csrf_meta_tag %>
+    <style type="text/css">
+      .time-one {
+        background:url("/assets/bt-time.png") no-repeat top left !important;
+      }
+      .time-one span {
+        text-shadow:0 1px #555555;
+      }
+      .time-one p {
+        text-shadow:0 1px #7d7d7d;
+      }
+    </style>
+    <link rel="shortcut icon" href="/assets/favicon.ico.png" />
+  </head>
+  <body class="home page page-id-26 page-template page-template-launch-php">
+    <div id="container">
+      <div class="bg-grow left"></div>
+      <div class="header left">
+        <div class="border-colors left"></div><!--/border-colors-->
+        <div class="wrapper">
+          <div class="logo left">
+            <img src="/assets/enods.jpg" alt='enods' title="enods"/>
+            <span>commerce for a cause</span>            </div><!--/logo-->
+          <div class="header-links left">
+            <ul>
+              <li>Follow us on :</li>
+              <li><a href="http://twitter.com/enodsnow"><div class="header-copy-icon1 left"></div></a></li>                    <li><a href="http://facebook.com/enodsnow"><div class="header-copy-icon2 left"></div></a></li>                    <li><a href="https://plus.google.com/112658935784152892399"><div class="header-copy-icon3 left"></div></a></li>                                        <li><a href="http://pinterest.com/enodsnow"><div class="header-copy-icon5 left"></div></a></li>                </ul>
+          </div><!--/header-links-->
+          <div class="header-dot left"></div><!--/header-dot-->
+        </div><!--/wrapper-->
+      </div><!--/header-->
+      <div class="content left">
+        <div class="wrapper">
+          <div class="title-page left">
+            <span>The enods team is currently working on an amazing concept!  Please don't forget to check out our tweets and like us on facebook!!</span>            </div><!--/title-page-->
+          <div class="content-top left"><img src="/assets/content-top.png"/></div><!--/content-top-->
+
+          <div class="content-center left">
+            <div class="time-content left" style="width: 102%;">
+              <h6>Launching Soon!</h6>
+              <script type="text/javascript">
+                jQuery(document).ready(function(){
+                  var time = new Date();
+                  time = new Date(2013,07-1,11,12,00);
+                  jQuery('.jcounter').countdown({
+                    until: time,
+                    timeSeparator: " ",
+                    description: '',
+                    format:'DHMS',
+                    compactLabels: ['', '', '', ''],
+                    layout: '<div class="time-one left"><span> {dn} </span><p> {dl} </p></div>\n\
+                                                      <div class="time-one left"><span> {hn} </span><p> {hl} </p></div> \n\
+                                                      <div class="time-one left"><span> {mn} </span><p> {ml} </p></div> \n\
+                                                      <div class="time-one left"><span> {sn} </span><p> {sl} </p></div>'
+                  });
+                });
+              </script>
+              <div class="jcounter"></div>
+            </div><!--/time-content-->
+            <!--ABOUT-->
+            <div class="shortcodes left">
+            </div><!-- /shortcodes-right -->
+            <%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :mehtod => 'POST' do |f| %>
+              <div class="form left">
+                <div class="form-border-top left"></div><!--/form-border-top-->
+                <div class="form-content left">
+                  <div class="form-content-text left">
+                    <span>Sign up Now!!</span>
+                    <p>Sign up to receive the latest news and happenings at enods!</p>
+                  </div><!--/form-content-text-->
+                  <div class="form-right right">
+                    <div class="form-input left">
+                      <%= f.text_field :email, :id => 'email', :onfocus => "if(value==defaultValue)value=''", :onblur => "if(value=='')value=defaultValue", :placeholder => 'Email'%><br />
+                      <%= validation_error(@email_alert.errors['email']) %>
+                    </div>
+                    <div class="form-input-button left"><input type="submit" src="" name="submit" value="" class="btn" alt="Submit" /></div>
+                    <div class="clear"></div>
+                    <label for="email" id="address-label">
+                      <span id="response">
+                      </span>
+                    </label>
+                  </div><!--/form-right-->
+                </div><!--/form-content-->
+              </div><!--/form-->
+            <% end %>
+          </div>
+          <style>
+            .form_error{
+              position: relative;
+              left: 10px;
+              margin-top: 45px;
+            }
+          </style>
+          <!--/content-center-->
+        </div><!--/wrapper-->
+      </div><!--/content-->
+      <div class="footer left">
+        <div class="wrapper">
+          <div class="content-center left">
+            <div class="footer-copyright left">enods © 2013. All Rights Reserved.</div><!--/footer-copyright-->
+          </div><!--/content-center-->
+          <div class="content-down left"><img src="/assets/content-down.png" alt="img" title="img" /></div><!--/content-down-->
+        </div><!--/wrapper-->
+      </div><!--/footer-->
+    </div><!--/container-->
+  </body>
+</html>

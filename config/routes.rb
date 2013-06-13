@@ -62,8 +62,9 @@ Enods::Application.routes.draw do
   get '/favourites' => 'products#favourites', :as => :favourites
   get '/category' => 'home#category', :as => :category
   post '/create_alert' => 'home#create_alert', :as => :create_alert
+  get '/index' => 'home#index', :as => :index
 
-  root :to => 'home#index'
+  root :to => 'home#launch'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

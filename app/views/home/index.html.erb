@@ -1,63 +1,47 @@
-<div class="title-page left">
-  <span>The enods team is currently working on an amazing concept!  Please don't forget to check out our tweets and like us on facebook!!</span>            </div><!--/title-page-->
-<div class="content-top left"><img src="/assets/content-top.png"/></div><!--/content-top-->
-
-<div class="content-center left">
-  <div class="time-content left" style="width: 102%;">
-    <h6>Launching Soon!</h6>
-    <script type="text/javascript">
-      jQuery(document).ready(function(){
-        var time = new Date();
-        time = new Date(2013,07-1,11,12,00);
-        jQuery('.jcounter').countdown({
-          until: time,
-          timeSeparator: " ",
-          description: '',
-          format:'DHMS',
-          compactLabels: ['', '', '', ''],
-          layout: '<div class="time-one left"><span> {dn} </span><p> {dl} </p></div>\n\
-                                            <div class="time-one left"><span> {hn} </span><p> {hl} </p></div> \n\
-                                            <div class="time-one left"><span> {mn} </span><p> {ml} </p></div> \n\
-                                            <div class="time-one left"><span> {sn} </span><p> {sl} </p></div>'
-        });
-      });
-    </script>
-    <div class="jcounter"></div>
-  </div><!--/time-content-->
-  <!--ABOUT-->
-  <div class="shortcodes left">
-  </div><!-- /shortcodes-right -->
-  <%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :mehtod => 'POST' do |f| %>
-    <div class="form left">
-      <div class="form-border-top left"></div><!--/form-border-top-->
-      <div class="form-content left">
-        <div class="form-content-text left">
-          <span>Sign up Now!!</span>
-          <p>Sign up to receive the latest news and happenings at enods!</p>
-        </div><!--/form-content-text-->
-        <div class="form-right right">
-          <div class="form-input left">
-            <%= f.text_field :email, :id => 'email', :onfocus => "if(value==defaultValue)value=''", :onblur => "if(value=='')value=defaultValue", :placeholder => 'Email'%><br />
-            <%= validation_error(@email_alert.errors['email']) %>
+<div class="deals" id="content">
+  <div>
+    <div style="float: right;margin-right: 35px;">
+      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %>
+    </div>
+  </div>
+  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
+    <div class="prodImgs">
+      <% if !@products.empty? %>
+        <% for product in @products %>
+          <div class="prodImgWrap">
+            <div class="prodImg">
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product) %>
+            </div>
+            <div id="favourite">
+              <% if current_user %>
+                <% if !product.favourite.present? || !current_user.favorite_for(product).present? %>
+                  <%= link_to image_tag("/assets/favourite.png"),favourite_product_path(product),:method => 'post' %>
+                <% elsif product.favourite.status == true %>
+                  <%= link_to image_tag("/assets/favourite.png"),update_favourite_product_path(product),:method => 'put' %>
+                <%elsif product.favourite.status == false%>
+                  <%= link_to image_tag("/assets/favourite.png"),update_mark_favourite_product_path(product),:method => 'put' %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="bigImg" style="display:none;">
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
+            </div>
           </div>
-          <div class="form-input-button left"><input type="submit" src="" name="submit" value="" class="btn" alt="Submit" /></div>
-          <div class="clear"></div>
-          <label for="email" id="address-label">
-            <span id="response">
-            </span>
-          </label>
-        </div><!--/form-right-->
-      </div><!--/form-content-->
-    </div><!--/form-->
-  <% end %>
+          <script>
+            $(".prodImgWrap").hover(function() {
+              $(this).find('#favourite').show();
+              $(this).find('.bigImg').show();
+            }, function() {
+              $(this).find('#favourite').hide();
+              $(this).find('.bigImg').hide();
+            });
+          </script>
+        <% end %>
+      <% else %>
+        <div style="text-align: center;padding: 10px;">
+          No products.
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<style>
-  .form_error{
-    position: relative;
-    left: 10px;
-    margin-top: 45px;
-  }
-</style>
-
-
-
