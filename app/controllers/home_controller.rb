@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     @email_alert = EmailAlert.new(params[:email_alert])
     if @email_alert.save
       UserMailer.alert(@email_alert).deliver
+      flash[:notice] = "Successfully Subscribed for this site."
       redirect_to root_path
     else
       render :action => 'launch', :layout => false

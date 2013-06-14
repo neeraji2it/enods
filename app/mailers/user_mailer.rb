@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def alert(user)
     @user = user
-    mail(:to => user.email, :body => "Subscribed")
+    mail(:to => ['Info@enods.com'], :subject => "Subscribed")
   end
 end
