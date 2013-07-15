@@ -11,6 +11,8 @@ Enods::Application.routes.draw do
   end
 
   resources :categories
+  resources :invitations
+  resources :billing_shipping_addresses
 
   resources :users do
     collection do
@@ -55,6 +57,7 @@ Enods::Application.routes.draw do
     member do
       get :profile
       put :profile_update
+      put :change_password
     end
   end
 
@@ -64,7 +67,7 @@ Enods::Application.routes.draw do
   post '/create_alert' => 'home#create_alert', :as => :create_alert
   get '/index' => 'home#index', :as => :index
 
-  root :to => 'home#launch'
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

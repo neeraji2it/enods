@@ -7,36 +7,28 @@
   <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
     <div class="prodImgs">
       <% if !@products.empty? %>
-        <% for product in @products %>
-          <div class="prodImgWrap">
-            <div class="prodImg">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product)%>
-            </div>
-            <div id="favourite">
-              <% if current_user %>
-                <% if !product.favourite.present? || !current_user.favorite_for(product).present? %>
-                  <%= link_to image_tag("/assets/favourite.png"),favourite_product_path(product),:method => 'post' %>
-                <% elsif product.favourite.status == true %>
-                  <%= link_to image_tag("/assets/favourite.png"),update_favourite_product_path(product),:method => 'put' %>
-                <%elsif product.favourite.status == false%>
-                  <%= link_to image_tag("/assets/favourite.png"),update_mark_favourite_product_path(product),:method => 'put' %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="bigImg" style="display:none;">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
-            </div>
-          </div>
-          <script>
-            $(".prodImgWrap").hover(function() {
-              $(this).find('#favourite').show();
-              $(this).find('.bigImg').show();
-            }, function() {
-              $(this).find('#favourite').hide();
-              $(this).find('.bigImg').hide();
-            });
-          </script>
-        <% end %>
+        <table border="1" width="145%">
+          <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Colors</th>
+            <th>Posted On</th>
+            <th>Qty sold</th>
+            <th>Qty Remaining</th>
+            <th>Auctions</th>
+          </tr>
+          <% for product in @products %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= link_to product.title, product %></td>
+            <td></td>
+            <td><%= product.created_at.strftime("%d-%m-%Y")%></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </table>
       <% else %>
         <div style="text-align: center;padding: 10px;">
           No products added

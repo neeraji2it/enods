@@ -25,7 +25,19 @@
             </tr>
           </tbody></table>
         <%= !user_signed_in? ? (link_to_function "Add to cart", "buyer_users_path()", :style => 'color : white', :class => 'cartButton'): (user_signed_in? and current_user.role != 'admin' and current_user.role != 'seller') ? (link_to "Add to cart", add_to_cart_product_path(@product), :style => 'color : white', :class => 'cartButton') : "" %>
-      </div>
+      </div><br />
+      <%#*<div class="dealsDetails">%>
+        <%#*<table cellspacing="10" cellpadding="0">%>
+          <%#*<tbody><tr>%>
+              <%#*<td><p class="title">PRICE:</p></td>%>
+              <%#*<td><p>%>
+                  <%#= select_tag :non_profit, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.username, c.id]})  %>
+                <%#*</p>%>
+              <%#*</td>%>
+            <%#*</tr>%>
+          <%#*</tbody></table>%>
+        <%#= !user_signed_in? ? (link_to_function "Select Non-Profit", "buyer_users_path()", :style => 'color : white', :class => 'cartButton'): (user_signed_in? and current_user.role != 'admin' and current_user.role != 'seller') ? (link_to "Select Non-Profit", add_to_cart_product_path(@product), :style => 'color : white', :class => 'cartButton') : "" %>
+      <%#*</div>%>
       <div class="sellerMsg">
         <br /><%= @product.description %>
       </div>

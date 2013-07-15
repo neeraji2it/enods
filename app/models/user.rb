@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password,:avatar,:image, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token,:business_name, :business_address, :website_url, :city, :state, :country, :phone,:zip,:confirmation_token, :confirmed_at
+  attr_accessible :email, :password,:avatar,:image, :password_confirmation,:role,:uid,:details,:secret, :remember_me,:first_name,:last_name,:username,:gender,:agree_terms,:provider,:token,:business_name, :business_address, :website_url, :city, :state, :country, :phone,:zip,:confirmation_token, :confirmed_at,:paypal_id,:other_info,:date_of_birth
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy
+  has_many :billing_shipping_address, :dependent => :destroy
 
   has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png" if Rails.env == 'development'
   has_attached_file :avatar,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/assets/bigavatar.png" if Rails.env == 'production'

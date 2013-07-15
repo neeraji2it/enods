@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :images, :dependent => :destroy
+  has_many :billing_shipping_address, :dependent => :destroy
   has_one :favourite, :dependent => :destroy
   validates :title, :description, :price,:category_id, :presence => true
 

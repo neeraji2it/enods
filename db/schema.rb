@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517083410) do
+ActiveRecord::Schema.define(:version => 20130715101007) do
+
+  create_table "billing_shipping_addresses", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.string   "billling_house_no"
+    t.string   "shipping_house_no"
+    t.string   "billing_street"
+    t.string   "shipping_street"
+    t.string   "billing_city"
+    t.string   "shipping_city"
+    t.string   "billing_zip"
+    t.string   "shipping_zip"
+    t.string   "billing_country"
+    t.string   "shipping_country"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "carts", :force => true do |t|
     t.datetime "purchased_at"
@@ -48,6 +66,14 @@ ActiveRecord::Schema.define(:version => 20130517083410) do
     t.integer  "image_file_size"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "line_items", :force => true do |t|
@@ -142,6 +168,9 @@ ActiveRecord::Schema.define(:version => 20130517083410) do
     t.string   "phone"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "paypal_id"
+    t.datetime "date_of_birth"
+    t.text     "other_info"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

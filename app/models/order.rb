@@ -3,6 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :cart
   belongs_to :user
   has_many :transactions, :class_name => 'OrderTransaction'
+  has_many :billing_shipping_address, :dependent => :destroy
 
   def purchase
     response = process_purchase

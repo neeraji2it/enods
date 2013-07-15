@@ -1,0 +1,81 @@
+<div id="formDiv">
+  <%= form_for @billingshippingaddress, :html => {:id => "SS"} do |f| %>
+    <table cellspacing="5px" width="100%">
+      <tr>
+        <td>Select Order:</td>
+        <td><%= f.select :product_id, options_for_select([["Select", '']]+Product.all.map{|a| [a.title, a.id]}, :selected => f.object.product_id)%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['product_id']) %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><b>Billing Address</b></td>
+      </tr>
+      <tr>
+        <td>House No.:</td>
+        <td><%= f.text_field :billling_house_no %></td>
+        <td>Street:</td>
+        <td><%= f.text_field :billing_street %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['billling_house_no']) %></td>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['billing_street']) %></td>
+      </tr>
+      <tr>
+        <td>City:</td>
+        <td><%= f.text_field :billing_city %></td>
+        <td>Zip:</td>
+        <td><%= f.text_field :billing_zip %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['billing_city']) %></td>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['billing_zip']) %></td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td><%= f.country_select :billing_country %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><b>Shipping Address</b></td>
+      </tr>
+      <tr>
+        <td>House No.:</td>
+        <td><%= f.text_field :shipping_house_no %></td>
+        <td>Street:</td>
+        <td><%= f.text_field :shipping_street %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['shipping_house_no']) %></td>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['shipping_street']) %></td>
+      </tr>
+      <tr>
+        <td>City:</td>
+        <td><%= f.text_field :shipping_city %></td>
+        <td>Zip:</td>
+        <td><%= f.text_field :shipping_zip %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['shipping_city']) %></td>
+        <td></td>
+        <td><%= validation_error(@billingshippingaddress.errors['shipping_zip']) %></td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td><%= f.country_select :shipping_country %></td>
+      </tr>
+    </table>
+    <div style="float: right">
+      <button type="submit">Submit</button>
+    </div>
+  <% end %>
+</div>

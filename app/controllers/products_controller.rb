@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     if product.user_id != current_user.id
       if !@cart.line_items.find_by_product_id(product).present?
+        @cart.update_attribute(:created_at, Time.now)
         @cart.line_items.build(:cart_id => current_cart.id, :product_id => params[:id], :unit_price =>  product.price,:quantity => 1)
         if @cart.save
           session[:cart_id] = @cart.id

@@ -20,6 +20,10 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
+$(function(){
+    $("input, textarea, select,file").uniform();
+});
+
 //add more fields
 function add_fields(link, association, content){
     var new_id = new Date().getTime();
@@ -57,15 +61,15 @@ $(document).ready(function(){
 
 });
 
-//styles for the radio button
-$(function(){
-    $.imageTick.logging = true;
-    $('input[type="radio"]').imageTick({
-        tick_image_path: "/assets/radio_button1.png",
-        no_tick_image_path: "/assets/radio-button.png",
-        image_tick_class: "radios"
-    });
-});
+////styles for the radio button
+//$(function(){
+//    $.imageTick.logging = true;
+//    $('input[type="radio"]').imageTick({
+//        tick_image_path: "/assets/radio_button1.png",
+//        no_tick_image_path: "/assets/radio-button.png",
+//        image_tick_class: "radios"
+//    });
+//});
 
 
 //without page reload change browser url
@@ -138,5 +142,13 @@ $(function(){
     $('.leftSec a img').click(function(e){
         e.preventDefault();
         $('.midSec img').attr('src',$(this).attr('src'));
+    });
+});
+
+
+$(function(){
+    $('.pagination a').click(function(){
+        $.getScript(this.href);
+        return false;
     });
 });

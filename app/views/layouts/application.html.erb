@@ -3,8 +3,8 @@
   <head>
     <title>Enods.com</title>
     <link rel="shortcut icon" href="/assets/favicon.ico.png" />
-    <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar",'script', 'jquery.imagetick' %>
+    <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar",'uniform.default' %>
+    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar",'script','jquery.uniform' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -32,7 +32,7 @@
       <div id="header_login">
         <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
         <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to "Sell", new_user_path(:role => 'seller'), :class => "button") ) %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Favourites(#{current_user.favourites.where('status = true').count})", favourites_path, :class => "button") : ("") : "") : "") %>
+        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Invitaitons", invitations_path, :class => "button") : ("") : "") : "") %>
         <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to_function "Sign In", "login()", :class => "button", :rel => "tab")) %>
         <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button", :id => 'sign_out') : " ") %>
       </div>

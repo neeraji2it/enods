@@ -24,6 +24,8 @@ gem 'capistrano'
 gem 'execjs'
 gem 'therubyracer'
 gem 'nokogiri'
+gem 'will_paginate', '>= 3.0.pre'
+gem 'country-select'
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

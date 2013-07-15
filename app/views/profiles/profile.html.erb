@@ -1,38 +1,85 @@
 <h1>Update Profile</h1>
 <div id="formDiv">
   <%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
-    <p>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-      <%= validation_error(@user.errors['first_name']) %>
-    </p>
+    <% if @user.role == "buyer" %>
+      <p>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+        <%= validation_error(@user.errors['first_name']) %>
+      </p>
 
-    <p>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-      <%= validation_error(@user.errors['last_name']) %>
-    </p>
+      <p>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+        <%= validation_error(@user.errors['last_name']) %>
+      </p>
 
-    <p>
-      <%= f.label :avatar, "Image" %>
-      <%= image_tag(@user.avatar.url(:original), :width => '50px', :height => '50px') %>
-      <%= f.file_field :avatar %>
-    </p>
+      <p>
+        <%= f.label :gender %>
+        <%= f.radio_button :gender, "Male" %>Male
+        <%= f.radio_button :gender , "Female"%>Female
+        <%= validation_error(@user.errors['gender']) %>
+      </p>
 
-    <p>
-      <%= f.label :username %>
-      <%= f.text_field :username %>
-      <%= validation_error(@user.errors['username']) %>
-    </p>
+      <p>
+        <%= f.label :date_of_birth %>
+        <%= f.text_field :date_of_birth %>
+      </p>
 
+      <p>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </p>
+
+      <p>
+        <%= f.label :zip %>
+        <%= f.text_field :zip %>
+      </p>
+
+      <p>
+        <%= f.label :email, "Email Id" %>
+        <%= f.text_field :email %>
+        <%= validation_error(@user.errors['email']) %>
+      </p>
+
+      <p>
+        <%= f.label :phone, "Phone" %>
+        <%= f.text_field :phone %>
+      </p>
+
+    <% else %>
+      <p>
+        <%= f.label :business_name, "Business Name" %>
+        <%= f.text_field :business_name %>
+      </p>
+
+      <p>
+        <%= f.label :business_name, "Business Address" %>
+        <%= f.text_field :business_address %>
+      </p>
+
+      <p>
+        <%= f.label :website_url, "Website" %>
+        <%= f.text_field :website_url %>
+      </p>
+
+
+
+      <p>
+        <%= f.label :paypal_id, "Paypal Id" %>
+        <%= f.email_field :paypal_id %>
+      </p>
+
+      <p>
+        <%= f.label :other_info, "Other Info" %>
+        <%= f.text_field :other_info %>
+      </p>
+    <% end %>
     <p>
-      <%= f.radio_button :gender, "Male" %>Male
-      <%= f.radio_button :gender , "Female"%>Female
-      <%= f.radio_button :gender ,"Rather not say"%>Rather not say
-      <%= validation_error(@user.errors['gender']) %>
-    </p>
-    <p>
-      <button type="submit">Update</button>
+      <button type="submit">Submit</button>
     </p>
   <% end %>
+  <div style="float: right;width: 385px;">
+    <%= render :partial => 'password' %>
+  </div>
 </div>
