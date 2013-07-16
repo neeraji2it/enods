@@ -18,6 +18,16 @@
         <td><%= validation_error(@product.errors['price'])%></td>
       </tr>
       <tr>
+        <td>Quantity</td>
+        <td><%= f.text_field :qty %></td>
+        <td><%= validation_error(@product.errors['qty'])%></td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td><%= f.text_field :color %></td>
+        <td><%= validation_error(@product.errors['color'])%></td>
+      </tr>
+      <tr>
         <td valign="top">Images:</td>
         <td>
           <%= f.fields_for :images do |builder| %>

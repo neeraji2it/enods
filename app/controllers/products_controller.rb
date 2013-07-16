@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :is_signin?, :only => ['index','new','create','add_to_cart']
+  before_filter :is_valid_account?
 
   def index
     @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
@@ -20,10 +21,10 @@ class ProductsController < ApplicationController
     if @product.save
       #@product.post
       flash[:notice] = "Successfully create the project."
-#      @email_alerts = EmailAlert.all
-#      for email in @email_alerts
-#        UserMailer.alert(email,@product).deliver if email.present?
-#      end
+      @email_alerts = EmailAlert.all
+      for email in @email_alerts
+        UserMailer.alert(email,@product).deliver
+      end
       redirect_to products_path
     else
       flash[:error] = "Failed to create the project."

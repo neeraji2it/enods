@@ -1,5 +1,6 @@
-<% if @invitation.errors.present? %>
+<% if @invitation.errors.any? %>
   $("#invitations").html('<ul><% for msg in @invitation.errors.full_messages %><li style="color: red;"><%= msg %></li><% end %></ul>');
+  $("#invitation_email").val(' ');
 <% else %>
   $("#invitation_email").val(' ');
   $("#invitations").html('<%= escape_javascript render :partial => '/invitations/invitations' %>');

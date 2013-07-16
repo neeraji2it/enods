@@ -4,7 +4,7 @@
     <title>Enods.com</title>
     <link rel="shortcut icon" href="/assets/favicon.ico.png" />
     <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar",'uniform.default' %>
-    <%= javascript_include_tag 'application', "countdown_timer","jquery.notifyBar",'script','jquery.uniform' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -30,45 +30,25 @@
         <% end %>
       </div>
       <div id="header_login">
-        <%= (user_signed_in? ? (link_to "My Account", profile_profile_path(current_user), :class => "button") : " ") %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Dashboard", products_path, :class => "button") : ("") : "") : (link_to "Sell", new_user_path(:role => 'seller'), :class => "button") ) %>
-        <%= (user_signed_in? ? ((user_signed_in? and current_user.role != 'non-profit') ? (user_signed_in? and current_user.role != 'admin') ? (link_to "Invitaitons", invitations_path, :class => "button") : ("") : "") : "") %>
-        <%= (user_signed_in? ? (user_signed_in? and current_user.role != 'admin' and current_user.role != 'non-profit' and current_user.role != 'seller') ? (link_to "Your Cart(#{current_cart.line_items.count})", carts_path(current_cart), :class => "button", :id => "user_cart") : ("") : (link_to_function "Sign In", "login()", :class => "button", :rel => "tab")) %>
+        <%= (user_signed_in? ? () : (link_to "Seller", new_user_path(:role => 'seller'), :class => "button")) %>
+        <%= (user_signed_in? ? () : (link_to_function "Sign In", "login()", :class => "button")) %>
         <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button", :id => 'sign_out') : " ") %>
       </div>
-      <script>
-        $("#register").click(function(){
-          $("#reg").show();
-        })
-
-        $("#header_login").mouseleave(function(){
-          $("#reg").hide();
-        })
-      </script>
       <div id="cart_expire_time"></div>
     </div>
     <div id='ajax-loader'>
       <img alt=""  src="/assets/bigger_spinner.gif" style="width:32px;height:32px;z-index:1000000;"/>
     </div>
-    <div id="maincontent" style=<%= !current_user ? "width:1390px;" : 'width:955px;' %>>
-      <% if !user_signed_in? %>
-        <div id="category">
-          <table cellspacing="30">
-            <% Category.all.each do |category| %>
-              <tr>
-                <td><%= link_to category.name, category_path(:categories => category.id) %></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      <% elsif user_signed_in? and current_user.role == 'admin' %>
-        <div id="category" style="margin-left: -132px;margin-top: 20px;width: 110px;">
+    <div id="maincontent" style='width:955px;'>
+      <% if user_signed_in? %>
+        <div id="category" style="margin-left: -195px;margin-top: 20px;width: 175px;">
           <ul>
-            <li><%= link_to "Seller", admins_path(:role => 'seller') %></li>
-            <li><%= link_to "Buyer", admins_path(:role => 'buyer') %></li>
-            <li><%= link_to "Non Profit", admins_path(:role => 'non-profit') %></li>
-            <li><%= link_to "Categories", categories_path %></li>
-            <li><%= link_to "Products", products_admins_path %></li>
+            <li><%= current_user.role == 'admin' ? (link_to "Dashboard", "") : ""%></li>
+            <li><%= current_user.role == 'admin' ? (link_to "Seller Management", admins_path(:role => 'seller')) : (current_user.role == 'buyer' ? (link_to "My Account", profile_profile_path(current_user)) : (link_to "Dashboard", "")) %></li>
+            <li><%= current_user.role == 'admin' ? (link_to "User Management", admins_path(:role => 'buyer')) : (current_user.role == 'buyer' ? (link_to "Billing & Shipping", new_billing_shipping_address_path) : (link_to "Products Management", products_path)) %></li>
+            <li><%= current_user.role == 'admin' ? (link_to "Non Profit Management", admins_path(:role => 'non-profit')) : (current_user.role == 'buyer' ? (link_to "Order History", "") : (link_to "Order & Sales Management", "")) %></li>
+            <li><%= current_user.role == 'admin' ? (link_to "Categories Management", categories_path) : (current_user.role == 'buyer' ? (link_to "Invitations", invitations_path) : (link_to "Profile", profile_profile_path(current_user))) %></li>
+            <li><%= current_user.role == 'admin' ? (link_to "Sales Management", products_admins_path) : () %></li>
           </ul>
         </div>
       <% end %>

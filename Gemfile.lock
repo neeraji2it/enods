@@ -152,6 +152,11 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    paypal-sdk-adaptivepayments (1.103.0)
+      paypal-sdk-core (~> 0.2.3)
+    paypal-sdk-core (0.2.4)
+      multi_json (~> 1.0)
+      xml-simple
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -223,6 +228,7 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     will_paginate (3.0.4)
+    xml-simple (1.1.2)
 
 PLATFORMS
   ruby
@@ -246,6 +252,7 @@ DEPENDENCIES
   omniauth-twitter
   omniauth-yahoo
   paperclip (~> 2.3)
+  paypal-sdk-adaptivepayments
   quiet_assets
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)

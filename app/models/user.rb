@@ -14,8 +14,17 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => {:thumb => '90*90>', :large => '900*900>'}, :default_url => "/assets/bigavatar.png" if Rails.env == 'development'
   has_attached_file :avatar,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/assets/bigavatar.png" if Rails.env == 'production'
-  #validates :first_name,:last_name,:gender, :presence => true
-  validates :username,  :uniqueness => true
+  validates :first_name,:last_name,:gender,:date_of_birth,:city,:zip, :presence => {:if => :buyer?}, :on => :update
+  validates :business_name, :business_address, :website_url, :paypal_id, :presence => {:if => :seller?}, :on => :update
+
+
+  def buyer?
+    !self.role.nil? and ['buyer'].include?(self.role)
+  end
+
+  def seller?
+    !self.role.nil? and ['seller'].include?(self.role)
+  end
 
   def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])

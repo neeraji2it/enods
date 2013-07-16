@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715101007) do
+ActiveRecord::Schema.define(:version => 20130716091209) do
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130715101007) do
     t.string   "paypal_express_token"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.integer  "product_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -86,30 +87,22 @@ ActiveRecord::Schema.define(:version => 20130715101007) do
     t.datetime "updated_at",                                :null => false
   end
 
-  create_table "order_transactions", :force => true do |t|
-    t.integer  "order_id"
-    t.string   "action"
-    t.integer  "amount"
-    t.boolean  "success"
-    t.string   "authorization"
-    t.string   "message"
-    t.text     "params"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "orders", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "user_id"
-    t.string   "ip_address"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "card_type"
-    t.string   "express_token"
-    t.string   "express_payer_id"
-    t.date     "card_expires_on"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "paykey"
+    t.text     "details"
+    t.string   "status"
+    t.string   "net_payment"
+    t.string   "admin_payment"
+    t.string   "non_profit_payment"
+    t.datetime "cancel_date"
+    t.string   "payment_type"
+    t.datetime "confirm_date"
+    t.integer  "product_id"
   end
 
   create_table "products", :force => true do |t|
@@ -122,6 +115,10 @@ ActiveRecord::Schema.define(:version => 20130715101007) do
     t.string   "status"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "qty"
+    t.string   "color"
+    t.integer  "qty_sold"
+    t.string   "product_id"
   end
 
   create_table "users", :force => true do |t|

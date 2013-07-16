@@ -16,14 +16,10 @@
           <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
           <td class="price"><%= number_to_currency(line_item.full_price) %></td>
           <td class="price"><%= link_to image_tag("/assets/closeX.gif"), cart_path(line_item), :method => :delete, :confirm => "Are You Sure" %></td>
+          <td><%= link_to image_tag("/assets/paypal.gif"), product_orders_path(line_item.product_id), :method => "POST", :style => 'float: right;' %></td>
         </tr>
       <% end %>
     </table>
-
-    <p>
-      <span id="total_cart">Total: <%= number_to_currency @cart.total_price %></span>
-      <%= link_to image_tag("/assets/paypal.gif"), express_order_path(@cart), :style => 'float: right;' %>
-    </p>
   <% else %>
     <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
       Your cart is empty

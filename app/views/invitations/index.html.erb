@@ -1,6 +1,6 @@
-<%= form_for @invitation, :url => invitations_path, :html => {:method => 'POST', :remote => true} do |f| %>
+<br /><%= form_for @invitation,:remote => true do |f| %>
   <%= f.text_field :email %>
-  <%= f.submit "Submit", :class => 'button' %>
+  <%= f.submit "Invite", :class => 'button' %>
 <% end %>
 <div id="invitations">
   <%= render :partial => 'invitations' %>

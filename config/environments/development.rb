@@ -22,17 +22,6 @@ Enods::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    paypal_options = {
-      :login => "k.ashok502-facilitator_api1.gmail.com",
-      :password => "1366968794",
-      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AwVzeB7ThvogKHzICFAE2dVcZPjR"
-    }
-    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
-
   config.action_mailer.default_url_options = {:host => 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

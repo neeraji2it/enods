@@ -1,6 +1,11 @@
 Enods::Application.routes.draw do
   devise_for :users, :controllers => {:sessions => 'sessions'}
 
+
+  match "/pay" => "adaptive_payments#pay",               :as => :paypal_return
+  match "/cancel" => "adaptive_payments#cancel",         :as => :paypal_cancel
+  match "/ipn_notify" => "adaptive_payments#ipn_notify", :as => :paypal_ipn
+
   resources :admins do
     collection do
       get :products
@@ -29,18 +34,8 @@ Enods::Application.routes.draw do
     end
   end
 
-  resources :orders do
-    member do
-      get :express
-    end
-    collection do
-      get :cancel
-      get :notify_action
-      get :paypal_return
-    end
-  end
-
   resources :products do
+    resources :orders
     resources :images
     collection do
       get :search

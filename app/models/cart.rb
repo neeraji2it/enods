@@ -1,7 +1,8 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
+  has_many :orders, :dependent => :destroy
 
-  attr_accessible :user_id, :purchased_at
+  attr_accessible :user_id, :purchased_at, :created_at, :product_id
 
   has_one :order, :dependent => :destroy
 

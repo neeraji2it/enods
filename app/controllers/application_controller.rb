@@ -40,4 +40,20 @@ class ApplicationController < ActionController::Base
     end
     cart
   end
+
+  private
+
+  def is_valid_account?
+    if current_user.role == 'buyer'
+      if current_user and (current_user.first_name.to_s.blank? or current_user.last_name.to_s.blank? or current_user.gender.to_s.blank? or current_user.date_of_birth.to_s.blank? or current_user.zip.to_s.blank? or current_user.city.to_s.blank?)
+        flash[:error] = "Please complete your account information before proceeding."
+        redirect_to profile_profile_path(current_user)
+      end
+    else
+      if current_user and (current_user.business_name.to_s.blank? or current_user.business_address.to_s.blank? or current_user.website_url.to_s.blank? or current_user.paypal_id.to_s.blank?)
+        flash[:error] = "Please complete your account information before proceeding."
+        redirect_to profile_profile_path(current_user)
+      end
+    end
+  end
 end

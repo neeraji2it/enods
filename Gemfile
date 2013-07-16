@@ -25,6 +25,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'nokogiri'
 gem 'will_paginate', '>= 3.0.pre'
+gem 'paypal-sdk-adaptivepayments'
 gem 'country-select'
 
 #group :production do

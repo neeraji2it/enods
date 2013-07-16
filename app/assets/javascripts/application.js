@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.uniform
+//= require countdown_timer
+//= require jquery.notifyBar
+//= require script
 //= require_tree .
 
 //remove fields
@@ -20,9 +24,9 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
-$(function(){
-    $("input, textarea, select,file").uniform();
-});
+//$(function(){
+//    $("input, textarea, select,file").uniform();
+//});
 
 //add more fields
 function add_fields(link, association, content){

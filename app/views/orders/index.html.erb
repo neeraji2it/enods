@@ -1,0 +1,21 @@
+<h1>Order History</h1><br />
+<table border="1" width="100%">
+  <tr style="text-align: center;">
+    <th>ID</th>
+    <th>Email</th>
+    <th>Posted On</th>
+    <th>Amount</th>
+    <th>Transaction Id</th>
+  </tr>
+  <% for invitation in @orders %>
+    <% if invitation.order.user.id == current_user.id %>
+      <tr style="text-align: center;">
+        <td><%= invitation.id %></td>
+        <td><%= invitation.order.user.email %></td>
+        <td><%= invitation.created_at.strftime("%d/%m/%Y")%></td>
+        <td><%= invitation.amount %></td>
+        <td><%= invitation.authorization %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

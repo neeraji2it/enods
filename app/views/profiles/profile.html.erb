@@ -24,43 +24,50 @@
       <p>
         <%= f.label :date_of_birth %>
         <%= f.text_field :date_of_birth %>
+        <%= validation_error(@user.errors['date_of_birth']) %>
       </p>
 
       <p>
         <%= f.label :city %>
         <%= f.text_field :city %>
+        <%= validation_error(@user.errors['city']) %>
       </p>
 
       <p>
         <%= f.label :zip %>
         <%= f.text_field :zip %>
+        <%= validation_error(@user.errors['zip']) %>
       </p>
 
       <p>
         <%= f.label :email, "Email Id" %>
-        <%= f.text_field :email %>
+        <%= f.text_field :email, :readonly => true %>
         <%= validation_error(@user.errors['email']) %>
       </p>
 
       <p>
         <%= f.label :phone, "Phone" %>
         <%= f.text_field :phone %>
+        <%= validation_error(@user.errors['phone']) %>
       </p>
 
     <% else %>
       <p>
         <%= f.label :business_name, "Business Name" %>
         <%= f.text_field :business_name %>
+        <%= validation_error(@user.errors['business_name']) %>
       </p>
 
       <p>
         <%= f.label :business_name, "Business Address" %>
         <%= f.text_field :business_address %>
+        <%= validation_error(@user.errors['business_address']) %>
       </p>
 
       <p>
         <%= f.label :website_url, "Website" %>
         <%= f.text_field :website_url %>
+        <%= validation_error(@user.errors['website_url']) %>
       </p>
 
 
@@ -68,6 +75,7 @@
       <p>
         <%= f.label :paypal_id, "Paypal Id" %>
         <%= f.email_field :paypal_id %>
+        <%= validation_error(@user.errors['paypal_id']) %>
       </p>
 
       <p>

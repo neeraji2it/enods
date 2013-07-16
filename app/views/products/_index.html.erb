@@ -18,15 +18,17 @@
             <th>Auctions</th>
           </tr>
           <% for product in @products %>
-          <tr>
-            <td><%= product.id %></td>
-            <td><%= link_to product.title, product %></td>
-            <td></td>
-            <td><%= product.created_at.strftime("%d-%m-%Y")%></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+            <tr>
+              <td><%= product.id %></td>
+              <td><%= link_to product.title, product %></td>
+              <td><%= product.color %></td>
+              <td><%= product.created_at.strftime("%d-%m-%Y")%></td>
+              <td><%= product.qty_sold %></td>
+              <td><%= product.qty %></td>
+              <td>
+                <%= link_to "Show", product_path(product) %> | <%= link_to "Destroy", product_path(product), :method => :delete, :confirm => 'Are you Sure' %>
+              </td>
+            </tr>
           <% end %>
         </table>
       <% else %>

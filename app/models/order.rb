@@ -1,43 +1,53 @@
 class Order < ActiveRecord::Base
-  attr_accessible :express_token,:ip_address, :cart_id, :user_id,:first_name,:last_name,:express_payer_id
-  belongs_to :cart
+  attr_accessible :user_id,:cart_id,:product_id,:status,:paykey,:cancel_date,:confirm_date, :details, :payment_type, :net_payment, :admin_payment, :non_profit_payment
   belongs_to :user
-  has_many :transactions, :class_name => 'OrderTransaction'
-  has_many :billing_shipping_address, :dependent => :destroy
+  belongs_to :product
+  belongs_to :cart
 
-  def purchase
-    response = process_purchase
-    transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
-    cart.update_attribute(:purchased_at, Time.now) if response.success?
-    response.success?
-  end
+  PAYMENT = {
+    :paid => "Completed",
+    :pending => "INCOMPLETE"
+  }
 
-  def express_token=(token)
-    write_attribute(:express_token, token)
-    if new_record? && !token.blank?
-      details = EXPRESS_GATEWAY.details_for(token)
-      self.express_payer_id = details.payer_id
-      self.first_name = details.params["first_name"]
-      self.last_name = details.params["last_name"]
+  before_validation :set_payments_and_dates
+
+  def paypal_url(paypal_return_url, paypal_cancel_url, paypal_ipn_url)
+    primary_paypal_email = 'ashokkmr098@gmail.com'
+    seller_email = self.product.user.paypal_id
+
+    @api = PayPal::SDK::AdaptivePayments.new
+    @pay = @api.build_pay(
+      {:actionType => "PAY_PRIMARY",
+        :cancelUrl => paypal_cancel_url,
+        :currencyCode => "USD",
+        :feesPayer => "EACHRECEIVER",
+        :ipnNotificationUrl => paypal_ipn_url,
+        :receiverList => {
+          :receiver => [
+            {:amount => 20, :email => seller_email, :primary => false},
+            {:amount => 80, :email => primary_paypal_email, :primary => true}]
+        },
+        :return_url => paypal_return_url})
+
+    @response = @api.pay(@pay)
+
+    if @response.success?
+      self.cart.update_attribute(:paypal_express_token, @response.payKey) if @response.payKey
+      self.update_attributes({
+          :paykey => @response.payKey,
+          :details => @response,
+          :status => @response.responseEnvelope.ack
+        })
+      return @api.payment_url(@response)
+    else
+      Rails.logger.warn @response.error[0].message
+      return "/"#0current_domain
     end
   end
 
-  def price_in_cents
-    (cart.total_price*100).round
-  end
-
   private
-
-  def process_purchase
-    EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
+  def set_payments_and_dates
+    self.net_payment = self.product.price
+    self.confirm_date = Time.now
   end
-
-  def express_purchase_options
-    {
-      :ip => ip_address,
-      :token => express_token,
-      :payer_id => express_payer_id
-    }
-  end
-
 end
