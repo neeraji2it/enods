@@ -20,7 +20,7 @@
       <div class="column"><%= product.qty_sold %></div>
       <div class="column"><%= product.qty %></div>
       <div class="column last">
-        <%= link_to image_tag("/assets/user-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/admin-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
         <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;
         <%= link_to image_tag("/assets/user-images/icon-close.png", :class => "icon-search"), product_path(product), :method => :delete, :confirm => "Are you sure." %>
       </div>
