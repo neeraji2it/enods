@@ -1,0 +1,25 @@
+<h1 class="icon-productsManagement"><span>User Management</span></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Name</div>
+    <div class="column">Email</div>
+    <div class="column">Phone</div>
+    <div class="column">City</div>
+    <div class="column">ZIP</div>
+    <div class="column">Country</div>
+    <div class="column">Options</div>
+  </div>
+  <% for user in @users %>
+    <div class="row">
+      <div class="column"><%= user.id %></div>
+      <div class="column"><%= user.username %></div>
+      <div class="column"><%= user.email %></div>
+      <div class="column"><%= user.phone %></div>
+      <div class="column"><%= user.city %></div>
+      <div class="column"><%= user.zip %></div>
+      <div class="column">Indore</div>
+      <div class="column last"><input class="btn-deActivate" type="submit" title="De Activate" value="De Activate" /></div>
+    </div>
+  <% end %>
+</div>

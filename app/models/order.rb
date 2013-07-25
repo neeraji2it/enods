@@ -12,20 +12,20 @@ class Order < ActiveRecord::Base
   before_validation :set_payments_and_dates
 
   def paypal_url(paypal_return_url, paypal_cancel_url, paypal_ipn_url)
-    primary_paypal_email = 'ashokkmr098@gmail.com'
-    seller_email = self.product.user.paypal_id
+    primary_paypal_email = self.product.user.paypal_id
+    seller_email = 'kapil07517@gmail.com'
 
     @api = PayPal::SDK::AdaptivePayments.new
     @pay = @api.build_pay(
-      {:actionType => "PAY_PRIMARY",
+      {:actionType => "PAY",
         :cancelUrl => paypal_cancel_url,
         :currencyCode => "USD",
         :feesPayer => "EACHRECEIVER",
         :ipnNotificationUrl => paypal_ipn_url,
         :receiverList => {
           :receiver => [
-            {:amount => 20, :email => seller_email, :primary => false},
-            {:amount => 80, :email => primary_paypal_email, :primary => true}]
+            {:amount => (self.admin_payment.to_i+self.non_profit_payment.to_i), :email => seller_email, :primary => false},
+            {:amount => self.product.price, :email => primary_paypal_email, :primary => true}]
         },
         :return_url => paypal_return_url})
 
@@ -47,7 +47,9 @@ class Order < ActiveRecord::Base
 
   private
   def set_payments_and_dates
-    self.net_payment = self.product.price
+    self.admin_payment = (self.product.price.to_i)/10
+    self.non_profit_payment = (self.product.price.to_i-self.admin_payment.to_i)/15
+    self.net_payment = self.product.price.to_i-self.admin_payment.to_i-self.non_profit_payment.to_i
     self.confirm_date = Time.now
   end
 end

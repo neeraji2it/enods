@@ -1,0 +1,80 @@
+<%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li style="color: red;"><%= msg %></li>
+    <% end %>
+  </ul>
+  <% if @user.role == "buyer" %>
+    <div class="frow">
+      <div>First Name</div>
+      <div><%= f.text_field :first_name %></div>
+    </div>
+    <div class="frow">
+      <div>Last Name</div>
+      <div><%= f.text_field :last_name %></div>
+    </div>
+    <div class="frow">
+      <div>Gender</div>
+      <div>
+        <%= f.radio_button :gender, "Male" %>Male
+        <%= f.radio_button :gender , "Female"%>Female
+      </div>
+    </div>
+
+    <div class="frow">
+      <div>Birthday</div>
+      <div><%= f.text_field :date_of_birth %></div>
+    </div>
+
+    <div class="frow">
+      <div>City</div>
+      <div><%= f.text_field :city %></div>
+    </div>
+
+    <div class="frow">
+      <div>Zip</div>
+      <div><%= f.text_field :zip %></div>
+    </div>
+
+    <div class="frow">
+      <div>Email Id</div>
+      <div><%= f.text_field :email, :readonly => true %></div>
+    </div>
+
+    <div class="frow">
+      <div>Phone</div>
+      <div><%= f.text_field :phone %></div>
+    </div>
+  <% else %>
+    <div class="frow">
+      <div>Email Id</div>
+      <div><%= f.text_field :email, :readonly => true %></div>
+    </div>
+
+    <div class="frow">
+      <div>Business Name</div>
+      <div><%= f.text_field :business_name %></div>
+    </div>
+
+    <div class="frow">
+      <div>Business Address</div>
+      <div><%= f.text_field :business_address %></div>
+    </div>
+    <div class="frow">
+      <div>Website</div>
+      <div><%= f.text_field :website_url %></div>
+    </div>
+    <div class="frow">
+      <div>Paypal Id</div>
+      <div><%= f.text_field :paypal_id %></div>
+    </div>
+    <div class="frow">
+      <div>Other Info</div>
+      <div><%= f.text_field :other_info %></div>
+    </div>
+  <% end %>
+  <div class="frow">
+    <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+    <div><input type="submit" title="Submit" value="Submit" /></div>
+  </div>
+<% end %>

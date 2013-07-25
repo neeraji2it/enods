@@ -1,11 +1,14 @@
 <table>
-  <tr>
+  <tr class="row">
     <td>Category</td>
     <td><%= f.text_field :name %></td>
     <td><%= validation_error(@category.errors['name'])%></td>
   </tr>
-  <tr>
+  <tr class="row">
     <td></td>
-    <td><button type="submit">Category</button> </td>
+    <td>
+      <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+      <div><input type="submit" title="Submit" value="Submit" /></div>
+    </td>
   </tr>
 </table>

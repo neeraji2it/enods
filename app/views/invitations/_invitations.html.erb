@@ -1,20 +1,19 @@
-<h1>Invitations</h1><br />
-<table border="1" width="100%">
-  <tr style="text-align: center;">
-    <th>ID</th>
-    <th>Email</th>
-    <th>Posted On</th>
-    <th>Status</th>
-  </tr>
+<div class="tablebox table-invitations">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Email Address</div>
+    <div class="column">Invited On</div>
+    <div class="column last">Status</div>
+  </div>
   <% for invitation in @invitations %>
-    <tr style="text-align: center;">
-      <td><%= invitation.id %></td>
-      <td><%= invitation.email %></td>
-      <td><%= invitation.created_at.strftime("%d/%m/%Y")%></td>
-      <td><%= invitation.status %></td>
-    </tr>
+    <div class="row">
+      <div class="column"><%= invitation.id %></div>
+      <div class="column"><%= invitation.email %></div>
+      <div class="column"><%= invitation.created_at.strftime("%d/%m/%Y")%></div>
+      <div class="column last"><%= invitation.status %></div>
+    </div>
   <% end %>
-</table>
+</div>
 <div style="float: right">
   <%= will_paginate @invitations, :param_name => 'invitation_page', :previous_label => "PREV", :next_label => "NEXT", :page_links => false %>
 </div>

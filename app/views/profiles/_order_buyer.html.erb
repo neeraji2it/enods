@@ -1,0 +1,23 @@
+<h1>Order History</h1><br />
+<div class="tablebox table-orderHistory">		
+  <div class="row">
+    <div class="column">Order No.</div>
+    <div class="column">Date</div>
+    <div class="column">Product</div>
+    <div class="column">Quantity</div>
+    <div class="column">Total Value(inc. VAT)</div>
+    <div class="column">Payment Mode</div>
+    <div class="column last">Status</div>
+  </div>
+  <% for order in @orders %>
+    <div class="row">
+      <div class="column"><%= order.id %></div>
+      <div class="column"><%= order.created_at.strftime("%d/%m/%Y")%></div>
+      <div class="column"><%= order.product.title %></div>
+      <div class="column"><%= order.product.qty %></div>
+      <div class="column">$<%= order.net_payment %></div>
+      <div class="column"><%= order.payment_type %></div>
+      <div class="column"><%= order.status %></div>
+    </div>
+  <% end %>
+</div>

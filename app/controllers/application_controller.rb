@@ -2,16 +2,30 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
   helper_method :after_sign_in_path_for,:current_cart
+  layout :layout
 
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
       if current_user.role == 'non-profit'
         profile_path(current_user)
+      elsif current_user.role == 'buyer'
+        profile_profile_path(current_user)
+      elsif current_user.role == 'seller'
+        dashboard_path
       else
-        (current_user.role == 'admin' ? (products_admins_path) : (products_path))
+        admin_dashboard_path
       end
     end
+  end
+
+  def layout
+    if current_user
+      "application"
+    else
+      "login"
+    end
+    # or turn layout off for every devise controller:
   end
 
   def is_signin?
@@ -49,7 +63,7 @@ class ApplicationController < ActionController::Base
         flash[:error] = "Please complete your account information before proceeding."
         redirect_to profile_profile_path(current_user)
       end
-    else
+    elsif current_user.role == 'seller'
       if current_user and (current_user.business_name.to_s.blank? or current_user.business_address.to_s.blank? or current_user.website_url.to_s.blank? or current_user.paypal_id.to_s.blank?)
         flash[:error] = "Please complete your account information before proceeding."
         redirect_to profile_profile_path(current_user)

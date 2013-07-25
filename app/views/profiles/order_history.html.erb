@@ -1,0 +1,1 @@
+<%= current_user.role == 'buyer' ? (render :partial => 'order_buyer') : (render :partial => 'order_seller') %>

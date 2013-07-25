@@ -1,28 +1,25 @@
-<h1><%= params[:role] %>s</h1>
-<div id="formDiv">
-
-  <% if !@users.to_a.empty? %>
-    <table id="line_items" width="95%" cellspacing="10px;">
-      <tr style="text-decoration: underline;">
-        <th class="price">User Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th class="price">Created At</th>
-        <th class="price"></th>
-      </tr>
-      <% for user in @users %>
-        <tr style="text-align: center;">
-          <td><%= user.username %></td>
-          <td class="qty"><%= user.email %></td>
-          <td class="price"><%= user.role %></td>
-          <td class="price"><%= user.created_at.strftime("%d-%m-%Y") %></td>
-          <td><%= link_to "Edit", edit_user_path(user) %> | <%= link_to 'Delete', user_path(user), :method => :delete, :confirm => "Are you Sure" %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
-      No <%= params[:role] %>s
+<h1 class="icon-productsManagement"><span>Seller Management</span></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Seller Name</div>
+    <div class="column">Company Name</div>
+    <div class="column">Email</div>
+    <div class="column">Phone</div>
+    <div class="column">Total Sales</div>
+    <div class="column">Commission</div>
+    <div class="column last">Options</div>
+  </div>
+  <% for user in @users %>
+    <div class="row">
+      <div class="column"><%= user.id %></div>
+      <div class="column"><%= user.username %></div>
+      <div class="column"><%= user.business_name %></div>
+      <div class="column"><%= user.email %></div>
+      <div class="column">123-1234-1234</div>
+      <div class="column">$10000</div>
+      <div class="column">$200</div>
+      <div class="column last"><input class="btn-deActivate" type="submit" title="De Activate" value="De Activate" /></div>
     </div>
   <% end %>
 </div>

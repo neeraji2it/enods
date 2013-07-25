@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <link rel="shortcut icon" href="/assets/favicon.ico.png" />
-    <%= stylesheet_link_tag 'application','enods',"jquery.notifyBar",'uniform.default' %>
+    <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar") : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
@@ -21,46 +21,56 @@
       <%end%>
     <%end%>
   </head>
-  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
-    <div id="header">
-      <%= link_to "ENODS.COM", index_path, :class => "logo" %>
-      <div id="header_search" style="float:left;margin-left:20px;margin-top:42px;">
-        <%= form_tag search_products_path, :method => 'get' do %>
-          <%= text_field_tag(:query, "#{params[:query] || 'Search'}",:onFocus => "if(this.value=='Search') this.value='';",:onBlur => "if(this.value=='') this.value='Search';") %>
-        <% end %>
-      </div>
-      <div id="header_login">
-        <%= (user_signed_in? ? () : (link_to "Seller", new_user_path(:role => 'seller'), :class => "button")) %>
-        <%= (user_signed_in? ? () : (link_to_function "Sign In", "login()", :class => "button")) %>
-        <%= (user_signed_in? ? (link_to "Sign out", destroy_user_session_path, :method => 'delete', :class => "button", :id => 'sign_out') : " ") %>
-      </div>
-      <div id="cart_expire_time"></div>
+  <body>
+  <header>
+    <div class="fright">
+      <ul class="list-topicon">
+        <li>Member: UserName</li>
+        <li class="icon-user"><a title="" href="#"></a></li>
+        <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
+      </ul>
     </div>
-    <div id='ajax-loader'>
-      <img alt=""  src="/assets/bigger_spinner.gif" style="width:32px;height:32px;z-index:1000000;"/>
+    <em>ENODS DASHBOARD</em>
+    <div class="clearFix"></div>
+  </header>
+  <article>
+    <div class="topbar">
+      <div class="fright"><a class="icon-setting" title="Settings" href="#"><span>Settings</span></a></div>
+      <ul class="breadcrumb">
+        <li><span><%= params[:controller] %></span></li>
+        <li><a title="My Account" href="#"><%= params[:action] %></a></li>
+      </ul>
     </div>
-    <div id="maincontent" style='width:955px;'>
-      <% if user_signed_in? %>
-        <div id="category" style="margin-left: -195px;margin-top: 20px;width: 175px;">
-          <ul>
-            <li><%= current_user.role == 'admin' ? (link_to "Dashboard", "") : ""%></li>
-            <li><%= current_user.role == 'admin' ? (link_to "Seller Management", admins_path(:role => 'seller')) : (current_user.role == 'buyer' ? (link_to "My Account", profile_profile_path(current_user)) : (link_to "Dashboard", "")) %></li>
-            <li><%= current_user.role == 'admin' ? (link_to "User Management", admins_path(:role => 'buyer')) : (current_user.role == 'buyer' ? (link_to "Billing & Shipping", new_billing_shipping_address_path) : (link_to "Products Management", products_path)) %></li>
-            <li><%= current_user.role == 'admin' ? (link_to "Non Profit Management", admins_path(:role => 'non-profit')) : (current_user.role == 'buyer' ? (link_to "Order History", "") : (link_to "Order & Sales Management", "")) %></li>
-            <li><%= current_user.role == 'admin' ? (link_to "Categories Management", categories_path) : (current_user.role == 'buyer' ? (link_to "Invitations", invitations_path) : (link_to "Profile", profile_profile_path(current_user))) %></li>
-            <li><%= current_user.role == 'admin' ? (link_to "Sales Management", products_admins_path) : () %></li>
-          </ul>
-        </div>
-      <% end %>
+    <section id="leftColumn">
+      <nav>
+        <ul class="menu">
+          <% if current_user.role == 'buyer' %>
+            <li class="icon-productsManagement <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "My Account", profile_profile_path(current_user) %></li>
+            <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", new_billing_shipping_address_path %></li>
+            <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order History", order_history_path %></li>
+            <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
+          <% elsif current_user.role == 'seller' %>
+            <li class="icon-dashboard <%= (params[:controller] == 'profiles' and params[:action] == 'dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", dashboard_path %></li>
+            <li class="icon-productsManagement <%= (params[:controller] == 'products' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Products Management", products_path %></li>
+            <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order & Sales Management", order_history_path %></li>
+            <li class="icon-profile <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Profile", profile_profile_path(current_user) %></li>
+          <% elsif current_user.role == 'admin' %>
+            <li class="icon-dashboard <%= (params[:controller] == 'admins' and params[:action] == 'admin_dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", admin_dashboard_path %></li>
+            <li class="icon-productsManagement <%= (params[:controller] == 'admins' and params[:action] == 'seller') ? 'active' : "" %>"><%= link_to "Seller Management", seller_admins_path() %></li>
+            <li class="icon-nonProfitManagement <%= (params[:controller] == 'admins' and params[:action] == 'non_profit') ? 'active' : "" %>"><%= link_to "Non-Profit Management", non_profit_admins_path() %></li>
+            <li class="icon-orderSalesManagement <%= (params[:controller] == 'admins' and params[:action] == 'sales') ? 'active' : "" %>"><%= link_to "Sales Management", sales_admins_path %></li>
+            <li class="icon-userManagement <%= (params[:controller] == 'admins' and params[:action] == 'buyer') ? 'active' : "" %>"><%= link_to "User Management", buyer_admins_path() %></li>
+            <li class="icon-profile <%= (params[:controller] == 'categories' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Category Management", categories_path() %></li>
+            <li class="icon-productRequests <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Product Requests", products_admins_path() %></li>
+            <li class="icon-enquiry <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Enquiry", profile_profile_path(current_user) %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <div class="blankbox"></div>
+    </section>
+    <section id="rightColumn">
       <%= yield %>
-      <a href="#" class="scrollup">Scroll</a>
-    </div>
-    <div id='overlay' style='filter:alpha(opacity=50);'></div>
-    <div align='center' id='popup_box'>
-      <div style='float: right; margin-top: -13px;margin-right:-13px'>
-        <%= image_tag('/assets/closeX.gif', :onclick => "hide_popup();", :style => "cursor: pointer;")%>
-      </div>
-      <div id='popup_body' style='float:right'></div>
-    </div>
-  </body>
+    </section>
+  </article>
+</body>
 </html>

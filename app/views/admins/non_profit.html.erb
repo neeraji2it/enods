@@ -1,0 +1,23 @@
+<h1 class="icon-productsManagement"><span>Non-Profit Management</span></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Name</div>
+    <div class="column">Email</div>
+    <div class="column">Phone</div>
+    <div class="column">Total Earning</div>
+    <div class="column">Pending</div>
+    <div class="column">Option</div>
+  </div>
+  <% for user in @users %>
+    <div class="row">
+      <div class="column">210789</div>
+      <div class="column">Neeraj</div>
+      <div class="column">neeraj@gmail.com</div>
+      <div class="column">123-1234-1234</div>
+      <div class="column">$699.00</div>
+      <div class="column">$400</div>
+      <div class="column last"><input class="btn-activate" type="submit" title="Activate" value="Activate" /></div>
+    </div>
+  <% end %>
+</div>

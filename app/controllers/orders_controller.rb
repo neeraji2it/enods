@@ -18,4 +18,8 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+  def order_history
+    @orders = Order.where("user_id = #{current_user.id} and status = 'Success'")
+  end
 end

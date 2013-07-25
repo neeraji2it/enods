@@ -84,8 +84,7 @@
     margin: -220px 0 0 -250px;
     padding:15px;
     position:fixed;
-    background-color:#FFFFFF;
-    top:50%;
+    top:35%;
     z-index:1001;
     font-size: 12px;
     display: none

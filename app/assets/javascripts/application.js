@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.uniform
 //= require countdown_timer
 //= require jquery.notifyBar
 //= require script
@@ -24,6 +23,35 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
+$(function(){
+    $('#slider-id').codaSlider({
+        autoSlide:true,
+        autoHeight:false
+    });
+});
+
+$(function() {
+    //	Scrolled by user interaction
+    $('#caroulproduct1').carouFredSel({
+        prev: '#prev21',
+        next: '#next21',
+        pagination: "#pager21",
+        auto: false
+    });
+    $('#caroulproduct2').carouFredSel({
+        prev: '#prev212',
+        next: '#next212',
+        pagination: "#pager212",
+        auto: false
+    });
+    $('#caroulproduct').carouFredSel({
+        prev: '#prev2',
+        next: '#next2',
+        pagination: "#pager2",
+        auto: false
+    });
+});
+
 //$(function(){
 //    $("input, textarea, select,file").uniform();
 //});
@@ -33,7 +61,6 @@ function add_fields(link, association, content){
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
     $(link).parent().before(content.replace(regexp, new_id));
-    $(".uniform").uniform();
 }
 
 //ajax loader
@@ -157,3 +184,19 @@ $(function(){
         return false;
     });
 });
+
+function get_username(ht){
+    $.ajax({
+        url:"/users/username",
+        data: {
+            username: $(ht).val()
+        },
+        type: "PUT",
+        success: function(data){
+            if(data == "Error"){
+                alert("Error. Please try again");
+            }else{
+        }
+        }
+    });
+}

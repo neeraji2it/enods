@@ -1,47 +1,107 @@
-<div class="deals" id="content">
-  <div>
-    <div style="float: right;margin-right: 35px;">
-      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %>
-    </div>
+<div class="sliderLeftColumn">
+  <div class="coda-slider" id="slider-id">
+    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_1.jpg" /></div>
+    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_2.jpg" /></div>
+    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_3.jpg" /></div>
+    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_4.jpg" /></div>
   </div>
-  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
-    <div class="prodImgs">
-      <% if !@products.empty? %>
-        <% for product in @products %>
-          <div class="prodImgWrap">
-            <div class="prodImg">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '170px', :height => '140px'),product_path(product) %>
-            </div>
-            <div id="favourite">
-              <% if current_user %>
-                <% if !product.favourite.present? || !current_user.favorite_for(product).present? %>
-                  <%= link_to image_tag("/assets/favourite.png"),favourite_product_path(product),:method => 'post' %>
-                <% elsif product.favourite.status == true %>
-                  <%= link_to image_tag("/assets/favourite.png"),update_favourite_product_path(product),:method => 'put' %>
-                <%elsif product.favourite.status == false%>
-                  <%= link_to image_tag("/assets/favourite.png"),update_mark_favourite_product_path(product),:method => 'put' %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="bigImg" style="display:none;">
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => '370px', :height => '300px'),  product.images.first.image.url %>
-            </div>
-          </div>
-          <script>
-            $(".prodImgWrap").hover(function() {
-              $(this).find('#favourite').show();
-              $(this).find('.bigImg').show();
-            }, function() {
-              $(this).find('#favourite').hide();
-              $(this).find('.bigImg').hide();
-            });
-          </script>
+</div>
+<div class="sliderRightColumn">
+  <ul>
+    <li class="box-ourMission">
+      <h2>Our Mission</h2>
+      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
+    </li>
+    <li class="box-memberStories">
+      <h2>Member Stories</h2>
+      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
+    </li>
+    <li class="box-urgentHelp">
+      <h2>Urgent Help</h2>
+      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
+    </li>
+  </ul>
+</div>
+<div class="clearFix"></div>
+<div class="content">
+  <div class="heading-greatWay">
+    <span>Great Way To</span><br>
+    <strong>Help Different Causes<br></strong>
+    <em>Support a cause by buying or selling quality products</em>
+  </div>
+  <div class="commonrow">
+    <h1><span>Featured Causes</span></h1>
+    <div class="list_carousel h225">
+      <ul id="caroulproduct1">
+        <% for product in @products  %>
+          <li>
+            <%= image_tag(product.images.first.image.url(:original), :width => "305", :height => "210") %>
+            <h4><%= product.title %></h4>
+          </li>
         <% end %>
-      <% else %>
-        <div style="text-align: center;padding: 10px;">
-          No products.
-        </div>
-      <% end %>
+      </ul>
+      <div class="clearfix"></div>
+      <a id="prev21" class="prev" href="#">&lt;</a>
+      <a id="next21" class="next" href="#">&gt;</a>
+      <div id="pager21" class="pager"></div>
     </div>
   </div>
+  <div class="commonrow">
+    <h1><span>Featured Products</span></h1>
+    <div class="list_carousel">
+      <ul id="caroulproduct">
+        <% for product in @products  %>
+          <li>
+            <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+            <div>
+              <h4><%= product.title %></h4>
+              <p>Seller: <%= link_to product.user.username, "" %></p>
+              <span>$<%= product.price %>.00</span>
+            </div>
+            <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product), :style => 'text-decoration: none;' %>
+            <input type="submit" title="More Info" value="More Info" />
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+      <a id="prev2" class="prev" href="#">&lt;</a>
+      <a id="next2" class="next" href="#">&gt;</a>
+      <div id="pager2" class="pager"></div>
+    </div>
+  </div>
+  <div class="categoriesCaroul caroulCategories">
+    <h1><span>Categories</span></h1>
+    <div class="list_carousel">
+      <ul id="caroulproduct2">
+        <% for product in @products  %>
+          <li>
+            <%= image_tag(product.images.first.image.url(:original), :width => "217", :height => "170") %>
+            <h4><%= product.category.name %></h4>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+      <a id="prev212" class="prev" href="#">&lt;</a>
+      <a id="next212" class="next" href="#">&gt;</a>
+      <div id="pager212" class="pager"></div>
+    </div>
+    <div class="box-newsletter">
+      <div class="newsletter-signup">
+        <input class="btn-email" type="submit" title="" value="" />
+        <input class="input-yourEmail" type="text" title="Enter your email" placeholder="Enter your email --" />
+        <h4>Sign Up To Our Newsletter</h4>
+        <p>Istant wardrobe updates, new arrivals, <br>fashion news,don'nt miss a bit </p>
+      </div>
+      <div class="column-share">Find us on:</div>
+      <ul class="list-media">
+        <li class="icon-twitter"><a title="twitter" href="#">twitter</a></li>
+        <li class="icon-facebook"><a title="facebook" href="#">facebook</a></li>
+        <li class="icon-blogger"><a title="blogger" href="#">blogger</a></li>
+        <li class="icon-googlePlus"><a title="google plus" href="#">google plus</a></li>
+        <li class="icon-pinterest"><a title="pinterest" href="#">pinterest</a></li>
+        <li class="icon-youtube"><a title="you tube" href="#">you tube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="clearFix"></div>
 </div>

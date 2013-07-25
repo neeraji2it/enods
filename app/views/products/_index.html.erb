@@ -1,42 +1,30 @@
-<div class="deals" id="content">
-  <div>
-    <div style="float: right;margin-right: 35px;">
-      <%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %>
-    </div>
+<h1 class="icon-productsManagement"><em class="icon-plus"><%= (user_signed_in? and current_user.role == 'seller') ? (link_to "New Product", new_product_path) : "" %></em><span>Product Mangement</span></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Product Name</div>
+    <div class="column">Colors</div>
+    <div class="column">Posted on</div>
+    <div class="column">Price</div>
+    <div class="column">Qty Sold</div>
+    <div class="column">Qty Remaining</div>
+    <div class="column last">Actions</div>
   </div>
-  <div class="content homepage" style="width: 800px;background-color: #F5F5F1;">
-    <div class="prodImgs">
-      <% if !@products.empty? %>
-        <table border="1" width="145%">
-          <tr>
-            <th>Id</th>
-            <th>Product Name</th>
-            <th>Colors</th>
-            <th>Posted On</th>
-            <th>Qty sold</th>
-            <th>Qty Remaining</th>
-            <th>Auctions</th>
-          </tr>
-          <% for product in @products %>
-            <tr>
-              <td><%= product.id %></td>
-              <td><%= link_to product.title, product %></td>
-              <td><%= product.color %></td>
-              <td><%= product.created_at.strftime("%d-%m-%Y")%></td>
-              <td><%= product.qty_sold %></td>
-              <td><%= product.qty %></td>
-              <td>
-                <%= link_to "Show", product_path(product) %> | <%= link_to "Destroy", product_path(product), :method => :delete, :confirm => 'Are you Sure' %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
-      <% else %>
-        <div style="text-align: center;padding: 10px;">
-          No products added
-        </div>
-      <% end %>
+  <% for product in @products %>
+    <div class="row">
+      <div class="column"><%= product.id %></div>
+      <div class="column"><%= product.title %></div>
+      <div class="column"><%= product.color %></div>
+      <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
+      <div class="column">$<%= product.price %></div>
+      <div class="column"><%= product.qty_sold %></div>
+      <div class="column"><%= product.qty %></div>
+      <div class="column last">
+        <%= link_to image_tag("/assets/user-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/user-images/icon-close.png", :class => "icon-search"), product_path(product), :method => :delete, :confirm => "Are you sure." %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 

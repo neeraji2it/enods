@@ -1,0 +1,56 @@
+<table width="70%">
+  <tr class="row">
+    <td>Seller Name</td>
+    <td><%= text_field_tag :user, current_user.username, :readonly => true %></td>
+  </tr>
+  <tr class="row">
+    <td>Product Category</td>
+    <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.all.collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
+  </tr>
+  <tr class="row">
+    <td>Product Name</td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr class="row">
+    <td>Color Options</td>
+    <td><%= f.radio_button :color, "Single Color" %>Single Color
+      <%= f.radio_button :color , "Multiple Color"%>Multiple Color</td>
+  </tr>
+  <tr class="row">
+    <td>Price</td>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr class="row">
+    <td>Quantity</td>
+    <td><%= f.text_field :qty %></td>
+  </tr>
+  <% if @product.new_record? %>
+    <tr class="row">
+      <td valign="top">Images:</td>
+      <td>
+        <%= f.fields_for :images do |builder| %>
+          <%= builder.file_field :image  %>
+        <%end%>
+        <div>
+          <%= link_to_add_fields "Add More Images+", f, :images %>
+        </div>
+        <br />
+      </td>
+    </tr>
+  <% end %>
+  <tr class="row">
+    <td>Select Non Profit</td>
+    <td><%= select_tag :non_profit, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.id]})%></td>
+  </tr>
+  <tr class="row">
+    <td>Description</td>
+    <td><%= f.text_area :description, :cols => 33, :rows => 3 %></td>
+  </tr>
+  <tr class="row">
+    <td></td>
+    <td>
+      <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+      <div><input type="submit" title="Submit" value="Submit" /></div>
+    </td>
+  </tr>
+</table>

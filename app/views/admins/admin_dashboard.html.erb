@@ -1,0 +1,149 @@
+<ul class="menu-dashboard">
+  <li class="img-order">
+    <div>
+      <h4>206<br><span>Orders</span></h4>
+      <a class="link-viewmore" title="VIEW MORE" href="#">VIEW MORE</a>
+    </div>
+  </li>
+  <li class="img-users">
+    <div>
+      <h4>452<br><span>Users</span></h4>
+      <a class="link-viewmore" title="VIEW MORE" href="#">VIEW MORE</a>
+    </div>
+  </li>
+  <li class="img-revenue">
+    <div>
+      <h4>$2000<br><span>Revenue</span></h4>
+      <a class="link-viewmore" title="VIEW MORE" href="#">VIEW MORE</a>
+    </div>
+  </li>
+  <li class="img-nonProfit">
+    <div>
+      <h4>200<br><span>Non-Profit</span></h4>
+      <a class="link-viewmore" title="VIEW MORE" href="#">VIEW MORE</a>
+    </div>
+  </li>
+  <li class="img-sellers">
+    <div>
+      <h4>5000<br><span>Sellers</span></h4>
+      <a class="link-viewmore" title="VIEW MORE" href="#">VIEW MORE</a>
+    </div>
+  </li>
+</ul>
+
+<div class="commonrow">
+  <div class="dashboardColumn">
+    <h1 class="icon-newUserAnalytics"><span>New User Analytics</span></h1>
+    <div class="tablebox table-newUserAnalytics">
+      <div class="row">
+        <div class="column">.</div>
+      </div>
+      <div class="row">
+        <div class="img-graph-1"><img width="100%" alt="" title="" src="/assets/admin-images/dummy-graph-2.jpg" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboardColumn">
+    <h1 class="icon-latestOrders"><em><a title="View All" href="#">View All</a></em><span>Latest Orders</span></h1>
+    <div class="tablebox table-newUserAnalytics">
+      <div class="row">
+        <div class="column">.</div>
+      </div>
+      <div class="row">
+        <ul class="list-latestOrders">
+          <li>
+            <div class="column-first"><a title="#23456- Neeraj choudhary" href="#">#23456- Neeraj choudhary</a></div>
+            <div class="column-two"><input class="btn-orange" type="submit" title="PAID" value="PAID" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-green" type="submit" title="DISPATCHED" value="DISPATCHED" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-red" type="submit" title="REFUNDED" value="REFUNDED" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-lightgray" type="submit" title="AWAITING PAYMENT" value="AWAITING PAYMENT" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-gray" type="submit" title="FAILED" value="FAILED" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-blue" type="submit" title="CANCELLED" value="CANCELLED" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-orange" type="submit" title="PAID" value="PAID" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+          <li>
+            <div class="column-first">#23456- Neeraj choudhary</div>
+            <div class="column-two"><input class="btn-blue" type="submit" title="CANCELLED" value="CANCELLED" /></div>
+            <div class="column-three">$0.00</div>
+          </li>
+        </ul>
+        <div class="clearFix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="commonrow">
+  <div class="dashboardColumn">
+    <h1 class="icon-latestProductRequests"><em><a title="View All" href="#">View All</a></em><span>Latest Product Requests</span></h1>
+    <div class="tablebox table-latestProductRequests">
+      <div class="row">
+        <div class="column">Seller Name</div>
+        <div class="column">Product</div>
+        <div class="column">Quantity</div>
+        <div class="column">Price</div>
+        <div class="column">Actions</div>
+      </div>
+      <% for product in @pending_products %>
+        <div class="row">
+          <div class="column"><%= product.user.username %></div>
+          <div class="column"><%= product.title%></div>
+          <div class="column"><%= product.qty %></div>
+          <div class="column">$<%= product.price%></div>
+          <div class="column">
+            <%= link_to image_tag("/assets/admin-images/icon-edit.png"), confirm_product_admin_path(product), :method => 'put', :class => 'button' %>
+            <%= link_to image_tag("/assets/admin-images/icon-close.png"), product_path(product), :method => :delete, :confirm => "Are you Sure" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="dashboardColumn">
+    <h1 class="icon-enquiries"><em><a title="View All" href="#">View All</a></em><span>Enquiries</span></h1>
+    <div class="tablebox table-enquiries">
+      <div class="row">
+        <div class="column">.</div>
+      </div>
+      <div class="row">
+        <div class="column"><a title="Customer Enquiry" href="#">Customer Enquiry</a><input class="btn-blue" type="submit" title="New" value="New" /></div>
+        <div class="column">Today at 4:30</div>
+      </div>
+      <div class="row">
+        <div class="column">Another Customer Enquiry</div>
+        <div class="column">Yesterday at 4:30</div>
+      </div>
+      <div class="row">
+        <div class="column">A final Customer Enquiry</div>
+        <div class="column">22nd June 2013</div>
+      </div>
+      <div class="row">
+        <div class="column">A final Customer Enquiry</div>
+        <div class="column">2nd may 2013</div>
+      </div>
+    </div>
+  </div>
+</div>
