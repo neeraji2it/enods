@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717095832) do
+ActiveRecord::Schema.define(:version => 20130725115426) do
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20130717095832) do
     t.string   "paypal_id"
     t.datetime "date_of_birth"
     t.text     "other_info"
+    t.string   "active"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -51,10 +51,24 @@ class UsersController < ApplicationController
   end
 
   def update
+    @title = "Admin Panel"
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated the user."
-      redirect_to products_admins_path
+      if params[:active] == 'Deactive'
+        @user.update_attributes({
+            :active => "Deactive",
+            :confirmation_token => "M5ysQarV6KCK5nxz67xu",
+            :confirmed_at => ""
+          })
+      elsif params[:active] == 'Active'
+        @user.update_attributes({
+            :active => "Active",
+            :confirmation_token => nil,
+            :confirmed_at => Time.now
+          })
+      end
+      flash[:notice] = "Successfully updated the user details"
+      redirect_to admin_dashboard_path
     else
       render :action => 'edit'
     end
