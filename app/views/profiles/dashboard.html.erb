@@ -1,0 +1,99 @@
+<div class="commonrow">
+  <div class="box-graph">
+    <ul>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange">$<%= @sale %></span>
+	Total sales today
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange">$<%= @admin_payment %></span>
+	Commission to Admin
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange">$<%= @non_profit_payment %></span>
+	Sent to Non Profit
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-blue">$<%= @net_payment %></span>
+	Net earning today
+      </li>
+    </ul>
+  </div>
+  <div class="box-latestCustomer">
+    <h1 class="icon-topSellingToday"><span>Top Selling Today</span></h1>
+    <div class="tablebox topSellingToday">
+      <div class="row">
+        <div class="column">Name</div>
+        <div class="column">Order Amount</div>
+      </div>
+      <% @orders.each_with_index do |order, index| %>
+        <div class="row">
+          <div class="column"><%= index+1 %></div>
+          <div class="column w74"><%= order.product.title %> from <strong><%= order.product.user.business_name %></strong></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="box-latestCustomer">
+    <h1 class="icon-latestCustomer"><span>Latest Customer</span></h1>
+    <div class="tablebox">
+      <div class="row">
+        <div class="column">Name</div>
+        <div class="column">Order Amount</div>
+        <div class="column w49">City/State</div>
+      </div>
+      <% for order in @orders %>
+        <div class="row">
+          <div class="column"><%= order.user.username %></div>
+          <div class="column">$<%= order.net_payment %>.00</div>
+          <div class="column w49"><%= order.user.city %> City/<%= order.user.country %></div>
+        </div>
+      <% end %>
+      <div class="row blank">
+        <div class="column"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
+        <div class="column"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
+        <div class="column w49"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-salesGraph">
+  <h1 class="icon-topSellingToday"><span>Sales Graph</span></h1>
+  <div class="tablebox topSellingToday">
+    <div class="row">
+      <div class="column"></div>
+    </div>
+    <div class="row">
+      <div class="img-graph-1"><img width="100%" alt="" title="" src="/assets/user-images/dummy-graph-1.jpg" /></div>
+    </div>
+  </div>
+</div>
+<div class="rightColumn-dashboard">
+  <div class="commonrow">
+    <h1 class="icon-dateRange"><span>Date Range</span></h1>
+    <div class="tablebox topSellingToday">
+      <div class="row"></div>
+      <div class="row">
+        <ul class="list-date">
+          <li>Past 7 days</li>
+          <li>Past 30 days</li>
+          <li>This Week</li>
+          <li>This Month</li>
+          <li>All Time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h1 class="icon-thisWeek"><span>This Week</span></h1>
+  <div class="tablebox topSellingToday">
+    <div class="row"></div>
+    <div class="row">
+      <h3 class="heading-week">$ 458.89</h3>
+					Avg: $65.78/order
+    </div>
+  </div>
+</div>

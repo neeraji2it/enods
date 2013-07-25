@@ -61,8 +61,11 @@ Enods::Application.routes.draw do
   get '/category' => 'home#category', :as => :category
   post '/create_alert' => 'home#create_alert', :as => :create_alert
   get '/index' => 'home#index', :as => :index
+  get '/order_history' => 'profiles#order_history', :as => :order_history
+  get '/dashboard' => 'profiles#dashboard', :as => :dashboard
+  get '/admin_dashboard' => 'admins#admin_dashboard', :as => :admin_dashboard
 
-  root :to => 'home#launch'
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

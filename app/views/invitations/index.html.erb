@@ -1,7 +1,10 @@
-<br /><%= form_for @invitation,:remote => true do |f| %>
-  <%= f.text_field :email %>
-  <%= f.submit "Invite", :class => 'button' %>
-<% end %>
+<div class="row-invite">
+  <%= form_for @invitation,:remote => true do |f| %>
+    <%= f.text_field :email %>
+    <%= f.submit "Invite", :class => 'button' %>
+  <% end %>
+</div>
+<h1 class="icon-invitations"><span>Invitations</span></h1>
 <div id="invitations">
   <%= render :partial => 'invitations' %>
 </div>

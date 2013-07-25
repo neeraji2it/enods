@@ -32,4 +32,17 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def order_history
+    @orders = Order.where("user_id = #{current_user.id}") if current_user.role == 'buyer'
+    @orders = Order.where("status = 'Success' or status = 'Cancel'") if current_user.role == 'seller'
+  end
+
+  def dashboard
+    @sale = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.product.price.to_i}
+    @net_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.net_payment.to_i}
+    @admin_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.admin_payment.to_i}
+    @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.non_profit_payment.to_i}
+    @orders = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:page], :per_page => 4
+  end
 end

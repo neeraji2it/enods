@@ -1,24 +1,37 @@
-<h1>Sign in</h1>
-<div id="formDiv" style="float: left; position: relative;left: 5px;width: 100%;top: 10px;">
-  <div class="error" style="color: red;font-size: 16px;font-weight: bold;left: 110px;position: absolute;top: 15px;"></div>
+<div class="logo-big"><a href="#" title="enods"><img src="/assets/logo-big.png" title="enods" alt="enods" /></a></div>
+<div class="loginForm">
   <%= form_for(:user, :as => :user, :url => session_path(:user), :remote => true, :html => { :id => "user_sign_in" }) do |f| %>
-    <p><%= f.label :email %>
-      <%= f.email_field :email, :placeholder => 'Email' %></p>
-
-    <p><%= f.label :password %>
-      <%= f.password_field :password, :placeholder => 'Password' %></p>
-
-    <% if devise_mapping.rememberable? -%>
-      <p>
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </p>
-    <% end -%>
-    <p>
-      <button type="submit">Sign in</button> <%= link_to "Forgot Password?", new_user_password_path, :style => "color: #FC0000;" %>
-    </p>
+    <div class="loginBox">
+      <div class="error1" style="color: red;font-size: 16px;font-weight: bold;left: 40px;position: absolute;top: 200px;width: 450px;"></div>
+      <h4>Login</h4>
+      <ul>
+        <li>
+          <p>Username:</p>
+          <p><%= f.text_field :email, :placeholder => 'Email' %><span class="icon-username"></span></p>
+        </li>
+        <li>
+          <p>Password:</p>
+          <p><%= f.password_field :password, :placeholder => 'Password' %><span class="icon-password"></span></p>
+          <p><em><%= link_to "Forgot Password?", new_user_password_path, :style => "color: #FC0000;" %></em></p>
+        </li>
+      </ul>
+    </div>
+    <input class="btn-go" title="GO" type="submit" value="GO" />
   <% end %>
+  <div class="clearFix"></div>
 </div>
+<script>
+  jQuery("#user_sign_in").bind("ajax:complete", function(a,b){
+    jQuery(".error1").html();
+    if(b.status == "401") {
+      jQuery(".error1").html(b.responseText);
+    } else {
+      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
+    }
+  });
+</script>
+
+
 <script>
   jQuery("#user_sign_in").bind("ajax:complete", function(a,b){
     jQuery(".error").html();

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :is_signin?, :only => ['index','new','create','add_to_cart']
-  before_filter :is_valid_account?
+  before_filter :is_valid_account? , :only => ['index','new','create','add_to_cart']
 
   def index
     @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
@@ -37,6 +37,27 @@ class ProductsController < ApplicationController
     @product.update_attribute(:product_count, @product.product_count+1)
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update_attributes(params[:product])
+      flash[:notice] = "Successfully updated the Product."
+      redirect_to products_path
+    else
+      flash[:error] = "Fail to update product"
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
+  end
+
   def search
     @products = Product.where("title = '#{params[:query]}'")
     render :action => 'index'
@@ -45,7 +66,7 @@ class ProductsController < ApplicationController
   def add_to_cart
     @cart = current_cart
     product = Product.find(params[:id])
-    if product.user_id != current_user.id
+    if (product.user_id != current_user.id) and (product.qty > 0)
       if !@cart.line_items.find_by_product_id(product).present?
         @cart.update_attribute(:created_at, Time.now)
         @cart.line_items.build(:cart_id => current_cart.id, :product_id => params[:id], :unit_price =>  product.price,:quantity => 1)
@@ -59,7 +80,7 @@ class ProductsController < ApplicationController
         redirect_to product_path(product)
       end
     else
-      flash[:error] = "You are not added to your product to cart"
+      flash[:error] = "There is no quantity for adding to Cart"
       redirect_to product_path(product)
     end
   end

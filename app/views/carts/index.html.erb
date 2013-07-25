@@ -1,28 +1,71 @@
-<h1>Your cart</h1>
-<div id="formDiv">
-
-  <% if !@user_products.to_a.empty? %>
-    <table id="line_items" width="95%" cellspacing="10px;">
-      <tr style="text-decoration: underline;">
-        <th>Product</th>
-        <th>Qty</th>
-        <th class="price">Unit Price</th>
-        <th class="price">Full Price</th>
-      </tr>
-      <% for line_item in @user_products %>
-        <tr class="<%= cycle :odd, :even %>" style="text-align: center;">
-          <td><%=h line_item.product.title %></td>
-          <td class="qty"><%= line_item.quantity %></td>
-          <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
-          <td class="price"><%= number_to_currency(line_item.full_price) %></td>
-          <td class="price"><%= link_to image_tag("/assets/closeX.gif"), cart_path(line_item), :method => :delete, :confirm => "Are You Sure" %></td>
-          <td><%= link_to image_tag("/assets/paypal.gif"), product_orders_path(line_item.product_id), :method => "POST", :style => 'float: right;' %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <div style="color:red;font-size: 15px;padding: 50px;text-align:center">
-      Your cart is empty
+<h1 class="icon-dashboard"><span>Billing &amp; Shipping Address</span></h1>
+<div class="content-profile">
+  <%= form_for @billingshippingaddress, :html => {:id => "SS"} do |f| %>
+    <h3>Address Change for Open Orders</h3>
+    <div class="frow">
+      <div>Select Order Number:</div>
+      <div>
+        <%= f.select :product_id, options_for_select([["Select", '']]+Product.all.map{|a| [a.title, a.id]}, :selected => f.object.product_id)%>
+      </div>
+    </div>
+    <h3>Billing Address</h3>
+    <div class="billingColumn">
+      <div class="frow">
+        <div>House No.:</div>
+        <div><%= f.text_field :billling_house_no %></div>
+      </div>
+    </div>
+    <div class="frow">
+      <div>City:</div>
+      <div><%= f.text_field :billing_city %></div>
+    </div>
+    <div class="frow">
+      <div>Country:</div>
+      <div>
+        <%= f.country_select :billing_country %>
+      </div>
+    </div>
+    <div class="billingColumn">
+      <div class="frow">
+        <div>Street:</div>
+        <div><%= f.text_field :billing_street %></div>
+      </div>
+    </div>
+    <div class="frow">
+      <div>Zip:</div>
+      <div><%= f.text_field :billing_zip %></div>
+    </div>
+    <div class="bor"></div>
+    <h3>Shipping Address</h3>
+    <div class="billingColumn">
+      <div class="frow">
+        <div>House No.:</div>
+        <div><%= f.text_field :shipping_house_no %></div>
+      </div>
+    </div>
+    <div class="frow">
+      <div>City:</div>
+      <div><%= f.text_field :shipping_city %></div>
+    </div>
+    <div class="frow">
+      <div>Country:</div>
+      <div>
+        <%= f.country_select :shipping_country %>
+      </div>
+    </div>
+    <div class="billingColumn">
+      <div class="frow">
+        <div>Street:</div>
+        <div><%= f.text_field :shipping_street %></div>
+      </div>
+    </div>
+    <div class="frow">
+      <div>Zip:</div>
+      <div><%= f.text_field :shipping_zip %></div>
+    </div>
+    <div class="bor"></div>
+    <div style="float: right">
+      <button type="submit">Submit</button>
     </div>
   <% end %>
 </div>

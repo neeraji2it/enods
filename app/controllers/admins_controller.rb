@@ -1,6 +1,10 @@
 class AdminsController < ApplicationController
   before_filter :is_signin?
 
+  def admin_dashboard
+    
+  end
+
   def index
     @users = User.where("role = 'seller'")  if params[:role] == 'seller'
     @users = User.where("role = 'buyer'")  if params[:role] == 'buyer'

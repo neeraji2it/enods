@@ -78,23 +78,6 @@
 <p>
   <button type="submit">Sign up</button>
 </p>
-<script>
-  function get_username(ht){
-    $.ajax({
-      url:"/users/username",
-      data: {
-        username: $(ht).val()
-      },
-      type: "PUT",
-      success: function(data){
-        if(data == "Error"){
-          alert("Error. Please try again");
-        }else{
-        }
-      }
-    });
-  }
-</script>
 <style>
   #result{
     margin-left:5px;

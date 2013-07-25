@@ -1,0 +1,30 @@
+<h1>Order & Sales Management</h1><br />
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">Sale ID</div>
+    <div class="column">Buyer Name</div>
+    <div class="column">Order amount</div>
+    <div class="column">Admin commission</div>
+    <div class="column">Non Profit Share</div>
+    <div class="column">Net $</div>
+    <div class="column last">Purchase Date</div>
+    <div class="column">Status</div>
+    <div class="column last">Actions</div>
+  </div>
+  <% for order in @orders %>
+    <div class="row">
+      <div class="column"><%= order.id %></div>
+      <div class="column"><%= order.user.username %></div>
+      <div class="column">$<%= order.product.price %></div>
+      <div class="column">$<%= order.admin_payment %></div>
+      <div class="column">$<%= order.non_profit_payment %></div>
+      <div class="column">$<%= order.net_payment %></div>
+      <div class="column"><%= order.cart.purchased_at.strftime("%Y-%m-%d") %></div>
+      <div class="column"><%= order.status %></div>
+      <div class="column last">
+        <a title="" href="#"><img class="icon-trolly" alt="" title="" src="/assets/user-images/icon-trolly.png" /></a>
+        <a title="" href="#"><img class="icon-pdf" alt="PDF" title="PDF" src="/assets/user-images/icon-pdf.png" /></a>
+      </div>
+    </div>
+  <% end %>
+</div>

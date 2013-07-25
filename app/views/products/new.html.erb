@@ -1,57 +1,11 @@
-<h1>New Product</h1>
-<div id="formDiv">
+<h1 class="icon-addProduct"><span>Add Product</span></h1>
+<ul>
+  <% @product.errors.full_messages.each do |msg| %>
+    <li style="color: red;"><%= msg %></li>
+  <% end %>
+</ul>
+<div class="content-profile">
   <%= form_for @product do |f| %>
-    <table cellspacing="20px">
-      <tr>
-        <td>Category</td>
-        <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.all.collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
-        <td><%= validation_error(@product.errors['category_id'])%></td>
-      </tr>
-      <tr>
-        <td>Title</td>
-        <td><%= f.text_field :title %></td>
-        <td><%= validation_error(@product.errors['title'])%></td>
-      </tr>
-      <tr>
-        <td>Price</td>
-        <td><%= f.text_field :price %></td>
-        <td><%= validation_error(@product.errors['price'])%></td>
-      </tr>
-      <tr>
-        <td>Quantity</td>
-        <td><%= f.text_field :qty %></td>
-        <td><%= validation_error(@product.errors['qty'])%></td>
-      </tr>
-      <tr>
-        <td>Color</td>
-        <td><%= f.text_field :color %></td>
-        <td><%= validation_error(@product.errors['color'])%></td>
-      </tr>
-      <tr>
-        <td valign="top">Images:</td>
-        <td>
-          <%= f.fields_for :images do |builder| %>
-            <%= builder.file_field :image  %>
-          <%end%>
-          <div>
-            <br /><%= link_to_add_fields "Add More Images+", f, :images %>
-          </div>
-          <br />
-        </td>
-        <td>
-          <%= validation_error(@product.errors["images.image_content_type"]) %>
-          <%= validation_error(@product.errors['images.image'])%>
-        </td>
-      </tr>
-      <tr>
-        <td>Description</td>
-        <td><%= f.text_area :description, :cols => 33, :rows => 3 %></td>
-        <td><%= validation_error(@product.errors['description'])%></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><button type="submit">Product</button></td>
-      </tr>
-    </table>
+    <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
 </div>
