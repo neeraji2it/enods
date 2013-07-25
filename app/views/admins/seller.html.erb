@@ -14,9 +14,9 @@
     <div class="row">
       <div class="column"><%= index+1 %></div>
       <div class="column"><%= user.username %></div>
-      <div class="column"><%= user.business_name %></div>
+      <div class="column"><%= user.business_name.present? ? user.business_name : "-"%></div>
       <div class="column"><%= user.email %></div>
-      <div class="column">123-1234-1234</div>
+      <div class="column"><%= user.phone.present? ? user.phone : "-"%></div>
       <div class="column">$<%= Product.where("products.user_id = #{user.id}").sum {|item| item.price.to_i} %></div>
       <div class="column">$<%= Product.where("products.user_id = #{user.id}").sum {|item| item.price.to_i/10} %></div>
       <div class="column last"><input class="btn-deActivate" type="submit" title="De Activate" value="De Activate" /></div>
