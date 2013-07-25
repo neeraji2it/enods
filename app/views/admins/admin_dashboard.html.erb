@@ -39,7 +39,7 @@
         <div class="column">.</div>
       </div>
       <div class="row">
-        <div class="img-graph-1"><img width="100%" alt="" title="" src="/assets/user-images/dummy-graph-2.jpg" /></div>
+        <div class="img-graph-1"><img width="100%" alt="" title="" src="/assets/admin-images/dummy-graph-2.jpg" /></div>
       </div>
     </div>
   </div>
@@ -108,50 +108,18 @@
         <div class="column">Price</div>
         <div class="column">Actions</div>
       </div>
-      <div class="row">
-        <div class="column">John</div>
-        <div class="column">$0.00</div>
-        <div class="column">10</div>
-        <div class="column">$200</div>
-        <div class="column">
-          <a title="" href="#"><img class="icon-search" alt="" title="" src="/assets/user-images/icon-search.png" /></a>
-          <a title="" href="#"><img class="icon-edit" alt="" title="" src="/assets/user-images/icon-edit.png" /></a>
-          <a title="" href="#"><img class="icon-close" alt="PDF" title="PDF" src="/assets/user-images/icon-close.png" /></a>
+      <% for product in @pending_products %>
+        <div class="row">
+          <div class="column"><%= product.user.username %></div>
+          <div class="column"><%= product.title%></div>
+          <div class="column"><%= product.qty %></div>
+          <div class="column">$<%= product.price%></div>
+          <div class="column">
+            <%= link_to image_tag("/assets/admin-images/icon-edit.png"), confirm_product_admin_path(product), :method => 'put', :class => 'button' %>
+            <%= link_to image_tag("/assets/admin-images/icon-close.png"), product_path(product), :method => :delete, :confirm => "Are you Sure" %>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="column">John</div>
-        <div class="column">$0.00</div>
-        <div class="column">10</div>
-        <div class="column">$200</div>
-        <div class="column">
-          <a title="" href="#"><img class="icon-search" alt="" title="" src="/assets/user-images/icon-search.png" /></a>
-          <a title="" href="#"><img class="icon-edit" alt="" title="" src="/assets/user-images/icon-edit.png" /></a>
-          <a title="" href="#"><img class="icon-close" alt="PDF" title="PDF" src="/assets/user-images/icon-close.png" /></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">John</div>
-        <div class="column">$0.00</div>
-        <div class="column">10</div>
-        <div class="column">$200</div>
-        <div class="column">
-          <a title="" href="#"><img class="icon-search" alt="" title="" src="/assets/user-images/icon-search.png" /></a>
-          <a title="" href="#"><img class="icon-edit" alt="" title="" src="/assets/user-images/icon-edit.png" /></a>
-          <a title="" href="#"><img class="icon-close" alt="PDF" title="PDF" src="/assets/user-images/icon-close.png" /></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">John</div>
-        <div class="column">$0.00</div>
-        <div class="column">10</div>
-        <div class="column">$200</div>
-        <div class="column">
-          <a title="" href="#"><img class="icon-search" alt="" title="" src="/assets/user-images/icon-search.png" /></a>
-          <a title="" href="#"><img class="icon-edit" alt="" title="" src="/assets/user-images/icon-edit.png" /></a>
-          <a title="" href="#"><img class="icon-close" alt="PDF" title="PDF" src="/assets/user-images/icon-close.png" /></a>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
   <div class="dashboardColumn">

@@ -9,6 +9,10 @@ Enods::Application.routes.draw do
   resources :admins do
     collection do
       get :products
+      get :seller
+      get :buyer
+      get :non_profit
+      get :sales
     end
     member do
       put :confirm_product

@@ -1,6 +1,5 @@
-<h1>Edit Category</h1>
-
-<div id="formDiv">
+<h1 class="icon-addProduct"><span>Edit Category</span></h1>
+<div class="content-profile">
   <%= form_for(@category, :url => {:controller => 'categories', :action => 'update', :id => @category.id}, :method => 'PUT') do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
