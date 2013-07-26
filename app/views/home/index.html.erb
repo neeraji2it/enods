@@ -87,8 +87,10 @@
     </div>
     <div class="box-newsletter">
       <div class="newsletter-signup">
-        <input class="btn-email" type="submit" title="" value="" />
-        <input class="input-yourEmail" type="text" title="Enter your email" placeholder="Enter your email --" />
+        <%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :mehtod => 'POST' do |f| %>
+          <%= f.submit "", :class => 'btn-email' %>
+          <%= f.text_field :email, :class => "input-yourEmail", :placeholder => "Enter your email" %>
+        <% end %>
         <h4>Sign Up To Our Newsletter</h4>
         <p>Istant wardrobe updates, new arrivals, <br>fashion news,don'nt miss a bit </p>
       </div>
