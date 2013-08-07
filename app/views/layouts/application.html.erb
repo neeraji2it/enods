@@ -8,7 +8,7 @@
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
         <script type="text/javascript" >
-          jQuery(function () {
+          jQuery(function() {
             jQuery.notifyBar({
               cls: "<%= f %>",
               html: "<%=  flash[f.to_sym] %>",
@@ -21,55 +21,58 @@
     <%end%>
   </head>
   <body>
-  <header>
-    <div class="fright">
-      <ul class="list-topicon">
-        <li>Member: UserName</li>
-        <li class="icon-user"><a title="" href="#"></a></li>
-        <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
-      </ul>
-    </div>
-    <em>ENODS DASHBOARD</em>
-    <div class="clearFix"></div>
-  </header>
-  <article>
-    <div class="topbar">
-      <div class="fright"><a class="icon-setting" title="Settings" href="#"><span>Settings</span></a></div>
-      <ul class="breadcrumb">
-        <li><span><%= params[:controller] %></span></li>
-        <li><a title="My Account" href="#"><%= params[:action] %></a></li>
-      </ul>
-    </div>
-    <section id="leftColumn">
-      <nav>
-        <ul class="menu">
-          <% if current_user.role == 'buyer' %>
-            <li class="icon-productsManagement <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "My Account", profile_profile_path(current_user) %></li>
-            <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", new_billing_shipping_address_path %></li>
-            <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order History", order_history_path %></li>
-            <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
-          <% elsif current_user.role == 'seller' %>
-            <li class="icon-dashboard <%= (params[:controller] == 'profiles' and params[:action] == 'dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", dashboard_path %></li>
-            <li class="icon-productsManagement <%= (params[:controller] == 'products' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Products Management", products_path %></li>
-            <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order & Sales Management", order_history_path %></li>
-            <li class="icon-profile <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Profile", profile_profile_path(current_user) %></li>
-          <% elsif current_user.role == 'admin' %>
-            <li class="icon-dashboard <%= (params[:controller] == 'admins' and params[:action] == 'admin_dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", admin_dashboard_path %></li>
-            <li class="icon-productsManagement <%= (params[:controller] == 'admins' and params[:action] == 'seller') ? 'active' : "" %>"><%= link_to "Seller Management", seller_admins_path() %></li>
-            <li class="icon-nonProfitManagement <%= (params[:controller] == 'admins' and params[:action] == 'non_profit') ? 'active' : "" %>"><%= link_to "Non-Profit Management", non_profit_admins_path() %></li>
-            <li class="icon-orderSalesManagement <%= (params[:controller] == 'admins' and params[:action] == 'sales') ? 'active' : "" %>"><%= link_to "Sales Management", sales_admins_path %></li>
-            <li class="icon-userManagement <%= (params[:controller] == 'admins' and params[:action] == 'buyer') ? 'active' : "" %>"><%= link_to "User Management", buyer_admins_path() %></li>
-            <li class="icon-profile <%= (params[:controller] == 'categories' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Category Management", categories_path() %></li>
-            <li class="icon-productRequests <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Product Requests", products_admins_path() %></li>
-            <li class="icon-enquiry <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Enquiry", "" %></li>
-          <% end %>
+    <header>
+      <div class="fright">
+        <ul class="list-topicon">
+          <li>Member: UserName</li>
+          <li class="icon-user"><a title="" href="#"></a></li>
+          <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
         </ul>
-      </nav>
-      <div class="blankbox"></div>
-    </section>
-    <section id="rightColumn">
-      <%= yield %>
-    </section>
-  </article>
-</body>
+      </div>
+      <em>ENODS DASHBOARD</em>
+      <div class="clearFix"></div>
+    </header>
+    <article>
+      <div class="topbar">
+        <div class="fright"><a class="icon-setting" title="Settings" href="#"><span>Settings</span></a></div>
+        <ul class="breadcrumb">
+          <li><span><%= params[:controller] %></span></li>
+          <li><a title="My Account" href="#"><%= params[:action].upcase %></a></li>
+        </ul>
+      </div>
+      <section id="leftColumn">
+        <nav>
+          <ul class="menu">
+            <% if current_user.role == 'buyer' %>
+              <li class="icon-productsManagement <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "My Account", profile_profile_path(current_user) %></li>
+              <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", new_billing_shipping_address_path %></li>
+              <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order History", order_history_path %></li>
+              <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
+            <% elsif current_user.role == 'seller' %>
+              <li class="icon-dashboard <%= (params[:controller] == 'profiles' and params[:action] == 'dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", dashboard_path %></li>
+              <li class="icon-productsManagement <%= (params[:controller] == 'products' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Products Management", products_path %></li>
+              <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order & Sales Management", order_history_path %></li>
+              <li class="icon-profile <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Profile", profile_profile_path(current_user) %></li>
+            <% elsif current_user.role == 'admin' %>
+              <li class="icon-dashboard <%= (params[:controller] == 'admins' and params[:action] == 'admin_dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", admin_dashboard_path %></li>
+              <li class="icon-productsManagement <%= (params[:controller] == 'admins' and params[:action] == 'seller') ? 'active' : "" %>"><%= link_to "Seller Management", seller_admins_path() %></li>
+              <li class="icon-nonProfitManagement <%= (params[:controller] == 'admins' and params[:action] == 'non_profit') ? 'active' : "" %>"><%= link_to "Non-Profit Management", non_profit_admins_path() %></li>
+              <li class="icon-orderSalesManagement <%= (params[:controller] == 'admins' and params[:action] == 'sales') ? 'active' : "" %>"><%= link_to "Sales Management", sales_admins_path %></li>
+              <li class="icon-userManagement <%= (params[:controller] == 'admins' and params[:action] == 'buyer') ? 'active' : "" %>"><%= link_to "User Management", buyer_admins_path() %></li>
+              <li class="icon-profile <%= (params[:controller] == 'categories' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Category Management", categories_path() %></li>
+              <li class="icon-productRequests <%= (params[:controller] == 'admins' and params[:action] == 'products') ? 'active' : "" %>"><%= link_to "Product Requests", products_admins_path() %></li>
+              <li class="icon-enquiry <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Enquiry", "" %></li>
+            <% end %>
+          </ul>
+        </nav>
+        <div class="blankbox"></div>
+      </section>
+      <section id="rightColumn">
+        <div id='ajax-loader' style='z-index:1000000;'>
+          <img alt=""  src="/assets/284.gif" style="width:80px;height:80px;z-index:1000000;"/>
+        </div>
+        <%= yield %>
+      </section>
+    </article>
+  </body>
 </html>

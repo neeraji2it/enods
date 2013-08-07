@@ -1,10 +1,9 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :user_id,:status, :description, :price, :images_attributes,:category_id, :color, :qty, :qty_sold
+  attr_accessible :title,:fair_trade,:non_profit_email, :user_id,:status, :description, :price, :images_attributes,:category_id, :color, :qty, :qty_sold
   belongs_to :user
   belongs_to :category
   has_many :images, :dependent => :destroy
   has_many :billing_shipping_address, :dependent => :destroy
-  has_many :orders, :dependent => :destroy
   has_one :favourite, :dependent => :destroy
   validates :title, :description,:category_id, :presence => true
   validates :qty, :price, :numericality => {:greater_than_or_equal_to => 1}, :presence => true

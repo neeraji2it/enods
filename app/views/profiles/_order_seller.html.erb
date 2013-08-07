@@ -15,7 +15,7 @@
     <div class="row">
       <div class="column"><%= order.id %></div>
       <div class="column"><%= order.user.username %></div>
-      <div class="column">$<%= order.product.price %></div>
+      <div class="column">$<%= order.line_item.full_price %></div>
       <div class="column">$<%= order.admin_payment %></div>
       <div class="column">$<%= order.non_profit_payment %></div>
       <div class="column">$<%= order.net_payment %></div>

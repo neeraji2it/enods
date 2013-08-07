@@ -12,13 +12,14 @@ class HomeController < ApplicationController
   end
 
   def create_alert
+    @products = Product.where("status = 'confirmed'").order('product_count DESC')
     @email_alert = EmailAlert.new(params[:email_alert])
     if @email_alert.save
       UserMailer.alert(@email_alert).deliver
       flash[:notice] = "Successfully Subscribed for this site."
       redirect_to root_path
     else
-      render :action => 'launch', :layout => false
+      render :action => 'index'
     end
   end
 

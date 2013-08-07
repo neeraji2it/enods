@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725115426) do
+ActiveRecord::Schema.define(:version => 20130807093317) do
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20130725115426) do
     t.string   "payment_type"
     t.datetime "confirm_date"
     t.integer  "product_id"
+    t.integer  "line_item_id"
   end
 
   create_table "products", :force => true do |t|
@@ -111,14 +112,16 @@ ActiveRecord::Schema.define(:version => 20130725115426) do
     t.string   "title"
     t.text     "description"
     t.string   "price"
-    t.integer  "product_count",                                :default => 0
+    t.integer  "product_count",                                   :default => 0
     t.string   "status"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-    t.decimal  "qty",           :precision => 10, :scale => 0, :default => 0
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "qty",              :precision => 10, :scale => 0, :default => 0
     t.string   "color"
-    t.decimal  "qty_sold",      :precision => 10, :scale => 0, :default => 0
+    t.decimal  "qty_sold",         :precision => 10, :scale => 0, :default => 0
     t.string   "product_id"
+    t.string   "non_profit_email"
+    t.string   "fair_trade"
   end
 
   create_table "users", :force => true do |t|

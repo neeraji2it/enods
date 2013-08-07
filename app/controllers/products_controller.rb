@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_filter :is_signin?, :only => ['index','new','create','add_to_cart']
-  before_filter :is_valid_account? , :only => ['index','new','create','add_to_cart']
+  before_filter :is_signin?, :only => ['index','new','create']
+  before_filter :is_valid_account? , :only => ['index','new','create']
 
   def index
     @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
@@ -66,22 +66,12 @@ class ProductsController < ApplicationController
   def add_to_cart
     @cart = current_cart
     product = Product.find(params[:id])
-    if (product.user_id != current_user.id) and (product.qty > 0)
-      if !@cart.line_items.find_by_product_id(product).present?
-        @cart.update_attribute(:created_at, Time.now)
-        @cart.line_items.build(:cart_id => current_cart.id, :product_id => params[:id], :unit_price =>  product.price,:quantity => 1)
-        if @cart.save
-          session[:cart_id] = @cart.id
-          flash[:notice] = "Successfully added to your cart"
-          redirect_to carts_path
-        end
-      else
-        flash[:error] = "Already added this product to your cart"
-        redirect_to product_path(product)
-      end
-    else
-      flash[:error] = "There is no quantity for adding to Cart"
-      redirect_to product_path(product)
+    @cart.update_attribute(:created_at, Time.now)
+    @line_item = @cart.add_item(product.id)
+    @line_item.unit_price = product.price
+    session[:cart] = @cart.id
+    if @line_item.save
+      redirect_to carts_path
     end
   end
 

@@ -6,12 +6,12 @@ class Cart < ActiveRecord::Base
 
   has_one :order, :dependent => :destroy
 
-  def add_deal(product_id)
+  def add_item(product_id)
     current_item = line_items.where(:product_id => product_id).first
     if current_item
-      current_item
+      current_item.quantity += 1
     else
-      current_item = LineItem.new(:deal_id => product_id)
+      current_item = LineItem.new(product_id: product_id, quantity: 1)
       line_items << current_item
     end
     current_item

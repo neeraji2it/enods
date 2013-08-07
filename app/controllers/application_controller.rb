@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
-  helper_method :after_sign_in_path_for,:current_cart
+  helper_method :after_sign_in_path_for, :current_cart
   layout :layout
 
 
@@ -41,15 +41,14 @@ class ApplicationController < ActionController::Base
       redirect_to '/'
     end
   end
-
+  
   def current_cart(create_if_not_exist=false)
-    cart = current_user ? Cart.where(["id = ? AND user_id = ? AND purchased_at IS NULL", session[:cart_id], current_user.id]).first : Cart.new
+    cart = Cart.where(["id = ? AND purchased_at IS NULL", session[:cart]]).first
     unless cart
       if create_if_not_exist
-        cart = Cart.create(:user_id => (current_user ? current_user.id : nil))
-        session[:cart_id] = cart.id
+        cart = Cart.create
       else
-        cart = Cart.new(:user_id => (current_user ? current_user.id : nil))
+        cart = Cart.new
       end
     end
     cart

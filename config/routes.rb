@@ -31,7 +31,9 @@ Enods::Application.routes.draw do
     end
   end
 
-  resources :line_items 
+  resources :line_items do
+    resources :orders
+  end
   resources :carts do
     collection do
       get :expire_cart
@@ -39,7 +41,6 @@ Enods::Application.routes.draw do
   end
 
   resources :products do
-    resources :orders
     resources :images
     collection do
       get :search

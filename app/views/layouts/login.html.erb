@@ -8,7 +8,7 @@
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
         <script type="text/javascript" >
-          jQuery(function () {
+          jQuery(function() {
             jQuery.notifyBar({
               cls: "<%= f %>",
               html: "<%=  flash[f.to_sym] %>",
@@ -21,144 +21,138 @@
     <%end%>
   </head>
   <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
-  <header>
-    <div class="content">
-      <div class="topbar">
-        <ul class="menu-top">
-          <li><%= link_to "Sell", ""%></li>
-          <li><%= link_to "Info", " "%></li>
-          <li><%= link_to "Causes", "" %></li>
-          <li><%= link_to "Categories", "" %> </li>
-          <li><%= link_to "Blog", "" %> </li>
-          <li><%= link_to "Contact", "" %> </li>
-          <li><%= link_to "Cart", "" %> </li>
-          <li><%= link_to_function "Login", "login()" %></li>
-        </ul>
-        <span class="icon-telephone">Call Us +001 555 801</span>
-        <ul class="menu-topleft">
-          <li><a title="Help" href="#">Help</a></li>
-          <li><a title="Info" href="#">Info</a></li>
-        </ul>
+    <header>
+      <div class="content">
+        <div class="topbar">
+          <ul class="menu-top">
+            <li><%= link_to "Sell", ""%></li>
+            <li><%= link_to "About", " "%></li>
+            <li><%= link_to "Causes", "" %></li>
+            <li><%= link_to "Categories", "" %> </li>
+            <li><%= link_to "Blog", "" %> </li>
+            <li><%= link_to "Contact", "" %> </li>
+            <li><%= link_to "Cart", carts_path %> </li>
+            <li><%= link_to_function "Login", "login()" %></li>
+          </ul>
+        </div>
+        <div class="commonrow">
+          <%= link_to image_tag("/assets/logo.png", :id => "logo"), '/' %>
+          <%= form_tag search_products_path, :method => 'get' do %>
+            <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
+          <% end %>
+          <div class="icon-shopping" style="background-position: 120px -72px;"><%= current_cart.line_items.present? ? "#{current_cart.line_items.count} Items in Your Cart":"Your Cart Is Empty"%></div>
+          <div id="cart_expire_time" style="position: relative;float: right;top: 15px;width: 213px;color: red;"></div>
+        </div>
+        <div id="navigation">
+          <ul class="list-media">
+            <li class="icon-facebook"><%= link_to "facebook", "" %></li>
+            <li class="icon-twitter"><%= link_to "twitter", "" %></li>
+            <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
+            <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
+            <li class="icon-youtube"><%= link_to "you tube", "" %></li>
+          </ul>
+          <nav>
+            <ul>
+              <li><%= link_to "Sign up", "", :class => 'lin-signup' %></li>
+              <li><%= link_to_function "Sign In", "login()" %></li>
+              <li class="parent"><a title="Categories" href="#">Categories</a>
+                <ul class="submenu">
+                  <% Category.all.each do |category| %>
+                    <li><%= link_to category.name, category_path(:categories => category.id) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li><%= link_to "Explore Causes", "" %></li>
+              <li><%= link_to "Sell", "" %></li>
+            </ul>
+          </nav>
+        </div>
+        <div id="slider">
+          <div id='ajax-loader' style='z-index:1000000;'>
+            <img alt=""  src="/assets/284.gif" style="width:80px;height:80px;z-index:1000000;"/>
+          </div>
+          <%= yield %>
+        </div>
+        <div class="clearFix"></div>
       </div>
-      <div class="commonrow">
-        <%= link_to image_tag("/assets/logo.png", :id => "logo"), '/' %>
-        <%= form_tag search_products_path, :method => 'get' do %>
-          <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
-        <% end %>
-        <div class="icon-shopping">Shopping Cart Is Empty</div>
-      </div>
-      <div id="navigation">
-        <ul class="list-media">
-          <li class="icon-facebook"><%= link_to "facebook", "" %></li>
-          <li class="icon-twitter"><%= link_to "twitter", "" %></li>
-          <li class="icon-blogger"><%= link_to "blogger", "" %></li>
-          <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
-          <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
-          <li class="icon-youtube"><%= link_to "you tube", "" %></li>
-        </ul>
-        <nav>
+    </header>
+    <footer>
+      <div class="content">
+        <div class="commonrow">
+          <div class="logo-footer"></div>
+          <ul class="list-paymenttype">
+            <li class="icon-paypal"><a title="paypal" href="#">PayPal</a></li>
+            <li class="icon-americanexp"><a title="American Express" href="#">American Express</a></li>
+            <li class="icon-discover"><a title="Discover" href="#">Discover</a></li>
+            <li class="icon-mastercard"><a title="Master Card" href="#">Master Card</a></li>
+            <li class="icon-visa"><a title="Visa" href="#">Visa</a></li>
+          </ul>
+        </div>
+        <div class="commonrow">
+          <div class="aboutusBox">
+            <h2><span>About Us</span></h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make <br>a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining<br> essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum <br>passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem <br>Ipsum.</p>
+          </div>
+        </div>
+        <div class="commonrow">
+          <ul class="list-media-footer">
+            <li class="icon-twitter"><a title="twitter" href="#">twitter</a></li>
+            <li class="icon-facebook"><a title="facebook" href="#">facebook</a></li>
+            <li class="icon-googlePlus"><a title="google plus" href="#">google plus</a></li>
+            <li class="icon-pinterest"><a title="pinterest" href="#">pinterest</a></li>
+            <li class="icon-youtube"><a title="you tube" href="#">you tube</a></li>
+          </ul>
+        </div>
+        <div class="menu-footer">
           <ul>
-            <li><%= link_to "Sign up", "", :class => 'lin-signup' %></li>
-            <li><%= link_to_function "Sign In", "login()" %></li>
-            <li class="parent"><a title="Categories" href="#">Categories</a>
-              <ul class="submenu">
-                <% Category.all.each do |category| %>
-                  <li><%= link_to category.name, category_path(:categories => category.id) %></li>
-                <% end %>
+            <li>
+              <h4>Information</h4>
+              <ul>
+                <li><a title="About Us" href="#">About Us</a></li>
+                <li><a title="Delivery Information" href="#">Delivery Information</a></li>
+                <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
+                <li><a title="Terms &amp; Condition" href="#">Terms &amp; Condition</a></li>
               </ul>
             </li>
-            <li><%= link_to "Explore Causes", "" %></li>
-            <li><%= link_to "Sell", "" %></li>
+            <li>
+              <h4>Customer Services</h4>
+              <ul>
+                <li><a title="Contact Us" href="#">Contact Us</a></li>
+                <li><a title="Shipping Returns" href="#">Shipping Returns</a></li>
+                <li><a title="Secure Shopping" href="#">Secure Shopping</a></li>
+              </ul>
+            </li>
+            <li>
+              <h4>Non-Profits</h4>
+              <ul>
+                <li><a title="Non-Profit Login" href="#">Non-Profit Login</a></li>
+                <li><a title="Non-Profit Sign Up" href="#">Non-Profit Sign Up</a></li>
+                <li><a title="How it Works" href="#">How it Works</a></li>
+                <li><a title="Non-Profit FAQs" href="#">Non-Profit FAQs</a></li>
+              </ul>
+            </li>
+            <li>
+              <h4>My Account</h4>
+              <ul>
+                <li><a title="My Account" href="#">My Account</a></li>
+                <li><a title="Order History" href="#">Order History</a></li>
+                <li><a title="Wishlist" href="#">Wishlist</a></li>
+                <li><a title="Newsletter" href="#">Newsletter</a></li>
+              </ul>
+            </li>
           </ul>
-        </nav>
-      </div>
-      <div id="slider">
-        <%= yield %>
-      </div>
-      <div class="clearFix"></div>
-    </div>
-  </header>
-  <div id='ajax-loader'>
-  </div>
-  <footer>
-    <div class="content">
-      <div class="commonrow">
-        <div class="logo-footer"></div>
-        <ul class="list-paymenttype">
-          <li class="icon-paypal"><a title="paypal" href="#">PayPal</a></li>
-          <li class="icon-americanexp"><a title="American Express" href="#">American Express</a></li>
-          <li class="icon-discover"><a title="Discover" href="#">Discover</a></li>
-          <li class="icon-mastercard"><a title="Master Card" href="#">Master Card</a></li>
-          <li class="icon-visa"><a title="Visa" href="#">Visa</a></li>
-        </ul>
-      </div>
-      <div class="commonrow">
-        <div class="aboutusBox">
-          <h2><span>About Us</span></h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make <br>a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining<br> essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum <br>passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem <br>Ipsum.</p>
         </div>
+        <div class="copyright">
+          &copy; 2013 <span>Companyname,</span> All Rights Reserved.
+        </div>
+        <div class="clearFix"></div>
       </div>
-      <div class="commonrow">
-        <ul class="list-media-footer">
-          <li class="icon-twitter"><a title="twitter" href="#">twitter</a></li>
-          <li class="icon-facebook"><a title="facebook" href="#">facebook</a></li>
-          <li class="icon-googlePlus"><a title="google plus" href="#">google plus</a></li>
-          <li class="icon-pinterest"><a title="pinterest" href="#">pinterest</a></li>
-          <li class="icon-youtube"><a title="you tube" href="#">you tube</a></li>
-          <li class="icon-rss"><a title="rss" href="#">rss</a></li>
-        </ul>
+    </footer>
+    <div id='overlay' style='filter:alpha(opacity=50);'></div>
+    <div align='center' id='popup_box'>
+      <div style='float: right; margin-top: -13px;margin-right:-13px'>
       </div>
-      <div class="menu-footer">
-        <ul>
-          <li>
-            <h4>Information</h4>
-            <ul>
-              <li><a title="About Us" href="#">About Us</a></li>
-              <li><a title="Delivery Information" href="#">Delivery Information</a></li>
-              <li><a title="Privacy Policy" href="#">Privacy Policy</a></li>
-              <li><a title="Terms &amp; Condition" href="#">Terms &amp; Condition</a></li>
-            </ul>
-          </li>
-          <li>
-            <h4>Customer Services</h4>
-            <ul>
-              <li><a title="Contact Us" href="#">Contact Us</a></li>
-              <li><a title="Shipping Returns" href="#">Shipping Returns</a></li>
-              <li><a title="Secure Shopping" href="#">Secure Shopping</a></li>
-            </ul>
-          </li>
-          <li>
-            <h4>Non-Profits</h4>
-            <ul>
-              <li><a title="Non-Profit Login" href="#">Non-Profit Login</a></li>
-              <li><a title="Non-Profit Sign Up" href="#">Non-Profit Sign Up</a></li>
-              <li><a title="Plans &amp; Pricing" href="#">Plans &amp; Pricing</a></li>
-              <li><a title="How it Works" href="#">How it Works</a></li>
-              <li><a title="Non-Profit FAQs" href="#">Non-Profit FAQs</a></li>
-            </ul>
-          </li>
-          <li>
-            <h4>My Account</h4>
-            <ul>
-              <li><a title="My Account" href="#">My Account</a></li>
-              <li><a title="Order History" href="#">Order History</a></li>
-              <li><a title="Wishlist" href="#">Wishlist</a></li>
-              <li><a title="Newsletter" href="#">Newsletter</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="copyright">
-        &copy; 2013 <span>Companyname,</span> All Rights Reserved.
-      </div>
-      <div class="clearFix"></div>
+      <div id='popup_body' style='float:right'></div>
     </div>
-  </footer>
-  <div id='overlay' style='filter:alpha(opacity=50);'></div>
-  <div align='center' id='popup_box'>
-    <div style='float: right; margin-top: -13px;margin-right:-13px'>
-    </div>
-    <div id='popup_body' style='float:right'></div>
-  </div>
-</body>
+  </body>
 </html>

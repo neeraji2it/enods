@@ -17,8 +17,13 @@
       <%= f.radio_button :color , "Multiple Color"%>Multiple Color</td>
   </tr>
   <tr class="row">
+    <td>Fair Trade</td>
+    <td><%= f.radio_button :fair_trade, "Yes" %>Yes
+      <%= f.radio_button :fair_trade , "No"%>No</td>
+  </tr>
+  <tr class="row">
     <td>Price</td>
-    <td><%= f.text_field :price %></td>
+    <td><%= f.text_field :price, :onkeyup => "price_validate(this,6)" %></td>
   </tr>
   <tr class="row">
     <td>Quantity</td>
@@ -32,8 +37,8 @@
           <%= builder.file_field :image  %>
         <%end%>
         <div>
-<em class="icon-plus" style="float:left;"><%= link_to_add_fields "Add More Images", f, :images %></em>
-         
+          <em class="icon-plus" style="float:left;"><%= link_to_add_fields "Add More Images", f, :images %></em>
+
         </div>
         <br />
       </td>
@@ -41,7 +46,7 @@
   <% end %>
   <tr class="row">
     <td>Select Non Profit</td>
-    <td><%= select_tag :non_profit, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.id]})%></td>
+    <td><%= f.select :non_profit_email, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.id]}, :selected => f.object.non_profit_email)%></td>
   </tr>
   <tr class="row">
     <td>Description</td>
@@ -55,3 +60,13 @@
     </td>
   </tr>
 </table>
+<script>
+  function price_validate(which) {
+    var val = which.value;
+    val = val.replace(/[^0-9]/g, "");  // strip non-digits
+    which.value = val;
+    if (val.length == 6) {  // field completed
+      document.getElementById("product_price").focus()
+    }
+  }
+</script>

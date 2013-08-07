@@ -1,71 +1,62 @@
-<h1 class="icon-dashboard"><span>Billing &amp; Shipping Address</span></h1>
-<div class="content-profile">
-  <%= form_for @billingshippingaddress, :html => {:id => "SS"} do |f| %>
-    <h3>Address Change for Open Orders</h3>
-    <div class="frow">
-      <div>Select Order Number:</div>
-      <div>
-        <%= f.select :product_id, options_for_select([["Select", '']]+Product.all.map{|a| [a.title, a.id]}, :selected => f.object.product_id)%>
-      </div>
-    </div>
-    <h3>Billing Address</h3>
-    <div class="billingColumn">
-      <div class="frow">
-        <div>House No.:</div>
-        <div><%= f.text_field :billling_house_no %></div>
-      </div>
-    </div>
-    <div class="frow">
-      <div>City:</div>
-      <div><%= f.text_field :billing_city %></div>
-    </div>
-    <div class="frow">
-      <div>Country:</div>
-      <div>
-        <%= f.country_select :billing_country %>
-      </div>
-    </div>
-    <div class="billingColumn">
-      <div class="frow">
-        <div>Street:</div>
-        <div><%= f.text_field :billing_street %></div>
-      </div>
-    </div>
-    <div class="frow">
-      <div>Zip:</div>
-      <div><%= f.text_field :billing_zip %></div>
-    </div>
-    <div class="bor"></div>
-    <h3>Shipping Address</h3>
-    <div class="billingColumn">
-      <div class="frow">
-        <div>House No.:</div>
-        <div><%= f.text_field :shipping_house_no %></div>
-      </div>
-    </div>
-    <div class="frow">
-      <div>City:</div>
-      <div><%= f.text_field :shipping_city %></div>
-    </div>
-    <div class="frow">
-      <div>Country:</div>
-      <div>
-        <%= f.country_select :shipping_country %>
-      </div>
-    </div>
-    <div class="billingColumn">
-      <div class="frow">
-        <div>Street:</div>
-        <div><%= f.text_field :shipping_street %></div>
-      </div>
-    </div>
-    <div class="frow">
-      <div>Zip:</div>
-      <div><%= f.text_field :shipping_zip %></div>
-    </div>
-    <div class="bor"></div>
-    <div style="float: right">
-      <button type="submit">Submit</button>
+<div class="content">
+  <%= link_to "<input class='fright' title='Continue Shopping' type='submit' value='Continue Shopping' />".html_safe, '/' %>
+  <h6><%= current_cart.line_items.count %>  Items in your Cart</h6>
+  <% if !@user_products.to_a.empty? %>
+    <% for line_item in @user_products %>
+      <%= form_for @order, :url => line_item_orders_path(line_item.id), :method => 'POST' do |f| %>
+        <div class="box-orderfrom">
+          <h4>
+            <%= link_to "Close", cart_path(line_item), :method => :delete, :confirm => "Are You Sure", :class => "icon-close" %>
+            Order from  <a title="diamblond" href="#">diamblond</a>
+          </h4>
+          <div class="checkoutColumn">
+            <ul class="list-checkout">
+              <li>
+                <h6>Ship to</h6>
+                <p>
+                  <select title="India">
+                    <option>India</option>	
+                  </select>
+                </p>
+                <h5 class="color-gray">Ready to ship in 35 business days</h5>
+                <h5>How You'll Pay</h5>
+                <p><input title="Payment Mode" type="radio"> <img alt="" title="" src="/assets/payment-mode.png" /></p>
+              </li>	
+              <li>
+                <div class="row-checkout">
+                  <div>Item total</div>
+                  <div><%= number_to_currency(line_item.full_price) %> USD</div>
+                </div>
+              </li>
+              <li>
+                <div class="row-checkout bold">
+                  <div>Order total</div>
+                  <div><%= number_to_currency(line_item.full_price) %> USD</div>
+                </div>
+                <%= current_user ? (current_user.role == 'buyer' ? (link_to "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, line_item_orders_path(line_item.id), :method => "POST", :style => 'text-decoration: none;') : "") : (link_to_function "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, "login()", :style => 'text-decoration: none;') %>
+              </li>
+            </ul>				
+          </div>
+          <ul class="list-order">
+            <li>
+              <div class="orderThum">
+                <%= image_tag(line_item.product.images.first.image.url(:original), :width => '168', :height => '155') %>
+              </div>
+              <ul class="list-orderDetail">
+                <li><%= link_to line_item.product.title, product_path(line_item.product) %></li>
+                <li>Quantity: <em><%= line_item.quantity %></em></li>
+                <li>Size: 40 cm</li>
+                <li><%= number_to_currency(line_item.full_price) %> USD </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div style="color:red;font-size: 40px;padding: 230px 50px 50px 50px;text-align:center">
+      Your cart is empty
     </div>
   <% end %>
+  <div class="clearFix"></div>
 </div>

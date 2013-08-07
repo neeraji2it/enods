@@ -1,7 +1,7 @@
 class AdaptivePaymentsController < ApplicationController
   include PayPal::SDK::AdaptivePayments
   def pay
-    redirect_to new_product_order_path(current_cart.product_id), :notice => "Request completed"
+    redirect_to new_line_item_order_path(current_cart.product_id), :notice => "Request completed"
   end
 
   def cancel
@@ -15,7 +15,7 @@ class AdaptivePaymentsController < ApplicationController
   def ipn_notify
     current_cart.orders.each do |ord|
       ord.update_attributes({:status => "Success", :payment_type => "PAYPAL"})
-      ord.product.update_attributes({:qty => ord.product.qty-1, :qty_sold => ord.product.qty_sold+1})
+      ord.line_item.product.update_attributes({:qty => ord.line_item.product.qty-1, :qty_sold => ord.line_item.product.qty_sold+1})
     end
     current_cart.update_attribute(:purchased_at, Time.now)
     redirect_to order_history_path
