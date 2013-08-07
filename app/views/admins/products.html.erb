@@ -1,4 +1,4 @@
-<h1 class="icon-productsManagement">Product Requests</h1>
+<h1 class="icon-productRequests"><span>Product Requests</span></h1>
 <div class="tablebox table-orderHistory">
   <div class="row">
     <div class="column">ID</div>
@@ -21,8 +21,8 @@
       <div class="column"><%= product.qty %></div>
       <div class="column last">
         <%= link_to image_tag("/assets/admin-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
-        <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;
-        <%= link_to image_tag("/assets/user-images/icon-close.png", :class => "icon-search"), product_path(product), :method => :delete, :confirm => "Are you sure." %>
+        <%= link_to image_tag("/assets/admin-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/admin-images/icon-close.png", :class => "icon-search"), product_path(product), :method => :delete, :confirm => "Are you sure." %>
       </div>
     </div>
   <% end %>

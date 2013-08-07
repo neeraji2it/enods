@@ -1,6 +1,6 @@
 <h1 class="icon-addProduct"><span>Add Product</span></h1>
 <div class="content-profile">
-<span style='color: red;'>* All fields are Required.</span>
+  <span style='color: red;'>* All fields are Required.</span>
   <%= form_for @product do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>

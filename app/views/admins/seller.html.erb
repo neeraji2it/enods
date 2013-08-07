@@ -19,8 +19,9 @@
       <div class="column"><%= user.phone.present? ? user.phone : "-"%></div>
       <div class="column">$<%= Product.where("products.user_id = #{user.id}").sum {|item| item.price.to_i} %></div>
       <div class="column">$<%= Product.where("products.user_id = #{user.id}").sum {|item| item.price.to_i/10} %></div>
-      <div class="column last"><%= user.confirmation_token.nil? ? (link_to "<input class='btn-deActivate' type='submit' title='De Activate' value='De Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Deactive'}, :method => :put, :style => 'text-decoration: none;') : (link_to "<input class='btn-activate' type='submit' title='Activate' value='Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Active'}, :method => :put, :style => 'text-decoration: none;')%>
-</div>
+      <div class="column last">
+        <%= user.confirmation_token.nil? ? (link_to "<input class='btn-deActivate' type='submit' title='De Activate' value='De Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Deactive'}, :method => :put, :style => 'text-decoration: none;') : (link_to "<input class='btn-activate' type='submit' title='Activate' value='Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Active'}, :method => :put, :style => 'text-decoration: none;')%>
+      </div>
     </div>
   <% end %>
 </div>
