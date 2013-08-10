@@ -16,20 +16,4 @@ class Cart < ActiveRecord::Base
     end
     current_item
   end
-
-  def total_price
-    line_items.to_a.sum {|item| item.unit_price}
-  end
-
-  def total_price_in_cents
-    (self.total_price*100).round
-  end
-
-  def paypal_description
-    store_names = []
-    for user_deal in line_items
-      store_names << user_deal.product.title
-    end
-    return !store_names.empty? ? "Store credit at #{store_names.join(', ')} and total price $#{self.total_price}" : ""
-  end
 end

@@ -4,22 +4,22 @@
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
         <span class="color-orange">$<%= @sale %></span>
-	Total sales today
+        Total sales today
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
         <span class="color-orange">$<%= @admin_payment %></span>
-	Commission to Admin
+        Commission to Admin
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
         <span class="color-orange">$<%= @non_profit_payment %></span>
-	Sent to Non Profit
+        Sent to Non Profit
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
         <span class="color-blue">$<%= @net_payment %></span>
-	Net earning today
+        Net earning today
       </li>
     </ul>
   </div>
@@ -33,7 +33,7 @@
       <% @orders.each_with_index do |order, index| %>
         <div class="row">
           <div class="column"><%= index+1 %></div>
-          <div class="column w74"><%= order.product.title %> from <strong><%= order.product.user.business_name %></strong></div>
+          <div class="column w74"><%= order.line_item.product.title %> from <strong><%= order.line_item.product.user.business_name %></strong></div>
         </div>
       <% end %>
     </div>
@@ -53,11 +53,6 @@
           <div class="column w49"><%= order.user.city %> City/<%= order.user.country %></div>
         </div>
       <% end %>
-      <div class="row blank">
-        <div class="column"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
-        <div class="column"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
-        <div class="column w49"><img alt="" title="" src="/assets/user-images/spacer.png"></div>
-      </div>
     </div>
   </div>
 </div>
@@ -93,7 +88,7 @@
     <div class="row"></div>
     <div class="row">
       <h3 class="heading-week">$ 458.89</h3>
-					Avg: $65.78/order
+      Avg: $65.78/order
     </div>
   </div>
 </div>

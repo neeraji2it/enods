@@ -1,84 +1,53 @@
 <%= params[:role] ? (f.hidden_field :role, :value => params[:role]) : (f.hidden_field :role, :value => params[:user][:role]) %>
-<p>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-</p>
-
-<p>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-</p>
-
-<p>
-  <%= f.label :username %>
-  <%= f.text_field :username,:onBlur => "get_username(this)" %>
-  <span id="username" style="display: none;color: green;">Available</span>
-  <span id="user" style="display: none;color: red;">Not Available</span>
-</p>
-
-<%# if (params[:role] == 'seller') %>
-<%#*<p>%>
-<%#= f.label :business_name %>
-<%#= f.text_field :business_name %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :business_address %>
-<%#= f.text_field :business_address %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :city %>
-<%#= f.text_field :city %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :state %>
-<%#= f.text_field :state %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :country %>
-<%#= f.text_field :country %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :zip %>
-<%#= f.text_field :zip %>
-<%#*</p>%>
-
-<%#*<p>%>
-<%#= f.label :phone %>
-<%#= f.text_field :phone %>
-<%#*</p>%>
-<%# end %>
-
-<p>
-  <%= f.radio_button :gender, "Male" %>&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.radio_button :gender , "Female"%>&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.radio_button :gender ,"Rather not say"%>&nbsp;Rather not say
-</p>
-
-
-<p>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-</p>
-
-<p>
-  <%= f.label :password %>
-  <%= f.password_field :password %><span id="result"></span>
-</p>
-
-<p>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-</p>
-
-<p>
-  <button type="submit">Sign up</button>
-</p>
+<table width="100%" style="line-height: 50px;">
+  <tr>
+    <td><%= f.label :first_name, "First Name<span style='color: red;'>*</span>".html_safe %></td>
+    <td><%= f.text_field :first_name, :placeholder => "First Name" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :last_name, "Last Name<span style='color: red;'>*</span>".html_safe %></td>
+    <td><%= f.text_field :last_name, :placeholder => "Last Name" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :username, "Username<span style='color: red;'>*</span>".html_safe %></td>
+    <td>
+      <%= f.text_field :username,:onBlur => "get_username(this)", :placeholder => "Username" %>
+      <label class="error" style="display: none;">Not Available</label>
+      <label class="success" style="display: none;">Available</label>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= f.radio_button :gender, "Male" %>&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.radio_button :gender , "Female"%>&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.radio_button :gender ,"Rather not say"%>&nbsp;Rather not say
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :email, "E-mail<span style='color: red;'>*</span>".html_safe %></td>
+    <td><%= f.email_field :email, :placeholder => "E-mail" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :password, "Password<span style='color: red;'>*</span>".html_safe %></td>
+    <td><%= f.password_field :password, :placeholder => "Password" %><span id="result"></span></td>
+  </tr>
+  <tr>
+    <td><%= f.label :password_confirmation, "Password Confirmation<span style='color: red;'>*</span>".html_safe %></td>
+    <td><%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" title="I agree to the Terms and Conditions" /> I agree to the <a class="link-blue" href="#" title="Terms and Conditions">Terms and Conditions</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><button type="submit">Sign up</button></td>
+  </tr>
+</table>
 <style>
+  h2{
+    display: none;
+  }
   #result{
     margin-left:5px;
   }
@@ -86,9 +55,8 @@
   #formDiv .short{
     color:#FF0000;
   }
-  #formDiv .strong, #new_user .strong{
-    background-image: url(/assets/green_check_mark.png);
-    height: 15px;
-    width: 18px;
+
+  #formDiv .strong{
+    color:#006400;
   }
 </style>

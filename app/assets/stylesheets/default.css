@@ -208,7 +208,7 @@ select option { padding-left:4px; }
 p { margin:0px; padding-bottom:10px; }
 input, textarea, a { outline:none; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 input[type=file] { margin-right:5px; }
-input[type=text], input[type=password], input[type=pass] { line-height:16px; margin-right:5px; }
+input[type=text],input[type=email], input[type=password], input[type=pass] { line-height:16px; margin-right:5px; }
 input[type=checkbox] { height:13px; width:13px; margin-right:5px; position:relative; top:1px; }
 input[type=submit], input[type=button], input[type=reset], a, button { cursor:pointer; }
 input[type=submit], input[type=button], input[type=reset], button { overflow:visible; margin-right:5px; }
@@ -218,9 +218,9 @@ a img, img, input[type=checkbox], input[type=radio], iframe { border:none; }
 ul { margin:0px; padding:12px 0px 12px 40px; }
 ul li { list-style:none; }
 del { opacity:0; filter:"alpha(opacity=0)"; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; }
-input[type=text], input[type=password], textarea, select { color:#666; padding:8px 5px; border-radius:2px; border:solid 1px #d7d7d7; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+input[type=text],input[type=email], input[type=password], textarea, select { color:#666; padding:8px 5px; border-radius:2px; border:solid 1px #d7d7d7; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 select{ padding:5px; }
-input[type=text], input[type=password]{ width:305px; }
+input[type=text],input[type=email], input[type=password]{ width:305px; }
 textarea { width:532px; min-height:70px; resize:none; }
 input[type=submit], input[type=button], input[type=reset], button { color:#FFF; font-size:16px; text-align:center; border-radius:3px; padding:6px 20px 5px 20px; text-shadow:-1px -1px 0px #000; border:none; background-color:#333; }
 input[type=submit]:hover, input[type=button]:hover, input[type=reset]:hover, button:hover { background-color:#ffa500; text-shadow:-1px -1px 0px #e36e00; }
@@ -1072,7 +1072,7 @@ ul.list-normal li{
 }	
 .categoriesCaroul .caroufredsel_wrapper ul{
     /*left:7px !important;
-	top:10px !important;*/
+        top:10px !important;*/
 }	
 .logo-big{
     width:161px;
@@ -1356,7 +1356,7 @@ ul.list-gender li + li{ padding-right:10px; }
     padding:15px 0px 0px 43px;
 }
 .loginSeller ul > li { padding-top:15px; }
-.loginSeller input[type=text], .loginSeller input[type=password]{	
+.loginSeller input[type=text],.loginSeller input[type=email], .loginSeller input[type=password]{	
     width:210px;
     padding:7px 5px;
     border-radius:6px;

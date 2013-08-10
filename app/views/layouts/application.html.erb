@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar") : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application', 'charts','jquery.flot','jquery.flot.tooltip' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -20,7 +20,7 @@
       <%end%>
     <%end%>
   </head>
-  <body>
+  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
     <header>
       <div class="fright">
         <ul class="list-topicon">
@@ -35,6 +35,7 @@
     <article>
       <div class="topbar">
         <div class="fright"><a class="icon-setting" title="Settings" href="#"><span>Settings</span></a></div>
+        <div id="cart_expire_time" style="position: relative;float: right;width: 213px;color: red;"></div>
         <ul class="breadcrumb">
           <li><span><%= params[:controller] %></span></li>
           <li><a title="My Account" href="#"><%= params[:action].upcase %></a></li>

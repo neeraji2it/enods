@@ -52,7 +52,7 @@
       <ul id="caroulproduct">
         <% for product in @products  %>
           <li>
-            <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+            <%= image_tag(product.images.first.image.url(:original), :width => "226", :height => "287") %>
             <div>
               <h4><%= product.title %></h4>
               <p>Seller: <%= link_to product.user.username, "" %></p>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product), :style => 'text-decoration: none;' %>
-            <input type="submit" title="More Info" value="More Info" />
+            <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
           </li>
         <% end %>
       </ul>

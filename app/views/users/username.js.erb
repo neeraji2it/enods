@@ -1,7 +1,7 @@
 <% if !@username.present? %>
-  $('#user').hide();
-  $('#username').show();
+  $('.error').hide();
+  $('.success').show();
 <% else %>
-  $('#username').hide();
-  $('#user').show();
+  $('.success').hide();
+  $('.error').show();
 <% end %>
