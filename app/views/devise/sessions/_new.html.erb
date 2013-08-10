@@ -2,7 +2,7 @@
 <div class="loginForm">
   <%= form_for(:user, :as => :user, :url => session_path(:user), :remote => true, :html => { :id => "user_sign_in" }) do |f| %>
     <div class="loginBox">
-      <div class="error1" style="color: red;font-size: 16px;font-weight: bold;left: 40px;position: absolute;top: 200px;width: 450px;"></div>
+      <div class="error_message" style="color: red;font-size: 16px;font-weight: bold;left: 40px;position: absolute;top: 200px;width: 450px;"></div>
       <h4>Login</h4>
       <ul>
         <li>
@@ -21,22 +21,10 @@
   <div class="clearFix"></div>
 </div>
 <script>
-  jQuery("#user_sign_in").bind("ajax:complete", function(a,b){
-    jQuery(".error1").html();
-    if(b.status == "401") {
-      jQuery(".error1").html(b.responseText);
-    } else {
-      window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
-    }
-  });
-</script>
-
-
-<script>
-  jQuery("#user_sign_in").bind("ajax:complete", function(a,b){
-    jQuery(".error").html();
-    if(b.status == "401") {
-      jQuery(".error").html(b.responseText);
+  jQuery("#user_sign_in").bind("ajax:complete", function(a, b) {
+    jQuery(".error_message").html();
+    if (b.status == "401") {
+      jQuery(".error_message").html(b.responseText);
     } else {
       window.location.href = jQuery.parseJSON(b.responseText).redirectUrl;
     }

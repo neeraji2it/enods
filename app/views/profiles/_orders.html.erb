@@ -1,0 +1,25 @@
+<% if @orders.present? %>
+  <div class="tablebox">
+    <div class="row">
+      <div class="column">Name</div>
+      <div class="column">Order Amount</div>
+      <div class="column w49">City/State</div>
+    </div>
+    <% for order in @orders %>
+      <div class="row">
+        <div class="column"><%= order.user.username %></div>
+        <div class="column"><%= number_to_currency(order.net_payment) %></div>
+        <div class="column w49"><%= order.user.city %> City/<%= order.user.country %></div>
+      </div>
+    <% end %>
+  </div>
+  <span style='float: right;'><%= will_paginate @orders, :param_name => 'order_page', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<% end %>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

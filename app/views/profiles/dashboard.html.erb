@@ -40,19 +40,8 @@
   </div>
   <div class="box-latestCustomer">
     <h1 class="icon-latestCustomer"><span>Latest Customer</span></h1>
-    <div class="tablebox">
-      <div class="row">
-        <div class="column">Name</div>
-        <div class="column">Order Amount</div>
-        <div class="column w49">City/State</div>
-      </div>
-      <% for order in @orders %>
-        <div class="row">
-          <div class="column"><%= order.user.username %></div>
-          <div class="column">$<%= order.net_payment %>.00</div>
-          <div class="column w49"><%= order.user.city %> City/<%= order.user.country %></div>
-        </div>
-      <% end %>
+    <div id='sssss'>
+      <%= render :partial => 'orders' %>
     </div>
   </div>
 </div>
