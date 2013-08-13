@@ -33,9 +33,9 @@
     <h1><span>Featured Causes</span></h1>
     <div class="list_carousel h225">
       <ul id="caroulproduct1">
-        <% for product in @products  %>
+        <% for product in @causes  %>
           <li>
-            <%= image_tag(product.images.first.image.url(:original), :width => "305", :height => "210") %>
+            <%= image_tag(product.image.url(:original), :width => "305", :height => "210") %>
             <h4><%= product.title %></h4>
           </li>
         <% end %>

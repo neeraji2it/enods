@@ -10,15 +10,15 @@
     <div class="column">Country</div>
     <div class="column">Options</div>
   </div>
-  <% for user in @users %>
+  <% @users.each_with_index do |user, index| %>
     <div class="row">
-      <div class="column"><%= user.id %></div>
+      <div class="column"><%= index+1 %></div>
       <div class="column"><%= user.username %></div>
       <div class="column"><%= user.email %></div>
       <div class="column"><%= user.phone.present? ? user.phone : "-" %></div>
       <div class="column"><%= user.city.present? ? user.city : "-" %></div>
       <div class="column"><%= user.zip.present? ? user.zip : "-" %></div>
-      <div class="column">Indore</div>
+      <div class="column"><%= user.country.present? ? user.country : "-" %></div>
       <div class="column last">
         <%= user.confirmation_token.nil? ? (link_to "<input class='btn-deActivate' type='submit' title='De Activate' value='De Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Deactive'}, :method => :put, :style => 'text-decoration: none;') : (link_to "<input class='btn-activate' type='submit' title='Activate' value='Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Active'}, :method => :put, :style => 'text-decoration: none;')%>
       </div>

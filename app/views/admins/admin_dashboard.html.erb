@@ -13,7 +13,7 @@
   </li>
   <li class="img-revenue">
     <div>
-      <h4>$<%= Order.where("status = 'Success'").sum {|item| item.net_payment.to_i} %><br><span>Revenue</span></h4>
+      <h4><span style="position: relative;float: right;"><%= number_to_currency(Order.where("status = 'Success'").sum {|item| item.net_payment.to_i}) %></span><br><span>Revenue</span></h4>
       <%= link_to "VIEW MORE", "", :class => "link-viewmore" %>
     </div>
   </li>

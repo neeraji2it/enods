@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'default',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application','script','jquery-ui-1.8.20.custom.min','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min.js' %>
+    <%= javascript_include_tag 'application','script','highstock', 'exporting','jquery-ui-1.8.20.custom.min','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min.js' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -65,7 +65,7 @@
               <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
                 <ul class="submenu">
                   <% Cause.all.each do |cause| %>
-                    <li><%= link_to cause.name, category_path(:causes => cause.id) %></li>
+                    <li><%= link_to cause.title, "" %></li>
                   <% end %>
                 </ul>
               </li>

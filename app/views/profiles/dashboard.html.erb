@@ -3,22 +3,22 @@
     <ul>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
-        <span class="color-orange">$<%= @sale %></span>
+        <span class="color-orange"><%= number_to_currency(@sale) %></span>
         Total sales today
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
-        <span class="color-orange">$<%= @admin_payment %></span>
+        <span class="color-orange"><%= number_to_currency(@admin_payment) %></span>
         Commission to Admin
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
-        <span class="color-orange">$<%= @non_profit_payment %></span>
+        <span class="color-orange"><%= number_to_currency(@non_profit_payment) %></span>
         Sent to Non Profit
       </li>
       <li>
         <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
-        <span class="color-blue">$<%= @net_payment %></span>
+        <span class="color-blue"><%= number_to_currency(@net_payment) %></span>
         Net earning today
       </li>
     </ul>
@@ -43,7 +43,32 @@
       <div class="column"></div>
     </div>
     <div class="row">
-      <div class="img-graph-1"><img width="100%" alt="" title="" src="/assets/user-images/dummy-graph-1.jpg" /></div>
+      <div class="img-graph-1">
+        <div id="container" style="height: 400px; min-width: 100px"></div>
+        <script>
+          $(function() {
+            $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(data) {
+              $('#container').highcharts('StockChart', {
+                rangeSelector: {
+                  selected: 2
+                },
+                series: [{
+                    name: 'Sales',
+                    data: [<%= @sale %>, <%= @admin_payment %>,<%= @non_profit_payment %>,<%= @net_payment %>],
+                    marker: {
+                      enabled: true,
+                      radius: 3
+                    },
+                    shadow: true,
+                    tooltip: {
+                      valueDecimals: 2
+                    }
+                  }]
+              });
+            });
+          });
+        </script>
+      </div>
     </div>
   </div>
 </div>

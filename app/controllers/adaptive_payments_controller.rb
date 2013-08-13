@@ -1,6 +1,7 @@
 class AdaptivePaymentsController < ApplicationController
   include PayPal::SDK::AdaptivePayments
   def pay
+    redirect_to new_line_item_order_path(current_cart.order.line_item.id)
   end
 
   def cancel
@@ -12,6 +13,7 @@ class AdaptivePaymentsController < ApplicationController
         })
     end
     current_cart.update_attribute(:purchased_at, Time.now)
+    redirect_to order_history_path
   end
 
   def ipn_notify

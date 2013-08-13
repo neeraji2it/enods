@@ -5,9 +5,9 @@
     <div class="column">Category Name</div>
     <div class="column">Options</div>
   </div>
-  <% for category in @categories %>
+  <% @categories.each_with_index do |category, index| %>
     <div class="row">
-      <div class="column"><%= category.id %></div>
+      <div class="column"><%= index+1 %></div>
       <div class="column"><%= category.name %></div>
       <div class="column last">
         <%= link_to image_tag("/assets/admin-images/icon-edit.png"), edit_category_path(category), :remote => true  %>

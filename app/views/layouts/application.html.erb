@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar") : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
-    <%= javascript_include_tag 'application', 'charts','jquery.flot','jquery.flot.tooltip' %>
+    <%= javascript_include_tag 'application', 'charts','jquery.flot','jquery.flot.tooltip','highstock' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -62,6 +62,7 @@
               <li class="icon-userManagement <%= (params[:controller] == 'admins' and params[:action] == 'buyer') ? 'active' : "" %>"><%= link_to "User Management", buyer_admins_path() %></li>
               <li class="icon-profile <%= (params[:controller] == 'categories' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Category Management", categories_path() %></li>
               <li class="icon-productRequests <%= (params[:controller] == 'admins' and params[:action] == 'products') ? 'active' : "" %>"><%= link_to "Product Requests", products_admins_path() %></li>
+              <li class="icon-productRequests <%= (params[:controller] == 'causes' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Causes", causes_path %></li>
               <li class="icon-enquiry <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Enquiry", "" %></li>
             <% end %>
           </ul>

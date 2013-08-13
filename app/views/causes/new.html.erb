@@ -1,0 +1,9 @@
+<h1 class="icon-addProduct"><span>Add Cause</span></h1>
+<div class="content-profile">
+  <span style='color: red;'>* All fields are Required.</span>
+  <%= form_for @cause do |f| %>
+    Title: <%= f.text_field :title %><br />
+    Cause Image: <%= f.file_field :image %><br />
+    <%= f.submit "Cause", :class => 'button' %>
+  <% end %>
+</div>

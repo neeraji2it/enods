@@ -18,6 +18,8 @@ Enods::Application.routes.draw do
       put :confirm_product
     end
   end
+  
+  resources :causes
 
   resources :categories
   resources :invitations
