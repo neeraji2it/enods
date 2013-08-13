@@ -5,9 +5,4 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => ['Info@enods.com'], :subject => "Subscribed")
   end
-
-  def send_invitation(invitation)
-    @invitation = invitation
-    mail(:to => invitation.email, :subject => "Invitation")
-  end
 end
