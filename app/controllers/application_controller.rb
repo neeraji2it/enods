@@ -7,12 +7,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
+      current_user.received_invitation.update_attribute(:status, 'Accepted') if current_user.received_invitation
+      flash[:notice] = "Sign in Successfully."
       if current_user.role == 'non-profit'
         profile_path(current_user)
       elsif current_user.role == 'buyer'
         profile_profile_path(current_user)
       elsif current_user.role == 'seller'
-        dashboard_path
+        profile_profile_path(current_user)
       else
         admin_dashboard_path
       end

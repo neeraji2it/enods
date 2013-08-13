@@ -299,23 +299,16 @@ ul.list-latestOrders li > div.column-three{ width:15%; }
 }	
 .pagination{ 
     color:#294008;
-    padding:10px 1px 0px 0px;
+    padding:5px 1px 0px 0px;
 }	
-.pagination ul{
-    padding:0px;
-    line-height:28px;
-    text-align:right;
-}
-.pagination ul li{
+.pagination .previous_page, .pagination .next_page{
     display:inline;	
     margin-left:2px;
     padding:7px 10px;
     border-radius:1px;
     border:solid 1px #DDD;
-    background:url(/assets/admin-images/sprite.png) repeat-x 0px -370px;
-}	
-.pagination ul li.current, .pagination ul li:hover{ background-color:#FFF; }	
-.pagination ul li a{ text-decoration:none; }	
+    background:url(/assets/seller-images/sprite.png) repeat-x 0px -370px;
+}
 .topbar{
     width:100%;
     line-height:24px;

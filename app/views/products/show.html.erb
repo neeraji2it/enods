@@ -18,7 +18,7 @@
     </div>
     <div class="productDetails-rightColumn">
       <h2><%= @product.title %><br /><span>$<%= @product.price %>.00</span></h2>
-      <div class="icon-addCart"><%= link_to_function "ADD TO CART", "buyer_users_path()" %></div>
+      <div class="icon-addCart"><%= link_to "ADD TO CART", add_to_cart_product_path(@product) %></div>
       <div class="commonrow">
         <div class="column-share">Share Now</div>
         <ul class="list-media">
@@ -77,7 +77,7 @@
         </li>
         <li>
           <p><strong>Shipping</strong></p>
-          <div class="table-shipping">
+          <div class="table-shipping" style="width: 410px;">
             <div class="row">
               <div>After</div>
               <div>Type</div>

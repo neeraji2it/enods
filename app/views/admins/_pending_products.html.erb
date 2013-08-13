@@ -1,0 +1,29 @@
+<div class="tablebox table-latestProductRequests">
+  <div class="row">
+    <div class="column">Seller Name</div>
+    <div class="column">Product</div>
+    <div class="column">Quantity</div>
+    <div class="column">Price</div>
+    <div class="column">Actions</div>
+  </div>
+  <% for product in @pending_products %>
+    <div class="row">
+      <div class="column"><%= product.user.username %></div>
+      <div class="column"><%= product.title%></div>
+      <div class="column"><%= product.qty %></div>
+      <div class="column">$<%= product.price%></div>
+      <div class="column">
+        <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Confirm' />".html_safe, confirm_product_admin_path(product), :method => 'put', :class => 'button', :style => 'text-decoration: none;' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<span class="pagination" style='float: right;'><%= will_paginate @pending_products, :param_name => 'pending_product', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

@@ -2,11 +2,10 @@
 <p class="required">*All fields are required</p>
 <div id="formDiv">
   <%= form_for @order, :url => paypal_ipn_path() do |f| %>
-      <p>Please click below to finish payment.  </p>
+    <p>Please click below to finish payment.  </p>
     <p style="padding-left: 200px;">
       <button class="submit_button">Purchase</button>
   <%#= f.submit "Complete Payment" %>
     </p>
   <% end %>
 </div>
-<%= current_cart.orders %>

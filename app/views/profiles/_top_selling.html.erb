@@ -1,0 +1,23 @@
+<% if @latest_customers.present? %>
+  <div class="tablebox topSellingToday">
+    <div class="row">
+      <div class="column">Name</div>
+      <div class="column">Order Amount</div>
+    </div>
+    <% @top_sellings.each_with_index do |order, index| %>
+      <div class="row">
+        <div class="column"><%= index+1 %></div>
+        <div class="column w74"><%= order.line_item.product.title %> from <strong><%= order.line_item.product.user.business_name %></strong></div>
+      </div>
+    <% end %>
+  </div>
+  <span class="pagination" style='float: right;'><%= will_paginate @top_sellings, :param_name => 'top_selling', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<% end %>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

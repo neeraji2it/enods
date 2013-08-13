@@ -1,1 +1,9 @@
-<%= current_user.role == 'buyer' ? (render :partial => 'order_buyer') : (render :partial => 'order_seller') %>
+<% if current_user.role == 'buyer' %>
+  <div id='order_buyer'>
+    <%= render :partial => 'order_buyer' %>
+  </div>
+<% else %>
+  <div id='order_seller'>
+    <%= render :partial => 'order_seller' %>
+  </div>
+<% end %>

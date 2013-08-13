@@ -25,23 +25,14 @@
   </div>
   <div class="box-latestCustomer">
     <h1 class="icon-topSellingToday"><span>Top Selling Today</span></h1>
-    <div class="tablebox topSellingToday">
-      <div class="row">
-        <div class="column">Name</div>
-        <div class="column">Order Amount</div>
-      </div>
-      <% @orders.each_with_index do |order, index| %>
-        <div class="row">
-          <div class="column"><%= index+1 %></div>
-          <div class="column w74"><%= order.line_item.product.title %> from <strong><%= order.line_item.product.user.business_name %></strong></div>
-        </div>
-      <% end %>
+    <div id="top_selling">
+      <%= render :partial => 'top_selling' %>
     </div>
   </div>
   <div class="box-latestCustomer">
     <h1 class="icon-latestCustomer"><span>Latest Customer</span></h1>
-    <div id='sssss'>
-      <%= render :partial => 'orders' %>
+    <div id='order_customer'>
+      <%= render :partial => 'latest_customers' %>
     </div>
   </div>
 </div>
@@ -76,8 +67,8 @@
   <div class="tablebox topSellingToday">
     <div class="row"></div>
     <div class="row">
-      <h3 class="heading-week">$ 458.89</h3>
-      Avg: $65.78/order
+      <h3 class="heading-week"><%= number_to_currency((1.weeks.ago.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i}}.first) %></h3>
+      Avg: <%= number_to_currency((1.weeks.ago.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i/7}}.first) %> /order
     </div>
   </div>
 </div>

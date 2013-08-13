@@ -24,7 +24,7 @@
     <header>
       <div class="fright">
         <ul class="list-topicon">
-          <li>Member: UserName</li>
+          <li>Member: <%= current_user.username.capitalize %></li>
           <li class="icon-user"><a title="" href="#"></a></li>
           <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
         </ul>

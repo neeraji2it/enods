@@ -2,8 +2,8 @@ class AdminsController < ApplicationController
   before_filter :is_signin?
 
   def admin_dashboard
-    @pending_products = Product.where("status = 'pending'")
-    @orders = Order.all
+    @pending_products = Product.where("status = 'pending'").paginate :page => params[:pending_product], :per_page => 4
+    @orders = Order.where("status = 'Success' or status = 'Cancel'").paginate :page => params[:latest_order], :per_page => 8
     @datess = (Time.now - 5.day).strftime("%m/%d/%Y")
     @likesqw = []
     @likesqw1 = []
@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
   end
 
   def sales
-    @orders = Order.where("status =='Completed'")
+    @orders = Order.where("status = 'Success'")
   end
 
   def products
@@ -45,6 +45,6 @@ class AdminsController < ApplicationController
   def confirm_product
     @product = Product.find(params[:id])
     @product.update_attribute(:status, 'confirmed')
-    redirect_to products_admins_path
+    redirect_to admin_dashboard_path
   end
 end

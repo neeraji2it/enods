@@ -13,7 +13,7 @@
   </li>
   <li class="img-revenue">
     <div>
-      <h4>$<%= Order.where("status = 'Success'").sum {|item| item.line_item.product.price.to_i} %><br><span>Revenue</span></h4>
+      <h4>$<%= Order.where("status = 'Success'").sum {|item| item.net_payment.to_i} %><br><span>Revenue</span></h4>
       <%= link_to "VIEW MORE", "", :class => "link-viewmore" %>
     </div>
   </li>
@@ -52,54 +52,21 @@
   </div>
 </div>
 <div class="dashboardColumn" style="float: right;margin-right: -10px;margin-top: -429px;position: relative;width: 44%;">
-  <h1 class="icon-latestOrders"><em><a title="View All" href="#">View All</a></em><span>Latest Orders</span></h1>
-  <div class="tablebox table-newUserAnalytics">
-    <div class="row">
-      <div class="column">.</div>
-    </div>
-    <div class="row">
-      <ul class="list-latestOrders">
-        <% for order in @orders %>
-          <li>
-            <div class="column-first"><%= link_to (order.id.to_s+' '+order.user.username), ""%></div>
-            <div class="column-two">
-              <%= order.status == 'Success' ? ("<input class='btn-orange' type='submit' title='PAID' value='PAID' />".html_safe) : ("<input class='btn-blue' type='submit' title='CANCELLED' value='CANCELLED' />".html_safe) %>
-            </div>
-            <div class="column-three"><%= number_to_currency(order.net_payment)%></div>
-          </li>
-        <% end %>
-      </ul>
-      <div class="clearFix"></div>
-    </div>
+  <h1 class="icon-latestOrders"><span>Latest Orders</span></h1>
+  <div id='latest_orders'>
+    <%= render :partial => 'latest_orders' %>
   </div>
 </div>
 </div>
 <div class="commonrow">
   <div class="dashboardColumn">
-    <h1 class="icon-latestProductRequests"><em><a title="View All" href="#">View All</a></em><span>Latest Product Requests</span></h1>
-    <div class="tablebox table-latestProductRequests">
-      <div class="row">
-        <div class="column">Seller Name</div>
-        <div class="column">Product</div>
-        <div class="column">Quantity</div>
-        <div class="column">Price</div>
-        <div class="column">Actions</div>
-      </div>
-      <% for product in @pending_products %>
-        <div class="row">
-          <div class="column"><%= product.user.username %></div>
-          <div class="column"><%= product.title%></div>
-          <div class="column"><%= product.qty %></div>
-          <div class="column">$<%= product.price%></div>
-          <div class="column">
-            <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Confirm' />".html_safe, confirm_product_admin_path(product), :method => 'put', :class => 'button', :style => 'text-decoration: none;' %>
-          </div>
-        </div>
-      <% end %>
+    <h1 class="icon-latestProductRequests"><span>Latest Product Requests</span></h1>
+    <div id='pending_products'>
+      <%= render :partial => 'pending_products' %>
     </div>
   </div>
   <div class="dashboardColumn">
-    <h1 class="icon-enquiries"><em><a title="View All" href="#">View All</a></em><span>Enquiries</span></h1>
+    <h1 class="icon-enquiries"><span>Enquiries</span></h1>
     <div class="tablebox table-enquiries">
       <div class="row">
         <div class="column">.</div>

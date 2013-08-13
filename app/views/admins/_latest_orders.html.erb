@@ -1,0 +1,28 @@
+<div class="tablebox table-newUserAnalytics">
+  <div class="row">
+    <div class="column">.</div>
+  </div>
+  <div class="row">
+    <ul class="list-latestOrders">
+      <% for order in @orders %>
+        <li>
+          <div class="column-first"><%= link_to (order.id.to_s+' '+order.user.username), ""%></div>
+          <div class="column-two">
+            <%= order.status == 'Success' ? ("<input class='btn-orange' type='submit' title='PAID' value='PAID' />".html_safe) : ("<input class='btn-blue' type='submit' title='CANCELLED' value='CANCELLED' />".html_safe) %>
+          </div>
+          <div class="column-three"><%= number_to_currency(order.net_payment)%></div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="clearFix"></div>
+  </div>
+</div>
+<span class="pagination" style='float: right;'><%= will_paginate @orders, :param_name => 'latest_order', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

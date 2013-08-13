@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808075018) do
+ActiveRecord::Schema.define(:version => 20130813052414) do
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(:version => 20130808075018) do
 
   create_table "invitations", :force => true do |t|
     t.string   "email"
-    t.integer  "user_id"
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "sender_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130808075018) do
     t.datetime "confirm_date"
     t.integer  "product_id"
     t.integer  "line_item_id"
+    t.integer  "receiver_id"
   end
 
   create_table "products", :force => true do |t|
@@ -179,9 +180,10 @@ ActiveRecord::Schema.define(:version => 20130808075018) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "paypal_id"
-    t.datetime "date_of_birth"
+    t.date     "date_of_birth"
     t.text     "other_info"
     t.string   "active"
+    t.integer  "invitation_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

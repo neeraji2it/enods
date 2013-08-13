@@ -1,23 +1,34 @@
 <h1 class="icon-orderSalesManagement"><span>Order History</span></h1>
-<div class="tablebox table-orderHistory">		
-  <div class="row">
-    <div class="column">Order No.</div>
-    <div class="column">Date</div>
-    <div class="column">Product</div>
-    <div class="column">Quantity</div>
-    <div class="column">Total Value(inc. VAT)</div>
-    <div class="column">Payment Mode</div>
-    <div class="column last">Status</div>
-  </div>
-  <% for order in @orders %>
+<% if @order_buyers.present? %>
+  <div class="tablebox table-orderHistory">		
     <div class="row">
-      <div class="column"><%= order.id %></div>
-      <div class="column"><%= order.created_at.strftime("%d/%m/%Y")%></div>
-      <div class="column"><%= order.line_item.product.title %></div>
-      <div class="column"><%= order.line_item.quantity %></div>
-      <div class="column">$<%= order.net_payment %></div>
-      <div class="column"><%= order.payment_type.present? ? order.payment_type : "-"%></div>
-      <div class="column"><%= order.status %></div>
+      <div class="column">Order No.</div>
+      <div class="column">Date</div>
+      <div class="column">Product</div>
+      <div class="column">Quantity</div>
+      <div class="column">Total Value(inc. VAT)</div>
+      <div class="column">Payment Mode</div>
+      <div class="column last">Status</div>
     </div>
-  <% end %>
-</div>
+    <% @order_buyers.each_with_index do |order, index| %>
+      <div class="row">
+        <div class="column"><%= index+1 %></div>
+        <div class="column"><%= order.created_at.strftime("%d/%m/%Y")%></div>
+        <div class="column"><%= order.line_item.product.title %></div>
+        <div class="column"><%= order.line_item.quantity %></div>
+        <div class="column">$<%= order.net_payment %></div>
+        <div class="column"><%= order.payment_type.present? ? order.payment_type : "-"%></div>
+        <div class="column"><%= order.status %></div>
+      </div>
+    <% end %>
+  </div>
+  <span class="pagination" style='float: right;'><%= will_paginate @order_buyers, :param_name => 'order_buyer', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<% end %>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

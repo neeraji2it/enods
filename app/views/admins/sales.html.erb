@@ -8,17 +8,19 @@
     <div class="column">Amount</div>
     <div class="column">Status</div>
   </div>
-  <div class="row">
-    <div class="column">210789</div>
-    <div class="column">Neeraj</div>
-    <div class="column">neeraj@gmail.com</div>
-    <div class="column">CRY</div>
-    <div class="column">$699.00</div>
-    <div class="column last">
-      <select title="Status">
-        <option>Shipped</option>
-        <option>In process</option>
-      </select>
+  <% for order in @orders %>
+    <div class="row">
+      <div class="column"><%= order.id %></div>
+      <div class="column"><%= order.line_item.product.user.username %></div>
+      <div class="column"><%= order.user.email %></div>
+      <div class="column"><%= order.line_item.product.non_profit_email %></div>
+      <div class="column"><%= number_to_currency(order.net_payment) %></div>
+      <div class="column last">
+        <select title="Status">
+          <option>Shipped</option>
+          <option>In process</option>
+        </select>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

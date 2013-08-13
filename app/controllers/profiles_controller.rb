@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :is_signin?
+  before_filter :is_valid_account?, :only => ['order_history','dashboard']
 
   def profile
     @user = User.find(params[:id])
@@ -34,8 +35,8 @@ class ProfilesController < ApplicationController
   end
 
   def order_history
-    @orders = Order.where("user_id = #{current_user.id}") if current_user.role == 'buyer'
-    @orders = Order.where("status = 'Success' or status = 'Cancel'") if current_user.role == 'seller'
+    @order_buyers = Order.where("user_id = #{current_user.id}").paginate :page => params[:order_buyer], :per_page => 10 if current_user.role == 'buyer'
+    @order_sellers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").paginate :page => params[:order_seller], :per_page => 10 if current_user.role == 'seller'
   end
 
   def dashboard
@@ -43,6 +44,7 @@ class ProfilesController < ApplicationController
     @net_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.net_payment.to_i}
     @admin_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.admin_payment.to_i}
     @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.non_profit_payment.to_i}
-    @orders = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:order_page], :per_page => 4
+    @top_sellings = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:top_selling], :per_page => 5
+    @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4
   end
 end

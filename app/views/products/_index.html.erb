@@ -27,4 +27,13 @@
     </div>
   <% end %>
 </div>
+<span class="pagination" style='float: right;'><%= will_paginate @products, :param_name => 'product_page', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<script>
+  $(function() {
+    $('.pagination a').click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>
 

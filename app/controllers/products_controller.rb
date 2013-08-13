@@ -3,8 +3,7 @@ class ProductsController < ApplicationController
   before_filter :is_valid_account? , :only => ['index','new','create']
 
   def index
-    @products = Product.where("status = 'confirmed'").order('product_count DESC') if (user_signed_in? and current_user.role == 'buyer')
-    @products = Product.where("user_id = #{current_user.id}").order('product_count DESC') if (user_signed_in? and current_user.role == 'seller')
+    @products = Product.where("user_id = #{current_user.id}").order('product_count DESC').paginate :page => params[:product_page], :per_page => 10 if (user_signed_in? and current_user.role == 'seller')
   end
 
   def new

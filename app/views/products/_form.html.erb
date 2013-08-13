@@ -45,7 +45,7 @@
   <% end %>
   <tr class="row">
     <td>Select Non Profit</td>
-    <td><%= f.select :non_profit_email, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.id]}, :selected => f.object.non_profit_email)%></td>
+    <td><%= f.select :non_profit_email, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.email]}, :selected => f.object.non_profit_email)%></td>
   </tr>
   <tr class="row">
     <td>Description</td>
