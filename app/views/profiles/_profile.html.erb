@@ -23,7 +23,7 @@
 
     <div class="frow">
       <div>Birthday</div>
-      <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar' %></div>
+      <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar',:onclick=>"setSens('date_to', 'max');" %></div>
     </div>
 
     <div class="frow">

@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       flash[:notice] = "Successfully Subscribed for this site."
       redirect_to root_path
     else
-      render :action => 'index'
+      render :action => 'launch', :layout => false
     end
   end
 

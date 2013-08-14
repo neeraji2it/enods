@@ -15,6 +15,12 @@
 //= require countdown_timer
 //= require jquery.notifyBar
 //= require dhtmlxcalendar
+//= require highstock
+//= require jquery-ui-1.8.20.custom.min
+//= require /slider/jquery.coda-slider-3.0.min
+//= require charts
+//= require jquery.flot
+//= require jquery.flot.tooltip
 //= require script
 //= require_tree .
 
@@ -27,6 +33,11 @@ function remove_fields(link) {
 var myCalendar;
 function doOnLoad() {
     myCalendar = new dhtmlXCalendarObject(["calendar"]);
+    myCalendar.setDate(new Date());
+}
+
+function setSens(id, k) {
+    myCalendar.setSensitiveRange(null, new Date());
 }
 
 $(function() {

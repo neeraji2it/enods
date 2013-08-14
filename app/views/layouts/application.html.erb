@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar",'dhtmlxcalendar','dhtmlxcalendar_dhx_skyblue') : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
-    <%= javascript_include_tag 'application', 'charts','jquery.flot','jquery.flot.tooltip','highstock' %>
+    <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
