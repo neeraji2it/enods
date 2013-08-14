@@ -28,8 +28,8 @@ Enods::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     #:domain               => 'baci.lindsaar.net',
-    :user_name            => 'enods.com@gmail.com',
-    :password             => 'enods.com1234',
+    :user_name            => 'enodsweb@gmail.com',
+    :password             => 'enods123',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }

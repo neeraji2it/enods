@@ -20,7 +20,7 @@
       <%end%>
     <%end%>
   </head>
-  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time'); doOnLoad()" : "" %>">
+  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time'); doOnLoad()" : "doOnLoad()" %>">
     <header>
       <div class="fright">
         <ul class="list-topicon">
