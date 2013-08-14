@@ -342,6 +342,7 @@ ul.breadcrumb li + li{
     width:360px;
     color:#294008;
     margin-right:85px;
+    margin-top: 32px;
     border-radius:2px;
     padding-bottom:10px;
     border:solid 1px #CCC;

@@ -62,7 +62,7 @@ Enods::Application.routes.draw do
       put :change_password
     end
   end
-
+  
   match '/auth/:provider/callback' => 'omniauths#create'
   get '/favourites' => 'products#favourites', :as => :favourites
   get '/category' => 'home#category', :as => :category
@@ -72,7 +72,7 @@ Enods::Application.routes.draw do
   get '/dashboard' => 'profiles#dashboard', :as => :dashboard
   get '/admin_dashboard' => 'admins#admin_dashboard', :as => :admin_dashboard
 
-  root :to => 'home#index'
+  root :to => 'home#launch'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

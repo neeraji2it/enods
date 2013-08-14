@@ -24,6 +24,6 @@ class CartsController < ApplicationController
       inactive_carts.map{|inactive_cart| inactive_cart.destroy}
       flash[:notice] = "Your cart has expired. Please add the products to the cart to purchase it"
     end
-    redirect_to products_path
+    redirect_to carts_path
   end
 end

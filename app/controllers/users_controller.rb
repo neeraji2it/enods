@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new(:token => params[:token])
-    @user.email = @user.invitation.email if @user.invitation
+    @user = User.new
   end
 
   def create

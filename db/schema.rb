@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813052414) do
+ActiveRecord::Schema.define(:version => 20130808075018) do
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -33,11 +33,10 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
 
   create_table "carts", :force => true do |t|
     t.datetime "purchased_at"
-    t.integer  "user_id"
+    t.integer  "product_id"
     t.string   "paypal_express_token"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.integer  "product_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -81,10 +80,10 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
 
   create_table "invitations", :force => true do |t|
     t.string   "email"
+    t.integer  "sender_id"
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "sender_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -100,9 +99,6 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
   create_table "orders", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "user_id"
-    t.string   "card_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
     t.string   "paykey"
     t.text     "details"
     t.string   "status"
@@ -115,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
     t.integer  "product_id"
     t.integer  "line_item_id"
     t.integer  "receiver_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -125,14 +123,14 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
     t.string   "price"
     t.integer  "product_count",                                   :default => 0
     t.string   "status"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
     t.decimal  "qty",              :precision => 10, :scale => 0, :default => 0
     t.string   "color"
     t.decimal  "qty_sold",         :precision => 10, :scale => 0, :default => 0
-    t.string   "product_id"
     t.string   "non_profit_email"
     t.string   "fair_trade"
+    t.integer  "cause_id"
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -177,13 +175,12 @@ ActiveRecord::Schema.define(:version => 20130813052414) do
     t.string   "country"
     t.string   "state"
     t.string   "phone"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "paypal_id"
     t.date     "date_of_birth"
     t.text     "other_info"
     t.string   "active"
-    t.integer  "invitation_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

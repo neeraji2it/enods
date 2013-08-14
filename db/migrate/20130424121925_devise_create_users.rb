@@ -56,6 +56,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :country
       t.string :state
       t.string :phone
+      t.string :paypal_id
+      t.date :date_of_birth
+      t.text :other_info
+      t.string :active
       t.timestamps
     end
 

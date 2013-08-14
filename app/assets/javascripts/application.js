@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require countdown_timer
 //= require jquery.notifyBar
+//= require dhtmlxcalendar
 //= require script
 //= require_tree .
 
@@ -23,10 +24,15 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
-$(function(){
+var myCalendar;
+function doOnLoad() {
+    myCalendar = new dhtmlXCalendarObject(["calendar"]);
+}
+
+$(function() {
     $('#slider-id').codaSlider({
-        autoSlide:true,
-        autoHeight:false
+        autoSlide: true,
+        autoHeight: false
     });
 });
 
@@ -57,7 +63,7 @@ $(function() {
 //});
 
 //add more fields
-function add_fields(link, association, content){
+function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
     $(link).parent().before(content.replace(regexp, new_id));
@@ -65,18 +71,18 @@ function add_fields(link, association, content){
 
 //ajax loader
 
-jQuery(document).ajaxStart(function(settings){
+jQuery(document).ajaxStart(function(settings) {
     jQuery('#ajax-loader').show();
 });
-jQuery(document).ajaxStop(function(){
+jQuery(document).ajaxStop(function() {
     jQuery('#ajax-loader').hide();
 });
 
 
 //scroll top
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $(window).scroll(function(){
+    $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.scrollup').fadeIn();
         } else {
@@ -84,7 +90,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.scrollup').click(function(){
+    $('.scrollup').click(function() {
         $("html, body").animate({
             scrollTop: 0
         }, 600);
@@ -137,10 +143,10 @@ $(document).ready(function(){
 
 //login popup
 
-function login(){
+function login() {
     $.ajax({
         url: '/users/sign_in',
-        success: function(data){
+        success: function(data) {
             $("#popup_body").html(data);
             $("#overlay").show();
             $("#popup_box").show();
@@ -148,10 +154,10 @@ function login(){
     })
 }
 
-function buyer_users_path(){
+function buyer_users_path() {
     $.ajax({
         url: '/users/buyer',
-        success: function(data){
+        success: function(data) {
             $('#popup_body').html(data);
             $('#overlay').show();
             $('#popup_box').show();
@@ -159,44 +165,44 @@ function buyer_users_path(){
     })
 }
 
-function hide_popup(){
+function hide_popup() {
 
-    if(jQuery('#popup_box')){
+    if (jQuery('#popup_box')) {
         jQuery('#popup_body').html("");
         jQuery('#popup_box').hide();
     }
-    if(jQuery('#overlay')){
+    if (jQuery('#overlay')) {
         jQuery('#overlay').hide();
     }
 }
 
-$(function(){
-    $('.leftSec a img').click(function(e){
+$(function() {
+    $('.leftSec a img').click(function(e) {
         e.preventDefault();
-        $('.midSec img').attr('src',$(this).attr('src'));
+        $('.midSec img').attr('src', $(this).attr('src'));
     });
 });
 
 
-$(function(){
-    $('.pagination a').click(function(){
+$(function() {
+    $('.pagination a').click(function() {
         $.getScript(this.href);
         return false;
     });
 });
 
-function get_username(ht){
+function get_username(ht) {
     $.ajax({
-        url:"/users/username",
+        url: "/users/username",
         data: {
             username: $(ht).val()
         },
         type: "PUT",
-        success: function(data){
-            if(data == "Error"){
+        success: function(data) {
+            if (data == "Error") {
                 alert("Error. Please try again");
-            }else{
-        }
+            } else {
+            }
         }
     });
 }

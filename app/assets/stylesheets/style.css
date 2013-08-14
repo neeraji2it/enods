@@ -1,0 +1,15 @@
+/*
+Theme Name: Lexiity
+Support URI: http://www.themeskingdom.com/support/
+Description: Theme is suitable for personal bloggers, newspapers, online magazinesâ€¦ With great look and very useful features youâ€™ll leave a lasting impression upon your public.
+Author: Themeskingdom
+Author URI: http://www.themeskingdom.com/support/
+Version: 1.1.1
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Theme URI: http://www.themeskingdom.com/
+Tags: two-columns, fixed-width, custom-header, custom-background, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
+*/
+
+@import url("style/reset.css");
+@import url("style/style.css");

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Enods.com</title>
-    <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar") : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
+    <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar",'dhtmlxcalendar','dhtmlxcalendar_dhx_skyblue') : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
     <%= javascript_include_tag 'application', 'charts','jquery.flot','jquery.flot.tooltip','highstock' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
@@ -20,7 +20,7 @@
       <%end%>
     <%end%>
   </head>
-  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
+  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time'); doOnLoad()" : "" %>">
     <header>
       <div class="fright">
         <ul class="list-topicon">
