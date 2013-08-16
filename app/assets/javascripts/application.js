@@ -17,7 +17,6 @@
 //= require dhtmlxcalendar
 //= require highstock
 //= require jquery-ui-1.8.20.custom.min
-//= require /slider/jquery.coda-slider-3.0.min
 //= require charts
 //= require jquery.flot
 //= require jquery.flot.tooltip

@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'default',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2' %>
+    <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
