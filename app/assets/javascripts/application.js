@@ -16,6 +16,7 @@
 //= require jquery.notifyBar
 //= require dhtmlxcalendar
 //= require highstock
+//= require highcharts
 //= require jquery-ui-1.8.20.custom.min
 //= require /slider/jquery.coda-slider-3.0.min
 //= require charts
@@ -90,25 +91,25 @@ jQuery(document).ajaxStop(function() {
 });
 
 
-//scroll top
-$(document).ready(function() {
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 100) {
-            $('.scrollup').fadeIn();
-        } else {
-            $('.scrollup').fadeOut();
-        }
-    });
-
-    $('.scrollup').click(function() {
-        $("html, body").animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
-
-});
+////scroll top
+//$(document).ready(function() {
+//
+//    $(window).scroll(function() {
+//        if ($(this).scrollTop() > 100) {
+//            $('.scrollup').fadeIn();
+//        } else {
+//            $('.scrollup').fadeOut();
+//        }
+//    });
+//
+//    $('.scrollup').click(function() {
+//        $("html, body").animate({
+//            scrollTop: 0
+//        }, 600);
+//        return false;
+//    });
+//
+//});
 
 ////styles for the radio button
 //$(function(){
@@ -217,3 +218,20 @@ function get_username(ht) {
         }
     });
 }
+
+$(document).ready(function() {
+    var mouse_in_side = false;
+
+    $('#popup_body').hover(function() {
+        mouse_in_side = true;
+    }, function() {
+        mouse_in_side = false;
+    });
+
+    $(document).click(function() {
+        if (mouse_in_side == false) {
+            $("#overlay").hide();
+            $("#popup_box").hide();
+        }
+    });
+});

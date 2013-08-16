@@ -44,30 +44,19 @@
     </div>
     <div class="row">
       <div class="img-graph-1">
+        <ul style='width: 140px;'>
+          <li>
+            <%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :id => '1d' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :id => '5d' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "3m", week_profiles_path(:week => '3m'), :remote => true, :id => '3m' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5m", week_profiles_path(:week => '5m'), :remote => true, :id => '5m' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "1y", week_profiles_path(:week => '1y'), :remote => true, :id => '1y' %>
+          </li>
+        </ul>
         <div id="container" style="height: 400px; min-width: 100px"></div>
-        <script>
-          $(function() {
-            $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(data) {
-              $('#container').highcharts('StockChart', {
-                rangeSelector: {
-                  selected: 2
-                },
-                series: [{
-                    name: 'Sales',
-                    data: [<%= @sale %>, <%= @admin_payment %>,<%= @non_profit_payment %>,<%= @net_payment %>],
-                    marker: {
-                      enabled: true,
-                      radius: 3
-                    },
-                    shadow: true,
-                    tooltip: {
-                      valueDecimals: 2
-                    }
-                  }]
-              });
-            });
-          });
-        </script>
+        <div id='total_graph'>
+          <%= render :partial => 'week' %>
+        </div>
       </div>
     </div>
   </div>
@@ -79,11 +68,11 @@
       <div class="row"></div>
       <div class="row">
         <ul class="list-date">
-          <li>Past 7 days</li>
-          <li>Past 30 days</li>
-          <li>This Week</li>
-          <li>This Month</li>
-          <li>All Time</li>
+          <li><%= link_to "Past 7 days", week_profiles_path(:week => '7_days'), :remote => true, :id => '7_days', :style => 'font-weight: bold;' %></li>
+          <li><%= link_to "Past 30 days", week_profiles_path(:week => '30_days'), :remote => true, :id => '30_days' %></li>
+          <li><%= link_to "This Week", week_profiles_path(:week => 'this_week'), :remote => true, :id => 'this_week' %></li>
+          <li><%= link_to "This Month", week_profiles_path(:week => 'this_month'), :remote => true, :id => 'this_month' %></li>
+          <li><%= link_to "All Time", week_profiles_path(:week => 'all'), :remote => true, :id => 'all' %></li>
         </ul>
       </div>
     </div>

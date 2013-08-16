@@ -1,0 +1,112 @@
+$('#total_graph').html('<%= escape_javascript render :partial => 'week'%>');
+<% if params[:week] == '30_days' %>
+  $('#30_days').css('font-weight', 'bold');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == 'this_week' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', 'bold');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == 'this_month' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', 'bold');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == 'all' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', 'bold');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == '1d' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', 'bold');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == '5d' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', 'bold');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == '3m' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', 'bold');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == '5m' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', 'bold');
+  $('#1y').css('font-weight', '');
+<% elsif params[:week] == '1y' %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', '');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', 'bold');
+<% else %>
+  $('#30_days').css('font-weight', '');
+  $('#this_week').css('font-weight', '');
+  $('#this_month').css('font-weight', '');
+  $('#all').css('font-weight', '');
+  $('#7_days').css('font-weight', 'bold');
+  $('#1d').css('font-weight', '');
+  $('#5d').css('font-weight', '');
+  $('#3m').css('font-weight', '');
+  $('#5m').css('font-weight', '');
+  $('#1y').css('font-weight', '');
+<% end %>

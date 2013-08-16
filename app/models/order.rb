@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :line_item
   belongs_to :cart
-
+  
   PAYMENT = {
     :paid => "Completed",
     :pending => "INCOMPLETE"

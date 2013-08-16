@@ -47,4 +47,10 @@ class ProfilesController < ApplicationController
     @top_sellings = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:top_selling], :per_page => 5
     @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4
   end
+  
+  def week
+    respond_to do |format|
+      format.js
+    end
+  end
 end

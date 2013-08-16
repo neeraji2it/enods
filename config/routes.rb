@@ -61,6 +61,9 @@ Enods::Application.routes.draw do
       put :profile_update
       put :change_password
     end
+    collection do
+      get :week
+    end
   end
   
   match '/auth/:provider/callback' => 'omniauths#create'
@@ -72,7 +75,7 @@ Enods::Application.routes.draw do
   get '/dashboard' => 'profiles#dashboard', :as => :dashboard
   get '/admin_dashboard' => 'admins#admin_dashboard', :as => :admin_dashboard
 
-  root :to => 'home#launch'
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
