@@ -2,8 +2,24 @@
 <div class="content-profile">
   <span style='color: red;'>* All fields are Required.</span>
   <%= form_for @cause do |f| %>
-    Title: <%= f.text_field :title %><br />
-    Cause Image: <%= f.file_field :image %><br />
-    <%= f.submit "Cause", :class => 'button' %>
+    <ul>
+      <% @cause.errors.full_messages.each do |msg| %>
+        <li style="color: red;"><%= msg %></li>
+        <% end %>
+    </ul>
+    <table>
+      <tr>
+        <td>Title:</td>
+        <td><%= f.text_field :title %></td>
+      </tr>
+      <tr>
+        <td>Cause Image: </td>
+        <td><%= f.file_field :image %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "Cause", :class => 'button' %></td>
+      </tr>
+    </table>
   <% end %>
 </div>

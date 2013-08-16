@@ -14,6 +14,7 @@ class CausesController < ApplicationController
       flash[:notice] = "Successfully created the causes"
       redirect_to causes_path
     else
+      flash[:error] = "Failed to create the Cause."
       render :action => 'new'
     end
   end
