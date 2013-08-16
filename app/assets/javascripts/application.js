@@ -15,11 +15,11 @@
 //= require countdown_timer
 //= require jquery.notifyBar
 //= require dhtmlxcalendar
-//= require highstock
 //= require jquery-ui-1.8.20.custom.min
 //= require charts
 //= require jquery.flot
 //= require jquery.flot.tooltip
+//= require highstock
 //= require script
 //= require_tree .
 
