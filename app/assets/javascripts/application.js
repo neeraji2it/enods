@@ -20,7 +20,6 @@
 //= require charts
 //= require jquery.flot
 //= require jquery.flot.tooltip
-//= require highcharts
 //= require script
 //= require_tree .
 
@@ -41,7 +40,7 @@ function setSens(id, k) {
 }
 
 $(function() {
-    $('#slider-id').codaSlider({
+    $('#lll-id').codaSlider({
         autoSlide: true,
         autoHeight: false
     });
