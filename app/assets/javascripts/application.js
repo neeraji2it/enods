@@ -16,7 +16,6 @@
 //= require jquery.notifyBar
 //= require dhtmlxcalendar
 //= require highstock
-//= require highcharts
 //= require jquery-ui-1.8.20.custom.min
 //= require /slider/jquery.coda-slider-3.0.min
 //= require charts
