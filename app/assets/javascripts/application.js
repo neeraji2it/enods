@@ -21,6 +21,7 @@
 //= require charts
 //= require jquery.flot
 //= require jquery.flot.tooltip
+//= require highcharts
 //= require script
 //= require_tree .
 
