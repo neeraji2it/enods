@@ -29,6 +29,13 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
+function graph_id(th) {
+    $("ul#xkgd li a").each(function() {
+        $(this).css('font-weight', 'normal');
+    });
+    $(th).css('font-weight', 'bold');
+}
+
 var myCalendar;
 function doOnLoad() {
     myCalendar = new dhtmlXCalendarObject(["calendar"]);

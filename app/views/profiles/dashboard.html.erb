@@ -44,13 +44,13 @@
     </div>
     <div class="row">
       <div class="img-graph-1">
-        <ul style='width: 140px;'>
+        <ul style='width: 180px;' id="xkgd">
           <li>
-            <%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :id => '1d' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :id => '5d' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "3m", week_profiles_path(:week => '3m'), :remote => true, :id => '3m' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "5m", week_profiles_path(:week => '5m'), :remote => true, :id => '5m' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "1y", week_profiles_path(:week => '1y'), :remote => true, :id => '1y' %>
+            <b>Zoom:</b>&nbsp;&nbsp;<%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "3m", week_profiles_path(:week => '3m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5m", week_profiles_path(:week => '5m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "1y", week_profiles_path(:week => '1y'), :remote => true, :onclick => 'graph_id(this)' %>
           </li>
         </ul>
         <div id="container" style="height: 400px; min-width: 100px"></div>
@@ -67,12 +67,12 @@
     <div class="tablebox topSellingToday">
       <div class="row"></div>
       <div class="row">
-        <ul class="list-date">
-          <li><%= link_to "Past 7 days", week_profiles_path(:week => '7_days'), :remote => true, :id => '7_days', :style => 'font-weight: bold;' %></li>
-          <li><%= link_to "Past 30 days", week_profiles_path(:week => '30_days'), :remote => true, :id => '30_days' %></li>
-          <li><%= link_to "This Week", week_profiles_path(:week => 'this_week'), :remote => true, :id => 'this_week' %></li>
-          <li><%= link_to "This Month", week_profiles_path(:week => 'this_month'), :remote => true, :id => 'this_month' %></li>
-          <li><%= link_to "All Time", week_profiles_path(:week => 'all'), :remote => true, :id => 'all' %></li>
+        <ul class="list-date" id="xkgd">
+          <li><%= link_to "Past 7 days", week_profiles_path(:week => '7_days'), :remote => true, :onclick => 'graph_id(this)',:style => "font-weight:bold;" %></li>
+          <li><%= link_to "Past 30 days", week_profiles_path(:week => '30_days'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "This Week", week_profiles_path(:week => 'this_week'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "This Month", week_profiles_path(:week => 'this_month'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "All Time", week_profiles_path(:week => 'all'), :remote => true, :onclick => 'graph_id(this)' %></li>
         </ul>
       </div>
     </div>
@@ -81,8 +81,8 @@
   <div class="tablebox topSellingToday">
     <div class="row"></div>
     <div class="row">
-      <h3 class="heading-week"><%= number_to_currency((1.weeks.ago.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i}}.first) %></h3>
-      Avg: <%= number_to_currency((1.weeks.ago.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i/7}}.first) %> /order
+      <h3 class="heading-week"><%= number_to_currency((Time.now.beginning_of_week.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i}}.first) %></h3>
+      Avg: <%= number_to_currency((Time.now.beginning_of_week.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i/7}}.first) %> /order
     </div>
   </div>
 </div>
