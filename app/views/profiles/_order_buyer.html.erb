@@ -16,7 +16,7 @@
         <div class="column"><%= order.created_at.strftime("%d/%m/%Y")%></div>
         <div class="column"><%= order.line_item.product.title %></div>
         <div class="column"><%= order.line_item.quantity %></div>
-        <div class="column">$<%= order.net_payment %></div>
+        <div class="column"><%= number_to_currency(order.net_payment) %></div>
         <div class="column"><%= order.payment_type.present? ? order.payment_type : "-"%></div>
         <div class="column"><%= order.status %></div>
       </div>

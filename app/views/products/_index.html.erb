@@ -16,7 +16,7 @@
       <div class="column"><%= product.title %></div>
       <div class="column"><%= product.color %></div>
       <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
-      <div class="column">$<%= product.price %></div>
+      <div class="column"><%= number_to_currency(product.price) %></div>
       <div class="column"><%= product.qty_sold %></div>
       <div class="column"><%= product.qty %></div>
       <div class="column last">

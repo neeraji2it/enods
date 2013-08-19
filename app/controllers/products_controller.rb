@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Successfully create the project."
       @email_alerts = EmailAlert.all
       for email in @email_alerts
-        UserMailer.alert(email,@product).deliver
+        UserMailer.project_alert(email,@product).deliver if email.present?
       end
       redirect_to products_path
     else

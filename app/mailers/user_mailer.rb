@@ -5,4 +5,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => ['Info@enods.com'], :subject => "Subscribed")
   end
+  
+  def project_alert(email,product)
+    @email = email
+    @product = product
+    mail(:to => email.email, :subject => product.title)
+  end
 end
