@@ -1,27 +1,28 @@
 /***********************************************************************
-*
-*  Coda Slider 3
-*  Kevin Batdorf
-*
-*  http://kevinbatdorf.github.com/codaslider
-*
-*  GPL license & MIT license
-*
-************************************************************************/
+ *
+ *  Coda Slider 3
+ *  Kevin Batdorf
+ *
+ *  http://kevinbatdorf.github.com/codaslider
+ *
+ *  GPL license & MIT license
+ *
+ ************************************************************************/
 
 // Utility for creating objects in older browsers
-if ( typeof Object.create !== 'function' ) {
-    Object.create = function( obj ) {
-        function F() {}
+if (typeof Object.create !== 'function') {
+    Object.create = function(obj) {
+        function F() {
+        }
         F.prototype = obj;
         return new F();
     };
 }
 
-(function( $, window, document, undefined ) {
+(function($, window, document, undefined) {
     var Slider = {
         //initialize
-        init: function( options, elem ) {
+        init: function(options, elem) {
             var self = this;
 
             //remove no JavaScript warning
@@ -32,17 +33,17 @@ if ( typeof Object.create !== 'function' ) {
 
             // Cache the element
             self.elem = elem;
-            self.$elem = $( elem );
+            self.$elem = $(elem);
 
             // Cache the ID and class. This allows for multiple instances with any ID name supplied
-            self.sliderId = '#' + ( self.$elem ).attr('id');
-			
+            self.sliderId = '#' + (self.$elem).attr('id');
+
             // Set the options
-            self.options = $.extend( {}, $.fn.codaSlider.options, options );
-			
+            self.options = $.extend({}, $.fn.codaSlider.options, options);
+
             // Cache the ID and class. This allows for multiple instances with any ID name supplied
-            self.sliderId = '#' + ( self.$elem ).attr('id');
-			
+            self.sliderId = '#' + (self.$elem).attr('id');
+
             // Build the tabs and navigation
             self.build();
 
@@ -64,16 +65,16 @@ if ( typeof Object.create !== 'function' ) {
             var self = this;
 
             // Wrap the entire slider (backwards compatible)
-            if ( $(self.sliderId).parent().attr('class') != 'coda-slider-wrapper' ) {
-                $(self.sliderId).wrap('<div id="' + ( self.$elem ).attr('id') + '-wrapper" class="coda-slider-wrapper"></div>');
+            if ($(self.sliderId).parent().attr('class') != 'coda-slider-wrapper') {
+                $(self.sliderId).wrap('<div id="' + (self.$elem).attr('id') + '-wrapper" class="coda-slider-wrapper"></div>');
             }
-			
+
             // Add the .panel class to the individual panels (backwards compatable)
             $(self.sliderId + " > div").addClass('panel');
             self.panelClass = self.sliderId + ' .panel';
             // Wrap all panels in a div, and wrap inner content in a div (backwards compatible)
             $(self.panelClass).wrapAll('<div class="panel-container"></div>');
-            if ( $(self.panelClass).children().attr('class') != 'panel-wrapper' ) {
+            if ($(self.panelClass).children().attr('class') != 'panel-wrapper') {
                 $(self.panelClass).wrapInner('<div class="panel-wrapper"></div>');
             }
             self.panelContainer = ($(self.panelClass).parent());
@@ -124,7 +125,7 @@ if ( typeof Object.create !== 'function' ) {
             self.panelCount = $(self.panelClass).length;
             self.panelWidth = $(self.panelClass).outerWidth();
             self.totalWidth = self.panelCount * self.panelWidth;
-			
+
             // Variable for the % sign if needed (responsive), otherwise px
             self.pSign = 'px';
 
@@ -132,7 +133,7 @@ if ( typeof Object.create !== 'function' ) {
 
             // Puts the margin at the starting point with no animation. Made for both continuous and firstPanelToLoad features.
             // ~~(self.options.continuous) will equal 1 if true, otherwise 0
-            $(self.panelContainer).css('margin-left', ( -self.slideWidth * ~~(self.options.continuous)) + (-self.slideWidth * self.currentTab) );
+            $(self.panelContainer).css('margin-left', (-self.slideWidth * ~~(self.options.continuous)) + (-self.slideWidth * self.currentTab));
 
             // Configure the current tab
             self.setCurrent(self.currentTab);
@@ -141,8 +142,7 @@ if ( typeof Object.create !== 'function' ) {
             $(self.sliderId + ' .panel-container').css('width', self.totalWidth);
 
         },
-
-        addNavigation: function(){
+        addNavigation: function() {
             var self = this;
             // The id is assigned here to allow for the responsive setting
             var dynamicTabs = '<div class="coda-nav"><ul></ul></div>';
@@ -151,18 +151,17 @@ if ( typeof Object.create !== 'function' ) {
             if (self.options.dynamicTabsPosition === 'bottom') {
                 $(self.sliderId).after(dynamicTabs);
             }
-            else{
+            else {
                 $(self.sliderId).before(dynamicTabs);
             }
 
             // Add labels
             $.each(
-                (self.$elem).find(self.options.panelTitleSelector), function(n) {
-                    $($(self.sliderId).parent()).find('.coda-nav ul').append('<li class="tab' + (n+1) + '"><a href="#' + (n+1) + '" title="' + $(this).text() + '">' + $(this).text() + '</a></li>');
-                }
-                );
+                    (self.$elem).find(self.options.panelTitleSelector), function(n) {
+                $($(self.sliderId).parent()).find('.coda-nav ul').append('<li class="tab' + (n + 1) + '"><a href="#' + (n + 1) + '" title="' + $(this).text() + '">' + $(this).text() + '</a></li>');
+            }
+            );
         },
-
         alignNavigation: function() {
             var self = this;
             self.totalNavWidth = 0;
@@ -175,19 +174,19 @@ if ( typeof Object.create !== 'function' ) {
             // Set the alignment
             if (self.options.dynamicTabsAlign != 'center') {
                 $($(self.sliderId).parent()).find('.coda-nav ul').css(
-                    'margin-' + self.options.dynamicTabsAlign,
-                    // Finds the width of the arrows and the margin
-                    $($(self.sliderId).parent()).find(
+                        'margin-' + self.options.dynamicTabsAlign,
+                        // Finds the width of the arrows and the margin
+                        $($(self.sliderId).parent()).find(
                         '.coda-nav-' +
                         self.options.dynamicTabsAlign +
                         arrow
-                        ).outerWidth(true) + parseInt($(self.sliderId).css('margin-'+ self.options.dynamicTabsAlign), 10)
-                    );
+                        ).outerWidth(true) + parseInt($(self.sliderId).css('margin-' + self.options.dynamicTabsAlign), 10)
+                        );
                 $($(self.sliderId).parent()).find('.coda-nav ul').css('float', self.options.dynamicTabsAlign); // couldn't combine this .css() with the previous??
             }
             else {
                 // Get total width of the navigation tabs and center it
-                $($(self.sliderId).parent()).find('.coda-nav li a').each(function(){
+                $($(self.sliderId).parent()).find('.coda-nav li a').each(function() {
                     self.totalNavWidth += $(this).outerWidth(true);
                 });
                 if ($.browser.msie) {
@@ -196,24 +195,22 @@ if ( typeof Object.create !== 'function' ) {
                 $($(self.sliderId).parent()).find('.coda-nav ul').css('width', self.totalNavWidth + 1);
             }
         },
-
-        addArrows: function(){
+        addArrows: function() {
             var self = this;
             $(self.sliderId).parent().addClass("arrows");
-            if(self.options.dynamicArrowsGraphical){
+            if (self.options.dynamicArrowsGraphical) {
                 $(self.sliderId).before('<div class="coda-nav-left-arrow" data-dir="prev" title="Slide left"><a href="#"></a></div>');
                 $(self.sliderId).after('<div class="coda-nav-right-arrow" data-dir="next" title="Slide right"><a href="#"></a></div>');
             }
-            else{
+            else {
                 $(self.sliderId).before('<div class="coda-nav-left" data-dir="prev" title="Slide left"><a href="#">' + self.options.dynamicArrowLeftText + '</a></div>');
                 $(self.sliderId).after('<div class="coda-nav-right" data-dir="next" title="Slide right"><a href="#">' + self.options.dynamicArrowRightText + '</a></div>');
             }
         },
-
-        events: function(){
+        events: function() {
             var self = this;
             // CLick arrows
-            $($(self.sliderId).parent()).find('[class^=coda-nav-]').on('click', function(e){
+            $($(self.sliderId).parent()).find('[class^=coda-nav-]').on('click', function(e) {
                 // These prevent clicking when in continuous mode, which would break it otherwise.
                 if (!self.clickable && self.options.continuous) {
                     return false;
@@ -225,18 +222,18 @@ if ( typeof Object.create !== 'function' ) {
                 return false;
             });
             // Click tabs
-            $($(self.sliderId).parent()).find('[class^=coda-nav] li').on('click', function(e){
+            $($(self.sliderId).parent()).find('[class^=coda-nav] li').on('click', function(e) {
                 if (!self.clickable && self.options.continuous) {
                     return false;
                 }
-                self.setCurrent(parseInt( $(this).attr('class').split('tab')[1], 10) - 1 );
+                self.setCurrent(parseInt($(this).attr('class').split('tab')[1], 10) - 1);
                 if (self.options.continuous) {
                     self.clickable = false;
                 }
                 return false;
             });
             // Click cross links
-            $('[data-ref*=' + (self.sliderId).split('#')[1] + ']').on('click', function(e){
+            $('[data-ref*=' + (self.sliderId).split('#')[1] + ']').on('click', function(e) {
                 if (!self.clickable && self.options.continuous) {
                     return false;
                 }
@@ -254,7 +251,7 @@ if ( typeof Object.create !== 'function' ) {
                         return false;
                     }
                 }
-                self.setCurrent( parseInt( $(this).attr('href').split('#')[1] -1, 10 ) );
+                self.setCurrent(parseInt($(this).attr('href').split('#')[1] - 1, 10));
                 if (self.options.continuous) {
                     self.clickable = false;
                 }
@@ -264,7 +261,7 @@ if ( typeof Object.create !== 'function' ) {
                 return false;
             });
             // Click to stop autoslider
-            $($(self.sliderId).parent()).find('*').on('click', function(e){
+            $($(self.sliderId).parent()).find('*').on('click', function(e) {
                 // AutoSlide controls.
                 if (self.options.autoSlideControls && autoSlideStopWhenClicked) {
                     $('body').find('[data-ref*=' + (self.sliderId).split('#')[1] + '][name=stop]').html(self.options.autoSlideStartText);
@@ -292,19 +289,18 @@ if ( typeof Object.create !== 'function' ) {
                 }
             });
         },
-
-        setCurrent: function( direction ){
+        setCurrent: function(direction) {
             var self = this;
             if (self.clickable) {
-			
+
                 if (typeof direction == 'number') {
                     self.currentTab = direction;
                 }
                 else {
                     // "left" = -1; "right" = 1;
-                    self.currentTab += ( ~~( direction === 'right' ) || -1 );
+                    self.currentTab += (~~(direction === 'right') || -1);
                     // If not continuous, slide back at the last or first panel
-                    if (!self.options.continuous){
+                    if (!self.options.continuous) {
                         self.currentTab = (self.currentTab < 0) ? this.panelCount - 1 : (self.currentTab % this.panelCount);
                     }
                 }
@@ -312,7 +308,7 @@ if ( typeof Object.create !== 'function' ) {
                 // It also adjusts the count for the "currrent" class that's applied
                 if (self.options.continuous) {
                     self.panelHeightCount = self.currentTab + 1;
-                    if (self.currentTab === self.panelCount - 2){
+                    if (self.currentTab === self.panelCount - 2) {
                         self.setTab = 0;
                     }
                     else if (self.currentTab === -1) {
@@ -322,14 +318,14 @@ if ( typeof Object.create !== 'function' ) {
                         self.setTab = self.currentTab;
                     }
                 }
-                else{
+                else {
                     self.panelHeightCount = self.currentTab;
                     self.setTab = self.currentTab;
                 }
                 // Add and remove current class.
                 $($(self.sliderId).parent()).find('.tab' + (self.setTab + 1) + ' a:first')
-                .addClass('current')
-                .parent().siblings().children().removeClass('current');
+                        .addClass('current')
+                        .parent().siblings().children().removeClass('current');
 
                 // Update Hash Tags
                 if (self.options.hashLinking) {
@@ -346,12 +342,11 @@ if ( typeof Object.create !== 'function' ) {
                         window.location.hash = self.currentTab + 1;
                     }
                 }
-				
+
                 this.transition();
             }
         },
-		
-        transition: function(){
+        transition: function() {
             var self = this;
             // Adjust the height
             if (self.options.autoHeight) {
@@ -363,14 +358,14 @@ if ( typeof Object.create !== 'function' ) {
                     queue: false
                 });
             }
-			
+
             // Adjust the margin for continuous sliding
             if (self.options.continuous) {
-                self.marginLeft = -(self.currentTab * self.slideWidth ) - self.slideWidth;
+                self.marginLeft = -(self.currentTab * self.slideWidth) - self.slideWidth;
             }
             // Otherwise adjust as normal
             else {
-                self.marginLeft = -(self.currentTab * self.slideWidth );
+                self.marginLeft = -(self.currentTab * self.slideWidth);
             }
             // Animate the slider
             (self.panelContainer).animate({
@@ -382,8 +377,7 @@ if ( typeof Object.create !== 'function' ) {
                 complete: self.continuousSlide(self.options.slideEaseDuration + 50)
             });
         },
-
-        autoSlide: function(){
+        autoSlide: function() {
             var self = this;
             // Can't set the autoslide slower than the easing ;-)
             if (self.options.autoSlideInterval < self.options.slideEaseDuration) {
@@ -394,46 +388,45 @@ if ( typeof Object.create !== 'function' ) {
             }
             self.autoslideTimeout = setTimeout(function() {
                 // Slide left or right
-                self.setCurrent( self.options.autoSliderDirection );
+                self.setCurrent(self.options.autoSliderDirection);
                 self.autoSlide();
 
             }, self.options.autoSlideInterval);
         },
-
-        continuousSlide: function (delay){
+        continuousSlide: function(delay) {
             var self = this;
 
             if (self.options.continuous) {
                 self.continuousTimeout = setTimeout(function() {
 
                     // If on the last panel (the clone of panel 1), set the margin to the original.
-                    if (self.currentTab === self.panelCount - 2){
+                    if (self.currentTab === self.panelCount - 2) {
                         $(self.panelContainer).css('margin-left', -self.slideWidth + self.pSign);
                         self.currentTab = 0;
                     }
                     // If on the first panel the clone of the last panel), set the margin to the original.
-                    else if (self.currentTab === -1){
-                        $(self.panelContainer).css('margin-left', -( ((self.slideWidth * self.panelCount) - (self.slideWidth * 2))) + self.pSign );
+                    else if (self.currentTab === -1) {
+                        $(self.panelContainer).css('margin-left', -(((self.slideWidth * self.panelCount) - (self.slideWidth * 2))) + self.pSign);
                         self.currentTab = (self.panelCount - 3);
                     }
                     self.clickable = true;
                 }, delay);
             }
-            else{
+            else {
                 self.clickable = true;
             }
         }
     };
-	
-    $.fn.codaSlider = function( options ) {
+
+    $.fn.codaSlider = function(options) {
         return this.each(function() {
-			
-            var slider = Object.create( Slider );
-            slider.init( options, this );
+
+            var slider = Object.create(Slider);
+            slider.init(options, this);
 
         });
     };
-	
+
     $.fn.codaSlider.options = {
         autoHeight: true,
         autoHeightEaseDuration: 1500,
@@ -462,4 +455,4 @@ if ( typeof Object.create !== 'function' ) {
         slideEaseFunction: "easeInOutExpo"
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);
