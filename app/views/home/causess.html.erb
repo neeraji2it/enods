@@ -1,0 +1,46 @@
+<div class="content">
+  <div class="causesBox">
+    <div class="img-lewa"><img alt="" title="" src="/assets/img-lewa.jpg" /></div>
+    <h3>ABOUT</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum justo vitae est tincidunt placerat. Phasellus pretium quam non eros aliquet posuere. Mauris sit amet mi at mauris porta suscipit at vel sapien. Mauris molestie dictum tincidunt. Sed ligula elit, mollis quis varius et, semper eu felis. Pellentesque quis scelerisque eros. Sed id nunc arcu. Donec lorem orci, tempus ac fringilla ac, fermentum ac ante. Donec dolor elit, rutrum ut faucibus nec, iaculis eget massa. Suspendisse potenti. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed massa metus.<br>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum justo vitae est tincidunt placerat. Phasellus pretium quam non eros aliquet posuere. Mauris sit amet mi at mauris porta suscipit at vel sapien. Mauris molestie dictum tincidunt. Sed ligula elit, mollis quis varius et, semper eu felis. Pellentesque quis scelerisque eros. Sed id nunc arcu. Donec lorem orci, tempus ac fringilla ac, fermentum ac ante. Donec dolor elit, rutrum ut faucibus nec, iaculis eget massa. Suspendisse potenti. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed massa metus.  </p>
+    <div class="clearFix"></div>
+  </div>
+  <div class="commonrow">
+    <div class="benefitingBox">
+      <span>Products Benefiting </span><br>
+      Lewa Wildlife Conservancy 
+    </div>
+    <div class="donationsBox">
+      44 <span>articles online</span><br> Also collecting Donations?
+      <!--<a class="btn-saleNow" title="Sale Now!" href="#">Sale Now!</a>-->
+    </div>
+  </div>
+  <div class="commonrow">
+    <h1>
+      <span>Featured Products</span>
+    </h1>
+    <div class="list_carousel">
+      <ul id="caroulproduct">
+        <% for product in @products  %>
+          <li>
+            <%= image_tag(product.images.first.image.url(:original), :width => "226", :height => "287") %>
+            <div>
+              <h4><%= product.title %></h4>
+              <p>Seller: <%= link_to product.user.username, "" %></p>
+              <span>$<%= product.price %>.00</span>
+              <div class="offer">22%</div>
+            </div>
+            <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product), :style => 'text-decoration: none;' %>
+            <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+      <a id="prev2" class="prev" href="#">&lt;</a>
+      <a id="next2" class="next" href="#">&gt;</a>
+      <div id="pager2" class="pager"></div>
+    </div>	
+  </div>
+  <div class="clearFix"></div>
+</div>

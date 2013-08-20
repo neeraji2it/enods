@@ -35,15 +35,15 @@ class ProfilesController < ApplicationController
   end
 
   def order_history
-    @order_buyers = Order.where("user_id = #{current_user.id}").paginate :page => params[:order_buyer], :per_page => 10 if current_user.role == 'buyer'
+    @order_buyers = Order.where("user_id = #{current_user.id} and paykey IS NOT NULL").paginate :page => params[:order_buyer], :per_page => 10 if current_user.role == 'buyer'
     @order_sellers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").paginate :page => params[:order_seller], :per_page => 10 if current_user.role == 'seller'
   end
 
   def dashboard
-    @sale = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.line_item.product.price.to_i}
-    @net_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.net_payment.to_i}
-    @admin_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.admin_payment.to_i}
-    @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%'").sum {|item| item.non_profit_payment.to_i}
+    @sale = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.line_item.product.price.to_i}
+    @net_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.net_payment.to_i}
+    @admin_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.admin_payment.to_i}
+    @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.non_profit_payment.to_i}
     @top_sellings = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:top_selling], :per_page => 5
     @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4
   end

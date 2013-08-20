@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_cart(create_if_not_exist=false)
-    cart = Cart.where(["id = ? AND purchased_at IS NULL", session[:cart]]).first
+    cart = Cart.where(["purchased_at IS NULL"]).first
     unless cart
       if create_if_not_exist
         cart = Cart.create

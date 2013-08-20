@@ -1,20 +1,29 @@
-<h1>Change your password</h1>
-<div id="formDiv">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
+<div class="content">
+  <div class="loginColumn forgotBox">
+    <h4>Change password?</h4>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
 
-    <p><%= f.label :password, "New password" %>
-      <%= f.password_field :password %></p>
+      <p><%= f.label :password, "New password" %></p>
+      <p><%= f.password_field :password, :placeholder => "New password" %></p>
 
-    <p><%= f.label :password_confirmation, "Confirm new password" %>
-      <%= f.password_field :password_confirmation %></p>
-
-    <p><%#= f.submit "Change my password" %>
-    <button type="submit">Change</button>
-    </p>
-  <% end %>
-    <%= render :partial => "/devise/shared/signin" %>
-
-<%#= render :partial => "devise/shared/links" %>
+      <p><%= f.label :password_confirmation, "Confirm new password" %></p>
+      <p><%= f.password_field :password_confirmation, :placeholder => "Confirm new password" %></p>
+      <button type="submit">Change</button>
+    <% end %>
+  </div>
 </div>
+<style>
+  h2{
+    display: none;
+  }
+  #slider{
+    min-height: 350px;
+  }
+  #error_explanation{
+    color: red;
+    position: relative;
+    left: -40px;
+  }
+</style>

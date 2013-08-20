@@ -75,6 +75,16 @@ $(function() {
     });
 });
 
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#collexp > li > a.expanded + ul').slideToggle('medium');
+        $('#collexp > li > a').click(function() {
+            $('#collexp > li > a.expanded').not(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+            $(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+        });
+    }, 250);
+});
+
 //$(function(){
 //    $("input, textarea, select,file").uniform();
 //});

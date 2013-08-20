@@ -25,6 +25,14 @@ class HomeController < ApplicationController
       render :action => 'launch', :layout => false
     end
   end
+  
+  def causess
+    @products = Product.where("status = 'confirmed'").order('product_count DESC')
+  end
+  
+  def all_causes
+    
+  end
 
   def launch
     @email_alert = EmailAlert.new

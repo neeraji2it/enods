@@ -57,9 +57,7 @@
               <h4><%= product.title %></h4>
               <p>Seller: <%= link_to product.user.username, "" %></p>
               <span>$<%= product.price %>.00</span>
-              <div class="thum-productDetail" style="float: right;position: relative;width: 95px;top: -30px;">
-                <%= image_tag("/assets/img-donation.png", :width => '30', :height => '30')%>
-              </div>
+              <div class="offer">22%</div>
             </div>
             <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product), :style => 'text-decoration: none;' %>
             <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>

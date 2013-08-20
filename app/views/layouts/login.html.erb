@@ -3,7 +3,7 @@
   <head>
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'default',"jquery.notifyBar" %>
-    <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min' %>
+    <%= javascript_include_tag 'application','navbar','waypoints.min','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min' %>
     <%= csrf_meta_tag %>
     <% ['notice', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
@@ -27,12 +27,12 @@
           <ul class="menu-top">
             <li><%= link_to "Sell", ""%></li>
             <li><%= link_to "About", " "%></li>
-            <li><%= link_to "Causes", "" %></li>
+            <li><%= link_to "Causes", causess_path %></li>
             <li><%= link_to "Categories", "" %> </li>
             <li><%= link_to "Blog", "" %> </li>
             <li><%= link_to "Contact", "" %> </li>
             <li><%= link_to "Cart", carts_path %> </li>
-            <li><%= link_to_function "Login", "login()" %></li>
+            <li><%= link_to "Login", new_user_session_path() %></li>
           </ul>
         </div>
         <div class="commonrow">
@@ -43,35 +43,36 @@
           <div class="icon-shopping" style="background-position: 120px -72px;"><%= current_cart.line_items.present? ? "#{current_cart.line_items.count} Items in Your Cart":"Your Cart Is Empty"%></div>
           <div id="cart_expire_time" style="position: relative;float: right;top: 15px;width: 213px;color: red;"></div>
         </div>
-        <div id="navigation">
-          <ul class="list-media">
-            <li class="icon-facebook"><%= link_to "facebook", "" %></li>
-            <li class="icon-twitter"><%= link_to "twitter", "" %></li>
-            <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
-            <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
-            <li class="icon-youtube"><%= link_to "you tube", "" %></li>
-          </ul>
-          <nav>
-            <ul>
-              <li><%= link_to "Sign up", new_user_path(:role => 'seller'), :class => 'lin-signup' %></li>
-              <li><%= link_to_function "Sign In", "login()" %></li>
-              <li class="parent"><a title="Categories" href="#">Categories</a>
-                <ul class="submenu">
-                  <% Category.all.each do |category| %>
-                    <li><%= link_to category.name, category_path(:categories => category.id) %></li>
-                  <% end %>
-                </ul>
-              </li>
-              <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
-                <ul class="submenu">
-                  <% Cause.all.each do |cause| %>
-                    <li><%= link_to cause.title, "" %></li>
-                  <% end %>
-                </ul>
-              </li>
-              <li><%= link_to "Sell", "" %></li>
+        <div class="nav-container">
+          <div id="navigation">
+            <ul class="list-media">
+              <li class="icon-facebook"><%= link_to "facebook", "" %></li>
+              <li class="icon-twitter"><%= link_to "twitter", "" %></li>
+              <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
+              <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
+              <li class="icon-youtube"><%= link_to "you tube", "" %></li>
             </ul>
-          </nav>
+            <nav>
+              <ul>
+                <li><%= link_to "Sign up", new_user_path(:role => 'seller'), :class => 'lin-signup' %></li>
+                <li><%= link_to "Sign In", new_user_session_path() %></li>
+                <li class="parent"><a title="Categories" href="#">Categories</a>
+                  <ul class="submenu">
+                    <% Category.all.each do |category| %>
+                      <li><%= link_to category.name, category_path(:categories => category.id) %></li>
+                    <% end %>
+                  </ul>
+                </li>
+                <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
+                  <ul class="submenu">
+                    <li><%= link_to "Animal Causes", all_causes_path(:cause => 'animal_cause') %></li>
+                    <li><%= link_to "Human Causes", all_causes_path(:cause => 'human_cause') %></li>
+                  </ul>
+                </li>
+                <li><%= link_to "Sell", "" %></li>
+              </ul>
+            </nav>
+          </div>
         </div>
         <div id="slider">
           <div id='ajax-loader' style='z-index:1000000;'>
@@ -131,7 +132,7 @@
             <li>
               <h4>Non-Profits</h4>
               <ul>
-                <li><%= link_to_function "Non-Profit Login", "login()" %></li>
+                <li><%= link_to "Non-Profit Login", new_user_session_path() %></li>
                 <li><%= link_to "Non-Profit Sign Up", new_user_path(:role => 'non-profit') %></li>
                 <li><%= link_to "How it Works", "" %></li>
                 <li><%= link_to "Non-Profit FAQs", "" %></li>

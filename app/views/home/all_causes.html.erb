@@ -1,0 +1,5 @@
+<% if params[:cause] == 'animal_cause' %>
+  <%= render :partial => 'animal_cause' %>
+<% elsif params[:cause] == 'human_cause' %>
+  <%= render :partial => 'human_cause' %>
+<% end %>

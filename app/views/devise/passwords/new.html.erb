@@ -1,18 +1,30 @@
-<h1>Forgot your password?</h1>
-<div id="formDiv">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-    <%= devise_error_messages! %>
+<div class="content">
+  <div class="loginColumn forgotBox">
+    <h4>Forgot your password?</h4>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <%= devise_error_messages! %>
 
-    <p><%= f.label :email %>
-      <%= f.email_field :email %></p>
+      <ul class="login-yourAccount">
+        <li>
+          <p>Email:</p>
+          <p><%= f.email_field :email, :placeholder => "E-mail" %></p>
+        </li>
+      </ul>
 
-    <p><%#= f.submit "Send me reset password instructions" %>
-      <button type="submit">Submit</button>
-    </p>
-  <% end %>
-
-  <%= render :partial => "/devise/shared/signin" %>
-
-<%#= render :partial => "devise/shared/links" %>
-
+      <input class="fright" type="submit" title="Continue" value="Continue" />
+    <% end %>
+  </div>
 </div>
+<style>
+  h2{
+    display: none;
+  }
+  #slider{
+    min-height: 300px;
+  }
+  #error_explanation{
+    color: red;
+    position: relative;
+    left: -40px;
+  }
+</style>
