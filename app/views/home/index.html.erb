@@ -1,9 +1,9 @@
 <div class="sliderLeftColumn">
   <div class="coda-slider" id="lll-id">
-    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_1.jpg" /></div>
-    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_2.jpg" /></div>
-    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_3.jpg" /></div>
-    <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="/assets/slider_images/banner_4.jpg" /></div>
+    <% @back_images = ["/assets/slider_images/banner_1.jpg","/assets/slider_images/banner_2.jpg","/assets/slider_images/banner_3.jpg","/assets/slider_images/banner_4.jpg"]; %>
+    <% for image in @back_images %>
+      <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="<%= image %>" /></div>
+    <% end %>
   </div>
 </div>
 <div class="sliderRightColumn">
