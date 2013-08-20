@@ -208,7 +208,7 @@ select option { padding-left:4px; }
 p { margin:0px; padding-bottom:10px; }
 input, textarea, a { outline:none; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 input[type=file] { margin-right:5px; }
-input[type=text], input[type=password], input[type=pass] { line-height:16px; margin-right:5px; }
+input[type=text],input[type=email], input[type=password], input[type=pass] { line-height:16px; margin-right:5px; }
 input[type=checkbox] { height:13px; width:13px; margin-right:5px; position:relative; top:1px; }
 input[type=submit], input[type=button], input[type=reset], a, button { cursor:pointer; }
 input[type=submit], input[type=button], input[type=reset], button { overflow:visible; margin-right:5px; }
@@ -218,7 +218,7 @@ a img, img, input[type=checkbox], input[type=radio], iframe { border:none; }
 ul { margin:0px; padding:12px 0px 12px 40px; }
 ul li { list-style:none; }
 del { opacity:0; filter:"alpha(opacity=0)"; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; }
-input[type=text],input[type=email], input[type=password], textarea, select { color:#666; padding:8px 5px; border-radius:2px; border:solid 1px #d7d7d7; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+input[type=text], input[type=email], input[type=password], textarea, select { color:#666; padding:8px 5px; border-radius:2px; border:solid 1px #d7d7d7; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 select{ padding:5px; }
 input[type=text], input[type=password]{ width:305px; }
 textarea { width:532px; min-height:70px; resize:none; }
@@ -1358,7 +1358,7 @@ ul.list-gender li + li{ padding-right:10px; }
     padding:15px 0px 0px 43px;
 }
 .loginSeller ul > li { padding-top:15px; }
-.loginSeller input[type=text],.loginSeller input[type=email], .loginSeller input[type=password]{	
+.loginColumn input[type=text],.loginColumn input[type=email], .loginColumn input[type=password], .loginSeller input[type=text], .loginSeller input[type=email], .loginSeller input[type=password]{	
     width:210px;
     padding:7px 5px;
     border-radius:6px;
@@ -1425,20 +1425,22 @@ input[type=submit].btn-signup{
 .loginColumn{
     float:left;
     width:470px;
-    font-size:20px;
+    font-size:14px;
 }
 .loginColumn + .loginColumn{ padding-left:50px; }	
 .loginColumn h4{
-    font-size:37px;
-    line-height:37px;
-    font-weight:normal;
-    padding-bottom:50px;
+    color:#252525;
+    font-size:24px;
+    font-weight:bold;
+    line-height:24px;
+    margin-bottom:15px;
+    padding-bottom:15px;
+    border-bottom:solid 1px #CBCACA;
 }
 .loginColumn h5{
-    font-size:24px;
+    font-size:18px;
     line-height:24px;
     font-weight:normal;
-    padding-bottom:20px;
 }
 .loginColumn a{
     color:#0095cc;
@@ -1448,23 +1450,25 @@ input[type=submit].btn-signup{
     color:#0095cc;
     text-decoration:underline;
 }
-.loginColumn input[type=text], .loginColumn input[type=email], .loginColumn input[type=password]{
-    width:454px;
-    padding:10px 5px;	
-}
+.loginColumn input[type=text],.loginColumn input[type=email], .loginColumn input[type=password]{ width:454px; }
 ul.login-uniqueProduct{
     padding:0px;	
-    min-height:194px;
-    line-height:45px;
+    min-height:149px;
+    line-height:22px;
     font-weight:normal;	
 }
 ul.login-uniqueProduct li{
-    padding-left:20px;
-    background:url(/assets/login-leftArrow.png) no-repeat 0px 15px;
+    padding-left:18px;
+    background:url(/assets/login-leftArrow.png) no-repeat 0px 7px;
 }
 ul.login-uniqueProduct li a{ text-decoration:none; }
 .login-register{ float:right; }
 ul.login-yourAccount{ padding:0px 0px 15px 0px; }
-ul.login-yourAccount li{ padding-bottom:20px; }
 ul.login-yourAccount li a{ font-size:14px; }
 .f12{ font-size:12px; }	
+.forgotBox{ 
+    float:none;
+    margin:0px auto;
+}
+.forgotBox h4{ text-align:center; }	
+.forgotBox > p{ text-align:center; }

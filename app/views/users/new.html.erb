@@ -5,11 +5,9 @@
       <span style="float: right;left: -10px;position: relative;"><%= render :partial => "/devise/shared/signin" if params[:role] == 'buyer' %></span>
     </h4>
     <div class="loginSeller">
-      <div id="formDiv">
-        <%= form_for @user do |f| %>
-          <%= render :partial => 'form', :locals => {:f => f} %>
-        <% end %>
-      </div>
+      <%= form_for @user do |f| %>
+        <%= render :partial => 'form', :locals => {:f => f} %>
+      <% end %>
     </div>
   </div>
 </div>
