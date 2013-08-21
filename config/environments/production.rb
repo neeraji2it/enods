@@ -72,7 +72,7 @@ Enods::Application.configure do
 #    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
 #  end
 
-  config.action_mailer.default_url_options = {:host => '54.214.252.107'}
+  config.action_mailer.default_url_options = {:host => 'www.enods.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
