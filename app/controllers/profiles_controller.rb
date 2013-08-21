@@ -43,6 +43,8 @@ class ProfilesController < ApplicationController
     @sale = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.line_item.product.price.to_i}
     @net_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.net_payment.to_i}
     @admin_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.admin_payment.to_i}
+    @this_week_order = Order.where("(created_at BETWEEN '#{Time.now.beginning_of_week.strftime('%Y-%m-%d')}' AND '#{Time.now.strftime('%Y-%m-%d')}') and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.net_payment.to_i}
+    @this_week_order_avg = Order.where("(created_at BETWEEN '#{Time.now.beginning_of_week.strftime('%Y-%m-%d')}' AND '#{Time.now.strftime('%Y-%m-%d')}') and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.net_payment.to_i/7}
     @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.non_profit_payment.to_i}
     @top_sellings = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:top_selling], :per_page => 5
     @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4

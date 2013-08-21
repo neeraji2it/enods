@@ -81,8 +81,8 @@
   <div class="tablebox topSellingToday">
     <div class="row"></div>
     <div class="row">
-      <h3 class="heading-week"><%= number_to_currency((Time.now.beginning_of_week.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i}}.first) %></h3>
-      Avg: <%= number_to_currency((Time.now.beginning_of_week.to_date..Date.today).map{|date| Order.where("receiver_id = #{current_user.id}").sum{|a| a.net_payment.to_i/7}}.first) %> /order
+      <h3 class="heading-week"><%= number_to_currency(@this_week_order) %></h3>
+      Avg: <%= number_to_currency(@this_week_order_avg) %> /order
     </div>
   </div>
 </div>

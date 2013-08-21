@@ -3110,7 +3110,7 @@
             this.legendItem && a.legend.destroyItem(this);
             for (c in this)
                 this[c] =
-                null
+                        null
         }, destroyElements: function() {
             for (var a = "graphic,dataLabel,dataLabelUpper,group,connector,shadowGroup".split(","), b, c = 6; c--; )
                 b = a[c], this[b] && (this[b] = this[b].destroy())
@@ -4274,7 +4274,7 @@
             } else
                 this.currentDataGrouping = null, this.pointRange = m;
             this.hasGroupedData =
-            e
+                    e
         }
     };
     V.destroyGroupedData = function() {
