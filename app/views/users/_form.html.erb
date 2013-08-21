@@ -10,7 +10,7 @@
   </li>
   <li>
     <p><%= f.label :email, "E-mail<span style='color: red;'>*</span>".html_safe %></p>
-    <p><%= f.email_field :email, :placeholder => "E-mail" %></p>
+    <%= f.email_field :email, :placeholder => "E-mail" %>
     <ul class="list-gender">						
       <li><%= f.radio_button :gender, "Male" %>&nbsp;Male</li>
       <li><%= f.radio_button :gender , "Female"%>&nbsp;Female</li>

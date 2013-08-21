@@ -33,10 +33,10 @@
     <h1><span>Featured Causes</span></h1>
     <div class="list_carousel h225">
       <ul id="caroulproduct1">
-        <% for product in @causes  %>
+        <% for cause in @causes  %>
           <li>
-            <%= image_tag(product.image.url(:original), :width => "305", :height => "210") %>
-            <h4><%= product.title %></h4>
+            <%= image_tag(cause.image.url(:original), :width => "305", :height => "210") %>
+            <h4><%= cause.title %></h4>
           </li>
         <% end %>
       </ul>
@@ -88,12 +88,9 @@
     </div>
     <div class="box-newsletter">
       <div class="newsletter-signup">
-        <%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :method => 'POST' do |f| %>
-          <%= f.submit "", :class => 'btn-email' %>
-          <%= f.text_field :email, :class => 'input-yourEmail', :placeholder => 'Enter your email --' %>
-        <% end %>
-        <h4>Sign Up To Our Newsletter</h4>
-        <p>Istant wardrobe updates, new arrivals, <br>fashion news,don'nt miss a bit </p>
+        <div id='email_alert'>
+          <%= render :partial => 'email_alert' %>
+        </div>
       </div>
       <div class="column-share">Find us on:</div>
       <ul class="list-media">

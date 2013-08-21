@@ -342,7 +342,7 @@ ul.breadcrumb li + li{
     width:360px;
     color:#294008;
     margin-right:85px;
-    margin-top: 32px;
+    margin-top: 30px;
     border-radius:2px;
     padding-bottom:10px;
     border:solid 1px #CCC;
@@ -362,7 +362,7 @@ ul.breadcrumb li + li{
     border-top:solid 1px #CCC;
 }
 .box-changepassword .frow div:first-child{
-    width:130px;
+    width:300px;
     text-align:left;
 }	
 .box-changepassword input[type=text]{ 

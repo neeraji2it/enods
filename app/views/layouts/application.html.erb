@@ -34,7 +34,7 @@
     </header>
     <article>
       <div class="topbar">
-        <div class="fright"><a class="icon-setting" title="Settings" href="#"><span>Settings</span></a></div>
+        <div class="fright"><%= current_user.role == 'admin' ? "" : (link_to "Settings", profile_profile_path(current_user), :class => 'icon-setting') %></div>
         <div id="cart_expire_time" style="position: relative;float: right;width: 213px;color: red;"></div>
         <ul class="breadcrumb">
           <li><span><%= params[:controller] %></span></li>

@@ -1233,7 +1233,7 @@ input[type=submit].btn-go:hover{ color:#FFA500; }
     background:url(/assets/divider-newletter.png) no-repeat 0px 2px;
 }
 .newsletter-signup h4{ font-size:16px; }	
-input[type=text].input-yourEmail{
+input[type=text].input-yourEmail,input[type=email].input-yourEmail{
     float:right;
     border:none;
     margin-top:16px;

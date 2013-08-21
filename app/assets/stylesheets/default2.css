@@ -339,6 +339,7 @@ ul.breadcrumb li + li{
     padding-bottom:10px;
     border:solid 1px #CCC;
     background-color:#FFF;
+    margin-top: 30px;
 }	
 .box-changepassword input[type=submit].fright{ margin:-4px 15px 0px 0px; }
 .box-changepassword h2{
@@ -354,7 +355,7 @@ ul.breadcrumb li + li{
     border-top:solid 1px #CCC;
 }
 .box-changepassword .frow div:first-child{
-    width:130px;
+    width:300px;
     text-align:left;
 }	
 .box-changepassword input[type=text]{ 

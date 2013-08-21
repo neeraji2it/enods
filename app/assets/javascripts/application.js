@@ -20,6 +20,8 @@
 //= require jquery.flot
 //= require jquery.flot.tooltip
 //= require highstock
+//= require navbar
+//= require waypoints.min
 //= require script
 //= require_tree .
 

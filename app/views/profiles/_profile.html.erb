@@ -1,7 +1,7 @@
 <%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li style="color: red;"><%= msg %></li>
+  <ul style="width: 370px;margin-left: 85px;">
+    <% @user.errors.full_messages.each_with_index do |msg, index| %>
+      <li style="color: red;line-height: 20px;"><%= index+1 %>. <%= msg %></li>
     <% end %>
   </ul>
   <% if @user.role == "buyer" %>
@@ -45,7 +45,7 @@
       <div>Email Id</div>
       <div><%= f.text_field :email, :readonly => true %></div>
     </div>
-  <% else %>
+  <% elsif @user.role == 'seller' %>
     <div class="frow">
       <div>Email Id</div>
       <div><%= f.text_field :email, :readonly => true %></div>

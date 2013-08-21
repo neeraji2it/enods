@@ -1,0 +1,7 @@
+<%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :method => 'POST' do |f| %>
+  <%= f.submit "", :class => 'btn-email' %>
+  <%= f.email_field :email, :class => 'input-yourEmail', :placeholder => 'Enter your email --' %>
+  <h4>Sign Up To Our Newsletter</h4>
+  <p>Istant wardrobe updates, new arrivals, <br>fashion news,don'nt miss a bit </p>
+  <span style="position: relative;float: right;left: -165px;top: -25px;"><%= validation_error(@email_alert.errors['email']) %></span>
+<% end %>

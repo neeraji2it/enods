@@ -1,0 +1,5 @@
+<% if @email_alert.errors.present? %>
+  $('#email_alert').html('<%= escape_javascript render :partial => 'email_alert'%>');
+<% else %>
+  top.window.location.href = "<%= root_path %>";
+<% end %>

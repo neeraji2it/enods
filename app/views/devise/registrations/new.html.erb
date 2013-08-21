@@ -1,12 +1,16 @@
 <div class="box-signupSeller">
   <div class="signupBox">
     <h4>Sign Up as <%= params[:user][:role].capitalize %>
-    <span style="float: right;left: -10px;position: relative;"><%= render :partial => "/devise/shared/signin" if params[:user][:role] == 'buyer' %></span>
+      <span style="float: right;left: -10px;position: relative;"><%= render :partial => "/devise/shared/signin" if params[:user][:role] == 'buyer' %></span>
     </h4>
     <div class="loginSeller">
       <div id="formDiv">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-          <span style="color: red;"><%= devise_error_messages! %></span>
+          <ul style="width: 370px;margin-left: -36px;">
+            <% resource.errors.full_messages.each_with_index do |msg, index| %>
+              <li style="color: red;line-height: 15px;"><%= index+1 %>. <%= msg %></li>
+              <% end %>
+          </ul>
           <%= render :partial => '/users/form', :locals => {:f => f} %>
         <% end %>
       </div>
