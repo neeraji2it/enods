@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def alert(user)
     @user = user
-    mail(:to => ['ashok@dine-media.com'], :subject => "Subscribed")
+    mail(:to => ['Info@enods.com'], :subject => "Subscribed")
   end
   
   def project_alert(email,product)
