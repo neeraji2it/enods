@@ -8,8 +8,8 @@ class OmniauthsController < ApplicationController
     end
 
     @auth.update_attributes({
-      :token => auth['credentials']['token']
-    })
+        :token => auth['credentials']['token']
+      })
 
     unless @auth.confirmed?
       @auth.confirm!
@@ -20,10 +20,10 @@ class OmniauthsController < ApplicationController
     if @user.persisted?
       flash[:notice] = "Signed in successfully."
       sign_in(@user)
-      redirect_to products_path
+      redirect_to after_sign_in_path_for(@user)
     else
       flash[:notice] = "Login failed."
-      redirect_to new_user_registration_url
+      redirect_to new_user_path(:role => 'buyer')
     end
   end
 end
