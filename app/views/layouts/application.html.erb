@@ -23,7 +23,7 @@
   <body onload="<%= current_user.role == 'buyer' ? (!current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time'); doOnLoad()" : "doOnLoad()") : ("doOnLoad()") %>">
     <header>
       <div class="fright">
-        <ul class="list-topicon">
+        <ul class="list-topicon" style="margin-left: -35px;">
           <li>Member: <%= current_user.username.capitalize %></li>
           <li class="icon-user"><a title="" href="#"></a></li>
           <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>

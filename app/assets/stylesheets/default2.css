@@ -236,7 +236,7 @@ html body .tablebox .row:first-child{
 ul.list-topicon{
     float:right;
     padding:0px;
-    width: 190px;
+    width: auto;
 }
 ul.list-topicon li{ float:left; }
 ul.list-topicon li.icon-user, ul.list-topicon li.icon-logout{
