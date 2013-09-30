@@ -1,0 +1,485 @@
+html,body {
+    height:100%;
+}
+
+body {
+    background: #f5f5f5;
+    color: #888;
+    font-family: Helvetica, Arial, Sans-serif;
+    font-size: 100%;
+    line-height: 200%;
+    margin: 0;
+    padding: 0;
+}
+
+body:before {
+    content:"";
+    width:0;
+    height:100%;
+    float:left;
+    margin-top:-32767px;
+}
+
+a {
+    color:#febe10;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#fff;
+}
+
+.clearfix {
+    clear:both;
+}
+
+#wrap {
+    min-height:100%;
+}
+
+.main {
+    overflow:auto;
+    padding-bottom:40px;
+}
+
+.main .header {
+    background:url(/assets/demo/bg.jpg);
+}
+
+.main .header .head {
+    width:100%;
+    max-width:900px;
+    position:relative;
+    margin:0 auto;
+    padding:30px 0;
+}
+
+.main .header .head .logo {
+    width:300px;
+    height:129px;
+    background-image:url(/assets/demo/logo2.png);
+    background-repeat:no-repeat;
+}
+
+.main .header .head .line {
+    background:#555;
+    width:600px;
+    height:2px;
+    position:absolute;
+    top:50%;
+    right:0;
+    margin-top:-1px;
+}
+
+.main .header h1 {
+    color:#fff;
+    font-size:4em;
+    line-height:1.2em;
+    text-align:center;
+    text-transform:uppercase;
+    margin:20px 0;
+    padding:0;
+}
+
+.main .header .social {
+    color:#ccc;
+    font-size:14px;
+    text-align:center;
+    text-transform:uppercase;
+    margin:25px 0;
+}
+
+.main .header .counter {
+    background:#000;
+    height:10px;
+    position:relative;
+    margin:70px 0;
+}
+
+.main .header .counter .timer {
+    background:#000;
+    width:254px;
+    height:68px;
+    position:absolute;
+    top:-38px;
+    left:50%;
+    margin-left:-137px;
+    -webkit-box-shadow:inset 0 2px 6px -3px #999;
+    -moz-box-shadow:inset 0 2px 6px -3px #999;
+    -o-box-shadow:inset 0 2px 6px -3px #999;
+    box-shadow:inset 0 2px 6px -3px #999;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    -o-border-radius:6px;
+    border-radius:6px;
+    padding:10px;
+}
+
+.main .header .counter .timer ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.main .header .counter .timer ul li {
+    background:url(/assets/demo/digit.png) no-repeat;
+    width:56px;
+    float:left;
+    text-align:center;
+}
+
+.main .header .counter .timer ul li.seperator {
+    background:0;
+    width:10px;
+    font-size:25px;
+    line-height:68px;
+}
+
+.main .header .counter .timer ul li span {
+    color:#ccc;
+    font-size:30px;
+    line-height:68px;
+    text-shadow:0 1px 1px #222;
+}
+
+.main .header .counter .timer ul li p {
+    color:#222;
+    font-size:11px;
+}
+
+.main .content {
+    max-width: 900px;
+    font-size: 15px;
+    line-height: 27px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding-top: 10px;
+    padding-right: 0;
+    padding-bottom: 10px;
+    padding-left: 0;
+}
+
+.main .content a {
+    color: #febe10;
+    text-decoration: none;
+}
+
+.main .content a:hover {
+    color: #febe10;
+    text-decoration: underline;
+}
+
+.main .content .ditch {
+    width:94%;
+    max-width:840px;
+    line-height:45px;
+    position:relative;
+    background:#f5f5f5;
+    border:1px solid #e4e4e4;
+    -webkit-box-shadow:inset 0 1px 6px -2px #999;
+    -moz-box-shadow:inset 0 1px 6px -2px #999;
+    -o-box-shadow:inset 0 1px 6px -2px #999;
+    box-shadow:inset 0 1px 6px -2px #999;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    -o-border-radius:6px;
+    border-radius:6px;
+    margin:0 auto;
+    padding:10px;
+}
+
+.main .content .ditch .error_alert {
+    position:absolute;
+    background:#d35959;
+    width:160px;
+    display:none;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    line-height:32px;
+    left:-10px;
+    margin-top:-5px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    -o-border-radius:3px;
+    border-radius:3px;
+}
+
+.main .content .ditch .error_alert::after {
+    bottom:100%;
+    border:solid transparent;
+    content:" ";
+    height:0;
+    width:0;
+    position:absolute;
+    pointer-events:none;
+}
+
+.main .content .ditch .error_alert:after {
+    left:50%;
+    margin-left:-3px;
+    border-color:rgba(211,89,89,0) rgba(211,89,89,0) #d35959;
+    border-width:6px;
+}
+
+.main .content .ditch strong {
+    text-transform:uppercase;
+    margin-right:15px;
+}
+
+.main .content .ditch form {
+    display:inline;
+    width:100%;
+}
+
+.main .content .ditch form .input {
+    border:1px solid #ccc;
+    width:175px;
+    background:#fff;
+    display:inline-block;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    -o-border-radius:6px;
+    border-radius:6px;
+    margin:0 5px;
+    padding:0 10px;
+    line-height:35px;
+}
+
+.main .content .ditch form .input input {
+    border:0;
+    width:100%;
+    line-height:17px;
+    font-size:14px;
+    outline:0;
+}
+
+.main .content .ditch form .input.error {
+    border-color:#d35959;
+}
+
+.main .content .ditch form .button{
+    color:#fff;
+    font-size:14px;
+    border:1px solid #febe10;
+    cursor:pointer;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    -o-border-radius:6px;
+    border-radius:6px;
+    background-color:#febe10;
+    padding:9px 15px;
+    width:125px;
+}
+
+.main .content .ditch form button:hover {
+    background-color:#febe10;
+    border-color:#febe10;
+}
+
+.main .content .left {
+    margin-top: 0px;
+    float: left;
+    width: 539px;
+    padding-right: 30px;
+}
+
+.main .content .left .features {
+    margin-top:0px;
+}
+
+.main .content .left .features ul {
+    list-style:none;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+.main .content .left .features ul.one {
+    margin-right:20px;
+}
+
+.main .content .left .features ul li {
+    width:257px;
+    margin-bottom:30px;
+}
+
+.main .content .left .features ul li span {
+    color:#333;
+}
+
+.main .content .left .features ul li p {
+    margin:0;
+}
+
+.main .content .left .features ul li img {
+    float:left;
+    margin:5px 10px 0 0;
+}
+
+.main .content .right {
+    margin-top: 0px;
+    float: right;
+    width: 300px;
+    border-left: 1px solid #e4e4e4;
+    padding-left: 30px;
+    padding-bottom: 30px;
+}
+
+.main .content .right #tweets {
+    height:500px;
+    overflow:hidden;
+}
+
+.main .content .right #tweets .tweet_list {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.main .content .right #tweets .tweet_list li {
+    min-height:33px;
+    font-size:12px;
+    line-height:22px;
+    clear:both;
+    margin-bottom:10px;
+    border-bottom:1px dotted #ccc;
+    padding-bottom:10px;
+}
+
+.main .content .right #tweets .tweet_list li .tweet_avatar {
+    float:left;
+    border:5px solid #FFF;
+    line-height:0;
+    margin-right:10px;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    -o-border-radius:100%;
+    border-radius:100%;
+}
+
+.main .content .right #tweets .tweet_list li .tweet_avatar img {
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    -o-border-radius:100%;
+    border-radius:100%;
+}
+
+.main .content h2 {
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1em;
+    text-transform: none;
+    text-decoration: none;
+    color: #222;
+}
+
+.footer {
+    background:#181818;
+    color:#444;
+    font-size:11px;
+    position:relative;
+    margin-top:-52px;
+    clear:both;
+    padding:10px 0;
+}
+
+.footer>div {
+    max-width:900px;
+    margin:0 auto;
+}
+
+.footer>div ul {
+    float:right;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.footer>div ul li {
+    display:inline-block;
+    padding-left:15px;
+}
+
+.footer>div ul li:first-child {
+    padding-left:0;
+}
+
+.footer>div ul li a {
+    color:#555;
+}
+
+.footer>div ul li a:hover {
+    text-decoration:underline;
+}
+
+@media screen and max-width 480px {
+    body {
+        font-size:60%;
+    }
+}
+
+@media screen and max-width 900px {
+    .main .header .head .logo {
+        padding-bottom:10px;
+        border-bottom:2px solid #555;
+        margin:0 auto;
+        position:relative;
+    }
+
+    .main .header .head .line {
+        background:0;
+    }
+
+    .main .header h1 {
+        margin:0 5px;
+    }
+
+    .main .content {
+        margin:0 10px;
+    }
+
+    .main .content .ditch form .input {
+        width:auto;
+        display:block;
+        margin:0 0 10px;
+    }
+
+    .main .content .ditch form button {
+        width:100%;
+        margin-left:0;
+    }
+
+    .main .content .left {
+        float:none;
+        width:100%;
+        padding-right:0;
+    }
+
+    .main .content .left .features ul.one {
+        margin-right:0;
+    }
+
+    .main .content .left .features ul li {
+        width:100%;
+    }
+
+    .main .content .right {
+        float:none;
+        width:100%;
+        border-left:0;
+        padding-left:0;
+    }
+
+    .footer {
+        text-align:center;
+    }
+
+    .footer>div ul {
+        float:none;
+        margin:0 auto;
+    }
+}

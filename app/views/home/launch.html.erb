@@ -1,116 +1,201 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-  <head profile="http://gmpg.org/xfn/11">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+  <head>
+    <title>enods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="enods: Earth Needs Our Dedicated Support- Democratizing Good" />
+    <meta name="keywords" content="Cause Commerce, Doing Good, Democratizing Good, Cause Marketing, Support Causes, World Saver, enods, earth needs our dedicated support, Commerce for a cause, Donate to Non-Profits, Fundraising, Raising Funds, Non-Profits, E-Commerce, Buying for a cause, Help a non-profit, Help a charity, Buy goods, Do good, Buying for good" />
+    <%= stylesheet_link_tag '/assets/demo/main.css' %>
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js",
+      "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js","/assets/demo/countdown.js" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script type="text/javascript">
+      $(document).ready(function() {
 
-    <title>enods | commerce with a cause</title>
-    <%= stylesheet_link_tag 'style.css' %>
-    <%= javascript_include_tag 'application', "/assets/jquery.countdown.js" %>
-    <%= csrf_meta_tag %>
-    <style type="text/css">
-      .time-one {
-        background:url("/assets/launch/bt-time.png") no-repeat top left !important;
-      }
-      .time-one span {
-        text-shadow:0 1px #555555;
-      }
-      .time-one p {
-        text-shadow:0 1px #7d7d7d;
-      }
-    </style>
-    <link rel="shortcut icon" href="/assets/launch/favicon.ico.png" />
-  </head>
-  <body class="home page page-id-26 page-template page-template-launch-php">
-    <div id="container">
-      <div class="bg-grow left"></div>
-      <div class="header left">
-        <div class="border-colors left"></div><!--/border-colors-->
-        <div class="wrapper">
-          <div class="logo left">
-            <img src="/assets/launch/enods.jpg" alt='enods' title="enods"/>
-            <span>commerce for a cause</span>            </div><!--/logo-->
-          <div class="header-links left">
-            <ul>
-              <li>Follow us on :</li>
-              <li><a href="http://twitter.com/enodsnow"><div class="header-copy-icon1 left"></div></a></li>                    <li><a href="http://facebook.com/enodsnow"><div class="header-copy-icon2 left"></div></a></li>                    <li><a href="https://plus.google.com/112658935784152892399"><div class="header-copy-icon3 left"></div></a></li>                                        <li><a href="http://pinterest.com/enodsnow"><div class="header-copy-icon5 left"></div></a></li>                </ul>
-          </div><!--/header-links-->
-          <div id="notice" style="color: green;"><%= flash[:notice] %></div>
-          <div class="header-dot left"></div><!--/header-dot-->
-        </div><!--/wrapper-->
-      </div><!--/header-->
-      <div class="content left">
-        <div class="wrapper">
-          <div class="title-page left">
-            <span>The enods team is currently working on an amazing concept!  Please don't forget to check out our tweets and like us on facebook!!</span>            </div><!--/title-page-->
-          <div class="content-top left"><img src="/assets/launch/content-top.png"/></div><!--/content-top-->
+        $("#countdown").countdown({
+          date: "01 January 2014 08:00:00", // add the countdown's end date (i.e. 25 January 2014 08:00:00)
+          format: "on" // on (03:07:52) | off (3:7:52) - two_digits set to ON maintains layout consistency
+        },
+        function() {
 
-          <div class="content-center left">
-            <div class="time-content left" style="width: 102%;">
-              <h6>Launching Soon!</h6>
-              <script type="text/javascript">
-                jQuery(document).ready(function() {
-                  var time = new Date();
-                  time = new Date(2013, 10 - 1, 24, 1, 00);
-                  $("#notice").fadeOut(5000);
-                  jQuery('.jcounter').countdown({
-                    until: time,
-                    timeSeparator: " ",
-                    description: '',
-                    format: 'DHMS',
-                    compactLabels: ['', '', '', ''],
-                    layout: '<div class="time-one left"><span> {dn} </span><p> {dl} </p></div>\n\
-                                                      <div class="time-one left"><span> {hn} </span><p> {hl} </p></div> \n\
-                                                      <div class="time-one left"><span> {mn} </span><p> {ml} </p></div> \n\
-                                                      <div class="time-one left"><span> {sn} </span><p> {sl} </p></div>'
-                  });
-                });
-              </script>
-              <div class="jcounter"></div>
-            </div><!--/time-content-->
-            <!--ABOUT-->
-            <div class="shortcodes left">
-            </div><!-- /shortcodes-right -->
-            <%= form_for @email_alert, :url => create_alert_path(), :html => {:id => 'signup'}, :mehtod => 'POST' do |f| %>
-              <div class="form left">
-                <div class="form-border-top left"></div><!--/form-border-top-->
-                <div class="form-content left">
-                  <div class="form-content-text left">
-                    <span>Sign up Now!!</span>
-                    <p>Sign up to receive the latest news and happenings at enods!</p>
-                  </div><!--/form-content-text-->
-                  <div class="form-right right">
-                    <div class="form-input left">
-                      <%= f.email_field :email, :id => 'email', :onfocus => "if(value==defaultValue)value=''", :onblur => "if(value=='')value=defaultValue", :placeholder => 'Email'%><br />
-                      <%= validation_error(@email_alert.errors['email']) %>
-                    </div>
-                    <div class="form-input-button left"><input type="submit" src="" name="submit" value="" class="btn" alt="Submit" /></div>
-                    <div class="clear"></div>
-                    <label for="email" id="address-label">
-                      <span id="response">
-                      </span>
-                    </label>
-                  </div><!--/form-right-->
-                </div><!--/form-content-->
-              </div><!--/form-->
-            <% end %>
-          </div>
-          <style>
-            .form_error{
-              position: relative;
-              left: 10px;
-              margin-top: 45px;
+          // the code here will run when the countdown ends
+          alert("We welcome you to enods!")
+
+        });
+      });
+    </script>
+    <!--[if !IE 7]>
+        <style type="text/css">
+            #wrap {
+                display: table;
+                height: 100%
             }
-          </style>
-          <!--/content-center-->
-        </div><!--/wrapper-->
-      </div><!--/content-->
-      <div class="footer left">
-        <div class="wrapper">
-          <div class="content-center left">
-            <div class="footer-copyright left">enods © 2013. All Rights Reserved.</div><!--/footer-copyright-->
-          </div><!--/content-center-->
-          <div class="content-down left"><img src="/assets/launch/content-down.png" alt="img" title="img" /></div><!--/content-down-->
-        </div><!--/wrapper-->
-      </div><!--/footer-->
-    </div><!--/container-->
+        </style>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="main">
+        <div class="header">
+          <div class="head">
+            <div class="logo"></div>
+          </div>
+          <h1>Democratizing <br />
+            Good</h1>
+          <p class="social"><strong>Follow us on:</strong> 
+            <%= link_to "Twitter", "http://www.twitter.com/enodsnow", :target => "_blank" %> /
+            <%= link_to "Facebook", "http://www.facebook.com/enodsnow", :target => "_blank" %> /
+            <%= link_to "Pinterest", "http://www.pinterest.com/enodsnow", :target => "_blank" %> /
+            <%= link_to "Google+", "https://plus.google.com/112658935784152892399/posts", :target => "_blank" %>
+            <div class="counter">
+              <div class="timer">
+                <ul id="countdown">
+                  <li>
+                    <span class="days">00</span>
+                    <p class="timeRefDays">days</p>
+                  </li>
+                  <li class="seperator">.</li>
+                  <li>
+                    <span class="hours">00</span>
+                    <p class="timeRefHours">hours</p>
+                  </li>
+                  <li class="seperator">:</li>
+                  <li>
+                    <span class="minutes">00</span>
+                    <p class="timeRefMinutes">minutes</p>
+                  </li>
+                  <li class="seperator">:</li>
+                  <li>
+                    <span class="seconds">00</span>
+                    <p class="timeRefSeconds">seconds</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+        <div class="content">
+          <div class="ditch">
+            <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+              <form action="http://enods.us5.list-manage1.com/subscribe/post?u=b70fcc8313e255c95eda33724&amp;id=fab5694c4d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div  class="input">
+                  <input type="text" placeholder="First Name*" value="" name="FNAME" class="required" id="mce-FNAME">
+                </div>
+                <div class="input">
+                  <input type="text" value="" placeholder="Last Name*" name="LNAME" class="required" id="mce-LNAME">
+                </div>
+                <div class="input" style="width:250px">
+                  <input type="email" value="" placeholder="Email Address*" name="EMAIL" class="required email" id="mce-EMAIL">
+                </div>
+                <div style="display: inline-block;line-height: 0px;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+              </form>
+            </div>
+
+            <!--End mc_embed_signup-->
+            <div class="clearfix"></div>
+          </div>
+
+
+
+          <div class="about">
+            <h2>enods Beta Site: Set to Release- January 2014</h2>
+
+            <p>To learn more and be one of the first to test the site, please subscribe to our mailing list above.  Thank you!</p>
+            <div class="clearfix"></div>
+          </div>
+          <div class="left">
+            <div class="features">
+              <h2>Support a Cause and Make a Difference</h2>
+              <ul class="one">
+                <li>
+                  <%= image_tag("/assets/demo/causes.png") %>
+                  <span>Causes We Support</span>
+                  <p>enods supports a variety of causes, which are divided into three main categories: 	</p>	                                                        
+                  <p><strong>Human Causes</strong></p>
+                  <p><strong>Animal Causes</strong></p>
+                  <strong>Environmental Causes</strong></p>
+                </li>
+                <li>
+                  <%= image_tag("/assets/demo/products.png") %>
+                  <span>Type of Products</span>
+                  <p>enods strives to provide consumers with a variety of high quality, fair trade, artisanal goods, as well as items created and sold by local businesses.</p>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <%= image_tag("/assets/demo/non-profit.png") %>
+                  <span>Non-Profits</span>
+                  <p>Through partnerships with both local and international non-profit organizations, enods is dedicated to make a difference in the world one purchase at a time.</p>
+                  <p> <br></p>
+                </li>
+                <li>
+                  <%= image_tag("/assets/demo/business.png") %>
+                  <span>Vendors & Local Businesses</span>
+                  <p>Each vendor and business on the enods platform is individually approved based on strict criteria prior to selling their goods and products in the marketplace.  </p>
+                  <a href="mailto: vendors@enods.com"><strong>Click Here</strong></a> to learn more about becoming a vendor. </p>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="about">
+              <h2>About enods</h2>
+              <p>enods, which stands for Earth Needs our Dedicated Support is an e-commerce platform which aims to sustain the planet by supporting organizations which are dedicated to raising funds for their respective causes and non-profits through the sale of goods and products made via the enods marketplace.</p>
+              <div class="clearfix"></div>
+            </div>
+            <p> Are you a non-profit that would like to receive funds from purchases made via the enods marketplace? <a href="mailto: marketing@enods.com"><strong>Email us Today</strong>.</a></p>
+          </div>
+          <div class="right">
+            <div class="twitter">
+              <h2>What people are saying</h2>
+              <%= link_to "Tweets by @EnodsNow", "https://twitter.com/EnodsNow", 'data-widget-id' => "374767082384027649", :class => 'twitter-timeline' %>
+              <script>!function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                  if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + "://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }
+                }(document, "script", "twitter-wjs");</script>
+              <!-- <div id="tweets"> -->
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    </div>
+    <div class="footer">
+      <div>
+        <ul>
+          <li><%= link_to "Home", root_path, :target => '_blank' %></li>
+          <li><%= link_to "Contact", "mailto:info@enods.com", :target => '_blank' %></li>
+          <li><%= link_to "Twitter", "http://www.twitter.com/enodsnow", :target => '_blank' %></li>
+          <li><%= link_to "Facebook", "http://www.facebook.com/enodsnow", :target => '_blank' %></li>
+          <li><%= link_to "Google+", "https://plus.google.com/112658935784152892399/posts", :target => '_blank' %></li>
+        </ul>
+        Copyright &copy; 2013 enods. All rights reserved.
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-21599784-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
+  <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 </html>
