@@ -1,3 +1,8 @@
-<div id="eeee">
-    <%= render :partial => 'edit' %>
+<h1 class="icon-profile"><span>Edit Category</span></h1>
+<div class="content-profile">
+  <div id="formDiv">
+    <%= form_for(@category, :url => {:controller => 'categories', :action => 'update', :id => @category.id}, :method => 'PUT') do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+    <% end %>
+  </div>
 </div>

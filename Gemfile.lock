@@ -110,6 +110,7 @@ GEM
     multi_xml (0.5.3)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
+    nested_form (0.3.2)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -244,6 +245,7 @@ DEPENDENCIES
   fb_graph
   jquery-rails
   mysql2
+  nested_form
   nokogiri
   omniauth
   omniauth-facebook

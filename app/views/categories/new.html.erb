@@ -1,4 +1,7 @@
 <h1 class="icon-profile"><span>New Category</span></h1>
 <div class="content-profile">
-  <%= render :partial => 'new' %>
-</div>
+  <div id="formDiv">
+    <%= form_for @category do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+    <% end %>
+  </div>

@@ -26,10 +26,15 @@
 //= require_tree .
 
 //remove fields
-function remove_fields(link) {
-    $(link).prev("input[type=hidden]").val("1");
-    $(link).closest(".fields").hide();
-}
+$(function() {
+    $('a[data-nested-form-disable-first]').each(function() {
+        var nested_container = $(this).closest('.fields');
+        // check if is first
+        if (!nested_container.prev().is('.fields')) {
+            $(this).remove();
+        }
+    });
+});
 
 function graph_id(th) {
     $("ul#xkgd li a").each(function() {
@@ -90,13 +95,6 @@ $(document).ready(function() {
 //$(function(){
 //    $("input, textarea, select,file").uniform();
 //});
-
-//add more fields
-function add_fields(link, association, content) {
-    var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g")
-    $(link).parent().before(content.replace(regexp, new_id));
-}
 
 //ajax loader
 

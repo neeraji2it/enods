@@ -21,9 +21,6 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update

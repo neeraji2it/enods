@@ -35,9 +35,10 @@
       <td>
         <%= f.fields_for :images do |builder| %>
           <%= builder.file_field :image  %>
+          <%= builder.link_to_remove image_tag("/assets/seller-images/icon-close.png"), 'data-nested-form-disable-first' => '' %>
         <%end%>
         <div>
-          <em class="icon-plus" style="float:left;"><%= link_to_add_fields "Add More Images", f, :images %></em>
+          <em style="float:left;"><%= f.link_to_add "+ Add More Images", :images, :style => 'color: #FFBD00;' %></em>
         </div>
         <br />
       </td>
