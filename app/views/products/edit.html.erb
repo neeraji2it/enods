@@ -5,7 +5,7 @@
   <% end %>
 </ul>
 <div class="content-profile">
-  <%= nested_form_for @product, :url => product_path(@product), :method => "PUT" do |f| %>
+  <%= form_for @product, :url => product_path(@product), :method => "PUT" do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
 </div>
