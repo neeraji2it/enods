@@ -26,8 +26,8 @@ a img, img, input[type=checkbox], input[type=radio], iframe { border:none; }
 ul { margin:0px; padding:12px 0px 12px 40px; }
 ul li { list-style:none; }
 del { opacity:0; filter:"alpha(opacity=0)"; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; }
-input[type=text], input[type=password], textarea, select { color:#666; padding:5px; border-radius:2px; border:solid 1px #CCC; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
-input[type=text], input[type=password]{ width:288px; }
+input[type=text], input[type=email], input[type=password], textarea, select { color:#666; padding:5px; border-radius:2px; border:solid 1px #CCC; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+input[type=text], input[type=email], input[type=password]{ width:288px; }
 textarea { width:532px; min-height:70px; resize:none; }
 input[type=submit], input[type=button], input[type=reset], button { color:#FFF; font-size:11px; text-shadow:-1px -1px 0px #344808; border:solid 1px #2c420c; text-transform:uppercase; padding:10px 20px 8px 20px; text-align:center; border-radius:2px; background:url(/assets/seller-images/btn-bg.png) repeat-x left top; }
 a input { text-decoration:none; }

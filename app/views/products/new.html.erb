@@ -2,6 +2,11 @@
 <div class="content-profile">
   <span style='color: red;'>* All fields are Required.</span>
   <%= form_for @product do |f| %>
+    <ul style="margin-left: -36px;width: 355px;">
+      <% @product.errors.full_messages.each_with_index do |msg, index| %>
+        <li style="color: red;line-height: 20px;"><%= index+1 %>. <%= msg %></li>
+        <% end %>
+    </ul>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
 </div>

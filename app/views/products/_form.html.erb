@@ -48,6 +48,10 @@
     <td><%= f.select :non_profit_email, options_for_select([["Select", '']]+User.where("role = 'non-profit'").collect{|c| [c.email, c.email]}, :selected => f.object.non_profit_email)%></td>
   </tr>
   <tr class="row">
+    <td>Percentage to Non-Profit</td>
+    <td><%= f.text_field :non_profit_percentage %></td>
+  </tr>
+  <tr class="row">
     <td>Description</td>
     <td><%= f.text_area :description, :cols => 33, :rows => 3 %></td>
   </tr>

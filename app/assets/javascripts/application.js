@@ -55,35 +55,6 @@ function setSens(id, k) {
     myCalendar.setSensitiveRange(null, new Date());
 }
 
-$(function() {
-    $('#lll-id').codaSlider({
-        autoSlide: true,
-        autoHeight: false
-    });
-});
-
-$(function() {
-    //	Scrolled by user interaction
-    $('#caroulproduct1').carouFredSel({
-        prev: '#prev21',
-        next: '#next21',
-        pagination: "#pager21",
-        auto: false
-    });
-    $('#caroulproduct2').carouFredSel({
-        prev: '#prev212',
-        next: '#next212',
-        pagination: "#pager212",
-        auto: false
-    });
-    $('#caroulproduct').carouFredSel({
-        prev: '#prev2',
-        next: '#next2',
-        pagination: "#pager2",
-        auto: false
-    });
-});
-
 $(document).ready(function() {
     setTimeout(function() {
         $('#collexp > li > a.expanded + ul').slideToggle('medium');

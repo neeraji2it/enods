@@ -61,6 +61,7 @@
                     <% Category.all.each do |category| %>
                       <li><%= link_to category.name, category_path(:categories => category.id) %></li>
                     <% end %>
+                    <li><%= link_to "Others" , index_path %></li>
                   </ul>
                 </li>
                 <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>

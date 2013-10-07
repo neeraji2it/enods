@@ -57,7 +57,7 @@
               <h4><%= product.title %></h4>
               <p>Seller: <%= link_to product.user.username, "" %></p>
               <span>$<%= product.price %>.00</span>
-              <div class="offer">22%</div>
+              <div class="offer"><%= product.non_profit_percentage %></div>
             </div>
             <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product), :style => 'text-decoration: none;' %>
             <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
@@ -105,3 +105,33 @@
   </div>
   <div class="clearFix"></div>
 </div>
+<script>
+  $(function() {
+    $('#lll-id').codaSlider({
+      autoSlide: true,
+      autoHeight: false
+    });
+  });
+
+  $(function() {
+    //	Scrolled by user interaction
+    $('#caroulproduct1').carouFredSel({
+      prev: '#prev21',
+      next: '#next21',
+      pagination: "#pager21",
+      auto: false
+    });
+    $('#caroulproduct2').carouFredSel({
+      prev: '#prev212',
+      next: '#next212',
+      pagination: "#pager212",
+      auto: false
+    });
+    $('#caroulproduct').carouFredSel({
+      prev: '#prev2',
+      next: '#next2',
+      pagination: "#pager2",
+      auto: false
+    });
+  });
+</script>

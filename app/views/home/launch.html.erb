@@ -14,7 +14,7 @@
       $(document).ready(function() {
 
         $("#countdown").countdown({
-          date: "01 January 2014 08:00:00", // add the countdown's end date (i.e. 25 January 2014 08:00:00)
+          date: "01 January 2014 00:00:00", // add the countdown's end date (i.e. 25 January 2014 08:00:00)
           format: "on" // on (03:07:52) | off (3:7:52) - two_digits set to ON maintains layout consistency
         },
         function() {
@@ -40,6 +40,7 @@
         <div class="header">
           <div class="head">
             <div class="logo"></div>
+            <div style='float: right;font-size: 24px;position: relative;top: -80px;'><%= current_user ? (current_user.role == 'admin' ? (link_to "Return to Dashboard", admin_dashboard_path) : (current_user.role == 'seller' ? (link_to "Return to Dashboard", dashboard_path) : (link_to "Return to Dashboard", profile_profile_path(current_user)))) : "" %></div>
           </div>
           <h1>Democratizing <br />
             Good</h1>
