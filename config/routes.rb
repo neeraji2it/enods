@@ -19,6 +19,8 @@ Enods::Application.routes.draw do
     end
   end
   
+  resources :banner_images
+  
   resources :causes
 
   resources :categories

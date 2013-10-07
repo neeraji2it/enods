@@ -1,8 +1,8 @@
 <div class="sliderLeftColumn">
   <div class="coda-slider" id="lll-id">
-    <% @back_images = ["/assets/slider_images/banner_1.jpg","/assets/slider_images/banner_2.jpg","/assets/slider_images/banner_3.jpg","/assets/slider_images/banner_4.jpg"]; %>
+    <% @back_images = BannerImage.all %>
     <% for image in @back_images %>
-      <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img alt="" title="" src="<%= image %>" /></div>
+      <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img title="" src="<%= image.image.url(:original) %>" width='708' height="389"/></div>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,16 @@
+<table>
+  <tr class="row">
+    <td>Banner Image:</td>
+    <td><%= f.file_field :image %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= validation_error(@banner_image.errors['image'])%></td>
+  </tr>
+  <tr class="row">
+    <td></td>
+    <td>
+      <div><input type="submit" title="Submit" value="Submit" /></div>
+    </td>
+  </tr>
+</table>

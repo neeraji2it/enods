@@ -1,0 +1,7 @@
+<h1 class="icon-profile"><span>Edit Banner Image</span></h1>
+<div class="content-profile">
+  <div id="formDiv">
+    <%= form_for @banner_image, :url => banner_image_path(@banner_image) do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+    <% end %>
+  </div>
