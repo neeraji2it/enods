@@ -25,7 +25,7 @@
       <div class="fright">
         <ul class="list-topicon" style="margin-left: -35px;">
           <li>Member: <%= current_user.username.capitalize %></li>
-          <li class="icon-user"><a title="" href="#"></a></li>
+          <li class="icon-user"><%= current_user.role == 'admin' ? (link_to "", "") : (link_to "", profile_profile_path(current_user)) %></li>
           <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
         </ul>
       </div>
