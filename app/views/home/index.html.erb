@@ -2,7 +2,7 @@
   <div class="coda-slider" id="lll-id">
     <% @back_images = BannerImage.all %>
     <% for image in @back_images %>
-      <div><h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elitam eunisdapibusa dipiscing <br>magna sed cursus sapien condimentum......</h2><img title="" src="<%= image.image.url(:original) %>" width='708' height="389"/></div>
+      <div><h2 class="title"><%= image.image_description.slice(0..300) %></h2><img title="" src="<%= image.image.url(:original) %>" width='708' height="389"/></div>
     <% end %>
   </div>
 </div>

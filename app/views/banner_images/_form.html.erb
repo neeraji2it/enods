@@ -8,6 +8,14 @@
     <td><%= validation_error(@banner_image.errors['image'])%></td>
   </tr>
   <tr class="row">
+    <td>Image Description:</td>
+    <td><%= f.text_area :image_description, :cols => 33, :rows => 3 %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= validation_error(@banner_image.errors['image_description'])%></td>
+  </tr>
+  <tr class="row">
     <td></td>
     <td>
       <div><input type="submit" title="Submit" value="Submit" /></div>

@@ -1,0 +1,26 @@
+<h1 class="icon-productsManagement"></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">Image</div>
+    <div class="column">Item Total</div>
+    <div class="column">Full Price</div>
+    <div class="column">Qty</div>
+    <div class="column">Pay</div>
+    <div class="column last">Cancel</div>
+  </div>
+  <% for line_item in @user_products %>
+    <div class="row">
+      <div class="column"><%= image_tag(line_item.product.images.first.image.url(:original), :width => '50', :height => '50', :id => "image_#{line_item.id}", :style => 'cursor: pointer;') %></div>
+      <div class="column"><%= number_to_currency(line_item.full_price) %></div>
+      <div class="column"><%= number_to_currency(line_item.full_price) %></div>
+      <div class="column"><%= line_item.quantity %></div>
+      <div class="column">
+        <%= link_to "Proceed to Checkout", line_item_orders_path(line_item.id), :method => 'POST', :style => 'text-align: center;' %>
+      </div>
+      <div class="column last">
+        <%= link_to "Close", cart_path(line_item), :method => :delete, :confirm => "Are You Sure" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

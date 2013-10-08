@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :images, :dependent => :destroy
   has_many :causes, :dependent => :destroy
-  has_many :billing_shipping_address, :dependent => :destroy
+  has_many :billing_shipping_addresses, :dependent => :destroy
   has_one :favourite, :dependent => :destroy
   validates :title, :description,:category_id, :presence => true
   validates :qty, :price,:non_profit_percentage, :numericality => {:greater_than_or_equal_to => 1}, :presence => true

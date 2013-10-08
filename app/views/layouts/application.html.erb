@@ -49,6 +49,9 @@
               <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", new_billing_shipping_address_path %></li>
               <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order History", order_history_path %></li>
               <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
+              <% if current_cart.line_items.present? %>
+                <li class="icon-invitations <%= (params[:controller] == 'carts' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Your Cart <span style='color:yellow;'>(#{current_cart.line_items.count})</span>".html_safe, carts_path %></li>
+              <% end %>
             <% elsif current_user.role == 'seller' %>
               <li class="icon-dashboard <%= (params[:controller] == 'profiles' and params[:action] == 'dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", dashboard_path %></li>
               <li class="icon-productsManagement <%= (params[:controller] == 'products' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Products Management", products_path %></li>

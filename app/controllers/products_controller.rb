@@ -44,7 +44,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
       flash[:notice] = "Successfully updated the Product."
-      redirect_to products_path
+      redirect_to products_path if current_user.role == 'seller'
+      redirect_to products_admins_path if current_user.role == 'admin'
     else
       flash[:error] = "Fail to update product"
       render :action => 'edit'
@@ -54,7 +55,8 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path if current_user.role == 'seller'
+    redirect_to products_admins_path if current_user.role == 'admin'
   end
 
   def search
