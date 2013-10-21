@@ -15,11 +15,4 @@
   </div>
   <span class="pagination" style='float: right;'><%= will_paginate @latest_customers, :param_name => 'latest_customer', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
 <% end %>
-<script>
-  $(function() {
-    $('.pagination a').click(function() {
-      $.getScript(this.href);
-      return false;
-    });
-  });
-</script>
+<%= render :partial => '/profiles/pagination_script' %>

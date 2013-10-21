@@ -18,11 +18,4 @@
   </div>
 </div>
 <span class="pagination" style='float: right;'><%= will_paginate @orders, :param_name => 'latest_order', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
-<script>
-  $(function() {
-    $('.pagination a').click(function() {
-      $.getScript(this.href);
-      return false;
-    });
-  });
-</script>
+<%= render :partial => '/profiles/pagination_script' %>
