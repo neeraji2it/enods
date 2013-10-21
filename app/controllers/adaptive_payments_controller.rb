@@ -1,7 +1,7 @@
 class AdaptivePaymentsController < ApplicationController
   include PayPal::SDK::AdaptivePayments
   def pay
-    redirect_to new_line_item_order_path(current_cart.order.line_item.id)
+    redirect_to paypal_ipn_path()
   end
 
   def cancel

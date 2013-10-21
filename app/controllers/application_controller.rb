@@ -11,12 +11,10 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Sign in Successfully."
       if current_user.role == 'non-profit'
         profile_path(current_user)
-      elsif current_user.role == 'buyer'
-        profile_profile_path(current_user)
-      elsif current_user.role == 'seller'
-        profile_profile_path(current_user)
-      else
+      elsif current_user.role == 'admin'
         admin_dashboard_path
+      else
+        profile_profile_path(current_user)
       end
     end
   end

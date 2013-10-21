@@ -1,7 +1,4 @@
 class OrdersController < ApplicationController
-  def new
-    @order = Order.new(:paykey => current_cart.paypal_express_token)
-  end
 
   def create
     @line_item = LineItem.find(params[:line_item_id])
