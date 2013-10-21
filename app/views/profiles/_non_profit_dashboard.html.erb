@@ -1,0 +1,33 @@
+<div class="commonrow">
+  <div class="box-graph">
+    <ul>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange"><%= number_to_currency(@non_profit_contribution) %></span>
+        Seller Contribution
+      </li>
+    </ul>
+  </div>
+  <div class="box-latestCustomer" style="width: 68%;">
+    <h1 class="icon-latestCustomer"><span>Total Sales</span></h1>
+    <div id='order_customer' class="non-profit">
+      <%= render :partial => 'non_profit_sales' %>
+    </div>
+  </div>
+</div>
+<div class="box-salesGraph" style="width: 100%;">
+  <h1 class="icon-topSellingToday"><span>Sales Graph</span></h1>
+  <div class="tablebox topSellingToday">
+    <div class="row">
+      <div class="column"></div>
+    </div>
+    <div class="row">
+      <div class="img-graph-1">
+        <div id="container" style="height: 400px; min-width: 100px"></div>
+        <div id='total_graph'>
+          <%= render :partial => 'non_profit_week' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

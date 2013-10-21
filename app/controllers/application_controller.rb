@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
     if resource_or_scope.is_a?(User)
       current_user.received_invitation.update_attribute(:status, 'Accepted') if current_user.received_invitation
       flash[:notice] = "Sign in Successfully."
-      if current_user.role == 'non-profit'
-        profile_path(current_user)
-      elsif current_user.role == 'admin'
+      if current_user.role == 'admin'
         admin_dashboard_path
       else
         profile_profile_path(current_user)

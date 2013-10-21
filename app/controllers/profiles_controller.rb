@@ -48,6 +48,8 @@ class ProfilesController < ApplicationController
     @non_profit_payment = Order.where("created_at LIKE '%#{Date.today.strftime('%Y-%m-%d')}%' and status = 'Success' and receiver_id = #{current_user.id}").sum {|item| item.non_profit_payment.to_i}
     @top_sellings = Order.where("(status = 'Success' or status = 'Cancel')").order('created_at Asc').paginate :page => params[:top_selling], :per_page => 5
     @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4
+    @non_profit_contribution = Order.where("non_profit_email = '#{current_user.email}'").joins("left join products on products.id = orders.product_id").sum {|item| item.non_profit_payment.to_i}
+    @non_profit_sales =  Order.where("non_profit_email = '#{current_user.email}'").joins("left join products on products.id = orders.product_id").paginate :page => params[:non_profit], :per_page => 4
   end
   
   def week

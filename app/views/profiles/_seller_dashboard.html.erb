@@ -1,0 +1,88 @@
+<div class="commonrow">
+  <div class="box-graph">
+    <ul>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange"><%= number_to_currency(@sale) %></span>
+        Total sales today
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange"><%= number_to_currency(@admin_payment) %></span>
+        Commission to Admin
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-orange"><%= number_to_currency(@non_profit_payment) %></span>
+        Sent to Non Profit
+      </li>
+      <li>
+        <div class="img-graph"><%= image_tag("/assets/user-images/dummy-graph.png")%></div>
+        <span class="color-blue"><%= number_to_currency(@net_payment) %></span>
+        Net earning today
+      </li>
+    </ul>
+  </div>
+  <div class="box-latestCustomer">
+    <h1 class="icon-topSellingToday"><span>Top Selling Today</span></h1>
+    <div id="top_selling">
+      <%= render :partial => 'top_selling' %>
+    </div>
+  </div>
+  <div class="box-latestCustomer">
+    <h1 class="icon-latestCustomer"><span>Latest Customer</span></h1>
+    <div id='order_customer'>
+      <%= render :partial => 'latest_customers' %>
+    </div>
+  </div>
+</div>
+<div class="box-salesGraph">
+  <h1 class="icon-topSellingToday"><span>Sales Graph</span></h1>
+  <div class="tablebox topSellingToday">
+    <div class="row">
+      <div class="column"></div>
+    </div>
+    <div class="row">
+      <div class="img-graph-1">
+        <ul style='width: 180px;' id="xkgd">
+          <li>
+            <b>Zoom:</b>&nbsp;&nbsp;<%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "3m", week_profiles_path(:week => '3m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "5m", week_profiles_path(:week => '5m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "1y", week_profiles_path(:week => '1y'), :remote => true, :onclick => 'graph_id(this)' %>
+          </li>
+        </ul>
+        <div id="container" style="height: 400px; min-width: 100px"></div>
+        <div id='total_graph'>
+          <%= render :partial => 'week' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="rightColumn-dashboard">
+  <div class="commonrow">
+    <h1 class="icon-dateRange"><span>Date Range</span></h1>
+    <div class="tablebox topSellingToday">
+      <div class="row"></div>
+      <div class="row">
+        <ul class="list-date" id="xkgd">
+          <li><%= link_to "Past 7 days", week_profiles_path(:week => '7_days'), :remote => true, :onclick => 'graph_id(this)',:style => "font-weight:bold;" %></li>
+          <li><%= link_to "Past 30 days", week_profiles_path(:week => '30_days'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "This Week", week_profiles_path(:week => 'this_week'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "This Month", week_profiles_path(:week => 'this_month'), :remote => true, :onclick => 'graph_id(this)' %></li>
+          <li><%= link_to "All Time", week_profiles_path(:week => 'all'), :remote => true, :onclick => 'graph_id(this)' %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h1 class="icon-thisWeek"><span>This Week</span></h1>
+  <div class="tablebox topSellingToday">
+    <div class="row"></div>
+    <div class="row">
+      <h3 class="heading-week"><%= number_to_currency(@this_week_order) %></h3>
+      Avg: <%= number_to_currency(@this_week_order_avg) %> /order
+    </div>
+  </div>
+</div>

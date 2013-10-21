@@ -1,0 +1,39 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    Highcharts.setOptions({
+      colors: ['#B1C4F3']
+    });
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "container"
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: "datetime"
+      },
+      yAxis: {
+        title: {
+          text: "Dollars"
+        }
+      },
+      tooltip: {
+        formatter: function() {
+          return Highcharts.dateFormat("%B %e, %Y", this.x) + ': ' +
+                  "$" + Highcharts.numberFormat(this.y, 2);
+        }
+      },
+      series: [
+<% { "Sales" => @non_profit_sales }.each do |name, orders| %>
+          {
+            name: "<%= name %>",
+            pointInterval: <%= 1.day * 1000 %>,
+            pointStart: <%= (3.months.ago.to_i * 1000) %>,
+            data: <%= ("#{order_chart(orders, 3.months.ago)}") %>
+          },
+<% end %>
+      ]
+    });
+  });
+</script>

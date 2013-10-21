@@ -1,0 +1,18 @@
+<% if @non_profit_sales.present? %>
+  <div class="tablebox">
+    <div class="row">
+      <div class="column">Buyer Name</div>
+      <div class="column">Seller Name</div>
+      <div class="column w49">Amount</div>
+    </div>
+    <% for order in @non_profit_sales %>
+      <div class="row">
+        <div class="column"><%= order.user.username %></div>
+        <div class="column"><%= order.line_item.product.user.username %></div>
+        <div class="column w49"><%= number_to_currency(order.non_profit_payment) %></div>
+      </div>
+    <% end %>
+  </div>
+  <span class="pagination" style='float: right;'><%= will_paginate @non_profit_sales, :param_name => 'non_profit', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<% end %>
+<%= render :partial => '/profiles/pagination_script' %>
