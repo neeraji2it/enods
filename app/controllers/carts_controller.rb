@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   def expire_cart
     if current_cart.created_at
       current_cart.line_items.destroy
-      inactive_carts = Cart.where(["purchased_at IS NULL AND created_at < '#{(current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S')}'"])
+      inactive_carts = Cart.where(["(purchased_at IS NULL or product_id IS NULL) AND created_at < '#{(current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S')}'"])
       inactive_carts.map{|inactive_cart| inactive_cart.destroy}
       flash[:notice] = "Your cart has expired. Please add the products to the cart to purchase it"
     end
