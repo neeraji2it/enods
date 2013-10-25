@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
+  def buyer
+    render :layout => false
+  end
 
   def create
     @user = User.new(params[:user])

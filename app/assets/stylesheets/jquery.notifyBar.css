@@ -80,11 +80,11 @@
 #popup_box {
     height:auto;
     width:auto;
-    left:45%;
+    left:32%;
     margin: -220px 0 0 -250px;
     padding:15px;
     position:fixed;
-    top:35%;
+    top:65%;
     z-index:1001;
     font-size: 12px;
     display: none

@@ -32,7 +32,7 @@
                 <div>Order total</div>
                 <div><%= number_to_currency(line_item.full_price) %> USD</div>
               </div>
-              <%= current_user ? (current_user.role == 'buyer' ? (link_to "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, line_item_orders_path(line_item.id), :method => "POST", :id => 'subbb', :style => 'text-decoration: none;') : "") : (link_to "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, new_user_path(:role => 'buyer'), :style => 'text-decoration: none;') %>
+              <%= current_user ? (current_user.role == 'buyer' ? (link_to "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, line_item_orders_path(line_item.id), :method => "POST", :id => 'subbb', :style => 'text-decoration: none;') : "") : (link_to_function "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, "buyer_users_path()", :style => 'text-decoration: none;') %>
             </li>
           </ul>				
         </div>

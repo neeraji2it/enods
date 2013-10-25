@@ -18,7 +18,7 @@
     </div>
     <div class="productDetails-rightColumn">
       <h2><%= @product.title %><br /><span>$<%= @product.price %>.00</span></h2>
-      <div class="icon-addCart"><%= link_to "ADD TO CART", add_to_cart_product_path(@product) %></div>
+      <div class="icon-addCart"><%= (current_user and current_user.role == 'seller') ? () : (link_to "ADD TO CART", add_to_cart_product_path(@product)) %></div>
       <div class="commonrow">
         <div class="column-share">Share Now</div>
         <ul class="list-media">
