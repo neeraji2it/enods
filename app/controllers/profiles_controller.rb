@@ -22,11 +22,9 @@ class ProfilesController < ApplicationController
     @user.errors.add(:password, "is required") if params[:user].nil? or params[:user][:password].to_s.blank?
     if @user.errors.empty? and @user.update_with_password(params[:user])
       sign_in(:user, @user, :bypass => true)
-      flash[:notice] = 'Your password changed successfully'
-      redirect_to profile_profile_path(@user)
-    else
-      flash.now[:error] = 'Password changing failed'
-      render :action => "profile"
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
