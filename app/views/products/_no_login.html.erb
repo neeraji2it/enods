@@ -1,0 +1,104 @@
+<div class="content">
+  <div class="breadcrumb">
+    <ul>
+      <li><%= link_to @product.category.name, "" %></li>
+    </ul>
+  </div>
+  <div class="commonrow">
+    <div class="productDetails-leftColumn"><div class="midSec"><%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px') %></div><br />
+      <div class="leftSec" style="max-height: 400px;overflow: auto;">
+        <% if !@product.images.empty? %>
+          <% for image in @product.images %>
+            <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70"), "#" %>
+          <% end %>
+        <% else %>
+          <%= image_tag("no_image.gif", :width => "70") %>
+        <% end %>
+      </div>
+    </div>
+    <div class="productDetails-rightColumn">
+      <h2><%= @product.title %><br /><span><%= number_to_currency(@product.price) %></span></h2>
+      <div class="icon-addCart"><%= (current_user and current_user.role == 'seller') ? () : (link_to "ADD TO CART", add_to_cart_product_path(@product)) %></div>
+      <div class="commonrow">
+        <div class="column-share">Share Now</div>
+        <ul class="list-media">
+          <li class="icon-facebook"><%= link_to "facebook", "" %></li>
+          <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
+          <li class="icon-twitter"><%= link_to "twitter", "" %></li>
+          <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
+        </ul>
+      </div>
+      <p><%= @product.description %></p>
+    </div>
+  </div>
+  <ul class="list-productDetail">
+    <li>
+      <h1><span>Seller Infomation</span></h1>
+      <div>
+        <div class="thum-productDetail"><%= image_tag(@product.user.avatar.url(:original))%></div>
+        <p><%= link_to @product.user.username, "", :class => "link-blue" %><br />Athens, Greece</p>
+        <a title="Contact >>" href="#">Contact >></a>
+        <div class="clearFix"></div>
+      </div>
+    </li>
+    <li>
+      <h1><span>Donation</span></h1>
+      <div>
+        <div class="thum-productDetail"><img alt="" title="" src="/assets/img-donation.png" /></div>
+        <p>20% of the proceeds <br>will be donated.</p>
+      </div>
+    </li>
+    <li>
+      <h1><span>Recipients of Donations</span></h1>
+      <div>
+        <div class="thum-productDetail"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
+        <p><a title="The United Nations Children's Fund" href="#">The United Nations <br>Children's Fund</a></p>
+      </div>
+    </li>
+  </ul>
+  <div class="box-productDetails">
+    <ul class="menu-tab">
+      <li class="active"><a title="Details" href="#">Details</a></li>
+      <li><a title="Terms and Conditions" href="#">Terms and Conditions</a></li>
+    </ul>
+    <div class="box-productDetailsContent">
+      <ul class="list-normal">
+        <li>
+          <p><strong>Article is</strong></p>
+          <p>New</p>
+        </li>
+        <li>
+          <p><strong>Availability</strong></p>
+          <p>Still available 6 x</p>
+        </li>
+        <li>
+          <p><strong>Location</strong></p>
+          <p>10829 Berlin, DE</p>
+        </li>
+        <li>
+          <p><strong>Shipping</strong></p>
+          <div class="table-shipping" style="width: 410px;">
+            <div class="row">
+              <div>After</div>
+              <div>Type</div>
+              <div>Costs</div>
+              <div class="last">+ Each item, total</div>
+            </div>
+            <div class="row">
+              <div>Germany</div>
+              <div>insured</div>
+              <div>$ 5.00</div>
+              <div class="last">$0.00</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p><strong>Payment</strong></p>
+      <p>The seller offers the following payment methods:</p>
+
+      <p>.Transfer</p>
+      <div class="clearFix"></div>
+    </div>
+  </div>
+  <div class="clearFix"></div>
+</div>

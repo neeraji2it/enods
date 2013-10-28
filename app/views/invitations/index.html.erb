@@ -1,6 +1,6 @@
 <div class="row-invite">
   <%= form_for @invitation,:remote => true do |f| %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :placeholder => "E-mail"%>
     <%= f.submit "Invite", :class => 'button' %>
   <% end %>
 </div>

@@ -50,7 +50,7 @@
             <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
             <%= link_to "3m", week_profiles_path(:week => '3m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
             <%= link_to "5m", week_profiles_path(:week => '5m'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "1y", week_profiles_path(:week => '1y'), :remote => true, :onclick => 'graph_id(this)' %>
+            <%= link_to "1y", week_profiles_path(:week => 'all'), :remote => true, :onclick => 'graph_id(this)' %>
           </li>
         </ul>
         <div id="container" style="height: 400px; min-width: 100px"></div>
