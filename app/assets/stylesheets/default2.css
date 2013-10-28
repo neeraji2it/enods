@@ -450,11 +450,6 @@ h3.heading-week{
     height:24px;
     text-indent:-999em
 }	
-.productDetails-rightColumn ul.list-media li{ margin-left:4px; }	
-.productDetails-rightColumn ul.list-media li.icon-facebook{ background:url(/assets/seller-images/sprite-1.png) no-repeat 0px 0px; }
-.productDetails-rightColumn ul.list-media li.icon-googlePlus{ background:url(/assets/seller-images/sprite-1.png) no-repeat -24px 0px; }
-.productDetails-rightColumn ul.list-media li.icon-twitter{ background:url(/assets/seller-images/sprite-1.png) no-repeat -48px 0px; }		
-.productDetails-rightColumn ul.list-media li.icon-pinterest{ background:url(/assets/seller-images/sprite-1.png) no-repeat -72px 0px; }
 .productDetails-rightColumn h2{
     color:#000;
     font-size:24px;

@@ -39,7 +39,7 @@ class AdminsController < ApplicationController
   end
 
   def products
-    @products = Product.where("title IS NOT NULL").order('product_count DESC').paginate :page => params[:product_page], :per_page => 3
+    @products = Product.where("title IS NOT NULL").order('product_count DESC').paginate :page => params[:product_page], :per_page => 10
   end
 
   def confirm_product
