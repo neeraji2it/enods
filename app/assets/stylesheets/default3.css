@@ -585,13 +585,14 @@ ul.menu-dashboard li a.link-viewmore{
 .dashboardColumn{
     float:left;
     width:55%;
+    margin-top: 10px;
 }	
 .dashboardColumn .tablebox{ 
     background-color:#FDFDFD;
 }	
 .dashboardColumn + .dashboardColumn{ 
     width:43%;
-    margin-left:2%;
+    margin: 10px 0 0 2%;
 }	
 .dashboardColumn h1{ margin-right:0px; }
 .dashboardColumn + .dashboardColumn h1{ margin-right:-1px; }

@@ -61,16 +61,16 @@ Enods::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-#  config.after_initialize do
-#    ActiveMerchant::Billing::Base.mode = :test
-#    paypal_options = {
-#      :login => "k.ashok502-facilitator_api1.gmail.com",
-#      :password => "1366968794",
-#      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AwVzeB7ThvogKHzICFAE2dVcZPjR"
-#    }
-#    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
-#    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-#  end
+  #  config.after_initialize do
+  #    ActiveMerchant::Billing::Base.mode = :test
+  #    paypal_options = {
+  #      :login => "k.ashok502-facilitator_api1.gmail.com",
+  #      :password => "1366968794",
+  #      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AwVzeB7ThvogKHzICFAE2dVcZPjR"
+  #    }
+  #    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+  #    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  #  end
 
   config.action_mailer.default_url_options = {:host => 'www.enods.com'}
   config.action_mailer.delivery_method = :smtp

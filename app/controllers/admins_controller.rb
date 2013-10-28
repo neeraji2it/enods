@@ -23,23 +23,23 @@ class AdminsController < ApplicationController
   end
 
   def seller
-    @users = User.where("role = 'seller'")
+    @users = User.where("role = 'seller'").paginate :page => params[:seller_page], :per_page => 10
   end
 
   def buyer
-    @users = User.where("role = 'buyer'")
+    @users = User.where("role = 'buyer'").paginate :page => params[:buyer_page], :per_page => 10
   end
 
   def non_profit
-    @users = User.where("role = 'non-profit'")
+    @users = User.where("role = 'non-profit'").paginate :page => params[:non_page], :per_page => 10
   end
 
   def sales
-    @orders = Order.where("status = 'Success'")
+    @orders = Order.where("status = 'Success'").paginate :page => params[:order_page], :per_page => 10
   end
 
   def products
-    @products = Product.all
+    @products = Product.where("title IS NOT NULL").order('product_count DESC').paginate :page => params[:product_page], :per_page => 3
   end
 
   def confirm_product

@@ -22,8 +22,8 @@ set :deploy_to, application
  
 desc "Link to the configuration"
 task :symlink do
- run "ln -s #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
- #run "ln -s #{shared_path}/public/uploaded_files #{latest_release}/public/uploaded_files"
+  run "ln -s #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
+  #run "ln -s #{shared_path}/public/uploaded_files #{latest_release}/public/uploaded_files"
 
 end
 after "deploy:update_code", :symlink

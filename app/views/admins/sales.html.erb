@@ -1,26 +1,3 @@
-<h1 class="icon-orderSalesManagement"><span>Sales Management</span></h1>
-<div class="tablebox table-salesManagement">
-  <div class="row">
-    <div class="column">ID</div>
-    <div class="column">Seller Name</div>
-    <div class="column">User Name</div>
-    <div class="column">Non Profit</div>
-    <div class="column">Amount</div>
-    <div class="column">Status</div>
-  </div>
-  <% for order in @orders %>
-    <div class="row">
-      <div class="column"><%= order.id %></div>
-      <div class="column"><%= order.line_item.product.user.username %></div>
-      <div class="column"><%= order.user.email %></div>
-      <div class="column"><%= order.line_item.product.non_profit_email %></div>
-      <div class="column"><%= number_to_currency(order.net_payment) %></div>
-      <div class="column last">
-        <select title="Status">
-          <option>Shipped</option>
-          <option>In process</option>
-        </select>
-      </div>
-    </div>
-  <% end %>
+<div id='sales'>
+  <%= render :partial => 'sales' %>
 </div>

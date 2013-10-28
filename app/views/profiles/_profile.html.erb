@@ -22,60 +22,60 @@
     </div>
   <% end %>
   <% if (@user.role == "buyer") %>
-      <div class="frow">
-        <div>Birthday</div>
-        <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar',:onclick=>"setSens('date_to', 'max');" %></div>
-      </div>
-
-      <div class="frow">
-        <div>City</div>
-        <div><%= f.text_field :city %></div>
-      </div>
-
-      <div class="frow">
-        <div>Country</div>
-        <div><%= f.country_select :country %></div>
-      </div>
-
-      <div class="frow">
-        <div>Zip</div>
-        <div><%= f.text_field :zip %></div>
-      </div>
-
-    <% elsif @user.role == 'seller' %>
-
-      <div class="frow">
-        <div>Business Name</div>
-        <div><%= f.text_field :business_name %></div>
-      </div>
-
-      <div class="frow">
-        <div>Business Address</div>
-        <div><%= f.text_field :business_address %></div>
-      </div>
-      <div class="frow">
-        <div>Website</div>
-        <div><%= f.text_field :website_url %></div>
-      </div>
-      <div class="frow">
-        <div>Paypal Id</div>
-        <div><%= f.text_field :paypal_id %></div>
-      </div>
-      <div class="frow">
-        <div>Other Info</div>
-        <div><%= f.text_field :other_info %></div>
-      </div>
-    <% end %>
     <div class="frow">
-      <div>Email Id</div>
-      <div><%= f.text_field :email, :readonly => true %></div>
+      <div>Birthday</div>
+      <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar',:onclick=>"setSens('date_to', 'max');" %></div>
+    </div>
+
+    <div class="frow">
+      <div>City</div>
+      <div><%= f.text_field :city %></div>
+    </div>
+
+    <div class="frow">
+      <div>Country</div>
+      <div><%= f.country_select :country %></div>
+    </div>
+
+    <div class="frow">
+      <div>Zip</div>
+      <div><%= f.text_field :zip %></div>
+    </div>
+
+  <% elsif @user.role == 'seller' %>
+
+    <div class="frow">
+      <div>Business Name</div>
+      <div><%= f.text_field :business_name %></div>
+    </div>
+
+    <div class="frow">
+      <div>Business Address</div>
+      <div><%= f.text_field :business_address %></div>
     </div>
     <div class="frow">
-      <div>Phone</div>
-      <div><%= f.text_field :phone %></div>
+      <div>Website</div>
+      <div><%= f.text_field :website_url %></div>
     </div>
     <div class="frow">
-      <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
-      <div><input type="submit" title="Submit" value="Submit" /></div>
+      <div>Paypal Id</div>
+      <div><%= f.text_field :paypal_id %></div>
+    </div>
+    <div class="frow">
+      <div>Other Info</div>
+      <div><%= f.text_field :other_info %></div>
     </div>
   <% end %>
+  <div class="frow">
+    <div>Email Id</div>
+    <div><%= f.text_field :email, :readonly => true %></div>
+  </div>
+  <div class="frow">
+    <div>Phone</div>
+    <div><%= f.text_field :phone %></div>
+  </div>
+  <div class="frow">
+    <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+    <div><input type="submit" title="Submit" value="Submit" /></div>
+  </div>
+<% end %>

@@ -18,8 +18,8 @@
   <%= will_paginate @invitations, :param_name => 'invitation_page', :previous_label => "PREV", :next_label => "NEXT", :page_links => false %>
 </div>
 <script>
-  $(function(){
-    $('.pagination a').click(function(){
+  $(function() {
+    $('.pagination a').click(function() {
       $.getScript(this.href);
       return false;
     });

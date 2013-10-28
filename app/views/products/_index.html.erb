@@ -10,9 +10,9 @@
     <div class="column">Qty Remaining</div>
     <div class="column last">Actions</div>
   </div>
-  <% for product in @products %>
+  <% @products.each_with_index do |product,index| %>
     <div class="row">
-      <div class="column"><%= product.id %></div>
+      <div class="column"><%= index+1 %></div>
       <div class="column"><%= product.title %></div>
       <div class="column"><%= product.color %></div>
       <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
