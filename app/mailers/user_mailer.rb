@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
     @product = product
     mail(:to => email.email, :subject => product.title)
   end
+  
+  def contact(contact)
+    @contact = contact
+    mail(:to => 'Info@enods.com', :subject => contact.option)
+  end
 end

@@ -46,11 +46,11 @@
         <div class="nav-container">
           <div id="navigation">
             <ul class="list-media">
-              <li class="icon-facebook"><%= link_to "facebook", "" %></li>
-              <li class="icon-twitter"><%= link_to "twitter", "" %></li>
-              <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
-              <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
-              <li class="icon-youtube"><%= link_to "you tube", "" %></li>
+              <li class="icon-facebook"><%= link_to "facebook", "https://www.facebook.com/enodsnow" %></li>
+              <li class="icon-twitter"><%= link_to "twitter", "https://twitter.com/enodsnow" %></li>
+              <li class="icon-googlePlus"><%= link_to "google plus", "https://google.com/+enods" %></li>
+              <li class="icon-pinterest"><%= link_to "pinterest", "http://www.pinterest.com/enodsnow" %></li>
+              <li class="icon-youtube"><%= link_to "you tube", "https://www.youtube.com/user/enodsnow" %></li>
             </ul>
             <nav>
               <ul>
@@ -99,16 +99,17 @@
         <div class="commonrow">
           <div class="aboutusBox">
             <h2><span>About Us</span></h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make <br>a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining<br> essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum <br>passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem <br>Ipsum.</p>
+            <p>enods, which stands for Earth Needs our Dedicated Support is a social marketplace platform, which enables artisans, and local business to raise funds to support causes via commerce.  It aims to “democratize good” and sustain the planet by raising funds to support non-profit organizations through the sale of products made via the enods platform.  enods allows vendors to pre-select a donation percentage amount to a support animal, human or environmental causes, and nonprofits.
+              enods mission is to become the central marketplace for cause related commerce by allowing individuals, organizations, and businesses to directly partake in and promote commerce that has a net benefit to our planet.</p>
           </div>
         </div>
         <div class="commonrow">
           <ul class="list-media-footer">
-            <li class="icon-twitter"><%= link_to "twitter", "" %></li>
-            <li class="icon-facebook"><%= link_to "facebook", "" %></li>
-            <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
-            <li class="icon-pinterest"><%= link_to "pintrest", "" %></li>
-            <li class="icon-youtube"><%= link_to "you tube", "" %></li>
+            <li class="icon-twitter"><%= link_to "twitter", "https://twitter.com/enodsnow" %></li>
+            <li class="icon-facebook"><%= link_to "facebook", "https://www.facebook.com/enodsnow" %></li>
+            <li class="icon-googlePlus"><%= link_to "google plus", "https://google.com/+enods" %></li>
+            <li class="icon-pinterest"><%= link_to "pintrest", "http://www.pinterest.com/enodsnow" %></li>
+            <li class="icon-youtube"><%= link_to "you tube", "https://www.youtube.com/user/enodsnow" %></li>
           </ul>
         </div>
         <div class="menu-footer">
@@ -116,18 +117,18 @@
             <li>
               <h4>Information</h4>
               <ul>
-                <li><%= link_to "About Us", "" %></li>
-                <li><%= link_to "Delivery Information", "" %></li>
-                <li><%= link_to "Privacy Policy", "" %></li>
-                <li><%= link_to "Terms & Conditions", "" %></li>
+                <li><%= link_to "About Us", about_us_path %></li>
+                <li><%= link_to "Delivery Information", delivary_information_path %></li>
+                <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
+                <li><%= link_to "Terms & Conditions", terms_conditions_path %></li>
               </ul>
             </li>
             <li>
               <h4>Customer Services</h4>
               <ul>
-                <li><%= link_to "Contact Us", "" %></li>
-                <li><%= link_to "Shipping Returns", "" %></li>
-                <li><%= link_to "Secure Shopping", "" %></li>
+                <li><%= link_to "Contact Us", contact_us_path %></li>
+                <li><%= link_to "Shipping Returns", shipping_returns_path %></li>
+                <li><%= link_to "Secure Shopping", secure_shopping_path %></li>
               </ul>
             </li>
             <li>
@@ -135,8 +136,8 @@
               <ul>
                 <li><%= link_to "Non-Profit Login", new_user_session_path() %></li>
                 <li><%= link_to "Non-Profit Sign Up", new_user_path(:role => 'non-profit') %></li>
-                <li><%= link_to "How it Works", "" %></li>
-                <li><%= link_to "Non-Profit FAQs", "" %></li>
+                <li><%= link_to "How it Works", how_it_works_path %></li>
+                <li><%= link_to "Non-Profit FAQs", faqs_path %></li>
               </ul>
             </li>
             <li>
@@ -151,7 +152,7 @@
           </ul>
         </div>
         <div class="copyright">
-          &copy; 2013 <span>Companyname,</span> All Rights Reserved.
+          Copyright © 2014 enods. All rights reserved.
         </div>
         <div class="clearFix"></div>
       </div>

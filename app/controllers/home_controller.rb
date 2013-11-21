@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     @email_alert = EmailAlert.new(params[:email_alert])
     if @email_alert.save
       UserMailer.alert(@email_alert).deliver
-      flash[:notice] = "Successfully Subscribed for this site."
+      flash[:notice] = "Thank you for subscribing to our mailing list!"
       redirect_to root_path
     else
       render :action => 'index'
@@ -38,5 +38,43 @@ class HomeController < ApplicationController
   def launch
     @email_alert = EmailAlert.new
     render :layout => false
+  end
+  
+  def about_us
+  end
+  
+  def delivary_information
+  end
+  
+  def privacy_policy
+  end
+  
+  def terms_conditions
+  end
+  
+  def contact_us
+    @contact = Contact.new
+  end
+  
+  def contact
+    @contact = Contact.new(params[:contact])
+    if @contact.save
+      UserMailer.contact(@contact).deliver
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+  
+  def shipping_returns
+  end
+  
+  def secure_shopping
+  end
+  
+  def how_it_works
+  end
+  
+  def faqs
   end
 end

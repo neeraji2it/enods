@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808075018) do
+ActiveRecord::Schema.define(:version => 20131121071506) do
+
+  create_table "banner_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.text     "image_description"
+  end
 
   create_table "billing_shipping_addresses", :force => true do |t|
     t.integer  "product_id"
@@ -53,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20130808075018) do
     t.integer  "image_file_size"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "message"
+    t.string   "option"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "email_alerts", :force => true do |t|
@@ -121,16 +139,17 @@ ActiveRecord::Schema.define(:version => 20130808075018) do
     t.string   "title"
     t.text     "description"
     t.string   "price"
-    t.integer  "product_count",                                   :default => 0
+    t.integer  "product_count",                                        :default => 0
     t.string   "status"
-    t.decimal  "qty",              :precision => 10, :scale => 0, :default => 0
+    t.decimal  "qty",                   :precision => 10, :scale => 0, :default => 0
     t.string   "color"
-    t.decimal  "qty_sold",         :precision => 10, :scale => 0, :default => 0
+    t.decimal  "qty_sold",              :precision => 10, :scale => 0, :default => 0
     t.string   "non_profit_email"
     t.string   "fair_trade"
     t.integer  "cause_id"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.integer  "non_profit_percentage"
   end
 
   create_table "users", :force => true do |t|
