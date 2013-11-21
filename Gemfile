@@ -20,7 +20,7 @@ gem 'aws-sdk'
 gem "omniauth-google-oauth2"
 gem 'omniauth-yahoo'
 gem 'omniauth-linkedin'
-gem 'capistrano'
+gem 'capistrano', '2.9.0'
 gem 'execjs'
 gem 'therubyracer'
 gem 'nokogiri'
