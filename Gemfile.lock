@@ -236,7 +236,7 @@ PLATFORMS
 DEPENDENCIES
   activemerchant
   aws-sdk
-  capistrano
+  capistrano (= 2.9.0)
   coffee-rails (~> 3.2.1)
   country-select
   devise
