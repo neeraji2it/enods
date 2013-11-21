@@ -52,6 +52,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -237,6 +239,7 @@ DEPENDENCIES
   activemerchant
   aws-sdk
   capistrano
+  capistrano-ext
   coffee-rails (~> 3.2.1)
   country-select
   devise

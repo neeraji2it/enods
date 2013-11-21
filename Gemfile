@@ -20,7 +20,12 @@ gem 'aws-sdk'
 gem "omniauth-google-oauth2"
 gem 'omniauth-yahoo'
 gem 'omniauth-linkedin'
-gem 'capistrano'
+group :development do
+  #gem 'ruby-debug'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  
+end
 gem 'execjs'
 gem 'therubyracer'
 gem 'nokogiri'
