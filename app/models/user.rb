@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
-  has_many :billing_shipping_address, :dependent => :destroy
+  has_one :billing_shipping_address, :dependent => :destroy
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
   has_one :received_invitation, :class_name => 'Invitation', :primary_key => :email, :foreign_key => :email
   validates :username,:presence => true,:uniqueness => true

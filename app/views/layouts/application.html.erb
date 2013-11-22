@@ -25,7 +25,7 @@
       <div class="fright">
         <ul class="list-topicon" style="margin-left: -35px;">
           <li>Member: <%= current_user.username.capitalize %></li>
-          <li class="icon-user"><%= current_user.role == 'admin' ? (link_to "", "") : (link_to "", profile_profile_path(current_user)) %></li>
+          <li class="icon-user"><%= link_to " ", current_user.role == 'admin' ? ("") : (profile_profile_path(current_user)) %></li>
           <li class="icon-logout"><%= link_to "", destroy_user_session_path, :method => 'delete' %></li>
         </ul>
       </div>
@@ -46,7 +46,7 @@
           <ul class="menu">
             <% if current_user.role == 'buyer' %>
               <li class="icon-productsManagement <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "My Account", profile_profile_path(current_user) %></li>
-              <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", new_billing_shipping_address_path %></li>
+              <li class="icon-orderSalesManagement <%= (params[:controller] == 'billing_shipping_addresses' and params[:action] == 'new') ? 'active' : "" %>"><%= link_to "Billing & Shipping", (current_user.billing_shipping_address.present? ? (edit_billing_shipping_address_path(current_user.billing_shipping_address)) : (new_billing_shipping_address_path)) %></li>
               <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order History", order_history_path %></li>
               <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
               <% if current_cart.line_items.present? %>

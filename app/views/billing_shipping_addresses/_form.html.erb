@@ -1,0 +1,66 @@
+<h3>Address Change for Open Orders</h3>
+<div class="frow">
+  <div>Select Order Number:</div>
+  <div>
+    <%= f.select :product_id, options_for_select([["Select", '']]+Product.all.map{|a| [a.title, a.id]}, :selected => f.object.product_id)%>
+  </div>
+</div>
+<div class="bor"></div>
+
+<h3>Billing Address</h3>
+<div class="billingColumn">
+  <div class="frow">
+    <div>House No.:</div>
+    <div><%= f.text_field :billling_house_no %></div>
+  </div>
+  <div class="frow">
+    <div>City:</div>
+    <div><%= f.text_field :billing_city %></div>
+  </div>
+  <div class="frow">
+    <div>Country:</div>
+    <%= f.country_select :billing_country %>
+  </div>
+</div>
+<div class="billingColumn">
+  <div class="frow">
+    <div>Street:</div>
+    <div><%= f.text_field :billing_street %></div>
+  </div>
+  <div class="frow">
+    <div>Zip:</div>
+    <div><%= f.text_field :billing_zip %></div>
+  </div>
+</div>
+<div class="bor"></div>
+
+<h3>Shipping Address</h3>
+<div class="billingColumn">
+  <div class="frow">
+    <div>House No.:</div>
+    <div><%= f.text_field :shipping_house_no %></div>
+  </div>
+  <div class="frow">
+    <div>City:</div>
+    <div><%= f.text_field :shipping_city %></div>
+  </div>
+  <div class="frow">
+    <div>Country:</div>
+    <%= f.country_select :shipping_country %>
+  </div>
+</div>
+<div class="billingColumn">
+  <div class="frow">
+    <div>Street:</div>
+    <div><%= f.text_field :shipping_street %></div>
+  </div>
+  <div class="frow">
+    <div>Zip:</div>
+    <div><%= f.text_field :shipping_zip %></div>
+  </div>
+  <div class="frow">
+    <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+    <div><input type="submit" title="Submit" value="Submit" /></div>
+  </div>
+</div>
+<div class="clearFix"></div>
