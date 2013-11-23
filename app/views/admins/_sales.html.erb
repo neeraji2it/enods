@@ -13,7 +13,7 @@
       <div class="column"><%= order.id %></div>
       <div class="column"><%= order.line_item.product.user.username %></div>
       <div class="column"><%= order.user.email %></div>
-      <div class="column"><%= order.line_item.product.non_profit_email %></div>
+      <div class="column"><%= order.line_item.product.non_profit_email.present? ? (order.line_item.product.non_profit_email) : "-" %></div>
       <div class="column"><%= number_to_currency(order.net_payment) %></div>
       <div class="column last">
         <select title="Status">
