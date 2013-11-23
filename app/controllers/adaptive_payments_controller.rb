@@ -21,6 +21,7 @@ class AdaptivePaymentsController < ApplicationController
       ord.update_attributes({
           :status => "Success",
           :payment_type => "PAYPAL",
+          :shipping => 'In process',
           :receiver_id => ord.line_item.product.user_id
         })
       ord.line_item.product.update_attributes({:qty => ord.line_item.product.qty-ord.line_item.quantity, :qty_sold => ord.line_item.product.qty_sold+ord.line_item.quantity})

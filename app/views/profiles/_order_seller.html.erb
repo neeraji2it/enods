@@ -23,7 +23,7 @@
         <div class="column"><%= order.cart.purchased_at.strftime("%Y-%m-%d") %></div>
         <div class="column"><%= order.status %></div>
         <div class="column last">
-          <a title="" href="#"><img class="icon-trolly" alt="" title="" src="/assets/user-images/icon-trolly.png" /></a>
+          <%= link_to image_tag("/assets/user-images/icon-trolly.png"), shipping_line_item_order_path(order.line_item,order), :method => 'PUT', :alert => "ssss", :class => 'icon-trolly' %>
           <a title="" href="#"><img class="icon-pdf" alt="PDF" title="PDF" src="/assets/user-images/icon-pdf.png" /></a>
         </div>
       </div>

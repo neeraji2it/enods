@@ -36,7 +36,11 @@ Enods::Application.routes.draw do
   end
 
   resources :line_items do
-    resources :orders
+    resources :orders do
+      member do
+        put :shipping
+      end
+    end
   end
   resources :carts do
     collection do

@@ -15,6 +15,13 @@ class OrdersController < ApplicationController
       end
     end
   end
+  
+  def shipping
+    @line_item = LineItem.find(params[:line_item_id])
+    @order = @line_item.orders.find(params[:id])
+    @order.update_attribute(:shipping, "Shipped")
+    redirect_to order_history_path
+  end
 
   def order_history
     @orders = Order.where("user_id = #{current_user.id} and status = 'Success'")
