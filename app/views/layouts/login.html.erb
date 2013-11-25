@@ -23,58 +23,7 @@
   <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
     <header>
       <div class="content">
-        <div class="topbar">
-          <ul class="menu-top">
-            <li><%= link_to "Sell", ""%></li>
-            <li><%= link_to "About", about_us_path %></li>
-            <li><%= link_to "Causes", causess_path %></li>
-            <li><%= link_to "Categories", "" %> </li>
-            <li><%= link_to "Blog", "" %> </li>
-            <li><%= link_to "Contact", contact_us_path %> </li>
-            <li><%= link_to "Cart", carts_path %> </li>
-            <li><%= link_to "Login", new_user_session_path() %></li>
-          </ul>
-        </div>
-        <div class="commonrow">
-          <%= link_to image_tag("/assets/logo.png", :id => "logo"), '/' %>
-          <%= form_tag search_products_path, :method => 'get' do %>
-            <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
-          <% end %>
-          <div class="icon-shopping" style="background-position: 120px -72px;"><%= current_cart.line_items.present? ? "#{current_cart.line_items.count} Items in Your Cart":"Your Cart Is Empty"%></div>
-          <div id="cart_expire_time" style="position: relative;float: right;top: 15px;width: 213px;color: red;"></div>
-        </div>
-        <div class="nav-container">
-          <div id="navigation">
-            <ul class="list-media">
-              <li class="icon-facebook"><%= link_to "facebook", "https://www.facebook.com/enodsnow" %></li>
-              <li class="icon-twitter"><%= link_to "twitter", "https://twitter.com/enodsnow" %></li>
-              <li class="icon-googlePlus"><%= link_to "google plus", "https://google.com/+enods" %></li>
-              <li class="icon-pinterest"><%= link_to "pinterest", "http://www.pinterest.com/enodsnow" %></li>
-              <li class="icon-youtube"><%= link_to "you tube", "https://www.youtube.com/user/enodsnow" %></li>
-            </ul>
-            <nav>
-              <ul>
-                <li><%= link_to "Sign up", new_user_path(:role => 'seller'), :class => 'lin-signup' %></li>
-                <li><%= link_to "Sign In", new_user_session_path() %></li>
-                <li class="parent"><a title="Categories" href="#">Categories</a>
-                  <ul class="submenu">
-                    <% Category.all.each do |category| %>
-                      <li><%= link_to category.name, category_path(:categories => category.id) %></li>
-                    <% end %>
-                    <li><%= link_to "Others" , index_path %></li>
-                  </ul>
-                </li>
-                <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
-                  <ul class="submenu">
-                    <li><%= link_to "Animal Causes", all_causes_path(:cause => 'animal_cause') %></li>
-                    <li><%= link_to "Human Causes", all_causes_path(:cause => 'human_cause') %></li>
-                  </ul>
-                </li>
-                <li><%= link_to "Sell", "" %></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <%= render :partial => '/layouts/header' %>
         <div id="slider">
           <div id='ajax-loader' style='z-index:1000000;'>
             <%= image_tag("/assets/284.gif", :style => 'width: 80px;height: 80px;z-index: 1000000') %>
@@ -84,79 +33,7 @@
         <div class="clearFix"></div>
       </div>
     </header>
-    <footer>
-      <div class="content">
-        <div class="commonrow">
-          <div class="logo-footer"></div>
-          <ul class="list-paymenttype">
-            <li class="icon-paypal"><%= link_to "Paypal", "" %></li>
-            <li class="icon-americanexp"><%= link_to "American Express", "" %></li>
-            <li class="icon-discover"><%= link_to "Discover", "" %></li>
-            <li class="icon-mastercard"><%= link_to "Master Card", "" %></li>
-            <li class="icon-visa"><%= link_to "Visa", "" %></li>
-          </ul>
-        </div>
-        <div class="commonrow">
-          <div class="aboutusBox">
-            <h2><span>About Us</span></h2>
-            <p>enods, which stands for Earth Needs our Dedicated Support is a social marketplace platform, which enables artisans, and local business to raise funds to support causes via commerce.  It aims to “democratize good” and sustain the planet by raising funds to support non-profit organizations through the sale of products made via the enods platform.  enods allows vendors to pre-select a donation percentage amount to a support animal, human or environmental causes, and nonprofits.
-              enods mission is to become the central marketplace for cause related commerce by allowing individuals, organizations, and businesses to directly partake in and promote commerce that has a net benefit to our planet.</p>
-          </div>
-        </div>
-        <div class="commonrow">
-          <ul class="list-media-footer">
-            <li class="icon-twitter"><%= link_to "twitter", "https://twitter.com/enodsnow" %></li>
-            <li class="icon-facebook"><%= link_to "facebook", "https://www.facebook.com/enodsnow" %></li>
-            <li class="icon-googlePlus"><%= link_to "google plus", "https://google.com/+enods" %></li>
-            <li class="icon-pinterest"><%= link_to "pintrest", "http://www.pinterest.com/enodsnow" %></li>
-            <li class="icon-youtube"><%= link_to "you tube", "https://www.youtube.com/user/enodsnow" %></li>
-          </ul>
-        </div>
-        <div class="menu-footer">
-          <ul>
-            <li>
-              <h4>Information</h4>
-              <ul>
-                <li><%= link_to "About Us", about_us_path %></li>
-                <li><%= link_to "Delivery Information", delivary_information_path %></li>
-                <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
-                <li><%= link_to "Terms & Conditions", terms_conditions_path %></li>
-              </ul>
-            </li>
-            <li>
-              <h4>Customer Services</h4>
-              <ul>
-                <li><%= link_to "Contact Us", contact_us_path %></li>
-                <li><%= link_to "Shipping Returns", shipping_returns_path %></li>
-                <li><%= link_to "Secure Shopping", secure_shopping_path %></li>
-              </ul>
-            </li>
-            <li>
-              <h4>Non-Profits</h4>
-              <ul>
-                <li><%= link_to "Non-Profit Login", new_user_session_path() %></li>
-                <li><%= link_to "Non-Profit Sign Up", new_user_path(:role => 'non-profit') %></li>
-                <li><%= link_to "How it Works", how_it_works_path %></li>
-                <li><%= link_to "Non-Profit FAQs", faqs_path %></li>
-              </ul>
-            </li>
-            <li>
-              <h4>My Account</h4>
-              <ul>
-                <li><%= link_to "My Account", "" %></li>
-                <li><%= link_to "Order History", "" %></li>
-                <li><%= link_to "Wishlist", "" %></li>
-                <li><%= link_to "Newsletter", "" %></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="copyright">
-          Copyright © 2014 enods. All rights reserved.
-        </div>
-        <div class="clearFix"></div>
-      </div>
-    </footer>
+    <%= render :partial => '/layouts/footer' %>
     <div id='overlay' style='filter:alpha(opacity=50);'></div>
     <div align='center' id='popup_box'>
       <div style='float: right; margin-top: -13px;margin-right:-13px'>
