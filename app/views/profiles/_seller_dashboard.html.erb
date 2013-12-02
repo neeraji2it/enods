@@ -44,6 +44,13 @@
     </div>
     <div class="row">
       <div class="img-graph-1">
+        <div style="float: right;position: relative;top: 10px;width: 400px;">
+          <%= form_tag week_profiles_path, :method => 'Get', :remote => true do %>
+            <%= text_field_tag :from_date,'', :placeholder => "From Date: dd-mm-YY", :style => 'width: 120px;' %>-
+            <%= text_field_tag :to_date,'', :placeholder => "To Date: dd-mm-YY", :style => 'width: 120px;' %>
+            <%= submit_tag "Graph", :style => 'position: relative; padding: 6px 14px 3px 14px;' %>
+          <% end %>
+        </div>
         <ul style='width: 180px;' id="xkgd">
           <li>
             <b>Zoom:</b>&nbsp;&nbsp;<%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
