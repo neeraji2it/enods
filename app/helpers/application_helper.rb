@@ -38,16 +38,4 @@ module ApplicationHelper
       end.inspect
     end
   end
-  
-  def order_chart(orders, start_time,end_time)
-    if orders.name == 'User'
-      orders_by_day = orders.where(:created_at => start_time.beginning_of_day..end_time.end_of_day).
-        group("date(created_at)").
-        select("created_at, status as status")
-      (start_time.to_date..end_time.to_date).map do |date|
-        order = orders_by_day.detect { |order| order.total_on(date) == date }
-        order && order.total_on(date).to_f || 0
-      end.inspect
-    end
-  end
 end
