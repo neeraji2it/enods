@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   $(function() {
     Highcharts.setOptions({
-      colors: ['#ECA693', '#B1C4F3']
+      colors: ['#ECA693']
     });
     new Highcharts.Chart({
       chart: {
@@ -20,7 +20,7 @@
         }
       },
       series: [
-<% { "Visits" => User.where("role != 'admin'")}.each do |name, orders| %>
+<% { "Users" => User.where("role != 'admin'")}.each do |name, orders| %>
           {
             name: "<%= name %>",
             pointInterval: <%= 1.day * 1000 %>,
