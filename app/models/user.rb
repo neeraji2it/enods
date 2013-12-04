@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def self.total_on(date)
-    where("role != ? and date(created_at) = ?", 'admin',date).count
+    where("date(created_at) = ?",date).count
   end
 
   def seller?
