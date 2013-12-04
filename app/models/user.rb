@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   def buyer?
     !self.role.nil? and ['buyer'].include?(self.role)
   end
+  
+  def self.total_on(date)
+    where("date(created_at) = ?",date).count
+  end
 
   def seller?
     !self.role.nil? and ['seller'].include?(self.role)

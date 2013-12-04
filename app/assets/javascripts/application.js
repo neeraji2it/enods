@@ -14,9 +14,7 @@
 //= require jquery_ujs
 //= require countdown_timer
 //= require jquery.notifyBar
-//= require dhtmlxcalendar
 //= require jquery-ui-1.8.20.custom.min
-//= require charts
 //= require jquery.flot
 //= require jquery.flot.tooltip
 //= require highstock
@@ -34,7 +32,7 @@ function remove_fields(link) {
 //add more fields
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g")
+    var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
 }
 
@@ -43,16 +41,6 @@ function graph_id(th) {
         $(this).css('font-weight', 'normal');
     });
     $(th).css('font-weight', 'bold');
-}
-
-var myCalendar;
-function doOnLoad() {
-    myCalendar = new dhtmlXCalendarObject(["calendar"]);
-    myCalendar.setDate(new Date());
-}
-
-function setSens(id, k) {
-    myCalendar.setSensitiveRange(null, new Date());
 }
 
 $(document).ready(function() {
@@ -65,10 +53,6 @@ $(document).ready(function() {
     }, 250);
 });
 
-//$(function(){
-//    $("input, textarea, select,file").uniform();
-//});
-
 //ajax loader
 
 jQuery(document).ajaxStart(function(settings) {
@@ -78,82 +62,6 @@ jQuery(document).ajaxStop(function() {
     jQuery('#ajax-loader').hide();
 });
 
-
-////scroll top
-//$(document).ready(function() {
-//
-//    $(window).scroll(function() {
-//        if ($(this).scrollTop() > 100) {
-//            $('.scrollup').fadeIn();
-//        } else {
-//            $('.scrollup').fadeOut();
-//        }
-//    });
-//
-//    $('.scrollup').click(function() {
-//        $("html, body").animate({
-//            scrollTop: 0
-//        }, 600);
-//        return false;
-//    });
-//
-//});
-
-////styles for the radio button
-//$(function(){
-//    $.imageTick.logging = true;
-//    $('input[type="radio"]').imageTick({
-//        tick_image_path: "/assets/radio_button1.png",
-//        no_tick_image_path: "/assets/radio-button.png",
-//        image_tick_class: "radios"
-//    });
-//});
-
-
-//without page reload change browser url
-
-//$(function(){
-//    $("a[rel='tab']").click(function(e){
-//        pageurl = $(this).attr('href');
-//        $.ajax({
-//            url:pageurl+'?rel=tab',
-//            success: function(data){
-//                $('#header').css('display', 'none');
-//                $('#maincontent').html(data);
-//            }
-//        });
-//
-//    if(pageurl!=window.location){
-//        window.history.pushState({
-//            path:pageurl
-//        },'',pageurl);
-//    }
-//    return false;
-//    });
-//});
-//
-//$(window).bind('popstate', function() {
-//    $.ajax({
-//        url:location.pathname+'?rel=tab',
-//        success: function(data){
-//            $('#maincontent').html(data);
-//        }
-//    });
-//});
-
-//login popup
-
-function login() {
-    $.ajax({
-        url: '/users/sign_in',
-        success: function(data) {
-            $("#popup_body").html(data);
-            $("#overlay").show();
-            $("#popup_box").show();
-        }
-    })
-}
-
 function buyer_users_path() {
     $.ajax({
         url: '/users/buyer',
@@ -162,7 +70,7 @@ function buyer_users_path() {
             $('#overlay').show();
             $('#popup_box').show();
         }
-    })
+    });
 }
 
 function hide_popup() {

@@ -39,19 +39,23 @@
         <div class="column">.</div>
       </div>
       <div class="row">
-        <div class="img-graph-1">
-          <div id="flot-gradient-line" style="min-height: 300px;"></div><br />
+        <div style="float: right;position: relative;top: 15px;width: 400px;z-index: 1030;">
+          <%= form_tag week_admins_path, :autocomplete => 'off', :method => 'Get', :remote => true do %>
+            <%= text_field_tag :from_date,'', :placeholder => "Start Date", :style => 'width: 120px;' %>-
+            <%= text_field_tag :to_date,'', :placeholder => "End Date", :style => 'width: 120px;' %>
+            <%= submit_tag "Graph", :id => "Graph", :style => 'position: relative; padding: 6px 14px 3px 14px;' %>
+          <% end %>
         </div>
-        <script type="text/javascript">
-          jQuery(function($) {
-            flot_line('flot-gradient-line', flot_options_line,<%= @likesqw %>,<%= @likesqw1 %>);
-          });
-        </script>
+        <div id="container" style="height: 400px; min-width: 100px"></div>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <div class="img-graph-1">
+          <%= render :partial => 'week' %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="dashboardColumn" style="float: right;margin-right: -10px;margin-top: -429px;position: relative;width: 44%;">
+<div class="dashboardColumn" style="float: right;margin-right: -10px;margin-top: -462px;position: relative;width: 44%;">
   <h1 class="icon-latestOrders"><span>Latest Orders</span></h1>
   <div id='latest_orders'>
     <%= render :partial => 'latest_orders' %>
@@ -74,3 +78,28 @@
     </div>
   </div>
 </div>
+<script>
+  $("#Graph").click(function() {
+    if ($("#from_date").val() == '' || $("#to_date").val() == '') {
+      alert("Dates Could Not be Empty.")
+      return false;
+    }
+  });
+  $("#from_date,#to_date").datepicker({
+    dateFormat: 'dd-mm-yy',
+    changeMonth: true,
+    changeYear: true,
+    maxDate: 0,
+    beforeShow: function customRange(input) {
+      if (input.id == 'from_date') {
+        return {
+          minDate: jQuery('#to_date').datepicker("getDate")
+        };
+      } else if (input.id == 'to_date') {
+        return {
+          minDate: jQuery('#from_date').datepicker("getDate")
+        };
+      }
+    }
+  });
+</script>

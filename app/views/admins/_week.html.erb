@@ -1,0 +1,30 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    Highcharts.setOptions({
+      colors: ['#ECA693', '#B1C4F3']
+    });
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "container"
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: "datetime"
+      },
+      tooltip: {
+        formatter: function() {
+          return Highcharts.dateFormat("%B %e, %Y", this.x) + ': ' +
+                  "Count: " + Highcharts.numberFormat(this.y, 0);
+        }
+      },
+      series: [{
+          name: "Users",
+          pointInterval: <%= @pointInterval %>,
+          pointStart: <%= @pointStart %>,
+          data: <%= @data %>
+        }]
+    });
+  });
+</script>

@@ -11,6 +11,7 @@
 * Project home:
 * http://www.dmitri.me/blog/notify-bar
 */
+@import 'jquery-ui';
 
 .jquery-notify-bar {
     width:100%;

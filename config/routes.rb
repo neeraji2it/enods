@@ -13,6 +13,7 @@ Enods::Application.routes.draw do
       get :buyer
       get :non_profit
       get :sales
+      get :week
     end
     member do
       put :confirm_product
