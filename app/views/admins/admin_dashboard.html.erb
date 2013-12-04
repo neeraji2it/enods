@@ -85,17 +85,14 @@
       return false;
     }
   });
+
   $("#from_date,#to_date").datepicker({
     dateFormat: 'dd-mm-yy',
     changeMonth: true,
     changeYear: true,
     maxDate: 0,
     beforeShow: function customRange(input) {
-      if (input.id == 'from_date') {
-        return {
-          minDate: jQuery('#to_date').datepicker("getDate")
-        };
-      } else if (input.id == 'to_date') {
+      if (input.id == 'to_date') {
         return {
           minDate: jQuery('#from_date').datepicker("getDate")
         };
