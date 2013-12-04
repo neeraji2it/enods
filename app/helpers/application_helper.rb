@@ -28,6 +28,14 @@ module ApplicationHelper
         order = orders_by_day.detect { |order| order.created_at.to_date == date }
         order && order.net_payment.to_f || 0
       end.inspect
+    elsif orders.name == 'User'
+      orders_by_day = orders.where(:created_at => start_time.beginning_of_day..end_time.end_of_day).
+        group("date(created_at)").
+        select("created_at")
+      (start_time.to_date..end_time.to_date).map do |date|
+        order = orders_by_day.detect { |order| order.created_at.to_date == date }
+        order && orders.total_on(date).to_f || 0
+      end.inspect
     else
       orders_by_day = orders.where(:created_at => start_time.beginning_of_day..end_time.end_of_day).
         group("date(created_at)").
@@ -37,15 +45,5 @@ module ApplicationHelper
         order && order.price.to_f || 0
       end.inspect
     end
-  end
-  
-  def orders_chart(orders, start_time,end_time)
-    orders_by_day = orders.where(:created_at => start_time.beginning_of_day..end_time.end_of_day).
-      group("date(created_at)").
-      select("created_at")
-    (start_time.to_date..end_time.to_date).map do |date|
-      order = orders_by_day.detect { |order| order.created_at.to_date == date }
-      order && orders.total_on(date).to_f || 0
-    end.inspect
   end
 end
