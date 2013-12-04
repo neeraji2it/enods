@@ -19,12 +19,16 @@
                   "Count: " + Highcharts.numberFormat(this.y, 0);
         }
       },
-      series: [{
-          name: "Users",
-          pointInterval: <%= @pointInterval %>,
-          pointStart: <%= @pointStart %>,
-          data: <%= @data %>
-        }]
+      series: [
+<% { "Visits" => User.where("role != 'admin'")}.each do |name, orders| %>
+          {
+            name: "<%= name %>",
+            pointInterval: <%= 1.day * 1000 %>,
+            pointStart: <%= params[:from_date] ? (params[:from_date].to_date.beginning_of_day.to_i * 1000) : (1.month.ago.to_i * 1000) %>,
+            data: <%= params[:from_date] ? ("#{orders_chart(orders, (params[:from_date].to_date), (params[:to_date].to_date))}") : ("#{orders_chart(orders, 1.month.ago, Time.now)}") %>
+          },
+<% end %>
+      ]
     });
   });
 </script>
