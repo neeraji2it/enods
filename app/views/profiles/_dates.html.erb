@@ -1,0 +1,38 @@
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+  $("#Graph").click(function() {
+    if ($("#from_date").val() == '' || $("#to_date").val() == '') {
+      alert("Dates Could Not be Empty.")
+      return false;
+    }
+  });
+
+  $(function() {
+    $('#from_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true,
+      maxDate: 0,
+      onSelect: function() {
+        var date = $(this).datepicker('getDate');
+        if (date) {
+          date.setDate(date.getDate() + 1);
+        }
+        $('#to_date').datepicker('option', 'minDate', date);
+      }
+    });
+    $('#to_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true,
+      maxDate: 0,
+      onSelect: function() {
+        var date = $(this).datepicker('getDate');
+        if (date) {
+          date.setDate(date.getDate() - 1);
+        }
+        $('#from_date').datepicker('option', 'maxDate', date || 0);
+      }
+    });
+  });
+</script>

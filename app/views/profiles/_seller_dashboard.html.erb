@@ -94,25 +94,4 @@
     </div>
   </div>
 </div>
-<script>
-  $("#Graph").click(function() {
-    if ($("#from_date").val() == '' || $("#to_date").val() == '') {
-      alert("Dates Could Not be Empty.")
-      return false;
-    }
-  });
-
-  $("#from_date,#to_date").datepicker({
-    dateFormat: 'dd-mm-yy',
-    changeMonth: true,
-    changeYear: true,
-    maxDate: 0,
-    beforeShow: function customRange(input) {
-      if (input.id == 'to_date') {
-        return {
-          minDate: jQuery('#from_date').datepicker("getDate")
-        };
-      }
-    }
-  });
-</script>
+<%= render :partial => '/profiles/dates' %>
