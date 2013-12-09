@@ -27,6 +27,7 @@ gem 'nokogiri'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'paypal-sdk-adaptivepayments'
 gem 'country-select'
+gem "highcharts-rails"
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

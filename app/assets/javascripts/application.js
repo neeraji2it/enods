@@ -15,9 +15,7 @@
 //= require countdown_timer
 //= require jquery.notifyBar
 //= require jquery-ui-1.8.20.custom.min
-//= require jquery.flot
-//= require jquery.flot.tooltip
-//= require highstock
+//= require highcharts
 //= require navbar
 //= require waypoints.min
 //= require script
