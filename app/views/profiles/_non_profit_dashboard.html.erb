@@ -16,6 +16,13 @@
   </div>
 </div>
 <div class="box-salesGraph" style="width: 100%;">
+  <div style="float: right;position: relative;top: 7px;width: 365px;">
+    <%= form_tag non_profit_week_profiles_path, :autocomplete => 'off', :method => 'Get', :remote => true do %>
+      <%= text_field_tag :from_date,'', :placeholder => "Start Date", :style => 'width: 120px;' %>-
+      <%= text_field_tag :to_date,'', :placeholder => "End Date", :style => 'width: 120px;' %>
+      <%= submit_tag "Graph", :id => "Graph", :style => 'position: relative; padding: 6px 14px 3px 14px;' %>
+    <% end %>
+  </div>
   <h1 class="icon-topSellingToday"><span>Sales Graph</span></h1>
   <div class="tablebox topSellingToday">
     <div class="row">
@@ -31,3 +38,4 @@
     </div>
   </div>
 </div>
+<%= render :partial => '/profiles/dates' %>

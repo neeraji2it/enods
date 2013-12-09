@@ -27,7 +27,14 @@
       <div>Birthday</div>
       <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar' %></div>
     </div>
-
+    <script>
+      $("#calendar").datepicker({
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        changeYear: true,
+        maxDate: 0
+      });
+    </script>
     <div class="frow">
       <div>City</div>
       <div><%= f.text_field :city %></div>
@@ -80,11 +87,3 @@
     <div><input type="submit" title="Submit" value="Submit" /></div>
   </div>
 <% end %>
-<script>
-  $("#calendar").datepicker({
-    dateFormat: 'dd-mm-yy',
-    changeMonth: true,
-    changeYear: true,
-    maxDate: 0
-  });
-</script>

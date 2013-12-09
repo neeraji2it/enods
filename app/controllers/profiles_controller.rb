@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   def profile_update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated your profile."
+      flash[:success] = "Successfully updated your profile."
       redirect_to profile_profile_path(@user)
     else
       flash[:error] = "Fail to update your profile"
@@ -48,6 +48,13 @@ class ProfilesController < ApplicationController
     @latest_customers = Order.where("(status = 'Success' or status = 'Cancel') and receiver_id = #{current_user.id}").order('created_at Asc').paginate :page => params[:latest_customer], :per_page => 4
     @non_profit_contribution = Order.where("non_profit_email = '#{current_user.email}'").joins("left join products on products.id = orders.product_id").sum {|item| item.non_profit_payment.to_i}
     @non_profit_sales =  Order.where("non_profit_email = '#{current_user.email}'").joins("left join products on products.id = orders.product_id").paginate :page => params[:non_profit], :per_page => 4
+  end
+  
+  def non_profit_week
+    @non_profit_sales =  Order.where("non_profit_email = '#{current_user.email}'").joins("left join products on products.id = orders.product_id")
+    respond_to do |format|
+      format.js
+    end
   end
   
   def week

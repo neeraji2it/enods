@@ -1,54 +1,41 @@
-#header_login {
-    float:right;
-    margin-top:45px;
-    position:relative;
-}
-#favourite{
-    float: left;
-    height: 18px;
-    left: 9px;
-    position: relative;
-    top: -148px;
-    width: 24px;
+/*
+ *= require jquery.notify_bar
+ */
+@import 'jquery-ui';
+#overlay{
     display: none;
-}
-
-#category{
-    float: left;
-    margin: 19px 17px -20px 0;
-    width: 200px;
-    border: 1px solid gray;
-    background-color: #F5F5F1;
-}
-
-#reg{
-    background: none repeat scroll 0 0 greenyellow;
-    border-top: 1px solid #DBDBDB;
-    box-shadow: 0 1px 8px #888888;
-    border-radius: 7px;
-    height: 64px;
-    left: 0px;
-    padding-left: 9px;
-    position: absolute;
-    top: 22px;
-    width: 201px;
-    z-index: 1001;
-    line-height: 22px;
-}
-
-ul li{
-    list-style-type: none;
-    margin: 15px -30px;
-}
-
-.scrollup{
-    width:40px;
-    height:40px;
-    opacity:0.3;
+    background-color: #000000;
+    height:500px;
+    left:0;
     position:fixed;
-    bottom:50px;
-    right:100px;
-    display:none;
-    text-indent:-9999px;
+    top:0;
+    width:100%;
+    z-index: 1000;
+    width: 100000px;
+    height: 941px;
+    opacity: 0.5;
 }
 
+#popup_box {
+    height:auto;
+    width:auto;
+    left:32%;
+    margin: -220px 0 0 -250px;
+    padding:15px;
+    position:fixed;
+    top:65%;
+    z-index:1001;
+    font-size: 12px;
+    display: none
+}
+
+#ajax-loader{
+    display: none;
+    float: left;
+    height: 32px;
+    left: 430px;
+    position: absolute;
+    top: 28px;
+    width: 32px;
+    z-index: 1000000;
+}

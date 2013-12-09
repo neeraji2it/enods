@@ -11,7 +11,7 @@ class CausesController < ApplicationController
   def create
     @cause = Cause.new(params[:cause])
     if @cause.save
-      flash[:notice] = "Successfully created the causes"
+      flash[:success] = "Successfully created the causes"
       redirect_to causes_path
     else
       flash[:error] = "Failed to create the Cause."

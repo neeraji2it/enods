@@ -7,7 +7,7 @@ class BillingShippingAddressesController < ApplicationController
   def create
     @billingshippingaddress = BillingShippingAddress.new(params[:billing_shipping_address].merge(:user_id => current_user.id))
     if @billingshippingaddress.save
-      flash[:notice] = "Successfully Created the Billing and Shipping Address"
+      flash[:success] = "Successfully Created the Billing and Shipping Address"
       redirect_to profile_profile_path(current_user)
     else
       flash[:error] = "Failed to create the Billing and Shipping Address"

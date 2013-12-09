@@ -18,11 +18,11 @@ class OmniauthsController < ApplicationController
     @user = @auth
     session[:fb_token] = auth['credentials']['token'] if @auth['provider'] == 'facebook'
     if @user.persisted?
-      flash[:notice] = "Signed in successfully."
+      flash[:success] = "Signed in successfully."
       sign_in(@user)
       redirect_to after_sign_in_path_for(@user)
     else
-      flash[:notice] = "Login failed."
+      flash[:error] = "Login failed."
       redirect_to new_user_path(:role => 'buyer')
     end
   end

@@ -46,4 +46,14 @@ module ApplicationHelper
       end.inspect
     end
   end
+  
+  def order_chart(orders, start_time,end_time)
+    orders_by_day = orders.where(:created_at => start_time.beginning_of_day..end_time.end_of_day).
+      group("date(orders.created_at)").
+      select("orders.created_at, sum(orders.non_profit_payment) as non_profit_payment")
+    (start_time.to_date..end_time.to_date).map do |date|
+      order = orders_by_day.detect { |order| order.created_at.to_date == date }
+      order && order.non_profit_payment.to_f || 0
+    end.inspect
+  end
 end

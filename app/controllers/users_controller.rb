@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.role = params[:user][:role]
     if @user.save
-      flash[:notice] = 'OK!  Please check your email to complete your registration.'
+      flash[:success] = 'OK!  Please check your email to complete your registration.'
       redirect_to '/'
     else
       render :action => 'new'
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:notice] = "Successfully deleted the user."
+      flash[:success] = "Successfully deleted the user."
       redirect_to products_admins_path
     end
   end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
             :confirmed_at => Time.now
           })
       end
-      flash[:notice] = "Successfully updated the user details"
+      flash[:success] = "Successfully updated the user details"
       redirect_to admin_dashboard_path
     else
       render :action => 'edit'

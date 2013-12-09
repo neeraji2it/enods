@@ -2,10 +2,11 @@
 <html>
   <head>
     <title>Enods.com</title>
-    <%= current_user.role == 'admin' ? (stylesheet_link_tag 'default3',"jquery.notifyBar") : (current_user.role == 'buyer' ? (stylesheet_link_tag 'default1',"jquery.notifyBar") : (stylesheet_link_tag 'default2',"jquery.notifyBar")) %>
+    <%= stylesheet_link_tag 'application',(current_user.role == 'admin' ? 'default3' : (current_user.role == 'buyer' ? 'default1' : 'default2')) %>
     <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2' %>
+    <%= jquery_notify_bar_assets %>
     <%= csrf_meta_tag %>
-    <% ['notice', 'error', 'warning'].each do |f|%>
+    <% ['success', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
         <script type="text/javascript" >
           jQuery(function() {

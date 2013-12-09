@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require countdown_timer
-//= require jquery.notifyBar
+//= require jquery.notify_bar
 //= require jquery-ui-1.8.20.custom.min
 //= require highcharts
 //= require navbar

@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     @email_alert = EmailAlert.new(params[:email_alert])
     if @email_alert.save
       UserMailer.alert(@email_alert).deliver
-      flash[:notice] = "Thank you for subscribing to our mailing list!"
+      flash[:success] = "Thank you for subscribing to our mailing list!"
       redirect_to root_path
     else
       render :action => 'index'

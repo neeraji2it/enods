@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     end
     if @product.save
       #@product.post
-      flash[:notice] = "Successfully create the project."
+      flash[:success] = "Successfully create the project."
       @email_alerts = EmailAlert.all
       for email in @email_alerts
         UserMailer.project_alert(email,@product).deliver if email.present?
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
-      flash[:notice] = "Successfully updated the Product."
+      flash[:success] = "Successfully updated the Product."
       redirect_to products_path if current_user.role == 'seller'
       redirect_to products_admins_path if current_user.role == 'admin'
     else

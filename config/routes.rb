@@ -70,6 +70,7 @@ Enods::Application.routes.draw do
     end
     collection do
       get :week
+      get :non_profit_week
     end
   end
   
