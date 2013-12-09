@@ -4,8 +4,9 @@
     <title>Enods.com</title>
     <%= stylesheet_link_tag 'default',"application" %>
     <%= javascript_include_tag 'application','/assets/carouFredSel/jquery.carouFredSel-5.6.2','/assets/slider/jquery.coda-slider-3.0.min' %>
+    <%= jquery_notify_bar_assets %>
     <%= csrf_meta_tag %>
-    <% ['notice', 'error', 'warning'].each do |f|%>
+    <% ['success', 'error', 'warning'].each do |f|%>
       <% if flash[f.to_sym]%>
         <script type="text/javascript" >
           jQuery(function() {
