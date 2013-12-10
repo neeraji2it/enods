@@ -1,7 +1,6 @@
 /*
  *= require jquery.notify_bar
  */
-@import 'jquery-ui';
 #overlay{
     display: none;
     background-color: #000000;
