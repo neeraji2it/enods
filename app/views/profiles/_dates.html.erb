@@ -1,10 +1,16 @@
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
   $("#Graph").click(function() {
     if ($("#from_date").val() == '' || $("#to_date").val() == '') {
       alert("Dates Could Not be Empty.")
       return false;
     }
+  });
+
+  $("#calendar").datepicker({
+    dateFormat: 'dd-mm-yy',
+    changeMonth: true,
+    changeYear: true,
+    maxDate: 0
   });
 
   $(function() {

@@ -29,6 +29,7 @@ gem 'paypal-sdk-adaptivepayments'
 gem 'country-select'
 gem "highcharts-rails"
 gem 'jquery_notify_bar'
+gem 'jquery_datepicker'
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

@@ -22,19 +22,11 @@
     </div>
   <% end %>
   <% if (@user.role == "buyer") %>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <div class="frow">
       <div>Birthday</div>
       <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar' %></div>
     </div>
-    <script>
-      $("#calendar").datepicker({
-        dateFormat: 'dd-mm-yy',
-        changeMonth: true,
-        changeYear: true,
-        maxDate: 0
-      });
-    </script>
+    <%= render :partial => 'dates' %>
     <div class="frow">
       <div>City</div>
       <div><%= f.text_field :city %></div>
