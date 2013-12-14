@@ -5,7 +5,12 @@
     </ul>
   </div>
   <div class="commonrow">
-    <div class="productDetails-leftColumn"><div class="midSec"><%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px') %></div><br />
+    <div class="productDetails-leftColumn">
+      <div class="midSec">
+        <span class='zoom' id='ex1'>
+          <%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px') %>
+        </span>
+      </div><br />
       <div class="leftSec" style="max-height: 400px;overflow: auto;">
         <% if !@product.images.empty? %>
           <% for image in @product.images %>
@@ -110,3 +115,12 @@
   </div>
   <div class="clearFix"></div>
 </div>
+<script>
+  $('#ex1').zoom();
+</script>
+<style>
+  .zoom {
+    display:inline-block;
+    position: relative;
+  }
+</style>
