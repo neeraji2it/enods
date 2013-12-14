@@ -35,7 +35,7 @@ class CausesController < ApplicationController
   end
   
   def destroy
-    @cause = Cause.find(parmas[:id])
+    @cause = Cause.find(params[:id])
     @cause.destroy
     redirect_to causes_path
   end
