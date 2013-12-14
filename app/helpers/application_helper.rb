@@ -7,6 +7,10 @@ module ApplicationHelper
     return !message.to_s.blank? ? ("<div class='form_error' style='color: red;'>"+message.to_s+"</div>").html_safe : ""
   end
   
+  def mark
+    "<span style='color: red;'>*</span>"
+  end
+  
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end

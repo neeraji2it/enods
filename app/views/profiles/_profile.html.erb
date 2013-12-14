@@ -6,11 +6,11 @@
   </ul>
   <% if (@user.role == "buyer" or @user.role == 'non-profit') %>
     <div class="frow">
-      <div>First Name</div>
+      <div><%= f.label :first_name, "First Name:#{mark}".html_safe %></div>
       <div><%= f.text_field :first_name %></div>
     </div>
     <div class="frow">
-      <div>Last Name</div>
+      <div><%= f.label :last_name, "Last Name:#{mark}".html_safe %></div>
       <div><%= f.text_field :last_name %></div>
     </div>
     <div class="frow">
@@ -23,12 +23,12 @@
   <% end %>
   <% if (@user.role == "buyer") %>
     <div class="frow">
-      <div>Birthday</div>
+      <div><%= f.label :date_of_birth, "Date of Birth:#{mark}".html_safe %></div>
       <div><%= f.text_field :date_of_birth, :value => (@user.date_of_birth ? @user.date_of_birth.strftime("%d-%m-%Y") : ""), :id => 'calendar' %></div>
     </div>
     <%= render :partial => 'dates' %>
     <div class="frow">
-      <div>City</div>
+      <div><%= f.label :city, "City:#{mark}".html_safe %></div>
       <div><%= f.text_field :city %></div>
     </div>
 
@@ -38,27 +38,27 @@
     </div>
 
     <div class="frow">
-      <div>Zip</div>
+      <div><%= f.label :zip, "Zip:#{mark}".html_safe %></div>
       <div><%= f.text_field :zip %></div>
     </div>
 
   <% elsif @user.role == 'seller' %>
 
     <div class="frow">
-      <div>Business Name</div>
+      <div><%= f.label :business_name, "Business Name:#{mark}".html_safe %></div>
       <div><%= f.text_field :business_name %></div>
     </div>
 
     <div class="frow">
-      <div>Business Address</div>
+      <div><%= f.label :business_address, "Business Address:#{mark}".html_safe %></div>
       <div><%= f.text_field :business_address %></div>
     </div>
     <div class="frow">
-      <div>Website</div>
+      <div><%= f.label :website_url, "Website:#{mark}".html_safe %></div>
       <div><%= f.text_field :website_url %></div>
     </div>
     <div class="frow">
-      <div>Paypal Id</div>
+      <div><%= f.label :paypal_id, "Paypal Id:#{mark}".html_safe %></div>
       <div><%= f.text_field :paypal_id %></div>
     </div>
     <div class="frow">
@@ -76,6 +76,6 @@
   </div>
   <div class="frow">
     <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
-    <div><input type="submit" title="Submit" value="Submit" /></div>
+    <div><input type="submit" title="Submit" value="Save" /></div>
   </div>
 <% end %>

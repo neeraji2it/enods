@@ -1,50 +1,35 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Login</title>
-    <%= stylesheet_link_tag 'default' %>
-  </head>
-
-  <body class="page-login">
-    <article>
-      <div class="logo-big">
-        <%= link_to image_tag("/assets/logo-big.png"), '/', :alt => 'enods' %>
-      </div>
-      <div class="content">
-        <div class="loginColumn">
-          <h4>First timer? Register now</h4>
-          <h5>Create unique products plus... </h5>
-          <ul class="login-uniqueProduct">
-            <li><a href="#" title="Exclusive offers & sneak peeks">Exclusive offers & sneak peeks</a></li>
-            <li><a href="#" title="Instant order tracking">Instant order tracking</a></li>
-            <li><a href="#" title="Award-winning customer service">Award-winning customer service</a></li>
-          </ul>
-          <div class="login-register"><%= link_to "<input type='submit' title='Register' value='Register' />".html_safe, new_user_path(:role => 'seller'), :style => 'text-decoration: none;' %></div>
-        </div>
-        <div class="loginColumn">
-          <h4>Sign in with your account</h4>
-          <% flash.each do |key, value| %>
-            <div style="color: red;font-weight: bold;"><%= value %></div>
-          <% end %>
-          <br />
-          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-            <ul class="login-yourAccount">
-              <li>
-                <p>Username:</p>
-                <p><%= f.email_field :email, :placeholder => "E-mail" %></p>
-              </li>
-              <li>
-                <p>Password:</p>
-                <p><%= f.password_field :password, :placeholder => "Password" %></p>
-                <p><%= link_to "Forgot Password?", new_user_password_path, :style => "color: #FC0000;" %></p>
-              </li>
-            </ul>
-            <input class="fright" type="submit" title="Sign" value="Sign" />
-          <% end %>
-          <p class="f12">By signing in you agree to the terms of the <a href="#" title="User Agreement">User Agreement</a> and <a title="Privacy Policy" href="#">Privacy Policy</a></p>
-        </div>
-        <div class="clearFix"></div>
-      </div>	
-    </article>
-  </body>
-</html>
+<div class="content" style="border-radius:10px;background-color:#fafafa;border:1px solid #898989;box-shadow:1px 1px 1px #d0d0d0 inset; ">
+  <div class="loginColumn">
+    <h4>First timer? Register now</h4>
+    <h5>Create unique products plus... </h5>
+    <ul class="login-uniqueProduct">
+      <li><a href="#" title="Exclusive offers & sneak peeks">Exclusive offers & sneak peeks</a></li>
+      <li><a href="#" title="Instant order tracking">Instant order tracking</a></li>
+      <li><a href="#" title="Award-winning customer service">Award-winning customer service</a></li>
+    </ul>
+    <div class="login-register"><%= link_to "<input type='submit' title='Register' value='Register' />".html_safe, new_user_path(:role => 'buyer'), :style => 'text-decoration: none;' %></div>
+  </div>
+  <div class="loginColumn">
+    <h4>Sign in with your account</h4>
+    <% flash.each do |key, value| %>
+      <div style="color: red;font-weight: bold;"><%= value %></div>
+    <% end %>
+    <br />
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <ul class="login-yourAccount">
+        <li>
+          <p>Username:</p>
+          <p><%= f.email_field :email, :placeholder => "E-mail" %></p>
+        </li>
+        <li>
+          <p>Password:</p>
+          <p><%= f.password_field :password, :placeholder => "Password" %></p>
+          <p><%= link_to "Forgot Password?", new_user_password_path, :style => "color: #FC0000;" %></p>
+        </li>
+      </ul>
+      <input class="fright" type="submit" title="Sign" value="Sign" />
+    <% end %>
+    <p class="f12">By signing in you agree to the terms of the <a href="#" title="User Agreement">User Agreement</a> and <a title="Privacy Policy" href="#">Privacy Policy</a></p>
+  </div>
+  <div class="clearFix"></div>
+</div>	

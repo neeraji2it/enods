@@ -17,8 +17,16 @@
       </div>
     </div>
     <div class="productDetails-rightColumn">
-      <h2><%= @product.title %><br /><span><%= number_to_currency(@product.price) %></span></h2>
-      <div class="icon-addCart"><%= (current_user and current_user.role == 'seller') ? () : (link_to "ADD TO CART", add_to_cart_product_path(@product)) %></div>
+      <%= form_tag add_to_cart_product_path(@product), :method => 'get' do %>
+        <h2><%= @product.title %><br /><span><%= number_to_currency(@product.price) %></span></h2>
+        Qty: <%= select_tag :qty, options_for_select([[1, 1],[2, 2],[3, 3],[4, 4],[5, 5]]) %>
+        <style>
+          select{
+            min-width: 30px;
+          }
+        </style>
+        <br /><br /><div class="icon-addCart"><%= (current_user and current_user.role == 'seller') ? () : (submit_tag "Add to Cart") %></div>
+      <% end %>
       <div class="commonrow">
         <div class="column-share">Share Now</div>
         <ul class="list-media">

@@ -1325,7 +1325,6 @@ input[type=submit].btn-email{
     width:828px;
     padding:20px;
     margin:0px auto;
-    background:url(/assets/bg-seller.png) repeat left top;
 }	
 .signupBox{	
     border-radius:20px;
@@ -1426,6 +1425,10 @@ input[type=submit].btn-signup{
     float:left;
     width:470px;
     font-size:14px;
+    position: relative;
+    left: 8px;
+    top: 45px;
+    height: 400px;
 }
 .loginColumn + .loginColumn{ padding-left:50px; }	
 .loginColumn h4{

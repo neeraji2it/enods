@@ -1,0 +1,19 @@
+<ul style='padding: 0px;'>
+  <% @cause.errors.full_messages.each_with_index do |msg,index| %>
+    <li style="color: red;"><%= index+1 %>. <%= msg %></li>
+    <% end %>
+</ul>
+<table>
+  <tr>
+    <td><%= f.label :title, "Title:#{mark}".html_safe %></td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :image, "Image:#{mark}".html_safe %></td>
+    <td><%= f.file_field :image %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit "Cause", :class => 'button' %></td>
+  </tr>
+</table>

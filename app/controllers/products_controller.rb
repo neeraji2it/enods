@@ -20,10 +20,6 @@ class ProductsController < ApplicationController
     if @product.save
       #@product.post
       flash[:success] = "Successfully create the project."
-      @email_alerts = EmailAlert.all
-      for email in @email_alerts
-        UserMailer.project_alert(email,@product).deliver if email.present?
-      end
       redirect_to products_path
     else
       flash[:error] = "Failed to create the project."
@@ -68,7 +64,7 @@ class ProductsController < ApplicationController
     @cart = current_cart
     product = Product.find(params[:id])
     @cart.update_attribute(:created_at, Time.now)
-    @line_item = @cart.add_item(product.id)
+    @line_item = @cart.add_item(product.id, params[:qty].to_i)
     @line_item.unit_price = product.price
     session[:cart] = @cart.id
     if @line_item.save

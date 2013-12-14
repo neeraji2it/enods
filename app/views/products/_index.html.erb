@@ -13,7 +13,7 @@
   <% @products.each_with_index do |product,index| %>
     <div class="row">
       <div class="column"><%= index+1 %></div>
-      <div class="column"><%= product.title %></div>
+      <div class="column"><%= link_to product.title, product_path(product) %></div>
       <div class="column"><%= product.color %></div>
       <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
       <div class="column"><%= number_to_currency(product.price) %></div>

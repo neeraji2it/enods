@@ -1,15 +1,15 @@
 <%= params[:role] ? (f.hidden_field :role, :value => params[:role]) : (f.hidden_field :role, :value => params[:user][:role]) %>
 <ul class="list-leftColumn">
   <li>
-    <p><%= f.label :first_name, "First Name<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :first_name, "First Name:#{mark}".html_safe %></p>
     <%= f.text_field :first_name, :placeholder => "First Name" %>
   </li>
   <li>
-    <p><%= f.label :last_name, "Last Name<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :last_name, "Last Name#{mark}".html_safe %></p>
     <%= f.text_field :last_name, :placeholder => "Last Name" %>
   </li>
   <li>
-    <p><%= f.label :email, "E-mail<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :email, "E-mail#{mark}".html_safe %></p>
     <%= f.email_field :email, :placeholder => "E-mail" %>
     <ul class="list-gender">						
       <li><%= f.radio_button :gender, "Male" %>&nbsp;Male</li>
@@ -21,17 +21,17 @@
 </ul>
 <ul class="list-leftColumn">
   <li>
-    <p><%= f.label :username, "Username<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :username, "Username#{mark}".html_safe %></p>
     <%= f.text_field :username,:onBlur => "get_username(this)", :placeholder => "Username" %>
     <label class="error" style="display: none;">Not Available</label>
     <label class="success" style="display: none;">Available</label>
   </li>
   <li>
-    <p><%= f.label :password, "Password<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :password, "Password#{mark}".html_safe %></p>
     <%= f.password_field :password, :placeholder => "Password" %><span id="result"></span>
   </li>
   <li>
-    <p><%= f.label :password_confirmation, "Password Confirmation<span style='color: red;'>*</span>".html_safe %></p>
+    <p><%= f.label :password_confirmation, "Password Confirmation#{mark}".html_safe %></p>
     <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %>
   </li>
 </ul>

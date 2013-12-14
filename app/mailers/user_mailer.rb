@@ -14,7 +14,7 @@ class UserMailer < ActionMailer::Base
   
   def contact(contact)
     @contact = contact
-    mail(:to => 'Info@enods.com', :subject => contact.option)
+    mail(:to => 'ashok@dine-media.com', :subject => contact.option)
   end
   
   def vendor_status(seller)

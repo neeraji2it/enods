@@ -55,15 +55,16 @@
               <li><%= link_to line_item.product.title, product_path(line_item.product) %></li>
               <li>Quantity: <em><%= line_item.quantity %></em></li>
               <li>Size: 40 cm</li>
-              <li><%= number_to_currency(line_item.full_price) %> USD </li>
+              <li><%= number_to_currency(line_item.product.price) %> USD </li>
+              <li>Donation: <%= number_to_currency((line_item.product.price.to_f/10)/line_item.product.non_profit_percentage) %> USD </li>
             </ul>
           </li>
         </ul>
       </div>
     <% end %>
   <% else %>
-    <div style="color:red;font-size: 40px;padding: 60px 50px 50px 50px;text-align:center">
-      Your cart is empty
+    <div style="margin-left: 90px;text-align:center">
+      <%= image_tag("/assets/cart.png") %>
     </div>
   <% end %>
   <div class="clearFix"></div>

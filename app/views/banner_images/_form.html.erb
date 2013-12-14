@@ -1,6 +1,6 @@
 <table>
   <tr class="row">
-    <td>Banner Image:</td>
+    <td><%= f.label :image, "Banner Image:#{mark}".html_safe %></td>
     <td><%= f.file_field :image %></td>
   </tr>
   <tr>
@@ -8,7 +8,7 @@
     <td><%= validation_error(@banner_image.errors['image'])%></td>
   </tr>
   <tr class="row">
-    <td>Image Description:</td>
+    <td><%= f.label :image_description, "Image Description:#{mark}".html_safe %></td>
     <td><%= f.text_area :image_description, :cols => 33, :rows => 3 %></td>
   </tr>
   <tr>

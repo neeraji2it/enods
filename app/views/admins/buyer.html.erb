@@ -20,7 +20,7 @@
       <div class="column"><%= user.zip.present? ? user.zip : "-" %></div>
       <div class="column"><%= user.country.present? ? user.country : "-" %></div>
       <div class="column last">
-        <%= user.confirmation_token.nil? ? (link_to "<input class='btn-deActivate' type='submit' title='De Activate' value='De Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Deactive'}, :method => :put, :style => 'text-decoration: none;') : (link_to "<input class='btn-activate' type='submit' title='Activate' value='Activate' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Active'}, :method => :put, :style => 'text-decoration: none;')%>
+        <%= user.confirmation_token.nil? ? (link_to "<input class='btn-deActivate' type='submit' title='De Activate' value='Suspend' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Deactive'}, :method => :put, :style => 'text-decoration: none;') : (link_to "<input class='btn-activate' type='submit' title='Activate' value='Approve' />".html_safe, {:controller => 'users', :action => 'update', :id => user.id, :role => user.role, :active => 'Active'}, :method => :put, :style => 'text-decoration: none;')%>
       </div>
     </div>
   <% end %>

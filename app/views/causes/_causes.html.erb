@@ -3,12 +3,17 @@
     <div class="column">ID</div>
     <div class="column">Title</div>
     <div class="column">Created At</div>
+    <div class="column last">Actions</div>
   </div>
-  <% for invitation in @causes %>
+  <% for cause in @causes %>
     <div class="row">
-      <div class="column"><%= invitation.id %></div>
-      <div class="column"><%= invitation.title %></div>
-      <div class="column"><%= invitation.created_at.strftime("%d/%m/%Y")%></div>
+      <div class="column"><%= cause.id %></div>
+      <div class="column"><%= cause.title %></div>
+      <div class="column"><%= cause.created_at.strftime("%d/%m/%Y")%></div>
+      <div class="column last">
+        <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_cause_path(cause) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/user-images/icon-close.png", :class => "icon-search"), cause_path(cause), :method => :delete, :confirm => "Are you sure." %>
+      </div>
     </div>
   <% end %>
 </div>

@@ -29,7 +29,7 @@
     </ul>
     <nav>
       <ul>
-        <li><%= link_to "Sign up", new_user_path(:role => 'seller'), :class => 'lin-signup' %></li>
+        <li><%= link_to "Sign up", new_user_path(:role => 'buyer'), :class => 'lin-signup' %></li>
         <li><%= link_to "Sign In", new_user_session_path() %></li>
         <li class="parent"><a title="Categories" href="#">Categories</a>
           <ul class="submenu">
@@ -43,6 +43,9 @@
           <ul class="submenu">
             <li><%= link_to "Animal Causes", all_causes_path(:cause => 'animal_cause') %></li>
             <li><%= link_to "Human Causes", all_causes_path(:cause => 'human_cause') %></li>
+            <% Cause.all.each do |cause| %>
+              <li><%= link_to cause.title, all_causes_path(:cause => cause.title) %></li>
+            <% end %>
           </ul>
         </li>
         <li><%= link_to "Sell", "" %></li>

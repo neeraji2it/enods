@@ -18,4 +18,25 @@ class CausesController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def edit
+    @cause = Cause.find(params[:id])
+  end
+  
+  def update
+    @cause = Cause.find(params[:id])
+    if @cause.update_attributes(params[:cause])
+      flash[:success] = "Successfully updated the causes"
+      redirect_to causes_path
+    else
+      flash[:error] = "Failed to update the Cause."
+      render :action => 'edit'  
+    end
+  end
+  
+  def destroy
+    @cause = Cause.find(parmas[:id])
+    @cause.destroy
+    redirect_to causes_path
+  end
 end
