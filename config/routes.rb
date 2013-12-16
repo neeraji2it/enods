@@ -56,6 +56,8 @@ Enods::Application.routes.draw do
     end
     member do
       get :add_to_cart
+      get :review
+      post :product_review
       post :favourite
       put :update_favourite
       put :update_mark_favourite
