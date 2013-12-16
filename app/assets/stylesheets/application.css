@@ -28,6 +28,19 @@
     display: none
 }
 
+#popup_box1 {
+    height:auto;
+    width:auto;
+    left:45%;
+    margin: -220px 0 0 -250px;
+    padding:15px;
+    position:fixed;
+    top:40%;
+    z-index:1031;
+    font-size: 12px;
+    display: none
+}
+
 #ajax-loader{
     display: none;
     float: left;

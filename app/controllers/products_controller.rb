@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :is_signin?, :only => ['index','new','create']
+  before_filter :is_signin?, :only => ['index','new','create','preview_product']
   before_filter :is_valid_account? , :only => ['index','new','create']
 
   def index
@@ -75,6 +75,11 @@ class ProductsController < ApplicationController
     if @line_item.save
       redirect_to carts_path
     end
+  end
+  
+  def preview_product
+    @product = Product.find(params[:id])
+    render :layout => false
   end
   
   def review

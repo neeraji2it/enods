@@ -84,12 +84,24 @@ function review(product_id) {
     })
 }
 
+function preview(product_id) {
+    $.ajax({
+        url: '/products/' + product_id + '/preview_product',
+        success: function(data) {
+            $("#popup_body").html(data);
+            $('#overlay').show();
+            $('#popup_box1').show();
+        }
+    })
+}
+
 function hide_popup() {
 
     if (jQuery('#popup_box')) {
         jQuery('#popup_body').html("");
         jQuery('#popup_box').hide();
     }
+    
     if (jQuery('#overlay')) {
         jQuery('#overlay').hide();
     }
@@ -139,6 +151,7 @@ $(document).ready(function() {
         if (mouse_in_side == false) {
             $("#overlay").hide();
             $("#popup_box").hide();
+            $("#popup_box1").hide();
         }
     });
 });

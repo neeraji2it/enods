@@ -37,10 +37,10 @@ class AdminsController < ApplicationController
 
   def confirm_product
     @product = Product.find(params[:id])
-    @product.update_attribute(:status, 'confirmed')
+    @product.update_attribute(:status, params[:status])
     @email_alerts = EmailAlert.all
     for email in @email_alerts
-      UserMailer.project_alert(email,@product).deliver if email.present?
+      UserMailer.project_alert(email,@product).deliver if (email.present? and params[:status] == 'confirmed')
     end
     redirect_to admin_dashboard_path
   end

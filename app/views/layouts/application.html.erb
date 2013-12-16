@@ -84,6 +84,12 @@
         <%= yield %>
       </section>
     </article>
+    <div id='overlay' style='filter:alpha(opacity=50);'></div>
+    <div align='center' id='popup_box1'>
+      <div style='float: right; margin-top: -13px;margin-right:-13px'>
+      </div>
+      <div id='popup_body' style='float:right'></div>
+    </div>
     <%= render :partial => '/layouts/google_analytics' %>
   </body>
 </html>

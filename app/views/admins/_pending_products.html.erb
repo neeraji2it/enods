@@ -13,7 +13,7 @@
       <div class="column"><%= product.qty %></div>
       <div class="column">$<%= product.price%></div>
       <div class="column">
-        <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Confirm' />".html_safe, confirm_product_admin_path(product), :method => 'put', :class => 'button', :style => 'text-decoration: none;' %>
+        <%= link_to_function "<input class='btn-blue' type='submit' title='PAID' value='Confirm' />".html_safe, "preview(#{product.id})", :style => 'text-decoration: none;' %>
       </div>
     </div>
   <% end %>
