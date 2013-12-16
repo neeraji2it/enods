@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     1.times {@product.images.build}
+    1.times {@product.colors.build}
   end
 
   def create
@@ -16,6 +17,9 @@ class ProductsController < ApplicationController
     @product.status = 'pending'
     if @product.images.blank?
       1.times { @product.images.build }
+    end
+    if @product.colors.blank?
+      1.times { @product.colors.build }
     end
     if @product.save
       #@product.post
@@ -30,6 +34,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product.update_attribute(:product_count, @product.product_count+1)
+    @reviews = @product.reviews.paginate :page => params[:review_page], :per_page => 2
   end
 
   def edit
@@ -71,26 +76,20 @@ class ProductsController < ApplicationController
       redirect_to carts_path
     end
   end
-
-  def favourite
+  
+  def review
     @product = Product.find(params[:id])
-    @favourite = Favourite.new(:user_id => current_user.id,:product_id=>@product.id,:status => true).save
-    redirect_to products_path
+    @review = @product.reviews.new
+    render :layout => false
   end
-
-  def update_favourite
+  
+  def product_review
     @product = Product.find(params[:id])
-    @favourite = @product.favourite.update_attribute(:status, false)
-    redirect_to products_path
-  end
-
-  def update_mark_favourite
-    @product = Product.find(params[:id])
-    @favourite = @product.favourite.update_attribute(:status, true)
-    redirect_to products_path
-  end
-
-  def favourites
-    @favourites = Favourite.where("user_id = #{current_user.id} and status = #{true}")
+    @review = @product.reviews.new(params[:review])
+    if @review.save
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 end

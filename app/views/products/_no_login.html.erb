@@ -44,6 +44,15 @@
       <p><%= @product.description %></p>
     </div>
   </div>
+  <div id="reviews">
+    <hr />
+    <b>Reviews (<%= @product.reviews.count %>)</b>
+    <%= link_to_function "Write a Review", "review(#{@product.id})", :style => 'float: right; color: blue;' %>
+    <hr />
+    <div id='tot_reviews'>
+      <%= render :partial => 'total_reviews' %>
+    </div>
+  </div>
   <ul class="list-productDetail">
     <li>
       <h1><span>Seller Infomation</span></h1>

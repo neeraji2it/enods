@@ -38,3 +38,19 @@
     width: 32px;
     z-index: 1000000;
 }
+
+form.rating_ballot input#rating_submit { display: none; }
+form.rating_ballot input.rating_button { display: none; }
+
+form.rating_ballot label.rating { cursor: pointer; display: table-cell; height: 17px; width: 17px;}
+form.rating_ballot label.rating span { display: none; }
+form.rating_ballot label.rating { background-image: url(/assets/star.gif);background-position: 17px 0px;}
+form.rating_ballot label.rating.bright { background-image: url(/assets/star.gif);background-position: 17px 32px;}
+form.rating_ballot label.rating.glow { background-image: url(/assets/star.gif);background-position: 17px 15px; }
+
+.current-rating-rated {
+    background-image: url(/assets/star.png);
+    position: absolute;
+    height: 10px;
+    text-indent: -9000px;
+}

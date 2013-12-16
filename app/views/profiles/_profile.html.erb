@@ -1,9 +1,5 @@
 <%= form_for @user, :url => profile_update_profile_path(@user), :method => 'PUT' do |f| %>
-  <ul style="width: 370px;margin-left: 85px;">
-    <% @user.errors.full_messages.each_with_index do |msg, index| %>
-      <li style="color: red;line-height: 20px;"><%= index+1 %>. <%= msg %></li>
-    <% end %>
-  </ul>
+  <%= render :partial => '/layouts/error_messages', :locals => {:resource => @user} %>
   <% if (@user.role == "buyer" or @user.role == 'non-profit') %>
     <div class="frow">
       <div><%= f.label :first_name, "First Name:#{mark}".html_safe %></div>

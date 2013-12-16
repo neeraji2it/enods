@@ -1,0 +1,21 @@
+<%= form_for @review, :url => product_review_product_path(@product), :method => 'POST', :remote => true do |f| %>
+  <%= render :partial => '/layouts/error_messages', :locals => {:resource => @review} %>
+  <table>
+    <tr>
+      <td><%= f.label :title, "Title#{mark}".html_safe %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :name, "Name#{mark}".html_safe %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :message, "Message#{mark}".html_safe %></td>
+      <td><%= f.text_area :message, :cols => 20, :rows => 3 %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "Review" %></td>
+    </tr>
+  </table>
+<% end %>

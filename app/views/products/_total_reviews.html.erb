@@ -1,0 +1,20 @@
+<% for review in @reviews %>
+  <div>
+    <span style="float: left;font-weight: bold;"><%= review.title %></span>
+    <span style="float: left;">-<%= review.created_at.strftime("%d/%m/%Y") %></span><br />
+    <p style="float: left; width: 500px;"><%= review.message %></p>
+    <span style="float: right;position: relative;left: -200px;"><hr style='width: 2px;min-height: 20px;'></span>
+    <span style="float: right; width: 150px;font-weight: bold;"><%= review.name %></span>
+  </div><br /><br /><br />
+<% end %>
+<div style="float: right;position: relative;top: 10px;">
+  <%= will_paginate @reviews, :param_name => 'review_page', :page_links => false, :previous_label => "PREV", :next_label => "NEXT" %>
+</div>
+<script>
+  $(function() {
+    $(".pagination a").click(function() {
+      $.getScript(this.href);
+      return false;
+    });
+  });
+</script>

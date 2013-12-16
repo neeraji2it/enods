@@ -13,8 +13,23 @@
   </tr>
   <tr class="row">
     <td>Color Options</td>
-    <td><%= f.radio_button :color, "Single Color" %>Single Color
+    <td><%= f.radio_button :color, "Single Color", :checked => true %>Single Color
       <%= f.radio_button :color , "Multiple Color"%>Multiple Color</td>
+  </tr>
+  <tr class="row">
+    <td valign="top">Colors:<%= "#{mark}".html_safe %></td>
+    <td>
+      <%= f.fields_for :colors do |builder| %>
+        <div>
+          <%= builder.select :product_color, %w(Red Black Blue Green Yellow Orange White)  %>
+          <%= builder.text_field :product_qty %>
+        </div>
+      <%end%>
+      <div id="add_color" style="display: none;">
+        <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add More Colors</span>".html_safe, f, :colors %></em>
+      </div>
+      <br />
+    </td>
   </tr>
   <tr class="row">
     <td>Fair Trade</td>
@@ -24,10 +39,6 @@
   <tr class="row">
     <td><%= f.label :price, "Price:#{mark}".html_safe %></td>
     <td><%= f.text_field :price, :onkeyup => "price_validate(this,6)" %></td>
-  </tr>
-  <tr class="row">
-    <td><%= f.label :qty, "Quantity:#{mark}".html_safe %></td>
-    <td><%= f.text_field :qty %></td>
   </tr>
   <% if @product.new_record? %>
     <tr class="row">
@@ -76,4 +87,13 @@
       document.getElementById("product_price").focus()
     }
   }
+
+  $(":radio[name='product[color]']").change(function() {
+    var newVal = $(":radio[name='product[color]']:checked").val();
+    if (newVal == "Single Color") {
+      $("#add_color").hide();
+    } else {
+      $("#add_color").show();
+    }
+  });
 </script>

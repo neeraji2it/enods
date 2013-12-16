@@ -6,11 +6,7 @@
     <div class="loginSeller">
       <div id="formDiv">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-          <ul style="width: 370px;margin-left: -36px;">
-            <% resource.errors.full_messages.each_with_index do |msg, index| %>
-              <li style="color: red;line-height: 15px;"><%= index+1 %>. <%= msg %></li>
-              <% end %>
-          </ul>
+          <%= render :partial => '/layouts/error_messages', :locals => {:resource => resource} %>
           <%= render :partial => '/users/form', :locals => {:f => f} %>
         <% end %>
       </div>

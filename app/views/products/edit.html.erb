@@ -1,9 +1,5 @@
 <h1 class="icon-addProduct"><span>Add Product</span></h1>
-<ul>
-  <% @product.errors.full_messages.each do |msg| %>
-    <li style="color: red;"><%= msg %></li>
-  <% end %>
-</ul>
+<%= render :partial => '/layouts/error_messages', :locals => {:resource => @product} %>
 <div class="content-profile">
   <%= form_for @product, :url => product_path(@product), :method => "PUT" do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
