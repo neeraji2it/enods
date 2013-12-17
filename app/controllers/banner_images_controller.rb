@@ -1,4 +1,5 @@
 class BannerImagesController < ApplicationController
+  before_filter :is_signin?, :is_admin?
   def index
     @banner_images = BannerImage.all
   end

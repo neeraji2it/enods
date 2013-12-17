@@ -58,7 +58,7 @@
       <h1><span>Seller Infomation</span></h1>
       <div>
         <div class="thum-productDetail"><%= image_tag(@product.user.avatar.url(:original))%></div>
-        <p><%= link_to @product.user.username, "", :class => "link-blue" %><br />Athens, Greece</p>
+        <p><%= link_to @product.user.username, "", :class => "link-blue" %><br /></p>
         <a title="Contact >>" href="#">Contact >></a>
         <div class="clearFix"></div>
       </div>
@@ -67,14 +67,14 @@
       <h1><span>Donation</span></h1>
       <div>
         <div class="thum-productDetail"><img alt="" title="" src="/assets/img-donation.png" /></div>
-        <p>20% of the proceeds <br>will be donated.</p>
+        <p><%= @product.non_profit_percentage %>%  of the proceeds <br>will be donated.</p>
       </div>
     </li>
     <li>
       <h1><span>Recipients of Donations</span></h1>
       <div>
         <div class="thum-productDetail"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
-        <p><a title="The United Nations Children's Fund" href="#">The United Nations <br>Children's Fund</a></p>
+        <p><a title="The United Nations Children's Fund" href="#"><%= @product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
       </div>
     </li>
   </ul>

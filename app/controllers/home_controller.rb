@@ -56,6 +56,10 @@ class HomeController < ApplicationController
     @contact = Contact.new
   end
   
+  def seller
+    @user = User.find(params[:id])
+  end
+  
   def contact
     @contact = Contact.new(params[:contact])
     if @contact.save

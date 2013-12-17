@@ -1,4 +1,5 @@
 class BillingShippingAddressesController < ApplicationController
+  before_filter :is_signin?
   before_filter :is_valid_account?
   def new
     @billingshippingaddress = BillingShippingAddress.new

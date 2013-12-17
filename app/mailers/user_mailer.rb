@@ -14,7 +14,12 @@ class UserMailer < ActionMailer::Base
   
   def contact(contact)
     @contact = contact
-    mail(:to => 'ashok@dine-media.com', :subject => contact.option)
+    mail(:to => 'Info@enods.com', :subject => contact.option)
+  end
+  
+  def invitation(user,invitation)
+    @user = user
+    mail(:to => invitation.email, :subject => "Invitaiton from Enods.com")
   end
   
   def vendor_status(seller)

@@ -1,0 +1,1 @@
+<%= @user.role == 'seller' ? (link_to "Enods.com/#{@user.username}", seller_url(@user.id)) : (link_to "Enods.com", root_url) %>
