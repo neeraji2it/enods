@@ -2,6 +2,14 @@
   <%= render :partial => '/layouts/error_messages', :locals => {:resource => @review} %>
   <table>
     <tr>
+      <td><%= f.label :rating, "Rating#{mark}".html_safe %></td>
+      <td>
+        <% (1..5).each do |i| %>
+          <%= f.radio_button :rating, "#{i}" %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
       <td><%= f.label :title, "Title#{mark}".html_safe %></td>
       <td><%= f.text_field :title %></td>
     </tr>

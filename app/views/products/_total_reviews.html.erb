@@ -1,4 +1,7 @@
 <% for review in @reviews %>
+  <div id="star-rating">
+    <div class="star-<%=h review.rating %> rating"></div>
+  </div>
   <div>
     <span style="float: left;font-weight: bold;"><%= review.title %></span>
     <span style="float: left;">-<%= review.created_at.strftime("%d/%m/%Y") %></span><br />

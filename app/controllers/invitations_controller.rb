@@ -18,6 +18,10 @@ class InvitationsController < ApplicationController
       respond_to do |format|
         format.js
       end
+    else
+      render :update do |page|
+        page.alert("Email Is Already Taken!")
+      end
     end
   end
 end

@@ -162,6 +162,8 @@ GEM
       multi_json (~> 1.0)
       xml-simple
     polyglot (0.3.3)
+    prototype-rails (3.2.1)
+      rails (~> 3.2)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -260,6 +262,7 @@ DEPENDENCIES
   omniauth-yahoo
   paperclip (~> 2.3)
   paypal-sdk-adaptivepayments
+  prototype-rails
   quiet_assets
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)

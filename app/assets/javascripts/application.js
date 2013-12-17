@@ -101,7 +101,7 @@ function hide_popup() {
         jQuery('#popup_body').html("");
         jQuery('#popup_box').hide();
     }
-    
+
     if (jQuery('#overlay')) {
         jQuery('#overlay').hide();
     }

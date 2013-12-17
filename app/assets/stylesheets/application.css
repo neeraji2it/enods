@@ -1,6 +1,25 @@
 /*
  *= require jquery.notify_bar
  */
+
+.rating {
+    background: url(/assets/stars.png) no-repeat;
+    height: 26px;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+.star-5 { width: 115px; }
+.star-4 { width: 92px; }
+.star-3 { width: 69px; }
+.star-2 { width: 46px; }
+.star-1 { width: 23px; }
+
+#star-rating{
+    background-image: url("/assets/star.gif");
+    height: 20px;
+    width: 11%;
+}
+
 #overlay{
     display: none;
     background-color: #000000;
