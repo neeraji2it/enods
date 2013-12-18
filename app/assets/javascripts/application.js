@@ -53,6 +53,19 @@ $(document).ready(function() {
     }, 250);
 });
 
+
+function client_logos(product_id, s) {
+    if (jQuery(s).val() != '') {
+        $.ajax({
+            url: '/products/' + product_id + '/sort_review/?sort=' + jQuery(s).val(),
+            success: function(data) {
+                $('#tot_reviews').html(data);
+                $('#tot_reviews').html(data);
+            }
+        });
+    }
+}
+
 //ajax loader
 
 jQuery(document).ajaxStart(function(settings) {

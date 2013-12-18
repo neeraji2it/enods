@@ -1,3 +1,6 @@
+<span style="position: relative;width: 75px;">Sort by: <%= select_tag :sort, options_for_select([["Select", ""],["Most Recent","Desc"],["Recent", "Asc"]], params[:sort]), :onChange => "client_logos(#{@product.id}, this)" %></span>
+<span style="position: relative;float: right; width: 75px;"><%= will_paginate @reviews, :param_name => 'review_page', :page_links => false, :previous_label => "PREV", :next_label => "NEXT" %></span>
+<hr />
 <% for review in @reviews %>
   <table width="100%;" style="line-height: 25px;">
     <tr>

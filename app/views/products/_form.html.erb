@@ -66,6 +66,30 @@
     <td><%= f.label :description, "Description:#{mark}".html_safe %></td>
     <td><%= f.text_area :description, :cols => 33, :rows => 3 %></td>
   </tr>
+  <% if @product.new_record? %>
+    <tr class="row">
+      <td valign="top">Shipping Details:<%= "#{mark}".html_safe %></td>
+      <td>
+        <%= f.fields_for :shipping_products do |builder| %>
+          <div>
+            <%= builder.text_field :location, :placeholder => "Location" %><br />
+            <span id="cc"><%= builder.country_select :country %></span>
+            $<%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
+            $<%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
+          </div>
+        <%end%>
+        <style>
+          #cc select{
+            width: 100px;
+          }
+        </style>
+        <div>
+          <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add Location</span>".html_safe, f, :shipping_products %></em>
+        </div>
+        <br />
+      </td>
+    </tr>
+  <% end %>
   <tr class="row">
     <td></td>
     <td><%= f.check_box :agree_terms %>The products listed on the site and are not selling items not allowed to sell on enods, etc.</td>

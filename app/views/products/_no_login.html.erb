@@ -8,7 +8,7 @@
     <div class="productDetails-leftColumn">
       <div class="midSec">
         <span class='zoom' id='ex1'>
-          <%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px') %>
+          <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px') %>
         </span>
       </div><br />
       <div class="leftSec" style="max-height: 400px;overflow: auto;">
@@ -47,7 +47,7 @@
   <div id="reviews">
     <hr />
     <b><%= "Ratings & Reviews (#{@product.reviews.count})".upcase %></b>
-    <%= link_to_function "Write a Review", "review(#{@product.id})", :style => 'float: right; color: blue;' %>
+    <%= link_to_function "Write a Review", "review(#{@product.id})", :style => 'float: right; color: #01A5DE;' %>
     <hr />
     <% if @reviews.present? %>
       <% ss = Review.where("product_id = #{@product.id}").sum {|a| a.rating.to_i} %>
@@ -86,50 +86,51 @@
       </div>
     </li>
   </ul>
-  <div class="box-productDetails">
-    <ul class="menu-tab">
-      <li class="active"><a title="Details" href="#">Details</a></li>
-      <li><a title="Terms and Conditions" href="#">Terms and Conditions</a></li>
-    </ul>
-    <div class="box-productDetailsContent">
-      <ul class="list-normal">
-        <li>
-          <p><strong>Article is</strong></p>
-          <p>New</p>
-        </li>
-        <li>
-          <p><strong>Availability</strong></p>
-          <p>Still available 6 x</p>
-        </li>
-        <li>
-          <p><strong>Location</strong></p>
-          <p>10829 Berlin, DE</p>
-        </li>
-        <li>
-          <p><strong>Shipping</strong></p>
-          <div class="table-shipping" style="width: 410px;">
-            <div class="row">
-              <div>After</div>
-              <div>Type</div>
-              <div>Costs</div>
-              <div class="last">+ Each item, total</div>
-            </div>
-            <div class="row">
-              <div>Germany</div>
-              <div>insured</div>
-              <div>$ 5.00</div>
-              <div class="last">$0.00</div>
-            </div>
-          </div>
-        </li>
+  <% if @product.shipping_products.present? %>
+    <div class="box-productDetails">
+      <ul class="menu-tab">
+        <li class="active"><a title="Details" href="#">Details</a></li>
       </ul>
-      <p><strong>Payment</strong></p>
-      <p>The seller offers the following payment methods:</p>
+      <div class="box-productDetailsContent">
+        <ul class="list-normal">
+          <li>
+            <p><strong>Article is</strong></p>
+            <p>New</p>
+          </li>
+          <li>
+            <p><strong>Availability</strong></p>
+            <p>Still available 6 x</p>
+          </li>
+          <li>
+            <p><strong>Location</strong></p>
+            <p><%= @product.shipping_products.first.location %></p>
+          </li>
+          <li>
+            <p><strong>Shipping</strong></p>
+            <table border="1" class="table-shipping" style="width: 410px;">
+              <tr class="row">
+                <th>After</th>
+                <th>Costs</th>
+                <th class="last">+ Each item, total</th>
+              </tr>
+              <% for shipping in @product.shipping_products %>
+                <tr class="row">
+                  <td><%= shipping.country %></td>
+                  <td>$ <%= shipping.cost %></td>
+                  <td class="last">$<%= shipping.item_cost %></td>
+                </tr>
+              <% end %>
+            </table>
+          </li>
+        </ul>
+        <p><strong>Payment</strong></p>
+        <p>The seller offers the following payment methods:</p>
 
-      <p>.Transfer</p>
-      <div class="clearFix"></div>
+        <p>.Transfer</p>
+        <div class="clearFix"></div>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="clearFix"></div>
 </div>
 <script>

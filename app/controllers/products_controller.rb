@@ -10,17 +10,15 @@ class ProductsController < ApplicationController
     @product = Product.new
     1.times {@product.images.build}
     1.times {@product.colors.build}
+    1.times {@product.shipping_products.build}
   end
 
   def create
     @product = Product.new(params[:product].merge(:user_id => current_user.id))
     @product.status = 'pending'
-    if @product.images.blank?
-      1.times { @product.images.build }
-    end
-    if @product.colors.blank?
-      1.times { @product.colors.build }
-    end
+    1.times { @product.images.build } if @product.images.blank?
+    1.times { @product.colors.build } if @product.colors.blank?
+    1.times {@product.shipping_products.build} if @product.shipping_products.blank?
     if @product.save
       #@product.post
       flash[:success] = "Successfully create the project."
@@ -34,6 +32,12 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @reviews = @product.reviews.order("created_at Desc").paginate :page => params[:review_page], :per_page => 1
+  end
+  
+  def sort_review
+    @product = Product.find(params[:id])
+    @reviews = @product.reviews.order("created_at #{params[:sort]}").paginate :page => params[:review_page], :per_page => 10
+    render :partial => 'total_reviews', :layout => false
   end
 
   def edit
