@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @reviews = @product.reviews.paginate :page => params[:review_page], :per_page => 1
+    @reviews = @product.reviews.order("created_at Desc").paginate :page => params[:review_page], :per_page => 1
   end
 
   def edit
