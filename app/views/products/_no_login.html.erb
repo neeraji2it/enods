@@ -30,7 +30,7 @@
             min-width: 30px;
           }
         </style>
-        <br /><br /><div class="icon-addCart"><%= (current_user and current_user.role == 'seller') ? () : (submit_tag "Add to Cart") %></div>
+        <br /><br /><div class="icon-addCart" style="padding-top: 7px;"><%= (current_user and current_user.role == 'seller') ? () : (submit_tag "Add to Cart") %></div>
       <% end %>
       <div class="commonrow">
         <div class="column-share">Share Now</div>
