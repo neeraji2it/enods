@@ -46,12 +46,20 @@
   </div>
   <div id="reviews">
     <hr />
-    <b>Reviews (<%= @product.reviews.count %>)</b>
+    <b><%= "Ratings & Reviews (#{@product.reviews.count})".upcase %></b>
     <%= link_to_function "Write a Review", "review(#{@product.id})", :style => 'float: right; color: blue;' %>
     <hr />
-    <div id='tot_reviews'>
-      <%= render :partial => 'total_reviews' %>
-    </div>
+    <% if @reviews.present? %>
+      <% ss = Review.where("product_id = #{@product.id}").sum {|a| a.rating.to_i} %>
+      <% dd = Review.where("product_id = #{@product.id}").count %>
+      <div id="star-rating" style="left: 400px; margin-top: -20px; position: relative; top: -15px;">
+        <div class="star-<%=h ss/dd %> rating"></div>
+        <span style="position: relative; top: -23px; left: 120px;"><%= ss/dd %> Stars</span>
+      </div>
+      <div id='tot_reviews'>
+        <%= render :partial => 'total_reviews' %>
+      </div>
+    <% end %>
   </div>
   <ul class="list-productDetail">
     <li>

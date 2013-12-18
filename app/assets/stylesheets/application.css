@@ -13,11 +13,12 @@
 .star-3 { width: 69px; }
 .star-2 { width: 46px; }
 .star-1 { width: 23px; }
+.star-0 { width: 0px; }
 
 #star-rating{
     background-image: url("/assets/star.gif");
     height: 20px;
-    width: 11%;
+    width: 110px;
 }
 
 #overlay{

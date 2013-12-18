@@ -1,18 +1,31 @@
 <% for review in @reviews %>
-  <div id="star-rating">
-    <div class="star-<%=h review.rating %> rating"></div>
-  </div>
-  <div>
-    <span style="float: left;font-weight: bold;"><%= review.title %></span>
-    <span style="float: left;">-<%= review.created_at.strftime("%d/%m/%Y") %></span><br />
-    <p style="float: left; width: 500px;"><%= review.message %></p>
-    <span style="float: right;position: relative;left: -200px;"><hr style='width: 2px;min-height: 20px;'></span>
-    <span style="float: right; width: 150px;font-weight: bold;"><%= review.name %></span>
-  </div><br /><br /><br />
+  <table width="100%;" style="line-height: 25px;">
+    <tr>
+      <td>
+        <div id="star-rating">
+          <div class="star-<%=h review.rating %> rating"></div>
+        </div>
+      </td>
+      <td></td>
+      <td><b><%= review.name %></b></td>
+    </tr>
+    <tr>
+      <td>
+        <b><%= review.title %></b> - <%= review.created_at.strftime("%d/%m/%Y") %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p style="width: 800px;"><%= review.message %></p>
+      </td>
+    </tr>
+  </table>
 <% end %>
-<div style="float: right;position: relative;top: 10px;">
+<hr />
+<div style="position: relative; left: 930px; width: 75px;">
   <%= will_paginate @reviews, :param_name => 'review_page', :page_links => false, :previous_label => "PREV", :next_label => "NEXT" %>
 </div>
+<hr />
 <script>
   $(function() {
     $(".pagination a").click(function() {
