@@ -1,2 +1,17 @@
 Seller Name: <b><%= @user.first_name+ ' ' + @user.last_name %> </b><br /><br />
-Email: <b><%= @user.email %></b>
+Email: <b><%= @user.email %></b><br /><br />
+<b>Seller Products </b><br /><br />
+<table width='100%' border='1' style='text-align: center;'>
+  <tr>
+    <th>Product Name</th>
+    <th>Image</th>
+    <th>Created At</th>
+  </tr>
+  <% for product in @products %>
+    <tr>
+      <td><%= link_to product.title, product_path(product) %></td>
+      <td><%= image_tag(product.images.first.image.url(:original), :width => '40', :height => '40') %></td>
+      <td><%= product.created_at.strftime("%d-%m-%Y") %></td>
+    </tr>
+  <% end %>
+</table>

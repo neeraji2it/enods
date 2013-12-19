@@ -58,6 +58,7 @@ class HomeController < ApplicationController
   
   def seller
     @user = User.find(params[:id])
+    @products = Product.where("user_id = #{@user.id}")
   end
   
   def contact

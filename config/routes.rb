@@ -47,6 +47,10 @@ Enods::Application.routes.draw do
     collection do
       get :expire_cart
     end
+    member do
+      get :edit_lineitem
+      put :update_lineitem
+    end
   end
 
   resources :products do
@@ -98,6 +102,7 @@ Enods::Application.routes.draw do
   get '/shipping_returns' => 'home#shipping_returns', :as => :shipping_returns
   get '/secure_shopping' => 'home#secure_shopping', :as => :secure_shopping
   get '/how_it_works' => 'home#how_it_works', :as => :how_it_works
+  get '/seller/:id' => 'home#seller', :as => :seller
 
   root :to => 'home#launch'
 
