@@ -1,0 +1,34 @@
+<div class="content">
+  <div id="leftColumn">
+    <div class="menu-categories">
+      <h1><span>Categories</span></h1>
+      <ul>
+        <% Category.all.each do |category| %>
+          <% @ss = category.id %>
+          <li class="<%= params[:categories] == "#{@ss}" ? "active" : "" %>"><%= link_to category.name, category_path(:categories => category.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div id="rightColumn" style="margin-left: -20px;width: 795px;">
+    <div class="commonrow">
+      <div class="list_carousel">
+        <ul id="caroulproduct">
+          <% for product in @products  %>
+            <li>
+              <%= image_tag(product.images.first.image.url(:original), :width => "226", :height => "287") %>
+              <div>
+                <h4><%= product.title %></h4>
+                <p>Seller: <%= link_to product.user.username, seller_path(product.user.id) %></p>
+                <span>$<%= product.price %>.00</span>
+                <div class="offer"><%= product.non_profit_percentage %>%</div>
+                </div>
+                <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
+                <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product, :qty => 1), :style => 'text-decoration: none;' %><br /><br /><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
