@@ -65,7 +65,6 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.where("title = '#{params[:query]}'")
-    render :action => 'index'
   end
 
   def add_to_cart

@@ -28,7 +28,6 @@
       <div id="add_color" style="display: none;">
         <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add More Colors</span>".html_safe, f, :colors %></em>
       </div>
-      <br />
     </td>
   </tr>
   <tr class="row">
@@ -56,7 +55,7 @@
   <% end %>
   <tr class="row">
     <td><%= f.label :non_profit_cause, "Select Non Profit:#{mark}".html_safe %></td>
-    <td><%= f.select :non_profit_cause, options_for_select([["Select", ''],["Animal Cause", "animal_cause"],["Human Cause", "human_cause"],["Environmental Cause", "environmental_cause"]], :selected => f.object.non_profit_cause)%></td>
+    <td><%= f.select :non_profit_cause, options_for_select([["Select", '']]+Cause.all.map{|a| a.title}, :selected => f.object.non_profit_cause)%></td>
   </tr>
   <tr class="row">
     <td><%= f.label :non_profit_percentage, "Percentage to Non-Profit:#{mark}".html_safe %></td>

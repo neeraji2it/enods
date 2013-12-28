@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   
   def seller
     @user = User.find(params[:id])
-    @products = Product.where("user_id = #{@user.id}")
+    @products = Product.where("user_id = #{@user.id}").order("created_at Desc")
   end
   
   def contact

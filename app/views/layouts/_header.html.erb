@@ -1,6 +1,6 @@
 <div class="topbar">
   <ul class="menu-top">
-    <li><%= link_to "Sell", ""%></li>
+    <li><%= link_to "Sell", new_user_path(:role => 'seller') %></li>
     <li><%= link_to "About", about_us_path %></li>
     <li><%= link_to "Causes", causess_path %></li>
     <li><%= link_to "Categories", "" %> </li>
@@ -41,8 +41,6 @@
         </li>
         <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
           <ul class="submenu">
-            <li><%= link_to "Animal Causes", all_causes_path(:cause => 'animal_cause') %></li>
-            <li><%= link_to "Human Causes", all_causes_path(:cause => 'human_cause') %></li>
             <% Cause.all.each do |cause| %>
               <li><%= link_to cause.title, all_causes_path(:cause => cause.title) %></li>
             <% end %>
