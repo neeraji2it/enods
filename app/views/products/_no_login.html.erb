@@ -52,9 +52,9 @@
     <% if @reviews.present? %>
       <% ss = Review.where("product_id = #{@product.id}").sum {|a| a.rating.to_i} %>
       <% dd = Review.where("product_id = #{@product.id}").count %>
-      <div id="star-rating" style="left: 400px; margin-top: -20px; position: relative; top: -15px;">
+      <div id="star-rating" style="left: 400px; margin-top: -17px; position: relative; top: -15px;">
         <div class="star-<%=h ss/dd %> rating"></div>
-        <span style="position: relative; top: -23px; left: 120px;"><%= ss/dd %> Stars</span>
+        <span style="position: relative; top: -15px; left: 85px;"><%= ss/dd %> Stars</span>
       </div>
       <div id='tot_reviews'>
         <%= render :partial => 'total_reviews' %>

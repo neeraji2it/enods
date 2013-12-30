@@ -3,22 +3,26 @@
  */
 
 .rating {
-    background: url(/assets/stars.png) no-repeat;
-    height: 26px;
+    background: url(/assets/stars.png);
+    background-position: 0px 0px;
+    height: 16px;
     overflow: hidden;
     text-indent: -1000px;
+    width: 80px;
 }
-.star-5 { width: 115px; }
-.star-4 { width: 92px; }
-.star-3 { width: 69px; }
-.star-2 { width: 46px; }
-.star-1 { width: 23px; }
+.star-5 { width: 80px; }
+.star-4 { width: 63px; }
+.star-3 { width: 49px; }
+.star-2 { width: 32px; }
+.star-1 { width: 17px; }
 .star-0 { width: 0px; }
 
 #star-rating{
-    background-image: url("/assets/star.gif");
-    height: 20px;
-    width: 110px;
+    background-image: url("/assets/stars.png");
+    background-position: 0px -16px;
+    height: 16px;
+    width: 80px;
+    margin-top: 2px;
 }
 
 #overlay{
