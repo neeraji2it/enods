@@ -136,12 +136,42 @@
       pagination: "#pager212",
       auto: false
     });
+
+    /*$('#caroulproduct').carouFredSel({
+     prev: '#prev2',
+     next: '#next2',
+     pagination: "#pager2",
+     auto: true,
+     auto: {
+     pauseOnHover: 'resume',
+     onPauseStart: function(percentage, duration) {
+     $(this).trigger('configuration', ['width', function(value) {
+     $('#caroulproduct').stop().animate({
+     width: value
+     }, {
+     duration: duration,
+     easing: 'linear'
+     });
+     }]);
+     },
+     onPauseEnd: function(percentage, duration) {
+     $('#caroulproduct').stop().width(0);
+     },
+     onPausePause: function(percentage, duration) {
+     $('#caroulproduct').stop();
+     }
+     },
+     });*/
+
     $('#caroulproduct').carouFredSel({
       prev: '#prev2',
       next: '#next2',
       pagination: "#pager2",
       items: 1,
-      auto: true
+      auto: true,
+      auto: {
+        pauseOnHover: 'resume'
+      }
     });
   });
 </script>

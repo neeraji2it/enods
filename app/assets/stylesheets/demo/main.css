@@ -370,7 +370,7 @@ a:hover {
 .main .content h2 {
     font-weight: 600;
     font-style: normal;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1em;
     text-transform: none;
     text-decoration: none;
@@ -416,13 +416,13 @@ a:hover {
     text-decoration:underline;
 }
 
-@media screen {
+@media screen and max-width 480px {
     body {
         font-size:60%;
     }
 }
 
-@media screen {
+@media screen and max-width 900px {
     .main .header .head .logo {
         padding-bottom:10px;
         border-bottom:2px solid #555;
