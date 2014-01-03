@@ -5,7 +5,7 @@
     <div class="box-orderfrom">
       <h4>
         <%= link_to "Close", cart_path(line_item), :method => :delete, :confirm => "Are You Sure", :class => "icon-close" %>
-        Order from  <a title="diamblond" href="#">diamblond</a>
+        Order from  <%= link_to line_item.product.user.username, seller_path(line_item.product.user) %>
       </h4>
       <div class="checkoutColumn">
         <ul class="list-checkout">

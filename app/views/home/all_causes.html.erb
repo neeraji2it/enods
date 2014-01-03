@@ -1,10 +1,9 @@
 <div class="content">
   <div id="leftColumn">
     <ul class="list-menuLeft">
-      <% Cause.all.each do |cause| %>
-        <% @ss = cause.title %>
-        <li class="<%= params[:cause] == "#{@ss}" ? "active" : "" %>"><%= link_to cause.title, all_causes_path(:cause => cause.title) %></li>
-      <% end %>
+      <li class="<%= params[:cause] == "Animal Cause" ? "active" : "" %>"><%= link_to "Animal Cause", all_causes_path(:cause => "Animal Cause") %></li>
+      <li class="<%= params[:cause] == "Human Cause" ? "active" : "" %>"><%= link_to "Human Cause", all_causes_path(:cause => "Human Cause") %></li>
+      <li class="<%= params[:cause] == "Environment Cause" ? "active" : "" %>"><%= link_to "Environment Cause", all_causes_path(:cause => "Environment Cause") %></li>
     </ul>
     <div class="menu-categories">
       <h1><span>Categories</span></h1>

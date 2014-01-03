@@ -1,4 +1,4 @@
-<table width="70%">
+<table width="100%">
   <tr class="row">
     <td>Seller Name</td>
     <td><%= text_field_tag :user, current_user.username, :readonly => true %></td>
@@ -54,8 +54,8 @@
     </tr>
   <% end %>
   <tr class="row">
-    <td><%= f.label :non_profit_cause, "Select Non Profit:#{mark}".html_safe %></td>
-    <td><%= f.select :non_profit_cause, options_for_select([["Select", '']]+Cause.all.map{|a| a.title}, :selected => f.object.non_profit_cause)%></td>
+    <td><%= f.label :non_profit_cause, "Select Cause Category:#{mark}".html_safe %></td>
+    <td><%= f.select :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause)%></td>
   </tr>
   <tr class="row">
     <td><%= f.label :non_profit_percentage, "Percentage to Non-Profit:#{mark}".html_safe %></td>
@@ -72,7 +72,7 @@
         <%= f.fields_for :shipping_products do |builder| %>
           <div>
             <%= builder.text_field :location, :placeholder => "Location" %><br />
-            <span id="cc"><%= builder.country_select :country %></span>
+            <span id="cc"><%= builder.country_select :country, ["United States"] %></span>
             $<%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
             $<%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
           </div>
@@ -91,7 +91,7 @@
   <% end %>
   <tr class="row">
     <td></td>
-    <td><%= f.check_box :agree_terms %>The products listed on the site and are not selling items not allowed to sell on enods, etc.</td>
+    <td><%= f.check_box :agree_terms %><%= "#{mark}".html_safe %>The products listed on the site and are not selling items not allowed to sell on enods, etc.</td>
   </tr>
   <tr class="row">
     <td></td>

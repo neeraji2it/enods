@@ -44,9 +44,6 @@ Enods::Application.routes.draw do
     end
   end
   resources :carts do
-    collection do
-      get :expire_cart
-    end
     member do
       get :edit_lineitem
       put :update_lineitem

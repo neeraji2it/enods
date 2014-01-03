@@ -74,9 +74,9 @@
     <h1><span>Categories</span></h1>
     <div class="list_carousel">
       <ul id="caroulproduct2">
-        <% for product in @products  %>
+        <% Product.where("title is not null").group(:category_id).each do |product|  %>
           <li>
-            <%= image_tag(product.images.first.image.url(:original), :width => "217", :height => "170") %>
+            <%= link_to image_tag(product.images.first.image.url(:original), :width => "217", :height => "170"), category_path(:categories => product.category_id) %>
             <h4><%= product.category.name %></h4>
           </li>
         <% end %>
@@ -94,12 +94,21 @@
       </div>
       <div class="column-share">Find us on:</div>
       <ul class="list-media">
-        <li class="icon-twitter"><a title="twitter" href="#">twitter</a></li>
-        <li class="icon-facebook"><a title="facebook" href="#">facebook</a></li>
-        <li class="icon-blogger"><a title="blogger" href="#">blogger</a></li>
-        <li class="icon-googlePlus"><a title="google plus" href="#">google plus</a></li>
-        <li class="icon-pinterest"><a title="pinterest" href="#">pinterest</a></li>
-        <li class="icon-youtube"><a title="you tube" href="#">you tube</a></li>
+        <li class="icon-twitter">
+          <%= link_to "twitter", "https://twitter.com/enodsnow", :title => "twitter" %>
+        </li>
+        <li class="icon-facebook">
+          <%= link_to "facebook", "https://www.facebook.com/enodsnow", :title => "facebook" %>
+        </li>
+        <li class="icon-googlePlus">
+          <%= link_to "google plus", "https://google.com/+enods" , :title => "google plus" %>
+        </li>
+        <li class="icon-pinterest">
+          <%= link_to "pinterest", "http://www.pinterest.com/enodsnow", :title => "pinterest" %>
+        </li>
+        <li class="icon-youtube">
+          <%= link_to "you tube", "https://www.youtube.com/user/enodsnow", :title => "you tube" %>
+        </li>
       </ul>
     </div>
   </div>
@@ -131,7 +140,8 @@
       prev: '#prev2',
       next: '#next2',
       pagination: "#pager2",
-      auto: false
+      items: 1,
+      auto: true
     });
   });
 </script>

@@ -31,12 +31,18 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @reviews = @product.reviews.order("created_at Desc").paginate :page => params[:review_page], :per_page => 1
+    @reviews = @product.reviews.paginate :page => params[:review_page], :per_page => 5
   end
   
   def sort_review
     @product = Product.find(params[:id])
-    @reviews = @product.reviews.order("created_at #{params[:sort]}").paginate :page => params[:review_page], :per_page => 10
+    if params[:sort] == 'highest'
+      @reviews = @product.reviews.order("rating Desc").paginate :page => params[:review_page], :per_page => 10
+    elsif params[:sort] == 'lowest'
+      @reviews = @product.reviews.order("rating Asc").paginate :page => params[:review_page], :per_page => 10
+    else
+      @reviews = @product.reviews.order("created_at #{params[:sort]}").paginate :page => params[:review_page], :per_page => 10
+    end
     render :partial => 'total_reviews', :layout => false
   end
 
@@ -64,7 +70,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("title = '#{params[:query]}'")
+    if params[:from].present? and params[:to].present?
+      @products = Product.where("price BETWEEN #{params[:from]} AND #{params[:to]}")
+    else
+      @products = Product.where("title = '#{params[:query]}'")
+    end
   end
 
   def add_to_cart

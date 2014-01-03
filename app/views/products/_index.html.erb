@@ -13,12 +13,12 @@
   <% @products.each_with_index do |product,index| %>
     <div class="row">
       <div class="column"><%= index+1 %></div>
-      <div class="column"><%= link_to product.title, product_path(product) %></div>
+      <div class="column"><%= link_to product.title, edit_product_path(product) %></div>
       <div class="column"><%= product.color %></div>
       <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
       <div class="column"><%= number_to_currency(product.price) %></div>
       <div class="column"><%= product.qty_sold %></div>
-      <div class="column"><%= product.qty %></div>
+      <div class="column"><%= product.colors.first.product_qty %></div>
       <div class="column last">
         <%= link_to image_tag("/assets/admin-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
         <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;

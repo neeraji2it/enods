@@ -416,13 +416,13 @@ a:hover {
     text-decoration:underline;
 }
 
-@media screen and max-width 480px {
+@media screen {
     body {
         font-size:60%;
     }
 }
 
-@media screen and max-width 900px {
+@media screen {
     .main .header .head .logo {
         padding-bottom:10px;
         border-bottom:2px solid #555;

@@ -140,6 +140,7 @@ footer{
 #leftColumn ul.menu li.icon-productsManagement a{ background:url(/assets/seller-images/sprite.png) no-repeat 20px -28px; }
 #leftColumn ul.menu li.icon-orderSalesManagement a{ background:url(/assets/seller-images/sprite.png) no-repeat 20px -106px; }
 #leftColumn ul.menu li.icon-profile a{ background:url(/assets/seller-images/sprite.png) no-repeat 20px -185px; }
+#leftColumn ul.menu li.icon-invitations a{ background:url(/assets/user-images/sprite.png) no-repeat 15px -548px; }
 .blankbox{
     position:relative;
     top:-5px;

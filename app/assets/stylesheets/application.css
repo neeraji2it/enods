@@ -2,23 +2,23 @@
  *= require jquery.notify_bar
  */
 
-.rating {
-    background: url(/assets/stars.png);
+.ratings {
+    background: url(/assets/star.png);
     background-position: 0px 0px;
     height: 16px;
     overflow: hidden;
     text-indent: -1000px;
     width: 80px;
 }
-.star-5 { width: 80px; }
-.star-4 { width: 63px; }
-.star-3 { width: 49px; }
-.star-2 { width: 32px; }
-.star-1 { width: 17px; }
-.star-0 { width: 0px; }
+.stars-5 { width: 80px; }
+.stars-4 { width: 63px; }
+.stars-3 { width: 49px; }
+.stars-2 { width: 32px; }
+.stars-1 { width: 17px; }
+.stars-0 { width: 0px; }
 
-#star-rating{
-    background-image: url("/assets/stars.png");
+#stars-rating{
+    background-image: url("/assets/star.png");
     background-position: 0px -16px;
     height: 16px;
     width: 80px;

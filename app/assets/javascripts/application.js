@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require countdown_timer
 //= require jquery.notify_bar
 //= require jquery.zoom
 //= require jquery-ui-1.8.20.custom.min

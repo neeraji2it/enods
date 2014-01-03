@@ -1,6 +1,6 @@
 <div class="fields">
   <div>
-    <span id="cc"><%= f.country_select :country %></span>
+    <span id="cc"><%= f.country_select :country, ["United States"] %></span>
     $<%= f.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
     $<%= f.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
     <%= link_to_remove_fields image_tag("/assets/seller-images/icon-close.png"), f %>

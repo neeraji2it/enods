@@ -3,7 +3,7 @@
     <li><%= link_to "Sell", new_user_path(:role => 'seller') %></li>
     <li><%= link_to "About", about_us_path %></li>
     <li><%= link_to "Causes", causess_path %></li>
-    <li><%= link_to "Categories", "" %> </li>
+    <li><%= link_to "Categories", category_path %> </li>
     <li><%= link_to "Blog", "" %> </li>
     <li><%= link_to "Contact", contact_us_path %> </li>
     <li><%= link_to "Cart", carts_path %> </li>
@@ -15,8 +15,9 @@
   <%= form_tag search_products_path, :method => 'get' do %>
     <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
   <% end %>
-  <div class="icon-shopping" style="background-position: 120px -72px;"><%= current_cart.line_items.present? ? "#{current_cart.line_items.count} Items in Your Cart":"Your Cart Is Empty"%></div>
-  <div id="cart_expire_time" style="position: relative;float: right;top: 15px;width: 213px;color: red;"></div>
+  <div class="icon-shopping" style="cursor: pointer;">
+    <%= current_cart.line_items.present? ? ("#{current_cart.line_items.count} Items in Your Cart") : ("Your Cart Is Empty") %>
+  </div>
 </div>
 <div class="nav-container">
   <div id="navigation">
@@ -31,7 +32,7 @@
       <ul>
         <li><%= link_to "Sign up", new_user_path(:role => 'buyer'), :class => 'lin-signup' %></li>
         <li><%= link_to "Sign In", new_user_session_path() %></li>
-        <li class="parent"><a title="Categories" href="#">Categories</a>
+        <li class="parent"><a title="Categories" href="/category">Categories</a>
           <ul class="submenu">
             <% Category.all.each do |category| %>
               <li><%= link_to category.name, category_path(:categories => category.id) %></li>
@@ -41,9 +42,9 @@
         </li>
         <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
           <ul class="submenu">
-            <% Cause.all.each do |cause| %>
-              <li><%= link_to cause.title, all_causes_path(:cause => cause.title) %></li>
-            <% end %>
+            <li><%= link_to "Animal Cause", all_causes_path(:cause => "Animal Cause") %></li>
+            <li><%= link_to "Human Cause", all_causes_path(:cause => "Human Cause") %></li>
+            <li><%= link_to "Environment Cause", all_causes_path(:cause => "Animal Cause") %></li>
           </ul>
         </li>
         <li><%= link_to "Sell", new_user_path(:role => 'seller') %></li>
@@ -51,3 +52,8 @@
     </nav>
   </div>
 </div>
+<script>
+  $('.icon-shopping').click(function() {
+    window.location.href = '<%= carts_path %>';
+  });
+</script>

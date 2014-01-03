@@ -21,7 +21,7 @@
       <%end%>
     <%end%>
   </head>
-  <body onload="<%= !current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "" %>">
+  <body>
     <header>
       <div class="content">
         <%= render :partial => '/layouts/header' %>

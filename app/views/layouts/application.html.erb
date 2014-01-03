@@ -21,7 +21,7 @@
       <%end%>
     <%end%>
   </head>
-  <body onload="<%= current_user.role == 'buyer' ? (!current_cart.new_record? ? "GetCartTimeCount('#{ (current_cart.created_at.utc+(30*60)).strftime('%Y-%m-%d %H:%M:%S') }', '#{Time.now.utc.strftime('%Y-%m-%d %H:%M:%S')}', 'cart_expire_time');" : "") : ("") %>">
+  <body>
     <header>
       <div class="fright">
         <ul class="list-topicon" style="margin-left: -35px;">
@@ -36,7 +36,6 @@
     <article>
       <div class="topbar">
         <div class="fright"><%= current_user.role == 'admin' ? "" : (link_to "Settings", profile_profile_path(current_user), :class => 'icon-setting') %></div>
-        <div id="cart_expire_time" style="position: relative;float: right;width: 213px;color: red;"></div>
         <ul class="breadcrumb">
           <li><span><%= params[:controller] %></span></li>
           <li><a title="My Account" href="#"><%= params[:action].upcase %></a></li>
@@ -58,6 +57,7 @@
               <li class="icon-productsManagement <%= (params[:controller] == 'products' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Products Management", products_path %></li>
               <li class="icon-orderSalesManagement <%= (params[:controller] == 'profiles' and params[:action] == 'order_history') ? 'active' : "" %>"><%= link_to "Order & Sales Management", order_history_path %></li>
               <li class="icon-profile <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Profile", profile_profile_path(current_user) %></li>
+              <li class="icon-invitations <%= (params[:controller] == 'invitations' and params[:action] == 'index') ? 'active' : "" %>"><%= link_to "Invitations", invitations_path %></li>
             <% elsif current_user.role == 'admin' %>
               <li class="icon-dashboard <%= (params[:controller] == 'admins' and params[:action] == 'admin_dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", admin_dashboard_path %></li>
               <li class="icon-productsManagement <%= (params[:controller] == 'admins' and params[:action] == 'seller') ? 'active' : "" %>"><%= link_to "Seller Management", seller_admins_path() %></li>

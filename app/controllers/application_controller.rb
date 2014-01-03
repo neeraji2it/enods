@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
-  helper_method :after_sign_in_path_for, :current_cart
+  helper_method :current_cart
   layout :layout
 
 
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def is_signin?
     unless current_user
       flash[:error] = "Please Login"
-      redirect_to '/'
+      redirect_to '/users/sign_in'
     end
   end
 
