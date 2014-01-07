@@ -87,54 +87,48 @@
     </li>
   </ul>
   <% if @product.shipping_products.present? %>
-    <div class="box-productDetails">
-      <ul class="menu-tab">
-        <li class="active"><a title="Details" href="#">Details</a></li>
-      </ul>
-      <div class="box-productDetailsContent">
-        <ul class="list-normal">
-          <li>
-            <p><strong>Article is</strong></p>
-            <p>New</p>
-          </li>
-          <li>
-            <p><strong>Availability</strong></p>
-            <p>Still available 6 x</p>
-          </li>
-          <li>
-            <p><strong>Location</strong></p>
-            <p><%= @product.shipping_products.first.location %></p>
-          </li>
-          <li>
-            <p><strong>Shipping</strong></p>
-            <table border="1" class="table-shipping" style="width: 410px;">
-              <tr class="row">
-                <th>After</th>
-                <th>Costs</th>
-                <th class="last">+ Each item, total</th>
-              </tr>
-              <% for shipping in @product.shipping_products %>
-                <tr class="row">
-                  <td><%= shipping.country %></td>
-                  <td>$ <%= shipping.cost %></td>
-                  <td class="last">$<%= shipping.item_cost %></td>
-                </tr>
-              <% end %>
-            </table>
-          </li>
+    <div class="content">
+      <div id="tab-shippingDetails" class="list-tab">
+        <ul class="nav">
+          <li><a href="#itemDetails" title="Item Details" class="current">Item Details</a></li>
+          <li><a href="#shippingPolicies">Shipping &amp; Policies</a></li>
         </ul>
-        <p><strong>Payment</strong></p>
-        <p>The seller offers the following payment methods:</p>
-
-        <p>.Transfer</p>
-        <div class="clearFix"></div>
+        <div class="list-wrap">
+          <div id="itemDetails">
+            <p><%= @product.description %></p>
+          </div>
+          <div id="shippingPolicies" class="hide">
+            <h2>Payment Methods</h2>
+            <p><img alt="" title="" src="/assets/payment-mode_1.png"></p>
+            <h5>Ready to dispatch in 1-3 business days </h5>
+            <ul class="list-shippingDetails">	
+              <li>
+                <div class="column">Ship To</div>
+                <div class="column">Costs</div>
+                <div class="column">Each item</div>
+              </li>
+              <% for shipping in @product.shipping_products %>
+                <li>
+                  <div class="column"><%= shipping.country %></div>
+                  <div class="column"><%= number_to_currency(shipping.cost) %></div>
+                  <div class="column"><%= number_to_currency(shipping.item_cost) %></div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
+      <div class="clearFix"></div>
     </div>
   <% end %>
   <div class="clearFix"></div>
 </div>
 <script>
   $('#ex1').zoom();
+
+  $(function() {
+    $("#tab-shippingDetails").organicTabs();
+  });
 
   var pieData = [
     {

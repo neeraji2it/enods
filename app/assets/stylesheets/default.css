@@ -1,6 +1,22 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+/*Tab CSS*/
+
+.hide { position: absolute; top: -9999px; left: -9999px; }
+
+/* Specific to example one */
+
+.list-tab .nav { width:100%; padding:0px; margin-bottom:10px; display:inline-block; border-bottom:solid 1px #DDD; }
+.list-tab .nav li { float:left; }
+.list-tab .nav li a { display:block; padding:8px 10px; text-decoration:none; }
+.list-tab .nav li a:hover { background-color: #111; }
+
+.list-tab ul { list-style: none; }
+.list-tab ul li a.current, .list-tab ul li a:hover { background-color: #DDD; }
+.list-tab ul li a:hover { color:#FFF; }
+
 /* Slider CSS */
 .coda-slider-wrapper { padding:0px; position:relative; }
 .coda-slider-wrapper .coda-slider { background: #f2f2f2; }
@@ -38,7 +54,7 @@
 .coda-slider-wrapper .coda-nav-left-arrow {
     width: 25px;
     height: 25px;
-    background: url(../img/arrow.png) no-repeat top left; 
+    background: url(/assets/arrow.png) no-repeat top left; 
     margin-top:50px;
 }
 .coda-slider-wrapper .coda-nav-left-arrow a {
@@ -1475,3 +1491,52 @@ ul.login-yourAccount li a{ font-size:14px; }
 }
 .forgotBox h4{ text-align:center; }	
 .forgotBox > p{ text-align:center; }
+ul.list-shippingDetails + ul.list-shippingDetails{ padding-top:20px; }
+ul.list-shippingDetails{ padding:0px; }
+ul.list-shippingDetails > li{
+    width:100%;
+    display:inline-block;
+    padding:10px 0px 5px 0px;
+}	
+ul.list-shippingDetails > li:first-child{ font-weight:bold; }	
+ul.list-shippingDetails > li + li{ border-top:solid 1px #DDD; }	
+ul.list-shippingDetails > li > div.column{
+    float:left;
+    width:150px;
+}	
+ul.list-shippingDetails.list-policies > li > div.column{ 
+    float:none;
+    width:auto;
+}	
+ul.list-shippingDetails.list-policies > li > div.column:first-child{
+    float:left;
+    width:250px;
+}	
+ul.list-shippingDetails.list-policies > li > div.column + div.column{ margin-left:250px; }	
+ul.list-shippingDetails > li > div.column:first-child{ width:250px; }
+ul.list-review{
+    width:100%;
+    padding:0px;
+    display:inline-block;
+}
+ul.list-review > li{
+    width:100%;
+    padding-bottom:10px;
+    display:inline-block;
+}
+ul.list-review > li + li{
+    padding-top:10px;
+    border-top:solid 1px #DDD;
+}	
+ul.list-review > li .review-rightColumn{ margin-left:115px; }	
+ul.list-review > li .fright { text-align:right; }
+ul.list-review > li .fright p{ 
+    font-style:italic;
+    padding-bottom:0px;
+}
+.thum-review{
+    float:left;
+    width:100px;
+    text-align:center;
+}	
+.date{ color:#999; }	

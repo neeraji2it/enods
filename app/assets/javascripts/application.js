@@ -18,6 +18,7 @@
 //= require jquery-ui-1.8.20.custom.min
 //= require highcharts
 //= require Chart
+//= require organictabs.jquery
 //= require navbar
 //= require waypoints.min
 //= require script
