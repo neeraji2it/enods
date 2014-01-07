@@ -17,6 +17,7 @@
 //= require jquery.zoom
 //= require jquery-ui-1.8.20.custom.min
 //= require highcharts
+//= require Chart
 //= require navbar
 //= require waypoints.min
 //= require script

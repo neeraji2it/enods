@@ -74,7 +74,7 @@
     <li>
       <h1><span>Donation</span></h1>
       <div>
-        <div class="thum-productDetail"><img alt="" title="" src="/assets/img-donation.png" /></div>
+        <div class="thum-productDetail"><canvas id="canvas" height="72" width="75"></canvas></div>
         <p><%= @product.non_profit_percentage %><%= "%" %>  of the proceeds <br>will be donated.</p>
       </div>
     </li>
@@ -135,6 +135,20 @@
 </div>
 <script>
   $('#ex1').zoom();
+
+  var pieData = [
+    {
+      value: <%= @product.non_profit_percentage %>,
+      color: "#FFA12E"
+    },
+    {
+      value: <%= 100 - @product.non_profit_percentage %>,
+      color: "#00A6D7"
+    }
+
+  ];
+  var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+
 </script>
 <style>
   .zoom {

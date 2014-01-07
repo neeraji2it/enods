@@ -63,6 +63,28 @@
             <li>Donation: <%= number_to_currency((line_item.product.price.to_f/10)/line_item.product.non_profit_percentage) %> USD </li>
           </ul>
         </li>
+        <li>
+          <div style="position: relative; left: -12px; width: 618px;">
+            <div class="thum-productDetail" style="width: 78px;"><canvas id="canvas_<%= line_item.id %>" height="72" width="75"></canvas></div>
+            <p style="float: left; margin-top: 17px; width: 218px; margin-left: -2px;"><%= line_item.product.non_profit_percentage %><%= "%" %>  of the proceeds <br>will be donated.</p>
+            <div class="thum-productDetail" style="width: 78px;"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
+            <p style="float: right; margin-top: 20px; margin-right: 46px; width: 200px;;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
+          </div>
+        </li>
+        <script>
+          var pieData = [
+            {
+              value: <%= line_item.product.non_profit_percentage %>,
+              color: "#FFA12E"
+            },
+            {
+              value: <%= 100 - line_item.product.non_profit_percentage %>,
+              color: "#00A6D7"
+            }
+
+          ];
+          var myPie = new Chart(document.getElementById("canvas_<%= line_item.id %>").getContext("2d")).Pie(pieData);
+        </script>
       </ul>
     </div>
   <% end %>
