@@ -39,9 +39,9 @@ class AdminsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update_attribute(:status, params[:status])
     @email_alerts = EmailAlert.all
-    for email in @email_alerts
-      UserMailer.project_alert(email,@product).deliver if (email.present? and params[:status] == 'confirmed')
-    end
+#    for email in @email_alerts
+#      UserMailer.project_alert(email,@product).deliver if (email.present? and params[:status] == 'confirmed')
+#    end
     redirect_to admin_dashboard_path
   end
 end

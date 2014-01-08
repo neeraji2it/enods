@@ -1,2 +1,2 @@
 $('#qua').hide();
-$('#line_item_quantiy').html('<%= escape_javascript render :partial => 'carts/edit_lineitem' %>');
+$('#line_item_quantiy_<%= @line_item.id %>').html('<%= escape_javascript render :partial => 'carts/edit_lineitem' %>');

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if current_user.role == 'admin'
         admin_dashboard_path
       else
-        profile_profile_path(current_user)
+        session[:ss].present? ? session[:ss] : profile_profile_path(current_user)
       end
     end
   end
@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   def is_signin?
     unless current_user
       flash[:error] = "Please Login"
+      session[:ss] = request.fullpath
       redirect_to '/users/sign_in'
     end
   end
@@ -37,6 +38,20 @@ class ApplicationController < ActionController::Base
     unless current_user.role == 'admin'
       flash[:error] = "Please Login"
       redirect_to '/'
+    end
+  end
+  
+  def is_seller?
+    unless current_user.role == 'seller'
+      flash[:error] = "You have no permission to access that page"
+      redirect_to profile_profile_path(current_user)
+    end
+  end
+  
+  def is_buyer?
+    unless current_user.role == 'buyer'
+      flash[:error] = "You have no permission to access that page"
+      redirect_to profile_profile_path(current_user)
     end
   end
   

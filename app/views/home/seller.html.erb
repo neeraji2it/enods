@@ -1,5 +1,6 @@
 Seller Name: <b><%= @user.first_name+ ' ' + @user.last_name %> </b><br /><br />
 Email: <b><%= @user.email %></b><br /><br />
+Avatar: <%= image_tag(@user.avatar.url(:thumb)) %><br /><br />
 <b>Seller Products </b><br /><br />
 <table width='100%' border='1' style='text-align: center;'>
   <tr>

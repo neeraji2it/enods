@@ -55,8 +55,8 @@
             <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
             <div>
               <h4><%= product.title %></h4>
-              <p>Seller: <%= link_to product.user.username, seller_path(product.user.id) %></p>
-              <span>$<%= product.price %>.00</span>
+              <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>
+              <span><%= number_to_currency(product.price) %></span>
               <div class="offer"><%= product.non_profit_percentage %><%= "%" %></div>
             </div>
             <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>

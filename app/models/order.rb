@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
   private
   def set_payments_and_dates
     self.admin_payment = (self.line_item.full_price.to_i)/10
-    self.non_profit_payment = (self.admin_payment)/self.line_item.product.non_profit_percentage if self.line_item.product.non_profit_percentage.present?
+    self.non_profit_payment = (((self.line_item.full_price.to_f)*(self.line_item.product.non_profit_percentage))/100) if self.line_item.product.non_profit_percentage.present?
     self.net_payment = self.line_item.full_price.to_i-self.admin_payment.to_i-self.non_profit_payment.to_i
     self.confirm_date = Time.now
   end

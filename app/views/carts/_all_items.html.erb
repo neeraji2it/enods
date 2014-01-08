@@ -16,7 +16,7 @@
                 <option>India</option>	
               </select>
             </p>
-            <h5 class="color-gray">Ready to ship in 35 business days</h5>
+            <h5 class="color-gray"><%= line_item.product.shipping %></h5>
             <h5>How You'll Pay</h5>
             <p><input title="Payment Mode" type="radio"> <img alt="" title="" src="/assets/payment-mode_1.png" /></p>
           </li>	
@@ -56,11 +56,11 @@
               <em id='qua'>
                 <%= link_to line_item.quantity, edit_lineitem_cart_path(line_item), :remote => true, :id => 'lll' %>
               </em>
-              <span id='line_item_quantiy'></span>
+              <span id='line_item_quantiy_<%= line_item.id %>'></span>
             </li>
             <li>Size: 40 cm</li>
             <li><%= number_to_currency(line_item.product.price) %> USD </li>
-            <li>Donation: <%= number_to_currency((line_item.product.price.to_f/10)/line_item.product.non_profit_percentage) %> USD </li>
+            <li>Donation: <%= number_to_currency(((line_item.product.price.to_f)*(line_item.product.non_profit_percentage))/100) %> USD </li>
           </ul>
         </li>
         <li>

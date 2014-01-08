@@ -12,7 +12,7 @@ sup { vertical-align:text-top; }
 sub { vertical-align:text-bottom; }
 input, select, textarea, button { font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#35383d; margin:0em; margin:0px; }
 input, button { overflow:visible; }
-select { margin-right:8px; }
+select { margin-right:8px;height: 27px; }
 select option { padding-left:4px; }
 p { margin:0px; padding-bottom:10px; }
 input, textarea, a { outline:none; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }

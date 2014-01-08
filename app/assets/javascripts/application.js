@@ -87,17 +87,6 @@ function buyer_users_path() {
     });
 }
 
-function review(product_id) {
-    $.ajax({
-        url: '/products/' + product_id + '/review',
-        success: function(data) {
-            $("#popup_body").html(data);
-            $('#overlay').show();
-            $('#popup_box').show();
-        }
-    })
-}
-
 function preview(product_id) {
     $.ajax({
         url: '/products/' + product_id + '/preview_product',

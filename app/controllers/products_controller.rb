@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_filter :is_signin?, :only => ['index','new','create','preview_product']
+  before_filter :is_signin?, :only => ['index','new','create','preview_product','review','product_review']
+  before_filter :is_seller? , :only => ['new','create']
   before_filter :is_valid_account? , :only => ['index','new','create']
 
   def index
@@ -98,12 +99,11 @@ class ProductsController < ApplicationController
   def review
     @product = Product.find(params[:id])
     @review = @product.reviews.new
-    render :layout => false
   end
   
   def product_review
     @product = Product.find(params[:id])
-    @review = @product.reviews.new(params[:review])
+    @review = @product.reviews.new(params[:review].merge(:user_id => current_user.id))
     if @review.save
       respond_to do |format|
         format.js
