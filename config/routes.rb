@@ -29,6 +29,7 @@ Enods::Application.routes.draw do
   resources :billing_shipping_addresses
 
   resources :users do
+    resources :contact_shop_owners
     collection do
       get :buyer
       post :buyer_create

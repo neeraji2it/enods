@@ -17,6 +17,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => 'Info@enods.com', :subject => contact.option)
   end
   
+  def contact_shop(contact_shop)
+    @contact = contact_shop
+    mail(:to => contact_shop.receiver.email, :subject => contact_shop.subject)
+  end
+  
   def invitation(user,invitation)
     @user = user
     mail(:to => invitation.email, :subject => "Invitaiton from Enods.com")

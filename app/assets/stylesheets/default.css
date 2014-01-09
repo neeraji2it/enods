@@ -756,10 +756,12 @@ ul.list-menuLeft li:hover span{ display:block; }
     display:block;
     padding:10px 15px 9px 15px;
 }
-.menu-categories ul{
+.menu-categories ul{ 
     font-size:16px;
-    padding:0px 2px;
     line-height:30px;
+}
+.menu-categories ul, .menu-categories .box{
+    padding:0px 2px;
     border:solid 1px #d1d1d1;
     border-radius:0px 0px 6px 6px;
 }
@@ -774,6 +776,12 @@ ul.list-menuLeft li:hover span{ display:block; }
     text-decoration:none;
 }
 .menu-categories ul li + li{ border-top:solid 1px #bfbfbf; }	
+.box a{
+    color:#0192b5;
+    text-decoration:none;
+}
+.box a:hover{ text-decoration:underline; }
+.box p{ padding-bottom:5px; }
 .box-trending{
     float:right;
     width:260px;
@@ -1542,3 +1550,27 @@ ul.list-review > li .fright p{
 }	
 .date{ color:#999; }
 .list-search.list_carousel [id*="caroulproduct"]{ margin:0px; }
+.thum-shopOwner{
+    text-align:center;
+    padding:3px 0px 10px 0px;
+}
+.box-content{ padding:10px; }	
+ul.menu-shopInfo{
+    border:none;
+    margin:0px -4px;
+}	
+.box-seller{
+    padding:4px;
+    border-radius:3px;
+    margin:0px 12px 8px 4px;
+    border:solid 1px #D1D1D1;
+}	
+.box-seller img{ max-width:100%; }	
+.box-seller a{ 
+    color:#0192B5;
+    text-decoration:none;
+}
+.shop-giftcard-callout{
+    padding:10px 0px 8px 0px;
+    border-top:solid 1px #D1D1D1;
+}	

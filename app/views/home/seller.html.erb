@@ -1,18 +1,64 @@
-Seller Name: <b><%= @user.first_name+ ' ' + @user.last_name %> </b><br /><br />
-Email: <b><%= @user.email %></b><br /><br />
-Avatar: <%= image_tag(@user.avatar.url(:thumb)) %><br /><br />
-<b>Seller Products </b><br /><br />
-<table width='100%' border='1' style='text-align: center;'>
-  <tr>
-    <th>Product Name</th>
-    <th>Image</th>
-    <th>Created At</th>
-  </tr>
-  <% for product in @products %>
-    <tr>
-      <td><%= link_to product.title, product_path(product) %></td>
-      <td><%= image_tag(product.images.first.image.url(:original), :width => '40', :height => '40') %></td>
-      <td><%= product.created_at.strftime("%d-%m-%Y") %></td>
-    </tr>
-  <% end %>
-</table>
+<article>
+  <div class="content">
+    <div id="leftColumn">
+      <div class="menu-categories">
+        <h1><span>All Items</span></h1>
+        <ul>
+          <% Category.all.each do |category| %>
+            <li><%= link_to category.name, category_path(:categories => category.id) %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="menu-categories">
+        <h1><span>Shop Owner</span></h1>
+        <div class="box">
+          <div class="thum-shopOwner">
+            <%= image_tag(@user.avatar.url(:thumb), :width => '217', :height => '170') %>
+          </div>
+          <div class="box-content">
+            <h5><a title="Roza" href="#"><%= @user.username%></a></h5>
+            <p><%= @user.business_address %></p>
+            <h5>Have a question?</h5>
+            <p>
+              <%= link_to "Contact Shop Owner", new_user_contact_shop_owner_path(@user), :class => 'btn' %>
+            </p>
+            <div class="clearFix"></div>
+          </div>	
+        </div>	
+      </div>
+      <div class="menu-categories">
+        <h1><span>Shop Info</span></h1>
+        <div class="box">
+          <div class="box-content">
+            <h5><%= @user.business_name %></h5>
+            <p>Opened on Mar 21, 2008 </p>
+            <div class="clearFix"></div>
+          </div>
+        </div>	
+      </div>
+    </div>
+    <div id="rightColumn">
+      <div class="box-seller">
+        <p><a title="" href="#"><img alt="" title="" src="/assets/img-dummy.jpg"></a></p>
+        <h5><%= link_to @user.business_name, "" %></h5>
+        <pre><%= @user.other_info %></pre>
+      </div>	
+      <div class="list_carousel list-search">
+        <ul id="caroulproduct">
+          <% for product in @products %>
+            <li>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+              <div>
+                <h4><%= product.title %></h4>
+                <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>
+                <span><%= number_to_currency(product.price) %></span>
+                <div class="offer"><%= product.non_profit_percentage %><%= "%" %></div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+</article>

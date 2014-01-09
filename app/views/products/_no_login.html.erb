@@ -67,7 +67,7 @@
       <div>
         <div class="thum-productDetail"><%= image_tag(@product.user.avatar.url(:original), :width => '75',:height => '83')%></div>
         <p><%= link_to @product.user.username, seller_path(@product.user.id), :class => "link-blue" %><br /></p>
-        <a title="Contact >>" href="#">Contact >></a>
+        <%= link_to "Contact >>", new_user_contact_shop_owner_path(@product.user) %>
         <div class="clearFix"></div>
       </div>
     </li>
