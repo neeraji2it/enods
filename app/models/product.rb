@@ -5,11 +5,13 @@ class Product < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many :colors, :dependent => :destroy
   has_many :shipping_products, :dependent => :destroy
+  has_many :share_products, :dependent => :destroy
   has_many :causes, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :billing_shipping_addresses, :dependent => :destroy
   has_one :favourite, :dependent => :destroy
-  validates :title, :sell_name,:shipping,:agree_terms,:non_profit_cause, :description,:category_id, :presence => true
+  validates :shipping, :presence => true, :on => :create
+  validates :title, :sell_name,:agree_terms,:non_profit_cause, :description,:category_id, :presence => true
   validates :price,:non_profit_percentage, :numericality => {:greater_than_or_equal_to => 1}, :presence => true
   accepts_nested_attributes_for :images,:shipping_products, :colors, :allow_destroy => true, :reject_if => :all_blank
 

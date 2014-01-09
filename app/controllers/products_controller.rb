@@ -32,6 +32,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    ShareProduct.destroy_all
     @reviews = @product.reviews.paginate :page => params[:review_page], :per_page => 5
   end
   
@@ -72,7 +73,7 @@ class ProductsController < ApplicationController
 
   def search
     if params[:from].present? and params[:to].present?
-      @products = Product.where("price BETWEEN #{params[:from]} AND #{params[:to]}")
+      @products = Product.where("(price BETWEEN #{params[:from]} AND #{params[:to]}) AND title = '#{params[:query]}'")
     else
       @products = Product.where("title = '#{params[:query]}'")
     end

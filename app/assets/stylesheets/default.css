@@ -746,6 +746,7 @@ ul.list-menuLeft li span{
     background:url(/assets/sprite.png) no-repeat 0px -488px;
 }
 ul.list-menuLeft li:hover span{ display:block; }		
+.menu-categories + .menu-categories{ margin-top:15px; }
 .menu-categories h1{
     margin-bottom:0px;
     padding-bottom:0px;
@@ -1539,4 +1540,5 @@ ul.list-review > li .fright p{
     width:100px;
     text-align:center;
 }	
-.date{ color:#999; }	
+.date{ color:#999; }
+.list-search.list_carousel [id*="caroulproduct"]{ margin:0px; }

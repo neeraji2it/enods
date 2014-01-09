@@ -51,7 +51,7 @@
             <%= submit_tag "Graph", :id => "Graph", :style => 'position: relative; padding: 6px 14px 3px 14px;' %>
           <% end %>
         </div>
-        <ul style='width: 180px;' id="xkgd">
+        <ul style='width: 190px;' id="xkgd">
           <li>
             <b>Zoom:</b>&nbsp;&nbsp;<%= link_to "1d", week_profiles_path(:week => '1d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;
             <%= link_to "5d", week_profiles_path(:week => '5d'), :remote => true, :onclick => 'graph_id(this)' %>&nbsp;&nbsp;&nbsp;&nbsp;

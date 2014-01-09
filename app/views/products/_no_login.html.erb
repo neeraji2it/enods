@@ -1,7 +1,7 @@
 <div class="content">
   <div class="breadcrumb">
     <ul>
-      <li><%= link_to @product.category.name, "" %></li>
+      <li><%= link_to @product.category.name, category_path(:categories => @product.category_id) %></li>
     </ul>
   </div>
   <div class="commonrow">
@@ -11,7 +11,7 @@
           <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px') %>
         </span>
       </div><br />
-      <div class="leftSec" style="max-height: 400px;overflow: auto;">
+      <div class="leftSec" style="max-height: 400px;overflow: auto;line-height: 75px;">
         <% if !@product.images.empty? %>
           <% for image in @product.images %>
             <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70"), "#" %>
@@ -35,13 +35,13 @@
       <div class="commonrow">
         <div class="column-share">Share Now</div>
         <ul class="list-media">
-          <li class="icon-facebook"><%= link_to "facebook", "" %></li>
+          <li class="icon-facebook"><%= link_to "facebook", "/auth/facebook?action=share&product_id=#{@product.id}" %></li>
           <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
           <li class="icon-twitter"><%= link_to "twitter", "" %></li>
           <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
         </ul>
       </div>
-      <p><%= @product.description %></p>
+      <p><pre><%= @product.description %></pre></p>
     </div>
   </div>
   <div id="reviews">

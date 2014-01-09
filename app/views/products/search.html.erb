@@ -1,27 +1,49 @@
-<% if @products.present? %>
-  <%= form_tag search_products_path, :method => 'get' do %>
-    $<%= text_field_tag :from, "", :style => 'width: 20px;' %> to
-    $<%= text_field_tag :to, "", :style => 'width: 20px;' %>
-    <%= submit_tag "Go" %>
-  <% end %>
-  <table width='100%' border='1' style='text-align: center;'>
-    <tr>
-      <th>Product Name</th>
-      <th>Image</th>
-      <th>Created At</th>
-      <th>Price</th>
-    </tr>
-    <% for product in @products %>
-      <tr>
-        <td><%= link_to product.title, product_path(product) %></td>
-        <td><%= image_tag(product.images.first.image.url(:original), :width => '40', :height => '40') %></td>
-        <td><%= product.created_at.strftime("%d-%m-%Y") %></td>
-        <td><%= product.price %></td>
-      </tr>
+<div class="content">
+  <div id="leftColumn">
+    <div class="menu-categories">
+      <h1><span>All Items</span></h1>
+      <ul>
+        <% Category.all.each do |category| %>
+          <li><%= link_to category.name, category_path(:categories => category.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% if @products.present? %>
+      <div style="position: relative; float: left; margin-top: 20px; width: 225px;">
+        <%= form_tag search_products_path, :method => 'get' do %>
+          <%= hidden_field_tag :query, params[:query] %>
+          $<%= text_field_tag :from, "", :style => 'width: 20px;' %> to
+          $<%= text_field_tag :to, "", :style => 'width: 20px;' %>
+          <%= submit_tag "Go" %>
+        <% end %>
+      </div>
     <% end %>
-  </table>
-<% else %>
-  No Results<br />
+  </div>
 
-  Browse <%= link_to "Products", category_path, :style => 'color: blue;' %>
-<% end %>
+  <% if @products.present? %>
+    <div id="rightColumn">
+      <div class="list_carousel list-search">
+        <ul id="caroulproduct">
+          <% for product in @products %>
+            <li>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+              <div>
+                <h4><%= product.title %></h4>
+                <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>
+                <span><%= number_to_currency(product.price) %></span>
+                <div class="offer"><%= product.non_profit_percentage %><%= "%" %></div>
+              </div>
+              <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
+              <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product, :qty => 1), :style => 'text-decoration: none;' %><br /><br />
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    No Results<br />
+
+    Browse <%= link_to "Products", category_path, :style => 'color: blue;' %>
+  <% end %>
+  <div class="clearFix"></div>
+</div>
