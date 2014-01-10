@@ -16,7 +16,7 @@
     <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
   <% end %>
   <div class="icon-shopping" style="cursor: pointer;">
-    <%= current_cart.line_items.present? ? ("#{current_cart.line_items.count} Items in Your Cart") : ("Your Cart Is Empty") %>
+    <%= current_cart.line_items.present? ? ("<span style='position: relative;left: -20px;'>#{current_cart.line_items.count} Items in Your Cart</span>".html_safe) : ("<span style='position: relative;left: -15px;'>Your Cart Is Empty</span>".html_safe) %>
   </div>
 </div>
 <div class="nav-container">

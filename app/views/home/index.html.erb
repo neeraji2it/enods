@@ -59,8 +59,8 @@
               <span><%= number_to_currency(product.price) %></span>
               <div class="offer"><%= product.non_profit_percentage %><%= "%" %></div>
             </div>
-            <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
-            <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product, :qty => 1), :style => 'text-decoration: none;' %>
+            <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;text-align: center;' %>
+            <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product, :qty => 1), :style => 'text-decoration: none;text-align: center;' %>
           </li>
         <% end %>
       </ul>
@@ -129,10 +129,7 @@
       next: '#next21',
       items: 3,
       pagination: "#pager21",
-      auto: true,
-      auto: {
-        pauseOnHover: 'resume'
-      }
+      auto: false
     });
     $('#caroulproduct2').carouFredSel({
       prev: '#prev212',
