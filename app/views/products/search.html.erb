@@ -11,7 +11,6 @@
     <% if @products.present? %>
       <div style="position: relative; float: left; margin-top: 20px; width: 225px;">
         <%= form_tag search_products_path, :method => 'get' do %>
-          <%= hidden_field_tag :query, params[:query] %>
           $<%= text_field_tag :from, "", :style => 'width: 20px;' %> to
           $<%= text_field_tag :to, "", :style => 'width: 20px;' %>
           <%= submit_tag "Go" %>
@@ -26,7 +25,7 @@
         <ul id="caroulproduct">
           <% for product in @products %>
             <li>
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
               <div>
                 <h4><%= product.title %></h4>
                 <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>

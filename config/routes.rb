@@ -14,6 +14,7 @@ Enods::Application.routes.draw do
       get :non_profit
       get :sales
       get :week
+      get :review_product
     end
     member do
       put :confirm_product

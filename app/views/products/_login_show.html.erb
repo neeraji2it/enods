@@ -1,11 +1,11 @@
 <h1 class="icon-productsManagement"><span>Product Details</span></h1>
 <div class="content-profile content-productDetails">
   <div class="commonrow">
-    <div class="productDetails-leftColumn"><div class="midSec"><%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px') %></div><br />
+    <div class="productDetails-leftColumn"><div class="midSec"><%= image_tag(@product.images.first ? @product.images.first.image.url(:original) : "no_image.gif", :width => '450px', :height => '350px', :style => 'border-radius: 5px;') %></div><br />
       <div class="leftSec" style="max-height: 400px;overflow: auto;">
         <% if !@product.images.empty? %>
           <% for image in @product.images %>
-            <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70"), "#" %>
+            <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70", :style => 'border-radius: 5px;'), "#" %>
           <% end %>
         <% else %>
           <%= image_tag("no_image.gif", :width => "70") %>

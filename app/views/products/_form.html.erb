@@ -12,21 +12,16 @@
     <td><%= f.text_field :title %></td>
   </tr>
   <tr class="row">
-    <td>Color Options</td>
-    <td><%= f.radio_button :color, "Single Color", :checked => true %>Single Color
-      <%= f.radio_button :color , "Multiple Color"%>Multiple Color</td>
-  </tr>
-  <tr class="row">
-    <td valign="top">Colors:<%= "#{mark}".html_safe %></td>
+    <td valign="top">Add Attributes:<%= "#{mark}".html_safe %></td>
     <td>
       <%= f.fields_for :colors do |builder| %>
         <div>
-          <%= builder.select :product_color, %w(Red Black Blue Green Yellow Orange White)  %>
-          <%= builder.text_field :product_qty %>
+          <%= builder.text_field :product_color, :style => 'width: 134px;'  %>
+          <%= builder.text_field :product_attribute, :style => 'width: 134px;' %>
         </div>
       <%end%>
-      <div id="add_color" style="display: none;">
-        <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add More Colors</span>".html_safe, f, :colors %></em>
+      <div id="add_color">
+        <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add Attributes</span>".html_safe, f, :colors %></em>
       </div>
     </td>
   </tr>
@@ -55,7 +50,10 @@
   <% end %>
   <tr class="row">
     <td><%= f.label :non_profit_cause, "Select Cause Category:#{mark}".html_safe %></td>
-    <td><%= f.select :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause)%></td>
+    <td>
+      <%= f.select :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause)%>
+      <%= f.text_field :cause_sub_category, :placeholder => "Cause Sub Category", :style => 'width: 134px;' %>
+    </td>
   </tr>
   <tr class="row">
     <td><%= f.label :non_profit_percentage, "Percentage to Non-Profit:#{mark}".html_safe %></td>
@@ -65,34 +63,32 @@
     <td><%= f.label :description, "Description:#{mark}".html_safe %></td>
     <td><%= f.text_area :description, :cols => 33, :rows => 3 %></td>
   </tr>
-  <% if @product.new_record? %>
-    <tr>
-      <td valign="top">Shipping Details:<%= "#{mark}".html_safe %></td>
-      <td><%= f.text_field :shipping, :placeholder => "Estimate Shipping Time" %></td>
-    </tr>
-    <tr class="row">
-      <td></td>
-      <td>
-        <%= f.fields_for :shipping_products do |builder| %>
-          <div>
-            <span id="cc"><%= builder.country_select :country, ["United States"] %></span>
-            <%= builder.select :location, %w($ र €), :style => 'width: 50px;' %>
-            <%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
-            <%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
-          </div>
-        <%end%>
-        <style>
-          #cc select{
-            width: 100px;
-          }
-        </style>
+  <tr>
+    <td valign="top">Shipping Details:<%= "#{mark}".html_safe %></td>
+    <td><%= f.text_field :shipping, :placeholder => "Estimate Shipping Time" %></td>
+  </tr>
+  <tr class="row">
+    <td></td>
+    <td>
+      <%= f.fields_for :shipping_products do |builder| %>
         <div>
-          <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add Location</span>".html_safe, f, :shipping_products %></em>
+          <span id="cc"><%= builder.country_select :country, ["United States"] %></span>
+          <%= builder.select :location, %w($ र €), :style => 'width: 50px;' %>
+          <%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
+          <%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
         </div>
-        <br />
-      </td>
-    </tr>
-  <% end %>
+      <%end%>
+      <style>
+        #cc select{
+          width: 100px;
+        }
+      </style>
+      <div>
+        <em class="icon-plus" style="float:left;"><%= link_to_add_fields "<span style='color: red;'>Add Location</span>".html_safe, f, :shipping_products %></em>
+      </div>
+      <br />
+    </td>
+  </tr>
   <tr class="row">
     <td></td>
     <td><%= f.check_box :agree_terms %><%= "#{mark}".html_safe %>The products listed on the site and are not selling items not allowed to sell on enods, etc.</td>
@@ -114,13 +110,4 @@
       document.getElementById("product_price").focus()
     }
   }
-
-  $(":radio[name='product[color]']").change(function() {
-    var newVal = $(":radio[name='product[color]']:checked").val();
-    if (newVal == "Single Color") {
-      $("#add_color").hide();
-    } else {
-      $("#add_color").show();
-    }
-  });
 </script>

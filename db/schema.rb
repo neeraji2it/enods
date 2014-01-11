@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121071506) do
+ActiveRecord::Schema.define(:version => 20140111055521) do
 
   create_table "banner_images", :force => true do |t|
     t.string   "image_file_name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20131121071506) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "parent_id"
   end
 
   create_table "causes", :force => true do |t|
@@ -62,6 +63,27 @@ ActiveRecord::Schema.define(:version => 20131121071506) do
     t.integer  "image_file_size"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "colors", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "product_color"
+    t.integer  "product_qty",       :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "product_attribute"
+  end
+
+  create_table "contact_shop_owners", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "receiver_id"
+    t.string   "subject"
+    t.text     "message"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "contacts", :force => true do |t|
@@ -109,7 +131,6 @@ ActiveRecord::Schema.define(:version => 20131121071506) do
     t.integer  "product_id"
     t.integer  "cart_id"
     t.integer  "quantity"
-    t.string   "status"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
@@ -131,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20131121071506) do
     t.integer  "receiver_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "shipping"
   end
 
   create_table "products", :force => true do |t|
@@ -150,6 +172,45 @@ ActiveRecord::Schema.define(:version => 20131121071506) do
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
     t.integer  "non_profit_percentage"
+    t.string   "non_profit_cause"
+    t.boolean  "agree_terms"
+    t.integer  "discount"
+    t.string   "sell_name"
+    t.text     "shipping"
+    t.text     "terms_and_conditions"
+    t.string   "cause_sub_category"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.string   "name"
+    t.text     "message"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "rating"
+  end
+
+  create_table "share_products", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.text     "details"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "shipping_products", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "country"
+    t.string   "cost"
+    t.string   "location"
+    t.string   "item_cost"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

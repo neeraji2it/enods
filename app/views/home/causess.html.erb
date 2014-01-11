@@ -21,7 +21,7 @@
       <ul id="caroulproduct">
         <% for product in @products  %>
           <li>
-            <%= link_to image_tag(product.images.first.image.url(:original), :width => "226", :height => "287"), product_path(product) %>
+            <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
             <div>
               <h4><%= product.title %></h4>
               <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>

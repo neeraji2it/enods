@@ -8,13 +8,13 @@
     <div class="productDetails-leftColumn">
       <div class="midSec">
         <span class='zoom' id='ex1'>
-          <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px') %>
+          <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px', :style => 'border-radius: 5px;') %>
         </span>
       </div><br />
       <div class="leftSec" style="max-height: 400px;overflow: auto;line-height: 75px;">
         <% if !@product.images.empty? %>
           <% for image in @product.images %>
-            <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70"), "#" %>
+            <%= link_to image_tag(image.image.url(:original), :width => "70", :height => "70", :style => 'border-radius: 5px;'), "#" %>
           <% end %>
         <% else %>
           <%= image_tag("no_image.gif", :width => "70") %>
@@ -65,7 +65,7 @@
     <li>
       <h1><span>Seller Infomation</span></h1>
       <div>
-        <div class="thum-productDetail"><%= image_tag(@product.user.avatar.url(:original), :width => '75',:height => '83')%></div>
+        <div class="thum-productDetail"><%= image_tag(@product.user.avatar.url(:original), :width => '75',:height => '83', :style => 'border-radius: 5px;')%></div>
         <p><%= link_to @product.user.username, seller_path(@product.user.id), :class => "link-blue" %><br /></p>
         <%= link_to "Contact >>", new_user_contact_shop_owner_path(@product.user) %>
         <div class="clearFix"></div>

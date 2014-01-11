@@ -55,6 +55,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
+      @product.update_attribute(:color, 'Modify')
       flash[:success] = "Successfully updated the Product."
       redirect_to products_path if current_user.role == 'seller'
       redirect_to products_admins_path if current_user.role == 'admin'
@@ -73,7 +74,7 @@ class ProductsController < ApplicationController
 
   def search
     if params[:from].present? and params[:to].present?
-      @products = Product.where("(price BETWEEN #{params[:from]} AND #{params[:to]}) AND title = '#{params[:query]}'")
+      @products = Product.where("(price BETWEEN #{params[:from]} AND #{params[:to]})")
     else
       @products = Product.where("title = '#{params[:query]}'")
     end
