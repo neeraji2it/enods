@@ -1,6 +1,6 @@
 <div class="topbar">
   <ul class="menu-top">
-    <li><%= link_to "Sell", new_user_path(:role => 'seller') %></li>
+    <li><%= link_to "Sell", sell_path() %></li>
     <li><%= link_to "About", about_us_path %></li>
     <li><%= link_to "Causes", causess_path %></li>
     <li><%= link_to "Categories", category_path %> </li>
@@ -47,7 +47,7 @@
             <li><%= link_to "Environment Cause", all_causes_path(:cause => "Animal Cause") %></li>
           </ul>
         </li>
-        <li><%= link_to "Sell", new_user_path(:role => 'seller') %></li>
+        <li><%= link_to "Sell", sell_path() %></li>
       </ul>
     </nav>
   </div>

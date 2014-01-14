@@ -102,6 +102,7 @@ Enods::Application.routes.draw do
   get '/secure_shopping' => 'home#secure_shopping', :as => :secure_shopping
   get '/how_it_works' => 'home#how_it_works', :as => :how_it_works
   get '/seller/:id' => 'home#seller', :as => :seller
+  get '/sell' => 'home#sell', :as => :sell
 
   root :to => 'home#launch'
 

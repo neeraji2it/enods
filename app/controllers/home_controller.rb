@@ -24,6 +24,10 @@ class HomeController < ApplicationController
     end
   end
   
+  def sell
+    
+  end
+  
   def causess
     @products = Product.where("status = 'confirmed' and non_profit_cause = 'Any'").order('product_count DESC').paginate :page => params[:page], :per_page => 20
   end

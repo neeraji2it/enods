@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-
 /*Tab CSS*/
 
 .hide { position: absolute; top: -9999px; left: -9999px; }
@@ -810,11 +809,27 @@ ul.list-trending li a{
     background-color:#0eabdf;
     border:solid 1px #02a0d5;
 }	
+ul.list-education{ 
+    float:right;
+    margin-left:20px;
+    text-align:center;
+    text-shadow:none;
+}	
 .page-humanCause ul.list-menuLeft li.active{
     background-color:#ff4b4b;
     border:solid 1px #fe1616;
     text-shadow:1px 1px 2px #df4242;
 }	
+ul.list-education li { 
+    background-color:#FFF;
+    border:solid 1px #c2c2c2;
+}	
+ul.list-education li:hover {
+    background-color:#ff4b4b;
+    border:solid 1px #fe1616;
+    text-shadow:1px 1px 2px #df4242;
+}	
+ul.list-education li + li{ margin-top:10px; }	
 .page-humanCause ul.list-menuLeft li span{ background:url(/assets/sprite.png) no-repeat 0px -511px; }	
 .page-humanCause ul.list-trending li a{
     background-color:#ff4b4b;
@@ -822,6 +837,7 @@ ul.list-trending li a{
 }
 .page-login, .page-singup{ background:url(/assets/bg-login.png) repeat left top; }	
 .page-singup .logo-big{ padding:30px 0px 36px 0px; }
+.fleft{ float:left; }
 .fright{ float:right; }
 .box-orderfrom{
     position:relative;
@@ -1011,7 +1027,7 @@ ul.list-normal{
     padding:0px;
     display:inline-block;
 }	
-ul.list-normal li{
+ul.list-normal > li{
     width:100%;
     padding-bottom:10px;
     display:inline-block;
@@ -1573,3 +1589,113 @@ ul.menu-shopInfo{
     padding:10px 0px 8px 0px;
     border-top:solid 1px #D1D1D1;
 }	
+.box-whysell{
+    font-family:Signika, Tahoma, sans-serif;
+    background:url(/assets/bg-sell.png) no-repeat left top;
+    background-size:100% 833px;
+    clear:both;
+}
+.box-whysell h5, .row-questions h5{
+    font-size:30px;
+    line-height:30px;
+    padding:30px 0px;
+    text-align:center;
+}
+ul.list-sell{
+    font-size:14px;
+    line-height:24px;
+    display:inline-block;
+    padding:0px 0px 30px 0px;
+}
+ul.list-sell > li{
+    font-size:14px;
+    padding:0px 0px 0px 15px;
+    background:url(/assets/arrow-sell.png) no-repeat 0px 7px;
+}
+ul.list-sell > li a{
+    color:#666;
+    text-decoration:none;
+}
+ul.list-whysell > li + li{ 
+    padding-top:20px;
+    border-top:1px solid #e7ebed;
+}
+.img-money{ margin-left:80px; }	
+.img-marketplace{ width:400px; }
+.row-questions{ 
+    width:100%;
+    display:inline-block;
+    background-color:#f5f5f5;
+    margin:-35px 0px -20px 0px;
+}
+.row-questions p{ padding-bottom:20px; }
+.column-questions{ 
+    float:left;
+    width:48%;
+    text-align:justify;
+}
+.column-questions + .column-questions{
+    width:47%;
+    padding-left:5%;
+}	
+.box-product{
+    padding:15px;
+    border:solid 1px #C2C2C2;
+    background:url(/assets/img_add_tomovement.png) no-repeat right top;
+}
+.box-product-inn{
+    float:left;
+    width:440px;
+    color:#ce8602;
+    font-size:16px;
+    min-height:165px;
+    line-height:24px;
+    padding-right:30px;
+}
+.box-product-inn h2{
+    font-size:20px;
+    color:#464646;
+}	
+.box-product-inn + .box-product-inn{
+    padding:0px 0px 0px 30px;
+    border-left:solid 1px #C2C2C2;
+}
+.list-movement{ margin-top:60px; }	
+.banner-sell{
+    padding:5px;
+    margin-bottom:2px;
+    border:solid 1px #d7d7d7;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #e1e1e1 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e1e1e1)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#e1e1e1 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e1e1',GradientType=0 ); /* IE6-9 */
+}
+.banner-sell .column-questions:first-child{ background:url(/assets/banner-sell.png) no-repeat left top; }	
+.column-sellOnline{ padding-top:60px; }
+.column-sellOnline span.e{ color:#fec62c;}
+.column-sellOnline span.n{ color:#a2ceff;}
+.column-sellOnline span.o{ color:#96ca51;}
+.column-sellOnline span.d{ color:#d8a700;}
+.column-sellOnline span.s{ color:#ff2802;}
+.btn-openEnodsShop{
+    padding-top:40px;
+    text-align:center;
+}
+ul.list-buy-sell{
+    font-family:Georgia, "Times New Roman", Times, serif;
+    font-style:italic;
+    width:330px;
+    padding:0px;
+    text-align:center;
+    display:inline-block;
+}
+ul.list-buy-sell li{
+    float:left;
+    width:108px;
+    padding-top:20px;
+    min-height:90px;
+}
