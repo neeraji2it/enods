@@ -1,5 +1,6 @@
 <%= form_for @review, :url => product_review_product_path(@product), :method => 'POST', :remote => true do |f| %>
   <%= render :partial => '/layouts/error_messages', :locals => {:resource => @review} %>
+<%= f.hidden_field :rating, :value => params[:review][:rating] %>
   <table style="position: relative; line-height: 40px;">
     <tr>
       <td valign="top"><%= f.label :rating, "Rating#{mark}".html_safe %></td>

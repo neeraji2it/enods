@@ -46,8 +46,8 @@
         <ul id="caroulproduct">
           <% for product in @products %>
             <li>
-              <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
-              <div>
+              <%= link_to image_tag(product.images.first.image.url(:original), :width => "233", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
+              <div style='width: 233px;'>
                 <h4><%= product.title %></h4>
                 <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>
                 <span><%= number_to_currency(product.price) %></span>

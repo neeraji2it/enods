@@ -9,31 +9,53 @@
       </h4>
       <div class="checkoutColumn">
         <ul class="list-checkout">
-          <li>
-            <h6>Ship to</h6>
-            <p>
-              <select title="India">
-                <option>India</option>	
-              </select>
-            </p>
-            <h5 class="color-gray"><%= line_item.product.shipping %></h5>
-            <h5>How You'll Pay</h5>
-            <p><input title="Payment Mode" type="radio"> <img alt="" title="" src="/assets/payment-mode_1.png" /></p>
-          </li>	
-          <li>
-            <div class="row-checkout">
-              <div>Item total</div>
-              <div><%= number_to_currency(line_item.full_price) %> USD</div>
-            </div>
-          </li>
-          <li>
-            <div class="row-checkout bold">
-              <div>Order total</div>
-              <div><%= number_to_currency(line_item.full_price) %> USD</div>
-            </div>
-            <%= current_user ? (current_user.role == 'buyer' ? (link_to "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, line_item_orders_path(line_item.id), :method => "POST", :id => 'subbb', :style => 'text-decoration: none;') : "") : (link_to_function "<input class='btn-proceedCheckout' title='Proceed to Checkout' type='submit' value='Proceed to Checkout' />".html_safe, "buyer_users_path()", :style => 'text-decoration: none;') %>
-          </li>
-        </ul>				
+          <%= form_tag line_item_orders_path(line_item.id), :method => 'POST', :id => "submit_cart_#{line_item.id}" do %>
+            <li>
+              <h6>Ship to</h6>
+              <p>
+                <select title="India">
+                  <option>India</option>	
+                </select>
+              </p>
+              <h5 class="color-gray"><%= line_item.product.shipping %></h5>
+              <h5>How You'll Pay</h5>
+              <p><input title="Payment Mode" type="radio"> <img alt="" title="" src="/assets/payment-mode_1.png" /></p>
+            </li>	
+            <li>
+              <div class="row-checkout">
+                <div>Item total</div>
+                <div><%= number_to_currency(line_item.full_price) %> USD</div>
+              </div>
+            </li>
+            <% if line_item.product.non_profit_cause == 'Any' %>
+              <li>
+                <div class="row-checkout">
+                  <div>Select Non-Profit Cause</div><br /><br />
+                  <div><%= select_tag :non_profit_cause, options_for_select([["Select Non-Profit",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"]]), :id => "cause_#{line_item.id}" %></div>
+                </div>
+              </li>
+            <% end %>
+            <li>
+              <div class="row-checkout bold">
+                <div>Order total</div>
+                <div><%= number_to_currency(line_item.full_price) %> USD</div>
+              </div>
+              <%= submit_tag "Proceed to Checkout", :id => "sub_#{line_item.id}" %>
+            </li>
+          <% end %>
+        </ul>	
+        <% if line_item.product.non_profit_cause == 'Any' %>
+          <script>
+            $("#sub_<%= line_item.id%>").click(function() {
+              if ($("#cause_<%=line_item.id%>").val() == '') {
+                alert("Select Non-Profit Cause")
+                return false;
+              } else {
+                $("#submit_cart_<%= line_item.id%>").submit();
+              }
+            });
+          </script>
+        <% end %>
       </div>
       <ul class="list-order">
         <li>
@@ -70,6 +92,14 @@
             <div class="thum-productDetail" style="width: 78px;"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
             <p style="float: right; margin-top: 20px; margin-right: 46px; width: 200px;;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
           </div>
+        </li>
+        <li>
+          <%= form_for @comment, :url => create_comment_product_path(line_item.product, :line_item_id => line_item.id), :method => 'POST', :remote => true do |f| %>
+            <span id="error_comment_<%= line_item.id %>" style="color: red;font-weight: bold;font-size: 14px;display: none;">Body Con't be Blank</span>
+            <span id="success_comment_<%= line_item.id %>" style="color: green;font-weight: bold;font-size: 14px;display: none;">Successfully Commented.</span>
+            <%= f.text_area :body, :rows => 3, :cols => 30, :placeholder => "Enter notes", :id => "body_text_#{line_item.id}" %>
+            <%= f.submit "Comment" %>
+          <% end %>
         </li>
         <script>
           var pieData = [

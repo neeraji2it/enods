@@ -1,0 +1,7 @@
+<% if @comment.errors.present? %>
+  $("#all_items").html('<%= escape_javascript render :partial => 'carts/all_items' %>');
+  $("#error_comment_<%=@line_item.id%>").show();
+<% else %>
+  $("#all_items").html('<%= escape_javascript render :partial => 'carts/all_items' %>');
+  $("#success_comment_<%=@line_item.id%>").show();
+<% end %>

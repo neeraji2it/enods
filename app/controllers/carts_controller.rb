@@ -3,6 +3,7 @@ class CartsController < ApplicationController
     @cart = current_cart
     @user_products = current_cart.line_items
     @order = @cart.orders.new(params[:order])
+    @comment = Comment.new
   end
   
   def edit_lineitem

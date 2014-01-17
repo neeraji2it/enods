@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   end
   
   def causess
-    @products = Product.where("status = 'confirmed' and non_profit_cause = 'Any'").order('product_count DESC').paginate :page => params[:page], :per_page => 20
+    @products = Product.where("status = 'confirmed' and non_profit_cause = 'Any'").order('product_count DESC').paginate :page => params[:page], :per_page => 25
   end
   
   def all_causes

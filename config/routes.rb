@@ -15,6 +15,8 @@ Enods::Application.routes.draw do
       get :sales
       get :week
       get :review_product
+      get :import
+      post :upload_products
     end
     member do
       put :confirm_product
@@ -59,6 +61,7 @@ Enods::Application.routes.draw do
     end
     member do
       get :add_to_cart
+      post :create_comment
       get :sort_review
       get :preview_product
       get :review

@@ -29,6 +29,20 @@ class ProductsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def create_comment
+    @cart = current_cart
+    @user_products = current_cart.line_items
+    @order = @cart.orders.new(params[:order])
+    @product = Product.find(params[:id])
+    @line_item = LineItem.find(params[:line_item_id])
+    @comment = @product.comments.new(params[:comment])
+    if @comment.save
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
 
   def show
     @product = Product.find(params[:id])
