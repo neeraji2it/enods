@@ -24,12 +24,13 @@ class ShareProduct < ActiveRecord::Base
         config.consumer_key = '5tvBo9ZJsphDXAEiT6SDDA'
         config.consumer_secret = 'MOqoy57FHqTWqRJ25MzkLg8sMqgRZMEuKufyjxVZA'
         config.oauth_token = self.token
-        config.oauth_token_secret = self.secert
+        config.oauth_token_secret = self.secret
       end
       client = Twitter::Client.new
       begin
         client.update(
-          :message => self.title
+          :message => self.title,
+          :picture => self.product.images.first.image.url(:original)
         )
         return true
       rescue Exception => e
