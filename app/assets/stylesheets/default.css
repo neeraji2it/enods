@@ -353,7 +353,21 @@ ul.menu-topleft li{
 }	
 #logo{
     float:left;
-}	
+}
+
+input[type=submit].btn-search {
+    position:relative;
+    width:20px;
+    background:none;
+    text-indent:-999em;
+    border:none;
+    left: -30px;
+    top: 30px;
+    z-index:10;
+    padding:0px 8px;
+    background:none;
+    float: left;
+}
 .icon-search{
     float:left;
     margin:25px 0px 0px 180px;

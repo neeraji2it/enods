@@ -13,7 +13,10 @@
 <div class="commonrow">
   <%= link_to image_tag("/assets/logo.png", :id => "logo"), '/' %>
   <%= form_tag search_products_path, :method => 'get' do %>
-    <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
+    <div class="bposi">
+      <%= text_field_tag :query, "", :title => "Search Items and Causes", :placeholder => "Search Items and Causes", :class => "icon-search" %>
+      <%= submit_tag "", :class => 'btn-search' %>
+    </div>
   <% end %>
   <div class="icon-shopping" style="cursor: pointer;">
     <%= current_cart.line_items.present? ? ("<span style='position: relative;left: -20px;'>#{current_cart.line_items.count} Items in Your Cart</span>".html_safe) : ("<span style='position: relative;left: -15px;'>Your Cart Is Empty</span>".html_safe) %>

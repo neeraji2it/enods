@@ -1,0 +1,9 @@
+<% if @products.present? %>
+  <div style="position: relative; float: left; margin-top: 20px; width: 225px;">
+    <%= form_tag search_products_path, :method => 'get' do %>
+      $<%= text_field_tag :from, "", :style => 'width: 20px;' %> to
+      $<%= text_field_tag :to, "", :style => 'width: 20px;' %>
+      <%= submit_tag "Go" %>
+    <% end %>
+  </div>
+<% end %>
