@@ -21,8 +21,8 @@ class ShareProduct < ActiveRecord::Base
       )
     elsif self.provider == 'twitter'
       Twitter.configure do |config|
-        config.consumer_key = 'wkSR9O44uuC6bdXshxDFg'
-        config.consumer_secret = 'hf3qQNEEF94f1OiURoNCa3LRjpEwq3bynXzC5BWvQ'
+        config.consumer_key = '5tvBo9ZJsphDXAEiT6SDDA'
+        config.consumer_secret = 'MOqoy57FHqTWqRJ25MzkLg8sMqgRZMEuKufyjxVZA'
         config.oauth_token = self.token
         config.oauth_token_secret = self.secert
       end
