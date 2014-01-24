@@ -89,8 +89,16 @@
           <div style="position: relative; left: -12px; width: 618px;">
             <div class="thum-productDetail" style="width: 78px;"><canvas id="canvas_<%= line_item.id %>" height="72" width="75"></canvas></div>
             <p style="float: left; margin-top: 17px; width: 218px; margin-left: -2px;"><%= line_item.product.non_profit_percentage %><%= "%" %>  of the proceeds <br>will be donated.</p>
-            <div class="thum-productDetail" style="width: 78px;"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
-            <p style="float: right; margin-top: 20px; margin-right: 46px; width: 200px;;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
+            <div class="thum-productDetail" style="width: 170px;">
+              <% if line_item.product.non_profit_cause == "Any" %>
+                <%= image_tag("/assets/icon-dog-foot.png", :width => 50, :height => 50) %>
+                <%= image_tag("/assets/icon-glob.png", :width => 50, :height => 50) %>
+                <%= image_tag("/assets/icon-heart.png", :width => 50, :height => 50) %>
+              <% else %>
+                <%= image_tag(line_item.product.non_profit_cause == 'Animal Cause' ? ("/assets/icon-dog-foot.png") : (line_item.product.non_profit_cause == 'Environmental Cause' ? ("/assets/icon-glob.png") : ("/assets/icon-heart.png")), :width => 72, :height => 74) %>
+              <% end %>
+            </div><br />
+            <p style="width: 200px; position: relative; left: 210px;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
           </div>
         </li>
         <li>

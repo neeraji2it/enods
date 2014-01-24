@@ -81,7 +81,15 @@
     <li>
       <h1><span>Recipients of Donations</span></h1>
       <div>
-        <div class="thum-productDetail"><img alt="" title="" src="/assets/img-recipients-donations.png" /></div>
+        <div class="thum-productDetail">
+          <% if @product.non_profit_cause == "Any" %>
+            <%= image_tag("/assets/icon-dog-foot.png", :width => 50, :height => 50) %>
+            <%= image_tag("/assets/icon-glob.png", :width => 50, :height => 50) %>
+            <%= image_tag("/assets/icon-heart.png", :width => 50, :height => 50) %>
+          <% else %>
+            <%= image_tag(@product.non_profit_cause == 'Animal Cause' ? ("/assets/icon-dog-foot.png") : (@product.non_profit_cause == 'Environmental Cause' ? ("/assets/icon-glob.png") : ("/assets/icon-heart.png")), :width => 72, :height => 74) %>
+          <% end %>
+        </div>
         <p><a title="The United Nations Children's Fund" href="#"><%= @product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
       </div>
     </li>
@@ -122,31 +130,31 @@
     </div>
   <% end %>
   <div class="clearFix"></div>
-</div>
-<script>
-  $('#ex1').zoom();
+  </div>
+  <script>
+    $('#ex1').zoom();
 
-  $(function() {
-    $("#tab-shippingDetails").organicTabs();
-  });
+    $(function() {
+      $("#tab-shippingDetails").organicTabs();
+    });
 
-  var pieData = [
-    {
-      value: <%= @product.non_profit_percentage %>,
-      color: "#FFA12E"
-    },
-    {
-      value: <%= 100 - @product.non_profit_percentage %>,
-      color: "#00A6D7"
+    var pieData = [
+      {
+        value: <%= @product.non_profit_percentage %>,
+        color: "#FFA12E"
+      },
+      {
+        value: <%= 100 - @product.non_profit_percentage %>,
+        color: "#00A6D7"
+      }
+
+    ];
+    var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+
+  </script>
+  <style>
+    .zoom {
+      display:inline-block;
+      position: relative;
     }
-
-  ];
-  var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
-
-</script>
-<style>
-  .zoom {
-    display:inline-block;
-    position: relative;
-  }
-</style>
+  </style>
