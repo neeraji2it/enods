@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :is_signin?, :is_admin?
 
   def index
-    @categories = Category.all
+    @categories = Category.where("parent_id IS NULL")
   end
   
   def new

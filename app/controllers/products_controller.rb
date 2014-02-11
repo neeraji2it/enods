@@ -13,10 +13,26 @@ class ProductsController < ApplicationController
     1.times {@product.colors.build}
     1.times {@product.shipping_products.build}
   end
+  
+  def categories
+    @categores = Category.where("parent_id = #{params[:category_id]}")
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def sub_categories
+    @sub_categores = Category.where("parent_id = #{params[:category_id]}")
+    puts @sub_categores.inspect
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @product = Product.new(params[:product].merge(:user_id => current_user.id))
     @product.status = 'pending'
+    @product.category_id = params[:category_id]
     1.times { @product.images.build } if @product.images.blank?
     1.times { @product.colors.build } if @product.colors.blank?
     1.times {@product.shipping_products.build} if @product.shipping_products.blank?
@@ -46,6 +62,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @category = Category.find(@product.category_id)
     ShareProduct.destroy_all
     @reviews = @product.reviews.paginate :page => params[:review_page], :per_page => 5
   end

@@ -8,6 +8,7 @@ class CartsController < ApplicationController
   
   def edit_lineitem
     @line_item = LineItem.find(params[:id])
+    @comment = Comment.new
     respond_to do |format|
       format.js
     end
@@ -18,6 +19,7 @@ class CartsController < ApplicationController
     @user_products = current_cart.line_items
     @order = @cart.orders.new(params[:order])
     @line_item = LineItem.find(params[:id])
+    @comment = Comment.new
     @line_item.update_attribute(:quantity, params[:line_item][:quantity])
     respond_to do |format|
       format.js

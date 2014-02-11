@@ -9,7 +9,7 @@
       </h4>
       <div class="checkoutColumn">
         <ul class="list-checkout">
-          <%= form_tag line_item_orders_path(line_item.id), :method => 'POST', :id => "submit_cart_#{line_item.id}" do %>
+          <%= form_tag pay_line_item_orders_path(line_item.id), :method => 'GET', :id => "submit_cart_#{line_item.id}" do %>
             <li>
               <h6>Ship to</h6>
               <p>
@@ -98,7 +98,7 @@
                 <%= image_tag(line_item.product.non_profit_cause == 'Animal Cause' ? ("/assets/icon-dog-foot.png") : (line_item.product.non_profit_cause == 'Environmental Cause' ? ("/assets/icon-glob.png") : ("/assets/icon-heart.png")), :width => 72, :height => 74) %>
               <% end %>
             </div><br />
-            <p style="width: 200px; position: relative; left: 210px;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
+            <p style="width: 220px; position: relative; left: 210px;"><a title="The United Nations Children's Fund" href="#"><%= line_item.product.non_profit_cause.capitalize.split("_").join(" ") %></a></p>
           </div>
         </li>
         <li>

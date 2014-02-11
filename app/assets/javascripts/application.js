@@ -30,6 +30,18 @@ function remove_fields(link) {
     $(link).closest(".fields").hide();
 }
 
+function select_file(val) {
+    $.ajax({
+        url: '/products/categories?category_id=' + val
+    });
+}
+
+function select_sub_category(val) {
+    $.ajax({
+        url: '/products/sub_categories?category_id=' + val
+    });
+}
+
 //add more fields
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();

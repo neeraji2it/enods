@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :is_signin?
-  def create
+  def pay
     @line_item = LineItem.find(params[:line_item_id])
     @registration = @line_item.orders.new(params[:order])
     @registration.user_id = current_user.id

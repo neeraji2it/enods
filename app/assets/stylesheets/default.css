@@ -737,7 +737,7 @@ ul.list-menuLeft li{
     background-color:#e1e1e1;
 }	
 ul.list-menuLeft li.active, ul.list-menuLeft li:hover{
-    border:solid 1px #029acc;
+    border:solid 1px #fff;
     background-color:#0eabdf;
     text-shadow:1px 1px 2px #0c94c1;
 }	

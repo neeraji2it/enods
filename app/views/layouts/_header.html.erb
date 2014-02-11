@@ -1,13 +1,13 @@
 <div class="topbar">
   <ul class="menu-top">
-    <li><%= link_to "Sell", sell_path() %></li>
+    <li><%= link_to "Sell", sell_path %></li>
     <li><%= link_to "About", about_us_path %></li>
     <li><%= link_to "Causes", causess_path %></li>
     <li><%= link_to "Categories", category_path %> </li>
     <li><%= link_to "Blog", "" %> </li>
     <li><%= link_to "Contact", contact_us_path %> </li>
     <li><%= link_to "Cart", carts_path %> </li>
-    <li><%= link_to "Login", new_user_session_path() %></li>
+    <li><%= link_to "Login", new_user_session_path %></li>
   </ul>
 </div>
 <div class="commonrow">
@@ -37,10 +37,11 @@
         <li><%= link_to "Sign In", new_user_session_path() %></li>
         <li class="parent"><a title="Categories" href="/category">Categories</a>
           <ul class="submenu">
-            <% Category.all.each do |category| %>
-              <li><%= link_to category.name, category_path(:categories => category.id) %></li>
+            <% Category.where("parent_id IS NULL").each do |category| %>
+              <li onmouseover="display_side(this)" onmouseout="hide_side(this)">
+                <%= link_to category.name, category_path(:categories => category.id) %>
+              </li>
             <% end %>
-            <li><%= link_to "Others" , index_path %></li>
           </ul>
         </li>
         <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
@@ -59,4 +60,12 @@
   $('.icon-shopping').click(function() {
     window.location.href = '<%= carts_path %>';
   });
+
+  function display_side(th) {
+    $(th).addClass('sub-parent');
+  }
+
+  function hide_side(th) {
+    $(th).removeClass('sub-parent');
+  }
 </script>

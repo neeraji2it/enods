@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:error] = "Please Login"
       session[:ss] = request.fullpath
+      session[:cause] = params[:non_profit_cause]
       redirect_to '/users/sign_in'
     end
   end

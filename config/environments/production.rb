@@ -83,6 +83,18 @@ Enods::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
+  
+  config.paperclip_defaults = {
+    :whiny => false,
+    :storage => :s3,
+    :s3_credentials => {
+      :path => "uploaded_files/profile/:id/:style/:basename.:extension",
+      :bucket => "enods-web",
+      :styles => {:original => "900x900>",:default => "226x287!",:thumb => "96x96>"},
+      :access_key_id => 'AKIAJCFEBB3ZNDLPAHKQ',
+      :secret_access_key => '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'
+    }
+  }
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

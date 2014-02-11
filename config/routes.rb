@@ -45,6 +45,9 @@ Enods::Application.routes.draw do
       member do
         put :shipping
       end
+      collection do
+        get :pay
+      end
     end
   end
   resources :carts do
@@ -58,6 +61,8 @@ Enods::Application.routes.draw do
     resources :images
     collection do
       get :search
+      get :categories
+      get :sub_categories
     end
     member do
       get :add_to_cart

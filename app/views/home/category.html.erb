@@ -3,10 +3,7 @@
     <div class="menu-categories">
       <h1><span>Categories</span></h1>
       <ul>
-        <% Category.all.each do |category| %>
-          <% @ss = category.id %>
-          <li class="<%= params[:categories] == "#{@ss}" ? "active" : "" %>"><%= link_to category.name, category_path(:categories => category.id) %></li>
-        <% end %>
+        <%= render :partial => '/categories/category' %>
       </ul>
     </div>
     <%= render :partial => '/home/filter' %>
@@ -19,14 +16,7 @@
             <% for product in @products  %>
               <li>
                 <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
-                <div>
-                  <h4><%= product.title %></h4>
-                  <p>Seller: <%= link_to product.sell_name.present? ? product.sell_name : product.user.username, seller_path(product.user.id) %></p>
-                  <span><%= number_to_currency(product.price) %></span>
-                  <div class="offer"><%= product.non_profit_percentage %><%= "%" %></div>
-                </div>
-                <%= link_to "<input type='submit' title='More Info' value='More Info' />".html_safe, product_path(product), :style => 'text-decoration: none;' %>
-                <%= link_to "<input type='submit' title='Add To Cart' value='Add To Cart' />".html_safe, add_to_cart_product_path(product, :qty => 1), :style => 'text-decoration: none;' %><br /><br /><br />
+                <%= render :partial => '/carts/products', :locals => {:product => product} %>
               </li>
             <% end %>
           </ul>

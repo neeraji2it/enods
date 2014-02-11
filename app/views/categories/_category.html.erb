@@ -1,0 +1,4 @@
+<% Category.where("parent_id IS NULL").each do |category| %>
+  <% @ss = category.id %>
+  <li class="<%= params[:categories] == "#{@ss}" ? "active" : "" %>"><%= link_to category.name, category_path(:categories => category.id) %></li>
+<% end %>
