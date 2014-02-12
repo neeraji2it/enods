@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if current_user.role == 'admin'
         admin_dashboard_path
       else
-        session[:ss].present? ? session[:ss] : profile_profile_path(current_user)
+        session[:ss].present? ? session[:ss] : current_user.role == 'buyer' ? '/index' : profile_profile_path(current_user)
       end
     end
   end
