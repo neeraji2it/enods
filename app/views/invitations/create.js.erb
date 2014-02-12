@@ -1,5 +1,5 @@
 <% if @invitation.errors.any? %>
-  $("#errors").html('<ul><% for msg in @invitation.errors.full_messages %><li style="color: red;"><%= msg %></li><% end %></ul>');
+  $("#errors").html('<ul><% for msg in @invitation.errors.full_messages %><li style="color: red;margin: -40px 0 0 -40px;"><%= msg %></li><% end %></ul>');
   $("#invitation_email").val(' ');
 <% else %>
   $("#invitation_email").val(' ');

@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
 
   def layout
     if current_user
-      "application"
+      if current_user.role == 'buyer' && ((params[:controller] == 'home' && (params[:action] == 'index' || params[:action] == 'causess' || params[:action] == 'all_causes' || params[:action] == 'sell' || params[:action] == 'category')) || (params[:controller] == 'products' && (params[:action] == 'show' || params[:action] == 'search')) || (params[:controller] == 'carts' && params[:action] == 'index'))
+        "login"
+      else
+        "application"
+      end
     else
       "login"
     end

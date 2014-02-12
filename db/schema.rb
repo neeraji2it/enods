@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111055521) do
+ActiveRecord::Schema.define(:version => 20140116052848) do
 
   create_table "banner_images", :force => true do |t|
     t.string   "image_file_name"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(:version => 20140111055521) do
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.string   "product_attribute"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.text     "body"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "contact_shop_owners", :force => true do |t|

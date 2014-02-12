@@ -1,13 +1,18 @@
 <div class="topbar">
   <ul class="menu-top">
-    <li><%= link_to "Sell", sell_path %></li>
+    <% if !current_user %>
+      <li><%= link_to "Sell", sell_path %></li>
+    <% end %>
     <li><%= link_to "About", about_us_path %></li>
     <li><%= link_to "Causes", causess_path %></li>
     <li><%= link_to "Categories", category_path %> </li>
     <li><%= link_to "Blog", "" %> </li>
     <li><%= link_to "Contact", contact_us_path %> </li>
     <li><%= link_to "Cart", carts_path %> </li>
-    <li><%= link_to "Login", new_user_session_path %></li>
+    <li><%= current_user ? (link_to "Logout", destroy_user_session_path, :method => 'delete') : (link_to "Login", new_user_session_path) %></li>
+    <% if current_user && current_user.role == 'buyer' %>
+      <li><%= link_to "Dashboard", profile_profile_path(current_user) %></li>
+    <% end %>
   </ul>
 </div>
 <div class="commonrow">
@@ -33,8 +38,10 @@
     </ul>
     <nav>
       <ul>
-        <li><%= link_to "Sign up", new_user_path(:role => 'buyer'), :class => 'lin-signup' %></li>
-        <li><%= link_to "Sign In", new_user_session_path() %></li>
+        <% if !current_user %>
+          <li><%= link_to "Sign up", new_user_path(:role => 'buyer'), :class => 'lin-signup' %></li>
+          <li><%= link_to "Sign In", new_user_session_path() %></li>
+        <% end %>
         <li class="parent"><a title="Categories" href="/category">Categories</a>
           <ul class="submenu">
             <% Category.where("parent_id IS NULL").each do |category| %>
@@ -51,7 +58,9 @@
             <li><%= link_to "Environment Cause", all_causes_path(:cause => "Animal Cause") %></li>
           </ul>
         </li>
-        <li><%= link_to "Sell", sell_path() %></li>
+        <% if !current_user %>
+          <li><%= link_to "Sell", sell_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
