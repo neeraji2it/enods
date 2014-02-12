@@ -1,5 +1,0 @@
-<% if @review.errors.present? %>
-  $(".signupBox").html('<%= escape_javascript render :partial => 'review' %>');
-<% else %>
-  location.reload()
-<% end %>

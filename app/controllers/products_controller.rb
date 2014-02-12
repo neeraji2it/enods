@@ -138,9 +138,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @review = @product.reviews.new(params[:review].merge(:user_id => current_user.id))
     if @review.save
-      respond_to do |format|
-        format.js
-      end
+      flash[:success] = "Succefully given the review to this product"
+      redirect_to product_path(@product)
+    else
+      flash[:error] = "Failed to review the product"
+      render :action => 'review'
     end
   end
 end
