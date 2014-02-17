@@ -1,8 +1,10 @@
 <h1 class="icon-profile"><span>Profile</span></h1>
 <div class="content-profile">
-  <div class="box-changepassword">
-    <%= render :partial => 'password' %>
-  </div>
+  <% if current_user.role != 'admin' %>
+    <div class="box-changepassword">
+      <%= render :partial => 'password' %>
+    </div>
+  <% end %>
   <div class="profile-leftColumn">
     <%= render :partial => 'profile' %>
   </div>

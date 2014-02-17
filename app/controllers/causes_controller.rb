@@ -1,5 +1,5 @@
 class CausesController < ApplicationController
-  before_filter :is_signin?
+  before_filter :is_signin?, :except => ['show']
   def index
     @causes = Cause.paginate :page => params[:cause_page], :per_page => 20
   end
@@ -20,6 +20,10 @@ class CausesController < ApplicationController
   end
   
   def edit
+    @cause = Cause.find(params[:id])
+  end
+  
+  def show
     @cause = Cause.find(params[:id])
   end
   

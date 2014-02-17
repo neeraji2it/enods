@@ -12,7 +12,7 @@
   <% @users.each_with_index do |user, index| %>
     <div class="row">
       <div class="column"><%= index+1 %></div>
-      <div class="column"><%= user.username %></div>
+      <div class="column"><%= link_to user.username, profile_profile_path(user) %></div>
       <div class="column"><%= user.email %></div>
       <div class="column"><%= user.phone.present? ? user.phone : "-" %></div>
       <div class="column">$699.00</div>

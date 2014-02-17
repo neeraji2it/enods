@@ -7,4 +7,8 @@ class Cause < ActiveRecord::Base
   validates_attachment_content_type :image,
     :content_type => [ 'image/jpeg','image/jpg', 'image/png', 'image/gif','image/bmp', 'image/x-png', 'image/pjpeg' ]
   validates_attachment_presence :image
+  
+  def to_param
+    "#{self.id}-#{self.title.to_s.parameterize}"    
+  end
 end

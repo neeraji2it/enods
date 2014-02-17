@@ -36,7 +36,7 @@
         <% for cause in @causes  %>
           <li>
             <%= image_tag(cause.image.url(:original), :width => "305", :height => "210") %>
-            <h4><%= cause.title %></h4>
+            <h4><%= link_to cause.title, cause_path(cause), :style => 'color: #ffffff;text-decoration: none;' %></h4>
           </li>
         <% end %>
       </ul>
