@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
         :receiverList => {
           :receiver => [
             {:amount => (self.admin_payment.to_i+self.non_profit_payment.to_i), :email => seller_email, :primary => false},
-            {:amount => self.line_item.full_price, :email => primary_paypal_email, :primary => true}]
+            {:amount => self.net_payment, :email => primary_paypal_email, :primary => true}]
         },
         :return_url => paypal_return_url})
 
@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
 
   private
   def set_payments_and_dates
-    self.admin_payment = (self.line_item.full_price.to_i)/10
+    self.admin_payment = (self.line_item.full_price.to_i*10)/100
     self.non_profit_payment = (((self.line_item.full_price.to_f)*(self.line_item.product.non_profit_percentage))/100) if self.line_item.product.non_profit_percentage.present?
     self.net_payment = self.line_item.full_price.to_i-self.admin_payment.to_i-self.non_profit_payment.to_i
     self.confirm_date = Time.now

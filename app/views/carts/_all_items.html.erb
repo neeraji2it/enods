@@ -80,7 +80,17 @@
               </em>
               <span id='line_item_quantiy_<%= line_item.id %>'></span>
             </li>
-            <li>Size: 40 cm</li>
+            <li style="float: right; width: 35%; position: relative; top: -50px;"><b>Attributes:</b>
+              <table border="1" style="position: relative; border: 1px none; line-height: 23px; text-align: center; width: 100%;">
+                <tr></tr>
+                <% for attribute in line_item.product.colors %>
+                  <tr>
+                    <td><%= attribute.product_color %></td>
+                    <td><%= attribute.product_attribute %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </li>
             <li><%= number_to_currency(line_item.product.price) %> USD </li>
             <li>Donation: <%= number_to_currency(((line_item.product.price.to_f)*(line_item.product.non_profit_percentage))/100) %> USD </li>
           </ul>

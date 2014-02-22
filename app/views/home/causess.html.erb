@@ -12,7 +12,7 @@
       Lewa Wildlife Conservancy 
     </div>
     <div class="donationsBox" style="font-size: 25px; min-height: 65px;">
-      44 <span>articles supporting this cause.</span>
+      <%= Product.where("status = 'confirmed'").count %>  <span>articles supporting this cause.</span>
     </div>
   </div>
   <div class="commonrow">
