@@ -67,7 +67,7 @@
     <h1><span>Categories</span></h1>
     <div class="list_carousel">
       <ul id="caroulproduct2">
-        <% Product.where("title is not null").group(:category_id).each do |product|  %>
+        <% Product.where("title is not null and status is not null").group(:category_id).each do |product|  %>
           <li>
             <%= link_to image_tag(product.images.first.image.url(:original), :width => "217", :height => "170"), category_path(:categories => product.category_id) %>
             <h4><%= product.category.name %></h4>
