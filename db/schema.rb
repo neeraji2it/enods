@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116052848) do
+ActiveRecord::Schema.define(:version => 20140225055704) do
 
   create_table "banner_images", :force => true do |t|
     t.string   "image_file_name"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20140116052848) do
     t.integer  "image_file_size"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "description"
   end
 
   create_table "colors", :force => true do |t|
@@ -72,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20140116052848) do
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.string   "product_attribute"
+    t.string   "size"
+    t.string   "buyer_type"
   end
 
   create_table "comments", :force => true do |t|
@@ -141,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20140116052848) do
     t.integer  "quantity"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.integer  "user_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -161,6 +165,10 @@ ActiveRecord::Schema.define(:version => 20140116052848) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "shipping"
+    t.string   "color"
+    t.string   "buyer_type"
+    t.string   "size"
+    t.string   "cause"
   end
 
   create_table "products", :force => true do |t|

@@ -27,6 +27,26 @@
                 <div><%= number_to_currency(line_item.full_price) %> USD</div>
               </div>
             </li>
+            <% if line_item.product.colors.present? %>
+              <li>
+                <div class="row-checkout">
+                  <div>Color:</div><br />
+                  <div><%= select_tag :color, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.product_color}) %></div>
+                </div>
+              </li>
+              <li>
+                <div class="row-checkout">
+                  <div>Size:</div><br />
+                  <div><%= select_tag :size, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.size}) %></div>
+                </div>
+              </li>
+              <li>
+                <div class="row-checkout">
+                  <div>Type:</div><br />
+                  <div><%= select_tag :type, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.buyer_type}) %></div>
+                </div>
+              </li>
+            <% end %>
             <% if line_item.product.non_profit_cause == 'Any' %>
               <li>
                 <div class="row-checkout">
@@ -79,17 +99,6 @@
                 <%= link_to line_item.quantity, edit_lineitem_cart_path(line_item), :remote => true, :id => 'lll' %>
               </em>
               <span id='line_item_quantiy_<%= line_item.id %>'></span>
-            </li>
-            <li style="float: right; width: 35%; position: relative; top: -50px;"><b>Attributes:</b>
-              <table border="1" style="position: relative; border: 1px none; line-height: 23px; text-align: center; width: 100%;">
-                <tr></tr>
-                <% for attribute in line_item.product.colors %>
-                  <tr>
-                    <td><%= attribute.product_color %></td>
-                    <td><%= attribute.product_attribute %></td>
-                  </tr>
-                <% end %>
-              </table>
             </li>
             <li><%= number_to_currency(line_item.product.price) %> USD </li>
             <li>Donation: <%= number_to_currency(((line_item.product.price.to_f)*(line_item.product.non_profit_percentage))/100) %> USD </li>

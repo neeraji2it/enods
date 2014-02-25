@@ -4,6 +4,10 @@ class OrdersController < ApplicationController
     @line_item = LineItem.find(params[:line_item_id])
     @registration = @line_item.orders.new(params[:order])
     @registration.user_id = current_user.id
+    @registration.size = params[:size].present? ? params[:size] : nil
+    @registration.buyer_type = params[:type].present? ? params[:type] : nil
+    @registration.color = params[:color].present? ? params[:color] : nil
+    @registration.cause = params[:non_profit_cause].present? ? params[:non_profit_cause] : @line_item.product.non_profit_cause
     respond_to do |format|
       if @registration.save
         current_cart.update_attributes({:created_at => Time.now, :product_id => @line_item.product_id})

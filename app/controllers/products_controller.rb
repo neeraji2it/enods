@@ -1,10 +1,27 @@
 class ProductsController < ApplicationController
   before_filter :is_signin?, :only => ['index','new','create','preview_product','review','product_review']
-  before_filter :is_seller? , :only => ['new','create']
+  before_filter :is_seller? , :only => ['new','create','import','upload_products']
   before_filter :is_valid_account? , :only => ['index','new','create']
 
   def index
     @products = Product.where("user_id = #{current_user.id}").order('product_count DESC').paginate :page => params[:product_page], :per_page => 10 if (user_signed_in? and current_user.role == 'seller')
+  end
+  
+  def import
+  end
+  
+  def upload_products
+    if request.post? && params[:file].present?
+      CSV.foreach(params[:file].path, headers: false) do |row|
+        @product = Product.new(:title => row[0], :price => row[1], :sell_name => row[2])
+        @product.save(:validate => false)
+      end
+      flash[:notice] = "Uploading completed."
+      redirect_to products_path
+    else
+      flash[:error] = "Failed to Upload a file"
+      render :action => 'import'
+    end
   end
 
   def new
@@ -32,7 +49,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product].merge(:user_id => current_user.id))
     @product.status = 'pending'
-    @product.category_id = params[:category_id]
     1.times { @product.images.build } if @product.images.blank?
     1.times { @product.colors.build } if @product.colors.blank?
     1.times {@product.shipping_products.build} if @product.shipping_products.blank?

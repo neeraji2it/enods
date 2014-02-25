@@ -1,7 +1,8 @@
 <h1 class="icon-profile"><span>Import Products</span></h1>
 <div class="content-profile">
   <div id="formDiv">
-    <%= form_tag upload_products_admins_path, :multipart => true do %>
+    (Format required of the import should be <b>Product Title, Price, Seller Name</b>)
+    <%= form_tag upload_products_products_path, :multipart => true do %>
       <table>
         <tr class="row">
           <td>Product CSV File:</td>

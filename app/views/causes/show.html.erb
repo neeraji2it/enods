@@ -1,11 +1,33 @@
 <div class="content">
   <div class="causesBox">
     <div class="img-lewa">
-      <%= image_tag(@cause.image.url(:original), :width => 415, :height => 290) %>
+      <%= image_tag(@cause.image.url(:original), :width => 410, :height => 280) %>
     </div>
-    <h3>ABOUT</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum justo vitae est tincidunt placerat. Phasellus pretium quam non eros aliquet posuere. Mauris sit amet mi at mauris porta suscipit at vel sapien. Mauris molestie dictum tincidunt. Sed ligula elit, mollis quis varius et, semper eu felis. Pellentesque quis scelerisque eros. Sed id nunc arcu. Donec lorem orci, tempus ac fringilla ac, fermentum ac ante. Donec dolor elit, rutrum ut faucibus nec, iaculis eget massa. Suspendisse potenti. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed massa metus.<br>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum justo vitae est tincidunt placerat. Phasellus pretium quam non eros aliquet posuere. Mauris sit amet mi at mauris porta suscipit at vel sapien. Mauris molestie dictum tincidunt. Sed ligula elit, mollis quis varius et, semper eu felis. Pellentesque quis scelerisque eros. Sed id nunc arcu. Donec lorem orci, tempus ac fringilla ac, fermentum ac ante. Donec dolor elit, rutrum ut faucibus nec, iaculis eget massa. Suspendisse potenti. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed massa metus.  </p>
+    <h3 style="padding-bottom: 15px;">ABOUT</h3>
+    <p><%= @cause.description %></p>
     <div class="clearFix"></div>
+  </div>
+  <div class="commonrow">
+    <div class="benefitingBox">
+      <span>Products Benefiting </span><br>
+      <%= @cause.title %> 
+    </div>
+    <div class="donationsBox" style="font-size: 25px; min-height: 65px;">
+      <%= @products.count %>  <span>articles supporting this cause.</span>
+    </div>
+  </div>
+  <div class="commonrow">
+    <h1><span>Featured Products</span></h1>
+    <div class="list_carousel" style="width: 101%;">
+      <ul id="caroulproduct">
+        <% for product in @products  %>
+          <li>
+            <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
+            <%= render :partial => '/carts/products', :locals => {:product => product} %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </div>

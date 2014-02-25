@@ -9,6 +9,10 @@
     <td><%= f.text_field :title %></td>
   </tr>
   <tr>
+    <td><%= f.label :description, "Description:#{mark}".html_safe %></td>
+    <td><%= f.text_area :description, :rows => 5, :cols => 20 %></td>
+  </tr>
+  <tr>
     <td><%= f.label :image, "Image:#{mark}".html_safe %></td>
     <td><%= f.file_field :image %></td>
   </tr>

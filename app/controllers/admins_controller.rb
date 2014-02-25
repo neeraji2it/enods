@@ -12,20 +12,6 @@ class AdminsController < ApplicationController
     end
   end
   
-  def import
-  end
-  
-  def upload_products
-    if request.post? && params[:file].present?
-      Product.import(params[:file])
-      flash[:notice] = "Uploading completed."
-      redirect_to admin_dashboard_path
-    else
-      flash[:error] = "Failed to Upload a file"
-      render :action => 'import'
-    end
-  end
-
   def index
   end
 
@@ -51,7 +37,10 @@ class AdminsController < ApplicationController
 
   def confirm_product
     @product = Product.find(params[:id])
-    @product.update_attribute(:status, params[:status])
+    @product.update_attributes({
+        :status => params[:status],
+        :color => 'Confirm'
+      })
     @email_alerts = EmailAlert.all
     #    for email in @email_alerts
     #      UserMailer.project_alert(email,@product).deliver if (email.present? and params[:status] == 'confirmed')

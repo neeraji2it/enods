@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title,:fair_trade,:non_profit_cause, :color,:shipping, :sell_name, :user_id,:status,:agree_terms, :description, :price, :colors_attributes, :images_attributes, :shipping_products_attributes,:category_id,:discount,:qty, :qty_sold, :non_profit_percentage, :cause_sub_category
+  attr_accessible :title,:cause_id,:fair_trade,:non_profit_cause, :color,:shipping, :sell_name, :user_id,:status,:agree_terms, :description, :price, :colors_attributes, :images_attributes, :shipping_products_attributes,:category_id,:discount,:qty, :qty_sold, :non_profit_percentage, :cause_sub_category
   belongs_to :user
   belongs_to :category
   has_many :images, :dependent => :destroy
@@ -18,14 +18,5 @@ class Product < ActiveRecord::Base
 
   def to_param
     "#{id} #{title}".parameterize
-  end
-  
-  def self.import(file)
-    csv_string = file.read.encode!("UTF-8", "iso-8859-1", invalid: :replace)
-    CSV.parse(csv_string, headers: true) do |row|
-      business = new
-      business.attributes = row.to_hash.slice(*accessible_attributes)
-      business.save!
-    end
   end
 end

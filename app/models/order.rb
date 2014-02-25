@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id,:cart_id,:product_id,:receiver_id,:line_item_id,:status,:paykey,:cancel_date,:confirm_date, :details, :payment_type, :net_payment, :admin_payment, :non_profit_payment, :shipping
+  attr_accessible :user_id,:cart_id,:product_id,:receiver_id,:line_item_id,:status,:paykey,:cancel_date,:confirm_date, :details, :payment_type, :net_payment, :admin_payment, :non_profit_payment, :shipping, :buyer_type, :color, :cause, :size
   belongs_to :user
   belongs_to :line_item
   belongs_to :cart

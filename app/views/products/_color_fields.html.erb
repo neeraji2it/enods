@@ -1,7 +1,8 @@
 <div class="fields">
   <div>
-    <%= f.text_field :product_color, :style => 'width: 134px;'  %>
-    <%= f.text_field :product_attribute, :style => 'width: 134px;' %>
+    <%= f.text_field :product_color, :placeholder => 'Color', :style => 'width: 134px;'  %>
+    <%= f.text_field :size, :placeholder => 'Size', :style => 'width: 134px;' %>
+    <%= f.text_field :buyer_type, :placeholder => 'Type: Male/Female', :style => 'width: 134px;' %>
     <%= link_to_remove_fields image_tag("/assets/seller-images/icon-close.png"), f %><br />
   </div>
 </div>

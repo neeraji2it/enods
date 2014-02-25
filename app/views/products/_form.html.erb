@@ -5,7 +5,7 @@
   </tr>
   <tr class="row">
     <td><%= f.label :category_id, "Product Category:#{mark}".html_safe %></td>
-    <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.all.collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
+    <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.where("parent_id is null").collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
   </tr>
   <tr class="row">
     <td><%= f.label :title, "Product Name:#{mark}".html_safe %></td>
@@ -16,8 +16,9 @@
     <td>
       <%= f.fields_for :colors do |builder| %>
         <div>
-          <%= builder.text_field :product_color, :style => 'width: 134px;'  %>
-          <%= builder.text_field :product_attribute, :style => 'width: 134px;' %>
+          <%= builder.text_field :product_color, :placeholder => 'Color', :style => 'width: 134px;'  %>
+          <%= builder.text_field :size, :placeholder => 'Size', :style => 'width: 134px;' %>
+          <%= builder.text_field :buyer_type, :placeholder => 'Type: Male/Female', :style => 'width: 134px;' %>
         </div>
       <%end%>
       <div id="add_color">
@@ -53,6 +54,12 @@
     <td>
       <%= f.select :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause)%>
       <%= f.text_field :cause_sub_category, :placeholder => "Cause Sub Category", :style => 'width: 134px;' %>
+    </td>
+  </tr>
+  <tr class="row">
+    <td><%= f.label :cause_id, "Support Cause:" %></td>
+    <td>
+      <%= f.select :cause_id, options_for_select([["Select", '']]+Cause.all.collect{|c| [c.title, c.id]}, :selected => f.object.cause_id) %>
     </td>
   </tr>
   <tr class="row">
