@@ -14,3 +14,5 @@
     </ul>
   </li>
 <% end %>
+<span class="pagination" style='float: right;'><%= will_paginate @causes, :param_name => 'cause_page', :next_label => "Next", :previous_label => 'Prev', :page_links => false %></span>
+<%= render :partial => '/profiles/pagination_script' %>
