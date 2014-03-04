@@ -34,7 +34,12 @@ class HomeController < ApplicationController
   end
   
   def all_causes
-    
+    @causes = Cause.all
+  end
+  
+  def search_causes
+    @causes = Cause.where("title LIKE '#{params[:query]}%'")
+    render :action => 'all_causes'
   end
 
   def launch

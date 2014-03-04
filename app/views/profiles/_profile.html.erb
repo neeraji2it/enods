@@ -49,10 +49,17 @@
       <div><%= f.label :business_address, "Business Address:#{mark}".html_safe %></div>
       <div><%= f.text_field :business_address %></div>
     </div>
+
+    <div class="frow">
+      <div><%= f.label :store_image, "Store Image" %></div>
+      <div><%= f.file_field :store_image %></div>
+    </div>
+
     <div class="frow">
       <div><%= f.label :website_url, "Website:#{mark}".html_safe %></div>
       <div><%= f.text_field :website_url %></div>
     </div>
+
     <div class="frow">
       <div><%= f.label :paypal_id, "Paypal Id:#{mark}".html_safe %></div>
       <div><%= f.text_field :paypal_id %></div>

@@ -24,6 +24,10 @@ class AdaptivePaymentsController < ApplicationController
           :shipping => 'In process',
           :receiver_id => ord.line_item.product.user_id
         })
+      ord.line_item.product.update_attributes({
+          :qty => ord.line_item.product.qty - ord.line_item.quantity,
+          :qty_sold => ord.line_item.quantity
+        })
       UserMailer.vendor_status(ord.line_item.product.user).deliver
       UserMailer.user_status(current_user).deliver
     end

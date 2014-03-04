@@ -132,10 +132,15 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     @cart.update_attribute(:created_at, Time.now)
     @line_item = @cart.add_item(product.id, params[:qty].to_i)
-    @line_item.unit_price = product.price
-    @line_item.status = params[:colour] if params[:colour].present?
-    session[:cart] = @cart.id
-    if @line_item.save
+    if product.qty >= @line_item.quantity
+      @line_item.unit_price = product.price
+      @line_item.status = params[:colour] if params[:colour].present?
+      session[:cart] = @cart.id
+      if @line_item.save
+        redirect_to carts_path
+      end
+    else
+      flash[:error] = "There is no quantity to add this product to your Cart"
       redirect_to carts_path
     end
   end

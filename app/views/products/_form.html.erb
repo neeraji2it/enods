@@ -32,6 +32,10 @@
       <%= f.radio_button :fair_trade , "No"%>No</td>
   </tr>
   <tr class="row">
+    <td>Quantity</td>
+    <td><%= f.text_filed :qty %></td>
+  </tr>
+  <tr class="row">
     <td><%= f.label :price, "Price:#{mark}".html_safe %></td>
     <td><%= f.text_field :price, :onkeyup => "price_validate(this,6)" %></td>
   </tr>

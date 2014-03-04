@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
   has_one :favourite, :dependent => :destroy
   validates :shipping, :presence => true, :on => :create
   validates :title, :sell_name,:agree_terms,:non_profit_cause, :description,:category_id, :presence => true
-  validates :price,:non_profit_percentage, :numericality => {:greater_than_or_equal_to => 1}, :presence => true
+  validates :price, :qty ,:non_profit_percentage, :numericality => {:greater_than_or_equal_to => 1}, :presence => true
   accepts_nested_attributes_for :images,:shipping_products, :colors, :allow_destroy => true, :reject_if => :all_blank
 
   def to_param

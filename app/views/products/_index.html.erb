@@ -16,7 +16,7 @@
       <div class="column"><%= product.created_at.strftime("%Y-%m-%d") %></div>
       <div class="column"><%= number_to_currency(product.price) %></div>
       <div class="column"><%= product.qty_sold %></div>
-      <div class="column"><%= product.colors.present? ? (product.colors.first.product_qty) : "--" %></div>
+      <div class="column"><%= product.qty %></div>
       <div class="column last">
         <%= link_to image_tag("/assets/admin-images/icon-search.png", :class => "icon-search"), product_path(product) %>&nbsp;&nbsp;
         <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_path(product) %>&nbsp;&nbsp;

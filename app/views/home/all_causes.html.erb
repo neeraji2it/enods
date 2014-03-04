@@ -1,16 +1,19 @@
 <div class="content">
   <div id="leftColumn">
-    <ul class="list-menuLeft">
-      <li class="<%= params[:cause] == "Animal Cause" ? "active" : "" %>"><%= link_to "Animal Cause", all_causes_path(:cause => "Animal Cause") %></li>
-      <li class="<%= params[:cause] == "Human Cause" ? "active" : "" %>" style="background-color: #FF0000;"><%= link_to "Human Cause", all_causes_path(:cause => "Human Cause") %></li>
-      <li class="<%= params[:cause] == "Environment Cause" ? "active" : "" %>" style="background-color: #209924;"><%= link_to "Environment Cause", all_causes_path(:cause => "Environment Cause") %></li>
-    </ul>
-    <div class="menu-categories">
-      <h1><span>Categories</span></h1>
-      <ul>
-        <%= render :partial => '/categories/category' %>
-      </ul>
+    <div style="position: relative; width: 225px; border: 1px solid gray; padding: 10px 0px;">
+      Search:
+      <hr />
+      <%= form_tag search_causes_path, :method => 'get' do %>
+        <%= text_field_tag :query, "", :placeholder => "Keywords", :style => 'width: 130px; position: relative; left: 5px; top: -1px;' %>
+        <%= submit_tag "Go" %>
+      <% end %>
     </div>
+    <br />
+    <ul class="list-menuLeft">
+      <li class="<%= params[:cause] == "Animal Cause" ? "active" : "" %>" style="background-color: #92D0FF;"><%= link_to "Animal Cause", all_causes_path(:cause => "Animal Cause") %></li>
+      <li class="<%= params[:cause] == "Human Cause" ? "active" : "" %>" style="background-color: #FF8080;"><%= link_to "Human Cause", all_causes_path(:cause => "Human Cause") %></li>
+      <li class="<%= params[:cause] == "Environment Cause" ? "active" : "" %>" style="background-color: #8AD557;"><%= link_to "Environment Cause", all_causes_path(:cause => "Environment Cause") %></li>
+    </ul>
   </div>
   <div id="rightColumn">
     <div class="box-trending">
@@ -21,19 +24,13 @@
         <li><%= link_to "Alpine Buffalo", "" %></li>
         <li><%= link_to "Ants", "" %></li>
         <li><%= link_to "Lewa Wildlife Foundation", causess_path %></li>
+        <li><%= link_to "Save Elephants", causess_path, :style => "background-color: #92D0FF;" %></li>
+        <li><%= link_to "Cancer", causess_path, :style => "background-color: #FF8080;" %></li>
+        <li><%= link_to "Save the Earth", causess_path, :style => "background-color: #8AD557;" %></li>
       </ul>
     </div>
-    <ul id="collexp" class="menu-collexp">
-      <% ses = ('A'..'Z') %>
-      <% for ss in ses %>
-        <li><a href="javascript:;" class="collapsed" title="<%= ss %>"><%= ss %></a>
-          <ul class="list-trending">
-            <% Product.where("non_profit_cause = '#{params[:cause]}' and cause_sub_category LIKE '#{ss}%'").each do |a| %>
-              <li><%= link_to a.cause_sub_category, " " %></li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
+    <ul class="list-order" style="position: relative; left: -37px; width: 60%; top: -10px;">
+      <%= render :partial => '/causes/index' %>
     </ul>
   </div>
   <div class="clearFix"></div>

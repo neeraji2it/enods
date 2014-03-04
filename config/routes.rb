@@ -95,6 +95,7 @@ Enods::Application.routes.draw do
   post '/create_alert' => 'home#create_alert', :as => :create_alert
   get '/index' => 'home#index', :as => :index
   get '/causess' => 'home#causess', :as => :causess
+  get '/search_causes' => 'home#search_causes', :as => :search_causes
   get '/all_causes' => 'home#all_causes', :as => :all_causes
   get '/order_history' => 'profiles#order_history', :as => :order_history
   get '/dashboard' => 'profiles#dashboard', :as => :dashboard

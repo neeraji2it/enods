@@ -36,7 +36,9 @@
     </div>
     <div id="rightColumn">
       <div class="box-seller">
-        <p><a title="" href="#"><img alt="" title="" src="/assets/img-dummy.jpg"></a></p>
+        <p>
+          <%= image_tag(@user.store_image.url(:original), :width => 760, :height => 100) %>
+        </p>
         <h5><%= link_to @user.business_name, "" %></h5>
         <pre><%= @user.other_info %></pre>
       </div>	

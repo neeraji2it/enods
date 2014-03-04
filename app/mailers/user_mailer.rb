@@ -14,12 +14,12 @@ class UserMailer < ActionMailer::Base
   
   def contact(contact)
     @contact = contact
-    mail(:to => 'Info@enods.com', :subject => contact.option)
+    mail(:to => 'Info@enods.com', :reply_to => contact.email, :subject => contact.option)
   end
   
   def contact_shop(contact_shop)
     @contact = contact_shop
-    mail(:to => contact_shop.receiver.email, :subject => contact_shop.subject)
+    mail(:to => contact_shop.receiver.email, :reply_to => contact_shop.receiver.email, :subject => contact_shop.subject)
   end
   
   def invitation(user,invitation)
