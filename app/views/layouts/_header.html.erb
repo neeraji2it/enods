@@ -51,12 +51,8 @@
             <% end %>
           </ul>
         </li>
-        <li class="parent"><a title="Explore Causes" href="#">Explore Causes</a>
-          <ul class="submenu">
-            <li><%= link_to "Animal Cause", all_causes_path(:cause => "Animal Cause") %></li>
-            <li><%= link_to "Human Cause", all_causes_path(:cause => "Human Cause") %></li>
-            <li><%= link_to "Environment Cause", all_causes_path(:cause => "Animal Cause") %></li>
-          </ul>
+        <li class="parent">
+          <%= link_to "Explore Causes", all_causes_path() %>
         </li>
         <% if !current_user %>
           <li><%= link_to "Sell", sell_path %></li>

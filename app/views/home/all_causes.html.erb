@@ -1,8 +1,6 @@
 <div class="content">
   <div id="leftColumn">
-    <div style="position: relative; width: 225px; border: 1px solid gray; padding: 10px 0px;">
-      Search:
-      <hr />
+    <div>
       <%= form_tag search_causes_path, :method => 'get' do %>
         <%= text_field_tag :query, "", :placeholder => "Keywords", :style => 'width: 130px; position: relative; left: 5px; top: -1px;' %>
         <%= submit_tag "Go" %>
