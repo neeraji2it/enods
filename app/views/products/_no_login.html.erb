@@ -19,7 +19,9 @@
       <div class="productDetails-leftColumn">
         <div class="midSec">
           <span class='zoom' id='ex1'>
-            <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px', :style => 'border-radius: 5px;') %>
+            <% if @product.images.present? %>
+              <%= image_tag(@product.images.first.image.url(:original), :width => '450px', :height => '350px', :style => 'border-radius: 5px;') %>
+            <% end %>
           </span>
         </div><br />
         <div class="leftSec" style="max-height: 400px;overflow: auto;line-height: 75px;">

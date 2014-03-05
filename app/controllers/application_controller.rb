@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
       if current_user.role == 'admin'
         admin_dashboard_path
       else
-        session[:ss].present? ? session[:ss] : current_user.role == 'buyer' ? '/index' : profile_profile_path(current_user)
+        session[:ss].present? ? session[:ss] : current_user.role != 'admin' ? '/index' : profile_profile_path(current_user)
       end
     end
   end
 
   def layout
     if current_user
-      if current_user.role == 'buyer' && params[:controller] != 'profiles' && params[:controller] != 'billing_shipping_addresses' && params[:controller] != 'invitations'
+      if current_user.role != 'admin' && (params[:controller] != 'profiles' && params[:controller] != 'billing_shipping_addresses' && params[:controller] != 'invitations' && (params[:controller] != 'products' || params[:action] == 'show'))
         "login"
       else
         "application"
@@ -44,6 +44,10 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Please Login"
       redirect_to '/'
     end
+  end
+  
+  def admin?
+    redirect_to admin_dashboard_path if (current_user && (current_user.role == 'admin') && params[:controller] == 'home' && params[:action] == 'index')
   end
   
   def is_seller?

@@ -1,1 +1,1 @@
-<%= current_user && current_user.role != 'buyer' ? (render :partial => '/products/login_show') : (render :partial => '/products/no_login') %>
+<%= current_user && current_user.role == 'admin' ? (render :partial => '/products/login_show') : (render :partial => '/products/no_login') %>

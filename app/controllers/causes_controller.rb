@@ -25,7 +25,7 @@ class CausesController < ApplicationController
   
   def show
     @cause = Cause.find(params[:id])
-    @products = Product.where("cause_id = #{@cause.id}")
+    @products = Product.where("cause_id = #{@cause.id} and status = 'confirmed'")
   end
   
   def update

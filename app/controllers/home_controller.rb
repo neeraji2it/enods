@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+  before_filter :admin?
   def index
     @products = Product.where("status = 'confirmed'").order('product_count DESC')
     @causes = Cause.all

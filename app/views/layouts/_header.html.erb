@@ -10,7 +10,7 @@
     <li><%= link_to "Contact", contact_us_path %> </li>
     <li><%= link_to "Cart", carts_path %> </li>
     <li><%= current_user ? (link_to "Logout", destroy_user_session_path, :method => 'delete') : (link_to "Login", new_user_session_path) %></li>
-    <% if current_user && current_user.role == 'buyer' %>
+    <% if current_user && current_user.role != 'admin' %>
       <li><%= link_to "Dashboard", profile_profile_path(current_user) %></li>
     <% end %>
   </ul>

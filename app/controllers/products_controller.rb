@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def upload_products
     if request.post? && params[:file].present?
       CSV.foreach(params[:file].path, headers: false) do |row|
-        @product = Product.new(:title => row[0], :price => row[1], :sell_name => row[2])
+        @product = Product.new(:user_id => current_user.id, :title => row[0], :price => row[1], :sell_name => row[2], :status => 'pending')
         @product.save(:validate => false)
       end
       flash[:notice] = "Uploading completed."
@@ -140,7 +140,7 @@ class ProductsController < ApplicationController
         redirect_to carts_path
       end
     else
-      flash[:error] = "There is no quantity to add this product to your Cart"
+      flash[:error] = "Only #{product.qty} left in stock"
       redirect_to carts_path
     end
   end

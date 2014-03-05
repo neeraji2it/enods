@@ -39,7 +39,7 @@
     <td><%= f.label :price, "Price:#{mark}".html_safe %></td>
     <td><%= f.text_field :price, :onkeyup => "price_validate(this,6)" %></td>
   </tr>
-  <% if @product.new_record? %>
+  <% if @product.new_record? || !@product.images.present? %>
     <tr class="row">
       <td valign="top">Images:<%= "#{mark}".html_safe %></td>
       <td>

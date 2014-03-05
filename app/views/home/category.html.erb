@@ -14,10 +14,12 @@
         <div class="list_carousel">
           <ul id="caroulproduct">
             <% for product in @products  %>
-              <li>
-                <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
-                <%= render :partial => '/carts/products', :locals => {:product => product} %>
-              </li>
+              <% if product.images.present? %>
+                <li>
+                  <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
+                  <%= render :partial => '/carts/products', :locals => {:product => product} %>
+                </li>
+              <% end %>
             <% end %>
           </ul>
         </div>

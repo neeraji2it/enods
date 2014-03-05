@@ -1,7 +1,7 @@
 <% for cause in @causes %>
   <li>
     <div class="orderThum" style="width: 100px;">
-      <%= image_tag(cause.image.url(:original), :width => '100', :height => '120') %>
+      <%= link_to image_tag(cause.image.url(:original), :width => '100', :height => '120'), cause_path(cause) %>
     </div>
     <ul class="list-orderDetail">
       <li><b><%= link_to cause.title, cause_path(cause), :style => 'text-decoration: none;' %></b></li>
