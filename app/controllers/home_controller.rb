@@ -34,7 +34,11 @@ class HomeController < ApplicationController
   end
   
   def all_causes
-    @causes = Cause.paginate :page => params[:cause_page], :per_page => 5
+    if params[:cause_type]
+      @causes = Cause.where("cause_type = '#{params[:cause_type]}'").paginate :page => params[:cause_page], :per_page => 5
+    else
+      @causes = Cause.paginate :page => params[:cause_page], :per_page => 5
+    end
   end
   
   def search_causes

@@ -17,6 +17,10 @@
     <td><%= f.file_field :image %></td>
   </tr>
   <tr>
+    <td><%= f.label :cause_type, "Type:#{mark}".html_safe %></td>
+    <td><%= f.select :cause_type, options_for_select([["Select",""],["Human Cause","Human Cause"],["Animal Cause",'Animal Cause'],["Enviornment Cause",'Enviornment Cause']], :selected => f.object.cause_type) %></td>
+  </tr>
+  <tr>
     <td></td>
     <td><%= f.submit "Cause", :class => 'button' %></td>
   </tr>
