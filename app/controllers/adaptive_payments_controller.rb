@@ -32,7 +32,6 @@ class AdaptivePaymentsController < ApplicationController
       UserMailer.user_status(current_user).deliver
     end
     current_cart.update_attribute(:purchased_at, Time.now)
-    session[:cart] = nil
     redirect_to order_history_path
   end
 end
