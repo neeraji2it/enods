@@ -7,12 +7,11 @@ class Cart < ActiveRecord::Base
   has_one :order, :dependent => :destroy
 
   def add_item(product_id, quantity)
-    current_item = line_items.where(:product_id => product_id).first
+    current_item = line_items.find_by_product_id(product_id)
     if current_item
       current_item.quantity += quantity
     else
-      current_item = LineItem.new(product_id: product_id, quantity: quantity)
-      line_items << current_item
+      current_item = line_items.build(product_id: product_id, quantity: quantity)
     end
     current_item
   end

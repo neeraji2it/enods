@@ -1,1 +1,11 @@
-<%= @user.role == 'seller' ? (link_to "Enods.com/#{@user.username}", seller_url(@user.id)) : (link_to "Enods.com", root_url) %>
+<% if @user.role == 'seller' %>
+  <%= link_to "Enods.com/#{@user.username}", seller_url(@user.id) %>
+<% else %>
+  <%= @invitation.email %>, would like you to try <%= link_to "Enods.com", root_url %>, <br /><br />
+
+  the cause commerce platform of the world.<br /><br />
+
+  Regards,<br /><br />
+
+  the <%= link_to "Enods.com", root_url %> team
+<% end %>

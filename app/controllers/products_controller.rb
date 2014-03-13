@@ -12,11 +12,7 @@ class ProductsController < ApplicationController
   
   def upload_products
     if request.post? && params[:file].present?
-      CSV.foreach(params[:file].path, headers: false) do |row|
-        @product = Product.new(:user_id => current_user.id, :title => row[0], :price => row[1], :sell_name => row[2], :status => 'pending')
-        @product.save(:validate => false)
-      end
-      flash[:notice] = "Uploading completed."
+      Product.import(params[:file],current_user.id)
       redirect_to products_path
     else
       flash[:error] = "Failed to Upload a file"
@@ -126,25 +122,23 @@ class ProductsController < ApplicationController
       @products = Product.where("title = '#{params[:query]}'")
     end
   end
-
+  
   def add_to_cart
     @cart = current_cart
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
     @cart.update_attribute(:created_at, Time.now)
-    @line_item = @cart.add_item(product.id, params[:qty].to_i)
-    if product.qty >= @line_item.quantity
-      @line_item.unit_price = product.price
-      @line_item.status = params[:colour] if params[:colour].present?
-      session[:cart] = @cart.id
-      if @line_item.save
-        redirect_to carts_path
-      end
+    @line_item = @cart.add_item(@product.id, params[:qty].to_i)
+    @line_item.unit_price = @product.price
+    @line_item.status = params[:colour] if params[:colour].present?
+    session[:cart] = @cart.id
+    if @product.qty >= @line_item.quantity
+      @line_item.save
     else
-      flash[:error] = "Only #{product.qty} left in stock"
-      redirect_to carts_path
+      flash[:error] = "Only #{@product.qty} left in stock"
     end
+    redirect_to carts_path
   end
-  
+
   def preview_product
     @product = Product.find(params[:id])
     render :layout => false
