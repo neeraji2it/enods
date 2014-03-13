@@ -25,6 +25,7 @@ class CausesController < ApplicationController
   
   def show
     @cause = Cause.find(params[:id])
+    @cause.update_attribute(:count, @cause.count + 1)
     @products = Product.where("cause_id = #{@cause.id} and status = 'confirmed'")
   end
   

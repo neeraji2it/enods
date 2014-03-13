@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def category
-    conditions = !params[:categories].to_s.blank? ? "category_id = '#{params[:categories]}' and status = 'confirmed'" : ""
+    conditions = !params[:categories].to_s.blank? ? "category_id = '#{params[:categories]}' and status = 'confirmed'" : "status = 'confirmed'"
     @products = Product.find(:all, :conditions => [conditions])
   end
 

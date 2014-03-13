@@ -2,15 +2,15 @@
   <div id="leftColumn">
     <div>
       <%= form_tag search_causes_path, :method => 'get' do %>
-        <%= text_field_tag :query, "", :placeholder => "Keywords", :style => 'width: 130px; position: relative; left: 5px; top: -1px;' %>
-        <%= submit_tag "Go" %>
+        <%= text_field_tag :query, "", :placeholder => "Keywords", :style => 'width: 160px; position: relative;top: -1px;' %>
+        <%= submit_tag "Go", :style => 'padding: 4px 5px;' %>
       <% end %>
     </div>
     <br />
     <ul class="list-menuLeft">
-      <li class="<%= params[:cause_type] == "Animal Cause" ? "active" : "" %>" style="background-color: #92D0FF;"><%= link_to "Animal Cause", all_causes_path(:cause_type => "Animal Cause") %></li>
-      <li class="<%= params[:cause_type] == "Human Cause" ? "active" : "" %>" style="background-color: #FF8080;"><%= link_to "Human Cause", all_causes_path(:cause_type => "Human Cause") %></li>
-      <li class="<%= params[:cause_type] == "Environment Cause" ? "active" : "" %>" style="background-color: #8AD557;"><%= link_to "Environment Cause", all_causes_path(:cause_type => "Environment Cause") %></li>
+      <li class="<%= params[:cause_type] == "Animal Cause" ? "active" : "" %>" style="background-color: #92D0FF;"><%= link_to "Animal Cause", all_causes_path(:cause_type => "Animal Cause"), :style => 'color: white;' %></li>
+      <li class="<%= params[:cause_type] == "Human Cause" ? "active" : "" %>" style="background-color: #FF8080;"><%= link_to "Human Cause", all_causes_path(:cause_type => "Human Cause"), :style => 'color: white;' %></li>
+      <li class="<%= params[:cause_type] == "Environment Cause" ? "active" : "" %>" style="background-color: #8AD557;"><%= link_to "Environment Cause", all_causes_path(:cause_type => "Environment Cause"), :style => 'color: white;' %></li>
     </ul>
   </div>
   <div id="rightColumn">
