@@ -28,6 +28,7 @@ class AdaptivePaymentsController < ApplicationController
           :qty => ord.line_item.product.qty - ord.line_item.quantity,
           :qty_sold => ord.line_item.quantity
         })
+      ord.line_item.product.cause.update_attribute(:count, ord.line_item.product.cause.count + 1)
       UserMailer.vendor_status(ord.line_item.product.user).deliver
       UserMailer.user_status(current_user).deliver
     end
