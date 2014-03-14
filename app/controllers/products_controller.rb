@@ -125,8 +125,10 @@ class ProductsController < ApplicationController
   
   def add_to_cart
     @cart = current_cart
+    ip = request.remote_ip
     @product = Product.find(params[:id])
     @cart.update_attribute(:created_at, Time.now)
+    @cart.update_attribute(:ip_address, ip)
     @line_item = @cart.add_item(@product.id, params[:qty].to_i)
     @line_item.unit_price = @product.price
     @line_item.status = params[:colour] if params[:colour].present?
