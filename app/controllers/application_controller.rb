@@ -1,3 +1,4 @@
+require 'socket'
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
@@ -65,6 +66,9 @@ class ApplicationController < ActionController::Base
   end
   
   def current_cart(create_if_not_exist=false)
+    ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+    pp = ip.ip_address
+    puts pp
     cart = Cart.where(["purchased_at IS NULL"]).first
     unless cart
       if create_if_not_exist
