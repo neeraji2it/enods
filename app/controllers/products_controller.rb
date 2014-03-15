@@ -1,4 +1,3 @@
-require 'socket'
 class ProductsController < ApplicationController
   before_filter :is_signin?, :only => ['index','new','create','preview_product','review','product_review']
   before_filter :is_seller? , :only => ['new','create','import','upload_products']
@@ -127,12 +126,8 @@ class ProductsController < ApplicationController
   def add_to_cart
     @cart = current_cart
     @product = Product.find(params[:id])
-    ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
-    pp = ip.ip_address
-    puts pp
     @cart.update_attributes({
-        :created_at => Time.now,
-        :ip_address => pp
+        :created_at => Time.now
       })
     @line_item = @cart.add_item(@product.id, params[:qty].to_i)
     @line_item.unit_price = @product.price
