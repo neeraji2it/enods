@@ -64,16 +64,16 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def current_cart(create_if_not_exist=false)
-    cart = Cart.where(["purchased_at IS NULL"]).first
-    unless cart
-      if create_if_not_exist
-        cart = Cart.create
-      else
-        cart = Cart.new
-      end
+  def current_cart
+    if session[:cart]
+      @current_cart ||= Cart.find(session[:cart])
+      session[:cart] = nil if @current_cart.purchased_at
     end
-    cart
+    if session[:cart].nil?
+      @current_cart = Cart.create!
+      session[:cart] = @current_cart.id
+    end
+    @current_cart
   end
 
   private
