@@ -37,7 +37,7 @@
   </tr>
   <tr class="row">
     <td><%= f.label :price, "Price:#{mark}".html_safe %></td>
-    <td><%= f.text_field :price, :onkeyup => "price_validate(this,6)" %></td>
+    <td><%= f.text_field :price %></td>
   </tr>
   <% if @product.new_record? || @product.images.blank? %>
     <tr class="row">
@@ -56,14 +56,15 @@
   <tr class="row">
     <td><%= f.label :non_profit_cause, "Select Cause Category:#{mark}".html_safe %></td>
     <td>
-      <%= f.select :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause)%>
-      <%= f.text_field :cause_sub_category, :placeholder => "Cause Sub Category", :style => 'width: 134px;' %>
+      <%= select_tag :non_profit_cause, options_for_select([["Select Cause Category",""], ["Animal Cause", 'Animal Cause'], ["Human Cause", "Human Cause"],["Enivronmental Cause","Environmental Cause"],["Any","Any"]], :selected => f.object.non_profit_cause), :onchange=>"cause_type(this.value)" %>
     </td>
   </tr>
   <tr class="row">
     <td><%= f.label :cause_id, "Support Cause:" %></td>
     <td>
-      <%= f.select :cause_id, options_for_select([["Select", '']]+Cause.all.collect{|c| [c.title, c.id]}, :selected => f.object.cause_id) %>
+      <div id="client-category">
+        <%= select_tag :cause_id, options_for_select(["Select",""], :selected => f.object.cause_id) %>
+      </div>
     </td>
   </tr>
   <tr class="row">
@@ -113,12 +114,12 @@
   </tr>
 </table>
 <script>
-  function price_validate(which) {
-    var val = which.value;
-    val = val.replace(/[^0-9]/g, "");  // strip non-digits
-    which.value = val;
-    if (val.length == 6) {  // field completed
-      document.getElementById("product_price").focus()
-    }
+  function cause_type(val) {
+    $.ajax({
+      url: '/products/cause_types?cause_type=' + val,
+      success: function(data) {
+        $("#client-category").html(data);
+      }
+    });
   }
 </script>

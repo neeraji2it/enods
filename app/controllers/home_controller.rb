@@ -42,7 +42,7 @@ class HomeController < ApplicationController
   end
   
   def search_causes
-    @causes = Cause.where("title LIKE '#{params[:query]}%'").paginate :page => params[:cause_page], :per_page => 5
+    @causes = Cause.where("title LIKE '%#{params[:query]}%'").paginate :page => params[:cause_page], :per_page => 5
     render :action => 'all_causes'
   end
 

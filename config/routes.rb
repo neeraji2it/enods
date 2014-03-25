@@ -63,6 +63,7 @@ Enods::Application.routes.draw do
       get :sub_categories
       get :import
       post :upload_products
+      get :cause_types
     end
     member do
       get :add_to_cart

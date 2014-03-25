@@ -45,6 +45,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product].merge(:user_id => current_user.id))
     @product.status = 'pending'
+    @product.non_profit_cause = params[:non_profit_cause]
+    @product.cause_id = params[:cause_id] if params[:cause_id].present?
     1.times { @product.images.build } if @product.images.blank?
     1.times { @product.colors.build } if @product.colors.blank?
     1.times {@product.shipping_products.build} if @product.shipping_products.blank?
@@ -90,6 +92,11 @@ class ProductsController < ApplicationController
     end
     render :partial => 'total_reviews', :layout => false
   end
+  
+  def cause_types
+    @photos = Cause.where("cause_type = '#{params[:cause_type]}' OR cause_type = 'Any'")
+    render :partial => 'cases', :layout => false
+  end
 
   def edit
     @product = Product.find(params[:id])
@@ -97,6 +104,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    @product.non_profit_cause = params[:non_profit_cause]
+    @product.cause_id = params[:cause_id] if params[:cause_id].present?
     if @product.update_attributes(params[:product])
       @product.update_attribute(:color, 'Modify')
       flash[:success] = "Successfully updated the Product."
