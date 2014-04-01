@@ -51,7 +51,9 @@
             <li class="icon-facebook"><%= link_to "facebook", "/auth/facebook?action=share&product_id=#{@product.id}" %></li>
             <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
             <li class="icon-twitter"><%= link_to "twitter", "/auth/twitter?action=share&product_id=#{@product.id}" %></li>
-            <li class="icon-pinterest"><%= link_to "pinterest", "" %></li>
+            <li class="icon-pinterest">
+              <a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fenods.com%2F&media=<%= @product.images.first.image.url(:original) %>&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a><br /><br />
+            </li>
           </ul>
         </div>
         <p><%= @product.description %></p>
