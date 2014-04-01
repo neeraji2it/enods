@@ -52,7 +52,7 @@
             <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
             <li class="icon-twitter"><%= link_to "twitter", "/auth/twitter?action=share&product_id=#{@product.id}" %></li>
             <li class="icon-pinterest">
-              <a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fenods.com%2F&media=<%= @product.images.first.image.url(:original) %>&description=<%= @product.description %>" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+              <a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.enods.com%2F&media=<%= @product.images.first.image.url(:original) %>&description=<%= @product.description %>" data-pin-do="buttonPin" data-pin-shape="round"></a>
               <script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
             </li>
           </ul>
