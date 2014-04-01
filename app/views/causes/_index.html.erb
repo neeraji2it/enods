@@ -7,9 +7,9 @@
       <li><b><%= link_to cause.title, cause_path(cause), :style => 'text-decoration: none;' %></b></li>
       <li><p style="text-indent: 5px;"><%= cause.description.present? ? (cause.description.slice(0..400)+"...") : " " %></p></li>
       <li style="margin-top: -14px; margin-left: 109px; width: 90%;">
-        <%= link_to "Articles: #{Product.where("cause_id = #{cause.id}").count}", cause_path(cause), :style => 'text-decoration: none;' %>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to "Likes: 0", cause_path(cause), :style => 'text-decoration: none;' %>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to "Become Fan", " ", :style => 'text-decoration: none;' %>
+        <%= link_to "Articles: #{Product.where("cause_id = #{cause.id} and status = 'confirmed'").count}", cause_path(cause), :style => 'text-decoration: none;' %>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to "Likes: #{cause.cause_fans.where("status = 'Like'").count}", cause_path(cause), :style => 'text-decoration: none;' %>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to "Become Fan", like_cause_path(cause), :style => 'text-decoration: none;' %>
       </li>
     </ul>
   </li>

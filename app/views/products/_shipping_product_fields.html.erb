@@ -2,8 +2,8 @@
   <div>
     <span id="cc"><%= f.country_select :country, ["United States"] %></span>
     <%= f.select :location, %w($ र €), :style => 'width: 50px;' %>
-    <%= f.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
-    <%= f.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
+    <%= f.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 75px;' %>
+    <%= f.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 80px;' %>
     <%= link_to_remove_fields image_tag("/assets/seller-images/icon-close.png"), f %>
   </div>
 </div>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :favourites, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
+  has_many :cause_fans, :dependent => :destroy
   has_many :received_contacts, :class_name => 'ContactShopOwner', :foreign_key => :receiver_id, :dependent => :destroy
   has_one :billing_shipping_address, :dependent => :destroy
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'

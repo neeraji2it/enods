@@ -1,0 +1,4 @@
+<%= form_for @product, :url => reject_product_admin_path(@product, :status =>'rejected'), :method => 'PUT' do |f| %>
+  <%= f.text_area :reject_message, :placeholder => "Reason For Reject", :style => 'width: 420px;', :rows => 5 %>
+  <%= f.submit "Reason" %>
+<% end %>

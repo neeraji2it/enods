@@ -82,12 +82,15 @@
   <tr class="row">
     <td></td>
     <td>
+      <span style="position: relative;font-weight: bold;">Ships To</span>
+      <span style="position: relative;left: 111px;font-weight: bold;">Cost</span>
+      <span style="position: relative;left: 175px;font-weight: bold;"> With another item ?</span>
       <%= f.fields_for :shipping_products do |builder| %>
         <div>
           <span id="cc"><%= builder.country_select :country, ["United States"] %></span>
           <%= builder.select :location, %w($ र €), :style => 'width: 50px;' %>
-          <%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 50px;' %>
-          <%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 50px;' %>
+          <%= builder.text_field :cost, :placeholder => "Shipping Cost", :style => 'width: 75px;' %>
+          <%= builder.text_field :item_cost, :placeholder => "Each Item Cost", :style => 'width: 80px;' %>
         </div>
       <%end%>
       <style>

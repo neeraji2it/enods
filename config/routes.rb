@@ -18,12 +18,18 @@ Enods::Application.routes.draw do
     end
     member do
       put :confirm_product
+      put :reject_product
     end
   end
   
   resources :banner_images
   
-  resources :causes
+  resources :causes do
+    member do
+      get :like
+      put :unlike
+    end
+  end
 
   resources :categories
   resources :invitations
@@ -75,6 +81,7 @@ Enods::Application.routes.draw do
       post :favourite
       put :update_favourite
       put :update_mark_favourite
+      get :reject
     end
   end
 

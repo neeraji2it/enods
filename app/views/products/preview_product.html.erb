@@ -16,7 +16,9 @@
       <h2><%= @product.title %><br /><span><%= number_to_currency(@product.price) %></span></h2>
       <p><%= @product.description %></p>
       <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Confirm' />".html_safe, confirm_product_admin_path(@product, :status =>'confirmed'), :method => 'put', :class => 'button', :style => 'text-decoration: none;' %>
-      <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Reject' />".html_safe, confirm_product_admin_path(@product, :status =>'rejected'), :method => 'put', :class => 'button', :style => 'text-decoration: none;' %>
+      <%= link_to "<input class='btn-blue' type='submit' title='PAID' value='Reject' />".html_safe, reject_product_path(@product), :remote => true, :class => 'button', :style => 'text-decoration: none;' %>
     </div>
+    <br />
+    <div id='reject'></div>
   </div>
 </div>

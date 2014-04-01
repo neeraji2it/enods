@@ -13,9 +13,7 @@
             <li>
               <h6>Ship to</h6>
               <p>
-                <select title="India">
-                  <option>India</option>	
-                </select>
+                <%= select_tag :country, options_for_select(line_item.product.shipping_products.map{|a| a.country}) %>
               </p>
               <h5 class="color-gray"><%= line_item.product.shipping %></h5>
               <h5>How You'll Pay</h5>
@@ -101,7 +99,7 @@
               <span id='line_item_quantiy_<%= line_item.id %>'></span>
             </li>
             <li><%= number_to_currency(line_item.product.price) %> USD </li>
-            <li>Donation: <%= number_to_currency(((line_item.product.price.to_f)*(line_item.product.non_profit_percentage))/100) %> USD </li>
+            <li>Donation: <%= number_to_currency(((line_item.full_price.to_f)*(line_item.product.non_profit_percentage))/100) %> USD </li>
           </ul>
         </li>
         <li>

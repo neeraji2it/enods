@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140314113129) do
+ActiveRecord::Schema.define(:version => 20140401060356) do
 
   create_table "banner_images", :force => true do |t|
     t.string   "image_file_name"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(:version => 20140314113129) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "parent_id"
+  end
+
+  create_table "cause_fans", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "cause_id"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "causes", :force => true do |t|
@@ -198,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20140314113129) do
     t.text     "shipping"
     t.text     "terms_and_conditions"
     t.string   "cause_sub_category"
+    t.text     "reject_message"
   end
 
   create_table "reviews", :force => true do |t|

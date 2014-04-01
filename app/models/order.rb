@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   before_validation :set_payments_and_dates
 
   def paypal_url(paypal_return_url, paypal_cancel_url, paypal_ipn_url)
-    primary_paypal_email = 'k.ashok502@gmail.com'
+    primary_paypal_email = 'info@enods.com'
     seller_email = 'kapil07517@gmail.com'
 
     @api = PayPal::SDK::AdaptivePayments.new

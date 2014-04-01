@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title,:cause_id,:fair_trade,:non_profit_cause, :color,:shipping, :sell_name, :user_id,:status,:agree_terms, :description, :price, :colors_attributes, :images_attributes, :shipping_products_attributes,:category_id,:discount,:qty, :qty_sold, :non_profit_percentage, :cause_sub_category
+  attr_accessible :title,:cause_id,:fair_trade,:non_profit_cause, :color,:shipping, :sell_name, :user_id,:status,:agree_terms, :description, :price, :colors_attributes, :images_attributes, :shipping_products_attributes,:category_id,:discount,:qty, :qty_sold, :non_profit_percentage, :cause_sub_category, :reject_message
   belongs_to :user
   belongs_to :category
   belongs_to :cause

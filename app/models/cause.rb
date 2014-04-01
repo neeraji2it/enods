@@ -1,5 +1,6 @@
 class Cause < ActiveRecord::Base
   has_many :products, :dependent => :destroy
+  has_many :cause_fans, :dependent => :destroy
   attr_accessible :title, :product_id, :image, :description, :cause_type, :count
   validates :title, :cause_type, :description, :presence => true
   has_attached_file :image, :styles => {:original => "900x900>",:default => "226x287!",:thumb => "96x96>"} if Rails.env == 'development'
