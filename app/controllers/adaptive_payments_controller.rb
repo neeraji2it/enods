@@ -29,8 +29,8 @@ class AdaptivePaymentsController < ApplicationController
           :qty_sold => ord.line_item.quantity
         })
       UserMailer.vendor_status(ord.line_item.product.user).deliver
-      UserMailer.user_status(current_user).deliver
     end
+    UserMailer.user_status(current_user).deliver
     current_cart.update_attribute(:purchased_at, Time.now)
     session[:cart] = nil
     redirect_to order_history_path

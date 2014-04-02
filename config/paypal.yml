@@ -1,20 +1,20 @@
 development: &default
 
   # Credentials for REST APIs
-  client_id: AX3vCRA-vTG7Ja7GnHJl0eEbZg-MbW5OYD_sWrquOp2BKeaDZomRVJuSuCV_
-  client_secret: EESJPxBaiebhv9q-dCQdLv_rn9wfoQ5VBAAs2-r7jEpxs1eNpmAlzS9r1iQS
+  client_id: Ad8pHxBoDowikQuuM9BBNOgOlgbwAXlnuPJ2x4Ci5Ktu9zzRqeldTfVOobLk
+  client_secret: EF3hFBCb-Qp5FoHJfeB8chenB3hnCXreSeE_52uUOrD942yROqcYsO54-Lao
 
   # Mode can be 'live' or 'sandbox'
   mode: sandbox
 
   # Credentials for Classic APIs
   app_id: APP-80W284485P519543T
-  username: k.ashok502-facilitator_api1.gmail.com
-  password: 1366968794
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AwVzeB7ThvogKHzICFAE2dVcZPjR
+  username: info-facilitator_api1.enods.com
+  password: 1396326439
+  signature: AbLwns5UlYm10QdjuZTVDLzbZhqsASNwAcjqYbmGh4LWOVFXkBzj4NNF
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: k.ashok502@gmail.com
+  sandbox_email_address: info-facilitator@enods.com
 
   # # IP Address
   # ip_address: 127.0.0.1
@@ -24,6 +24,24 @@ development: &default
 test:
   <<: *default
 
-production:
-  <<: *default
-  mode: sandbox
+production: &default
+  # Credentials for REST APIs
+  client_id: AQopdBAGPcmGwtvc6klbMarXMPs_C87uZaADLiM3xNZSvNACvoMx82ftCFrc
+  client_secret: EJUCixAI1Iz7iHKx0mNgfl3PqdmscnEUCT2YWaIkEftdEDeL_Uj3cMLsSRfx
+
+  # Mode can be 'live' or 'sandbox'
+  mode: live
+
+  # Credentials for Classic APIs
+  app_id: APP-80W284485P519543T
+  username: info_api1.enods.com
+  password: QH2X8ZGUXMEJ5EXZ
+  signature: AGo2bx2IeN.dKWbsZz231Il1tHBKAHDvklc1o.j67ngWlpXWIKFNIaKQ
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+  sandbox_email_address: info@enods.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
