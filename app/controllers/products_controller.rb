@@ -133,9 +133,9 @@ class ProductsController < ApplicationController
 
   def search
     if params[:from].present? and params[:to].present?
-      @products = Product.where("(price BETWEEN #{params[:from]} AND #{params[:to]})")
+      @products = Product.where("status = 'confirmed' and (price BETWEEN #{params[:from]} AND #{params[:to]})")
     else
-      @products = Product.where("title = '#{params[:query]}'")
+      @products = Product.where("status = 'confirmed' and title = '#{params[:query]}'")
     end
   end
   

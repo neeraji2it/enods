@@ -120,6 +120,8 @@ Enods::Application.routes.draw do
   get '/how_it_works' => 'home#how_it_works', :as => :how_it_works
   get '/seller/:id' => 'home#seller', :as => :seller
   get '/sell' => 'home#sell', :as => :sell
+  get '/follow/:id' => "constants#follow", :as => :follow
+  get '/favorite/:id' => "constants#favorite", :as => :favorite
 
   root :to => 'home#launch'
 

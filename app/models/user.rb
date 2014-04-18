@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :received_contacts, :class_name => 'ContactShopOwner', :foreign_key => :receiver_id, :dependent => :destroy
   has_one :billing_shipping_address, :dependent => :destroy
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  has_many :followers, :class_name => "Follow", :foreign_key => 'receiver_id'
+  has_many :favoriters, :class_name => "FavoriteUser", :foreign_key => 'receiver_id'
   has_one :received_invitation, :class_name => 'Invitation', :primary_key => :email, :foreign_key => :email
   validates :username,:presence => true,:uniqueness => true
 

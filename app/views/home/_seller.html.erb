@@ -14,7 +14,7 @@
             <%= image_tag(@user.avatar.url(:original), :width => '217', :height => '170') %>
           </div>
           <div class="box-content">
-            <p><%= link_to current_user ? (@following.present? ? "Following" : "Follow") : "Follow", follow_path(@user) %>(<%= @user.followers.where("status = 'Follow'").count %>)</p>
+            <p><%= link_to current_user ? (@following.present? ? "Following" : "Follow") : "Follow", follow_path(@user), :remote => true %>(<%= @user.followers.where("status = 'Follow'").count %>)</p>
             <h5><a title="Roza" href="#"><%= @user.username%></a></h5>
             <p><%= @user.business_address %></p>
             <h5>Have a question?</h5>
@@ -41,7 +41,7 @@
           <%= image_tag(@user.store_image.url(:original), :width => 760, :height => 100) %>
         </p>
         <p style="float: right;">
-          <%= link_to current_user ? (@favoritee.present? ? "Favorited" : "Favorite") : "Favorite", favorite_path(@user) %>
+          <%= link_to "Favorite", favorite_path(@user), :remote => true %>
         </p>
         <h5><%= link_to @user.business_name, "" %></h5>
         <pre><%= @user.other_info %></pre>
