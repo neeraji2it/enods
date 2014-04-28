@@ -1,0 +1,16 @@
+<h1 class="icon-profile"><span>Edit Image</span></h1>
+<div class="content-profile">
+  <div class="profile-leftColumn">
+    <%= form_for @image, :url => product_image_path(@product, @image), :method => 'PUT' do |f| %>
+      <%= render :partial => '/layouts/error_messages', :locals => {:resource => @image} %>
+      <div class="frow">
+        <div>Image</div>
+        <div><%= f.file_field :image %></div>
+      </div>
+      <div class="frow">
+        <div><img alt="" title="" src="/assets/user-images/spacer.png" /></div>
+        <div><input type="submit" title="Submit" value="Save" /></div>
+      </div>
+    <% end %>
+  </div>
+</div>

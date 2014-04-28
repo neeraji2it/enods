@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def layout
     if current_user
-      if current_user.role != 'admin' && (params[:controller] != 'profiles' && params[:controller] != 'billing_shipping_addresses' && params[:controller] != 'invitations' && (params[:controller] != 'products' || params[:action] == 'show'))
+      if current_user.role != 'admin' && (params[:controller] != 'images' && params[:controller] != 'profiles' && params[:controller] != 'billing_shipping_addresses' && params[:controller] != 'invitations' && (params[:controller] != 'products' || params[:action] == 'show'))
         "login"
       else
         "application"

@@ -1,0 +1,23 @@
+<h1 class="icon-productsManagement"><span>Image Management</span></h1>
+<div class="tablebox table-orderHistory">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Image</div>
+    <div class="column last">Actions</div>
+  </div>
+  <% @images.each_with_index do |image,index| %>
+    <div class="row">
+      <div class="column"><%= index+1 %></div>
+      <div class="column"><%= image_tag(image.image.url(:thumb)) %></div>
+      <div class="column last">
+        <%= link_to image_tag("/assets/user-images/icon-edit.png", :class => "icon-search"), edit_product_image_path(image.product, image) %>&nbsp;&nbsp;
+        <%= link_to image_tag("/assets/user-images/icon-close.png", :class => "icon-search"), product_image_path(image.product, image), :method => :delete, :confirm => "Are you sure." %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<style>
+  .column{
+    width: 12%;
+  }
+</style>
