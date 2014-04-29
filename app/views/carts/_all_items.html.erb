@@ -26,24 +26,33 @@
               </div>
             </li>
             <% if line_item.product.colors.present? %>
-              <li>
-                <div class="row-checkout">
-                  <div>Color:</div><br />
-                  <div><%= select_tag :color, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.product_color}) %></div>
-                </div>
-              </li>
-              <li>
-                <div class="row-checkout">
-                  <div>Size:</div><br />
-                  <div><%= select_tag :size, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.size}) %></div>
-                </div>
-              </li>
-              <li>
-                <div class="row-checkout">
-                  <div>Type:</div><br />
-                  <div><%= select_tag :type, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.buyer_type}) %></div>
-                </div>
-              </li>
+              <% @color = Color.find_by_product_id_and_product_color(line_item.product.id,line_item.product.colors.collect{|a| a.product_color}) %>
+              <% if @color.product_color.present? %>  
+                <li>
+                  <div class="row-checkout">
+                    <div>Color:</div><br />
+                    <div><%= select_tag :color, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.product_color}) %></div>
+                  </div>
+                </li>
+              <% end %>
+              <% @size = Color.find_by_product_id_and_size(line_item.product.id,line_item.product.colors.collect{|a| a.size}) %>
+              <% if @size.size.present? %> 
+                <li>
+                  <div class="row-checkout">
+                    <div>Size:</div><br />
+                    <div><%= select_tag :size, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.size}) %></div>
+                  </div>
+                </li>
+              <% end %>
+              <% @type = Color.find_by_product_id_and_buyer_type(line_item.product.id,line_item.product.colors.collect{|a| a.buyer_type}) %>
+              <% if @type.buyer_type.present? %> 
+                <li>
+                  <div class="row-checkout">
+                    <div>Type:</div><br />
+                    <div><%= select_tag :type, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.buyer_type}) %></div>
+                  </div>
+                </li>
+              <% end %>
             <% end %>
             <% if line_item.product.non_profit_cause == 'Any' %>
               <li>

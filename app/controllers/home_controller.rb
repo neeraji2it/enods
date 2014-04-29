@@ -39,7 +39,6 @@ class HomeController < ApplicationController
     else
       @causes = Cause.paginate :page => params[:cause_page], :per_page => 5
     end
-    @products = Product.where("status = 'confirmed' and non_profit_cause = 'Any'")
   end
   
   def search_causes

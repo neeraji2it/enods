@@ -27,18 +27,4 @@
     </ul>
   </div>
   <div class="clearFix"></div>
-  <div class="commonrow">
-    <h1><span>Products</span></h1>
-    <div class="list_carousel" style="width: 101%;">
-      <ul id="caroulproduct">
-        <% for product in @products  %>
-          <li>
-            <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
-            <%= render :partial => '/carts/products', :locals => {:product => product} %>
-          </li>
-        <% end %>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-  </div>
 </div>
