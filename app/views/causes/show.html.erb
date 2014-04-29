@@ -3,6 +3,10 @@
     <div class="img-lewa">
       <%= image_tag(@cause.image.url(:original), :width => 410, :height => 280) %>
     </div>
+    <% if current_user %>
+      <% @causee = CauseFan.find_by_user_id_and_status(current_user.id,current_user.cause_fans.map{|a| a.status}) %>
+    <% end %>
+    <span style="float: right; position: relative; left: 40px; top: -35px;"><%= current_user ? (current_user.cause_fans.present? ? (@causee.status == 'Like' ? (link_to "<input type='submit' title='You are a Fan' value='You are a Fan' />".html_safe, like_cause_path(@cause, :status => 'Unlike')) : (link_to "<input type='submit' title='Become a Fan' value='Become a Fan' />".html_safe, like_cause_path(@cause, :status => 'Like'), :class => 'btn')) : ()) : () %></span>
     <h3 style="padding-bottom: 15px;">ABOUT</h3>
     <p><%= @cause.description %></p>
     <div class="clearFix"></div>

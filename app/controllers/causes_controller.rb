@@ -23,7 +23,9 @@ class CausesController < ApplicationController
     @cause = Cause.find(params[:id])
     @like = CauseFan.find_by_user_id_and_cause_id(current_user.id,@cause.id)
     if !@like.present?
-      CauseFan.create(:cause_id => @cause.id, :user_id => current_user.id, :status => 'Like')
+      CauseFan.create(:cause_id => @cause.id, :user_id => current_user.id, :status => params[:status])
+    else
+      @like.update_attribute(:status, params[:status])
     end
     redirect_to cause_path(@cause)
   end

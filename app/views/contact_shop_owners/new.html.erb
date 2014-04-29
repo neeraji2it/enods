@@ -1,22 +1,21 @@
-<%= form_for @contact_shop, :url => user_contact_shop_owners_path(@user), :method => 'POST' do |f| %>
-  <%= render :partial => '/layouts/error_messages', :locals => {:resource => @contact_shop} %>
-  <table style="position: relative; line-height: 40px;">
-    <tr>
-      <td valign="top"><%= f.label :subject, "Subject#{mark}".html_safe %></td>
-      <td><%= f.text_field :subject %></td>
-    </tr>
-    <tr>
-      <td valign="top"><%= f.label :attach, "Attachment:" %></td>
-      <td><%= f.file_field :attach %></td>
-    </tr>
-    <tr>
-      <td valign="top"><%= f.label :message, "Message#{mark}".html_safe %></td>
-      <td><%= f.text_area :message, :cols => 20, :rows => 3 %></td>
-    </tr>
+<h1 class="icon-profile"><span>Contact</span></h1>
+<div class="content-profile">
+  <%= form_for @contact_shop, :url => user_contact_shop_owners_path(@user), :method => 'POST' do |f| %>
+    <%= render :partial => '/layouts/error_messages', :locals => {:resource => @contact_shop} %>
+    <table style="position: relative; line-height: 40px;">
+      <tr>
+        <td valign="top"><%= f.label :subject, "Subject#{mark}".html_safe %></td>
+        <td><%= f.text_field :subject %></td>
+      </tr>
+      <tr>
+        <td valign="top"><%= f.label :message, "Message#{mark}".html_safe %></td>
+        <td><%= f.text_area :message, :cols => 20, :rows => 3 %></td>
+      </tr>
 
-    <tr>
-      <td></td>
-      <td><%= f.submit "Contact" %></td>
-    </tr>
-  </table>
-<% end %>
+      <tr>
+        <td></td>
+        <td><%= f.submit "Contact" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
