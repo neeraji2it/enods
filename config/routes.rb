@@ -32,6 +32,7 @@ Enods::Application.routes.draw do
   end
 
   resources :categories
+  resources :promotion_codes
   resources :invitations
   resources :billing_shipping_addresses
 

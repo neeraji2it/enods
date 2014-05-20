@@ -1,0 +1,20 @@
+<h1 class="icon-profile"><em class="icon-plus"><%= (user_signed_in? and current_user.role == 'admin') ? (link_to "New Promotion Code", new_promotion_code_path) : "" %></em><span>Promotion Code Management</span></h1>
+<div class="tablebox table-categoryManagement">
+  <div class="row">
+    <div class="column">ID</div>
+    <div class="column">Promotion Code</div>
+    <div class="column">Discount Amount</div>
+    <div class="column">Options</div>
+  </div>
+  <% @promos.each_with_index do |category, index| %>
+    <div class="row">
+      <div class="column"><%= index+1 %></div>
+      <div class="column"><%= category.promo_code %></div>
+      <div class="column"><%= number_to_currency(category.price)%></div>
+      <div class="column last">
+        <%= link_to image_tag("/assets/admin-images/icon-edit.png"), edit_promotion_code_path(category)  %>
+        <%= link_to image_tag("/assets/admin-images/icon-close.png"), {:controller => 'promotion_codes', :action => 'destroy', :id => category.id}, :method => :delete, :confirm => "Are you Sure" %>
+      </div>
+    </div>
+  <% end %>
+</div>

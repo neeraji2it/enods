@@ -20,14 +20,21 @@ class CartsController < ApplicationController
     @order = @cart.orders.new(params[:order])
     @line_item = LineItem.find(params[:id])
     @comment = Comment.new
-    if @line_item.product.qty >= params[:line_item][:quantity].to_i
-      @line_item.update_attribute(:quantity, params[:line_item][:quantity])
+    if params[:line_item][:quantity].to_i == 0
+      @line_item.destroy
       respond_to do |format|
         format.js
       end
     else
-      respond_to do |format|
-        format.js
+      if @line_item.product.qty >= params[:line_item][:quantity].to_i
+        @line_item.update_attribute(:quantity, params[:line_item][:quantity])
+        respond_to do |format|
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.js
+        end
       end
     end
   end

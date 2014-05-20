@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140418053553) do
+ActiveRecord::Schema.define(:version => 20140520073043) do
 
   create_table "banner_images", :force => true do |t|
     t.string   "image_file_name"
@@ -223,6 +223,15 @@ ActiveRecord::Schema.define(:version => 20140418053553) do
     t.text     "terms_and_conditions"
     t.string   "cause_sub_category"
     t.text     "reject_message"
+    t.boolean  "product_ability"
+    t.integer  "promotion_code_id"
+  end
+
+  create_table "promotion_codes", :force => true do |t|
+    t.string   "promo_code"
+    t.decimal  "price",      :precision => 10, :scale => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "reviews", :force => true do |t|

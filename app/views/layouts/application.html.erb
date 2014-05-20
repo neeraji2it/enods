@@ -71,6 +71,7 @@
               <li class="icon-productRequests <%= (params[:controller] == 'admins' and params[:action] == 'review_product') ? 'active' : "" %>"><%= link_to "products for review", review_product_admins_path %></li>
               <li class="icon-enquiry <%= (params[:controller] == 'admins' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Enquiry", "" %></li>
               <li class="icon-enquiry <%= (params[:controller] == 'bannner_images') ? 'active' : "" %>"><%= link_to "Banner Images", banner_images_path %></li>
+              <li class="icon-enquiry <%= (params[:controller] == 'promotion_codes') ? 'active' : "" %>"><%= link_to "Promotion Code", promotion_codes_path %></li>
             <% else %>
               <li class="icon-dashboard <%= (params[:controller] == 'profiles' and params[:action] == 'dashboard') ? 'active' : "" %>"><%= link_to "Dashboard", dashboard_path %></li>
               <li class="icon-profile <%= (params[:controller] == 'profiles' and (params[:action] == 'profile' or params[:action] == 'change_password' or params[:action] == 'profile_update')) ? 'active' : "" %>"><%= link_to "Profile", profile_profile_path(current_user) %></li>

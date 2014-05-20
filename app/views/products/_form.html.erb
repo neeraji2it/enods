@@ -32,6 +32,11 @@
       <%= f.radio_button :fair_trade , "No"%>No</td>
   </tr>
   <tr class="row">
+    <td></td>
+    <td>
+      <%= f.check_box :product_ability %>Visible in your store</td>
+  </tr>
+  <tr class="row">
     <td>Quantity</td>
     <td><%= f.text_field :qty %></td>
   </tr>
@@ -64,6 +69,14 @@
     <td>
       <div id="client-category">
         <%= select_tag :cause_id, options_for_select(["Select",""], :selected => f.object.cause_id) %>
+      </div>
+    </td>
+  </tr>
+  <tr class="row">
+    <td><%= f.label :promotion_code_id, "Promotion Code:" %></td>
+    <td>
+      <div id="client-category">
+        <%= f.select :promotion_code_id, options_for_select([["Select",""]]+PromotionCode.all.map{|a| [a.promo_code, a.id]}, :selected => f.object.cause_id) %>
       </div>
     </td>
   </tr>
