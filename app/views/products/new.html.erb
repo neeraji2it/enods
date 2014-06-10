@@ -1,7 +1,7 @@
 <h1 class="icon-addProduct"><span>Add Product</span></h1>
 <div class="content-profile">
   <span style='color: red;'>* All fields are Required.</span>
-  <%= form_for @product do |f| %>
+  <%= nested_form_for @product do |f| %>
     <%= render :partial => '/layouts/error_messages', :locals => {:resource => @product} %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>

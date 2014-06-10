@@ -16,7 +16,6 @@
           <div class="box-content">
             <p><%= link_to current_user ? (@following.present? ? "Following" : "Follow") : "Follow", follow_path(@user) %>(<%= @user.followers.where("status = 'Follow'").count %>)</p>
             <h5><a title="Roza" href="#"><%= @user.username%></a></h5>
-            <p><%= @user.business_address %></p>
             <h5>Have a question?</h5>
             <p>
               <%= link_to "Contact Shop Owner", new_user_contact_shop_owner_path(@user), :class => 'btn' %>

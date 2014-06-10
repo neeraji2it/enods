@@ -31,6 +31,7 @@ gem "highcharts-rails"
 gem 'jquery_notify_bar'
 gem 'jquery_datepicker'
 gem 'prototype-rails'
+gem 'nested_form'
 
 #group :production do
 #  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too

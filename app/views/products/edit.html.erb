@@ -1,7 +1,7 @@
 <h1 class="icon-addProduct"><span>Add Product</span></h1>
 <%= render :partial => '/layouts/error_messages', :locals => {:resource => @product} %>
 <div class="content-profile">
-  <%= form_for @product, :url => product_path(@product), :method => "PUT" do |f| %>
+  <%= nested_form_for @product, :url => product_path(@product), :method => "PUT" do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
 </div>

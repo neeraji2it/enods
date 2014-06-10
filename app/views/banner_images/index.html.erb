@@ -8,7 +8,7 @@
   <% @banner_images.each_with_index do |category, index| %>
     <div class="row">
       <div class="column"><%= index+1 %></div>
-      <div class="column"><%= category.image_file_name %></div>
+      <div class="column"><%= image_tag(category.image(:original), :width => 100) %></div>
       <div class="column last">
         <%= link_to image_tag("/assets/admin-images/icon-edit.png"), edit_banner_image_path(category)  %>
         <%= link_to image_tag("/assets/admin-images/icon-close.png"), {:controller => 'banner_images', :action => 'destroy', :id => category.id}, :method => :delete, :confirm => "Are you Sure" %>

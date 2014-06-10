@@ -1,26 +1,10 @@
 <div class="sliderLeftColumn">
-  <div class="coda-slider" id="lll-id">
+  <div class="coda-slider" id="lll-id" style="width: 100%;">
     <% @back_images = BannerImage.all %>
     <% for image in @back_images %>
-      <div><h2 class="title"><%= image.image_description.slice(0..300) %></h2><img title="" src="<%= image.image.url(:original) %>" width='708' height="389"/></div>
+      <div><h2 class="title"><%= link_to image.image_description.slice(0..300), "#", :style => "color: white;" %></h2><img title="" src="<%= image.image.url(:original) %>" width='1000' height="400"/></div>
     <% end %>
   </div>
-</div>
-<div class="sliderRightColumn">
-  <ul>
-    <li class="box-ourMission">
-      <h2>Our Mission</h2>
-      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
-    </li>
-    <li class="box-memberStories">
-      <h2>Member Stories</h2>
-      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
-    </li>
-    <li class="box-urgentHelp">
-      <h2>Urgent Help</h2>
-      <p>Lertemquia lalups <br>sitspturseuays harastyas <br>istfugons equntuse</p>
-    </li>
-  </ul>
 </div>
 <div class="clearFix"></div>
 <div class="content">

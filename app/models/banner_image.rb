@@ -1,6 +1,6 @@
 class BannerImage < ActiveRecord::Base
   attr_accessible :image,:image_description
-  has_attached_file :image, :styles => {:original => "900x900>",:default => "226x287!",:thumb => "96x96>"} if Rails.env == 'development'
+  has_attached_file :image, :styles => {:original => "1000x400>",:default => "226x287!",:thumb => "96x96>"} if Rails.env == 'development'
   has_attached_file :image,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"} if Rails.env == 'production'
   validates_attachment_content_type :image,
     :content_type => [ 'image/jpeg','image/jpg', 'image/png', 'image/gif','image/bmp', 'image/x-png', 'image/pjpeg' ]
@@ -12,7 +12,7 @@ class BannerImage < ActiveRecord::Base
 
   private
   
-  def set_dimensions(width = 708, height = 389)
+  def set_dimensions(width = 1000, height = 400)
     tempfile = self.image.queued_for_write[:original]
     unless tempfile.nil?
       dimensions = Paperclip::Geometry.from_file(tempfile)
