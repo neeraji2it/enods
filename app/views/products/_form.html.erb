@@ -5,7 +5,11 @@
   </tr>
   <tr class="row">
     <td><%= f.label :category_id, "Product Category:#{mark}".html_safe %></td>
-    <td><%= f.select :category_id, options_for_select([["Select", '']]+Category.where("parent_id is null").collect{|c| [c.name, c.id]}, :selected => f.object.category_id)%></td>
+    <td><%= select_tag :category_id, options_for_select([["Select",""]]+Category.where("parent_id IS NULL").collect{|a| [a.name.capitalize, a.id]}, :selected => f.object.category_id), :onchange => 'select_file(this.value)' %></td>
+  </tr>
+  <tr class="row">
+    <td></td>
+    <td id="category"></td>
   </tr>
   <tr class="row">
     <td><%= f.label :title, "Product Name:#{mark}".html_safe %></td>
@@ -139,6 +143,12 @@
       success: function(data) {
         $("#client-category").html(data);
       }
+    });
+  }
+
+  function select_file(val) {
+    $.ajax({
+      url: '/products/categories?id=' + val
     });
   }
 </script>

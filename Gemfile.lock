@@ -157,6 +157,8 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    paypal-sdk-adaptiveaccounts (1.102.0)
+      paypal-sdk-core (~> 0.2.3)
     paypal-sdk-adaptivepayments (1.103.0)
       paypal-sdk-core (~> 0.2.3)
     paypal-sdk-core (0.2.4)
@@ -263,6 +265,7 @@ DEPENDENCIES
   omniauth-twitter
   omniauth-yahoo
   paperclip (~> 2.3)
+  paypal-sdk-adaptiveaccounts
   paypal-sdk-adaptivepayments
   prototype-rails
   quiet_assets

@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   end
   
   def categories
-    @categores = Category.where("parent_id = #{params[:category_id]}")
+    @categores = Category.where("parent_id = #{params[:id]}")
     respond_to do |format|
       format.js
     end
@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
     @product.status = 'pending'
     @product.non_profit_cause = params[:non_profit_cause]
     @product.cause_id = params[:cause_id] if params[:cause_id].present?
+    @product.category_id = params[:category_id] if params[:category_id].present?
     1.times { @product.images.build } if @product.images.blank?
     1.times { @product.colors.build } if @product.colors.blank?
     1.times {@product.shipping_products.build} if @product.shipping_products.blank?
@@ -113,6 +114,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.non_profit_cause = params[:non_profit_cause]
     @product.cause_id = params[:cause_id] if params[:cause_id].present?
+    @product.category_id = params[:category_id] if params[:category_id].present?
     if @product.update_attributes(params[:product])
       @product.update_attribute(:color, 'Modify')
       flash[:success] = "Successfully updated the Product."

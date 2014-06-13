@@ -28,11 +28,6 @@ class HomeController < ApplicationController
     
   end
   
-  def causess
-    @causes = Cause.paginate :page => params[:cause_page], :per_page => 5
-    @products = Product.where("status = 'confirmed' and non_profit_cause = 'Any'").order('product_count DESC').paginate :page => params[:page], :per_page => 25
-  end
-  
   def all_causes
     if params[:cause_type]
       @causes = Cause.where("cause_type = '#{params[:cause_type]}'").paginate :page => params[:cause_page], :per_page => 5

@@ -8,24 +8,44 @@
     </div>
     <%= render :partial => '/home/filter' %>
   </div>
-  <div id="rightColumn" style="margin-left: -20px;width: 795px;">
-    <div class="commonrow">
-      <% if @products.present? %>
-        <div class="list_carousel">
-          <ul id="caroulproduct">
-            <% for product in @products  %>
-              <% if product.images.present? %>
-                <li>
-                  <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
-                  <%= render :partial => '/carts/products', :locals => {:product => product} %>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-      <% else %>
-        <span style="position: relative; color: red; text-align: center; font-size: 20px; left: 50px; top: 10px;">No Products</span>
+  <ul style="border: 1px solid gray; position: relative; width: 70%; left: 255px;">
+    <% Category.where("parent_id = #{params[:categories]}").each do |category| %>
+      <li style="width: 200px; display: inline; position: relative; left: -200px;font-size: 16px;"><%= link_to category.name, category_path(:categories => category.id) %></li>&nbsp;&nbsp;&nbsp;&nbsp;
+    <% end %>
+  </ul>
+  <div style="position: relative; top: 10px; font-weight: bold; font-size: 15px;float: left; left: 30px;">
+    <% categories = [] %>
+    <% c = Category.find(params[:categories]) %>
+    <% while(c.present?) do %>
+        <% categories << c %>
+        <% c = Category.find_by_id(c.parent_id) %>
+      <% end %>
+      <% categories.reverse.each do |category| %>
+        <%= link_to category.name, category_path(:categories => category.id) %>
+        <% if categories.reverse.last != category %>
+          ->
+        <% end %>
       <% end %>
     </div>
-    <div class="clearFix"></div>
-  </div>
+    <br /><br />
+    <div id="rightColumn" style="margin-left: -20px;width: 795px;">
+      <div class="commonrow">
+        <% if @products.present? %>
+          <div class="list_carousel">
+            <ul id="caroulproduct">
+              <% for product in @products  %>
+                <% if product.images.present? %>
+                  <li>
+                    <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
+                    <%= render :partial => '/carts/products', :locals => {:product => product} %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% else %>
+          <span style="position: relative; color: red; text-align: center; font-size: 20px; left: 50px; top: 10px;">No Products</span>
+        <% end %>
+      </div>
+      <div class="clearFix"></div>
+    </div>

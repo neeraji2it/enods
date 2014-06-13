@@ -26,6 +26,7 @@ gem 'therubyracer'
 gem 'nokogiri'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'paypal-sdk-adaptivepayments'
+gem 'paypal-sdk-adaptiveaccounts'
 gem 'country-select'
 gem "highcharts-rails"
 gem 'jquery_notify_bar'

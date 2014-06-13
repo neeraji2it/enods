@@ -1,3 +1,4 @@
+require 'paypal-sdk-adaptiveaccounts'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -24,9 +25,26 @@ class User < ActiveRecord::Base
   has_attached_file :store_image,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "enods-web",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/assets/img-dummy.jpg" if Rails.env == 'production'
   #validates :first_name,:last_name,:gender, :presence => true
   #validates :date_of_birth,:city,:zip, :presence => {:if => :buyer?}, :on => :update
+  validate :valid_paypal, :on => :update
   #validates :business_name, :business_address, :website_url, :paypal_id, :presence => {:if => :seller?}, :on => :update
 
+  def valid_paypal
+    if self.role == "seller"
+      api = PayPal::SDK::AdaptiveAccounts::API.new( :device_ipaddress => "127.0.0.1" )
 
+      # Build request object
+      get_verified_status = api.build_get_verified_status({
+          :emailAddress => self.paypal_id,
+          :matchCriteria => "NONE" })
+      get_verified_status_response = api.get_verified_status(get_verified_status)
+      if get_verified_status_response.success?
+      else
+        errors.add(:paypal_id, "Id is Not valid")
+        return false
+      end
+    end
+  end
+  
   def buyer?
     !self.role.nil? and ['buyer'].include?(self.role)
   end

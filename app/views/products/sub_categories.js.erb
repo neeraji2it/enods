@@ -1,1 +1,5 @@
-$("#sub_category").html('<%= escape_javascript render :partial => 'sub_categories' %>');
+<% if @sub_categores.present? %>
+  $("#sub_category").html('<%= escape_javascript render :partial => 'sub_categories' %>');
+<% else %>
+  $("#sub_category").hide();
+<% end %>
