@@ -48,13 +48,7 @@
         <div class="commonrow">
           <div class="column-share">Share Now</div>
           <ul class="list-media">
-            <li class="icon-facebook"><%= link_to "facebook", "/auth/facebook?action=share&product_id=#{@product.id}" %></li>
-            <li class="icon-googlePlus"><%= link_to "google plus", "" %></li>
-            <li class="icon-twitter"><%= link_to "twitter", "/auth/twitter?action=share&product_id=#{@product.id}" %></li>
-            <li class="icon-pinterest">
-              <a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.enods.com%2F&media=<%= @product.images.first.image.url(:original) %>&description=<%= @product.description %>" data-pin-do="buttonPin" data-pin-shape="round"></a>
-              <script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
-            </li>
+            <%= social_share_button_tag(@product.description, :url => "#{request.original_url}",:image => "#{SITE}"+@product.images.first.image.url(:original), :'data-type' => 'photo') %>
           </ul>
         </div>
         <p><%= @product.description %></p>

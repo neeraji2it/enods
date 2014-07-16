@@ -17,6 +17,7 @@
 //= require highcharts
 //= require Chart
 //= require organictabs.jquery
+//= require social-share-button
 //= require navbar
 //= require waypoints.min
 //= require script

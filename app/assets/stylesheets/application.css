@@ -91,3 +91,8 @@ form.rating_ballot label.rating.glow { background-image: url(/assets/star.gif);b
     height: 10px;
     text-indent: -9000px;
 }
+
+.social-share-button-facebook { display:inline-block;position: relative;left: -3px;  width: 30px; height: 30px; background:url(/assets/sprite.png) no-repeat 0px -119px; }
+.social-share-button-twitter { display:inline-block;position: relative;left: -3px; width: 30px; height: 30px; background:url(/assets/sprite.png) no-repeat 0px -151px; }
+.social-share-button-google_plus { display:inline-block; position: relative;left: -3px;  width: 30px; height: 30px; background:url(/assets/sprite.png) no-repeat 0px -215px; }
+.social-share-button-pinterest { display:inline-block;position: relative;left: -3px;  width: 30px; height: 30px; background:url(/assets/sprite.png) no-repeat 0px -247px; }
