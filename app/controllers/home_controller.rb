@@ -66,7 +66,7 @@ class HomeController < ApplicationController
     @user = User.find(params[:id])
     @following = Follow.find_by_user_id_and_receiver_id_and_status(current_user.id, @user.id, 'Follow') if current_user
     @favoritee = FavoriteUser.find_by_user_id_and_receiver_id_and_status(current_user.id, @user.id, 'Favorited') if current_user
-    @products = Product.where("user_id = #{@user.id} and status = 'confirmed' and product_ability = #{false}").order("created_at Desc")
+    @products = Product.where("user_id = #{@user.id} and status = 'confirmed'").order("created_at Desc")
   end
   
   def contact
