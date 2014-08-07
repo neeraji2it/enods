@@ -31,7 +31,7 @@
                 <li>
                   <div class="row-checkout">
                     <div>Color:</div><br />
-                    <div><%= select_tag :color, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.product_color}) %></div>
+                    <div><%= select_tag :color, options_for_select([["Select",""]]+line_item.product.colors.group(:product_color).collect{|a| a.product_color}) %></div>
                   </div>
                 </li>
               <% end %>
@@ -49,7 +49,7 @@
                 <li>
                   <div class="row-checkout">
                     <div>Type:</div><br />
-                    <div><%= select_tag :type, options_for_select([["Select",""]]+line_item.product.colors.collect{|a| a.buyer_type}) %></div>
+                    <div><%= select_tag :type, options_for_select([["Select",""]]+line_item.product.colors.group(:buyer_type).collect{|a| a.buyer_type}) %></div>
                   </div>
                 </li>
               <% end %>
