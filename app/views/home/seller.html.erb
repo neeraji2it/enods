@@ -48,7 +48,7 @@
       <div class="list_carousel list-search">
         <ul id="caroulproduct">
           <% for product in @products  %>
-            <li>
+            <li style='min-height: 350px;'>
               <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
               <%= render :partial => '/carts/products', :locals => {:product => product} %>
             </li>

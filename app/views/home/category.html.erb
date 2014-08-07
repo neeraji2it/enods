@@ -8,25 +8,27 @@
     </div>
     <%= render :partial => '/home/filter' %>
   </div>
-  <ul style="border: 1px solid gray; position: relative; width: 70%; left: 255px;">
-    <% Category.where("parent_id = #{params[:categories]}").each do |category| %>
-      <li style="width: 200px; display: inline; position: relative; left: -200px;font-size: 16px;"><%= link_to category.name, category_path(:categories => category.id) %></li>&nbsp;&nbsp;&nbsp;&nbsp;
-    <% end %>
-  </ul>
-  <div style="position: relative; top: 10px; font-weight: bold; font-size: 15px;float: left; left: 30px;">
-    <% categories = [] %>
-    <% c = Category.find(params[:categories]) %>
-    <% while(c.present?) do %>
-        <% categories << c %>
-        <% c = Category.find_by_id(c.parent_id) %>
+  <% if params[:categories] %>
+    <ul style="border: 1px solid gray; position: relative; width: 70%; left: 255px;">
+      <% Category.where("parent_id = #{params[:categories]}").each do |category| %>
+        <li style="width: 200px; display: inline; position: relative; left: -200px;font-size: 16px;"><%= link_to category.name, category_path(:categories => category.id) %></li>&nbsp;&nbsp;&nbsp;&nbsp;
       <% end %>
-      <% categories.reverse.each do |category| %>
-        <%= link_to category.name, category_path(:categories => category.id) %>
-        <% if categories.reverse.last != category %>
-          ->
+    </ul>
+    <div style="position: relative; top: 10px; font-weight: bold; font-size: 15px;float: left; left: 30px;">
+      <% categories = [] %>
+      <% c = Category.find(params[:categories]) %>
+      <% while(c.present?) do %>
+          <% categories << c %>
+          <% c = Category.find_by_id(c.parent_id) %>
         <% end %>
-      <% end %>
-    </div>
+        <% categories.reverse.each do |category| %>
+          <%= link_to category.name, category_path(:categories => category.id) %>
+          <% if categories.reverse.last != category %>
+            ->
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
     <br /><br />
     <div id="rightColumn" style="margin-left: -20px;width: 795px;">
       <div class="commonrow">
@@ -35,7 +37,7 @@
             <ul id="caroulproduct">
               <% for product in @products  %>
                 <% if product.images.present? %>
-                  <li>
+                  <li style='min-height: 350px;'>
                     <%= link_to image_tag(product.images.first.image.url(:original), :width => "200", :height => "150", :style => 'border-radius: 10px;'), product_path(product) %>
                     <%= render :partial => '/carts/products', :locals => {:product => product} %>
                   </li>
